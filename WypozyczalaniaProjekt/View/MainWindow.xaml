@@ -13,7 +13,7 @@
     </Window.Resources>
     <Grid  DataContext="{StaticResource mainVM}" Background="#594c8f">
         <TabControl Background="#594c8f">
-<!--**********************************AUTA************************************-->
+<!--*********************************AUTA************************************-->
             <TabItem x:Name="auto" Header="Auto" Height="22" VerticalAlignment="Top">
                 <Grid>
                     <Grid.ColumnDefinitions>
