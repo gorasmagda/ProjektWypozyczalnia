@@ -1,0 +1,296 @@
+﻿<Window x:Class="WypozyczalaniaProjekt.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WypozyczalaniaProjekt"
+        mc:Ignorable="d"
+        xmlns:vm="clr-namespace:WypozyczalaniaProjekt.ViewModel"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <vm:MainViewModel x:Key="mainVM"/>
+    </Window.Resources>
+    <Grid  DataContext="{StaticResource mainVM}" Background="#594c8f">
+        <TabControl Background="#594c8f">
+<!--**********************************AUTA************************************-->
+            <TabItem x:Name="auto" Header="Auto" Height="22" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="425*" />
+                        <ColumnDefinition Width="363*" />
+                    </Grid.ColumnDefinitions>
+                    <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,363,163.6"
+                                  VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
+                        <StackPanel Height="300">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,0" TextWrapping="Wrap" Text="Id Auto"/>
+                                <TextBox Grid.Column="0" Margin="2,23,31,-21.6"
+                                         Text="{Binding AutoVM.IdAuto}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Kaucja"/>
+                                <TextBox Grid.Column="0" Margin="2,62,31,-60.8"
+                                         Text="{Binding AutoVM.Kaucja}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Lokalizacja"/>
+                                <TextBox Grid.Column="0" Margin="2,100,31,-98.8"
+                                         Text="{Binding AutoVM.Lokalizacja}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Text="Model"/>
+                                <TextBox Grid.Column="0" Margin="2,140,31,-138.8"
+                                         Text="{Binding AutoVM.Model}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Text="Rocznik"/>
+                                <TextBox Grid.Column="0" Margin="2,179,31,-177.8"
+                                         Text="{Binding AutoVM.Rocznik}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,202,0,-195.8" TextWrapping="Wrap" Text="Ilość Miejsc"/>
+                                <TextBox Grid.Column="0" Margin="2,218,31,-216.8"
+                                         Text="{Binding AutoVM.IloscMiejsc}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,243,0,-236.8" TextWrapping="Wrap" Text="Przebieg"/>
+                                <TextBox Grid.Column="0" Margin="2,259,31,-257.8"
+                                         Text="{Binding AutoVM.Przebieg}"/>
+
+
+                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,-0.8" TextWrapping="Wrap" Grid.Column="1" Text="Numer Rejestracyjny"/>
+                                <TextBox Grid.Column="1" Margin="2,23,31,-21.6"
+                                         Text="{Binding AutoVM.NrRejestracyjny}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Grid.Column="1" Text="Cena" />
+                                <TextBox Grid.Column="1" Margin="2,62,31,-60.8"
+                                         Text="{Binding AutoVM.Cena}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Grid.Column="1" Text="Dostępność"/>
+                                <TextBox Grid.Column="1" Margin="2,100,31,-98.8"
+                                         Text="{Binding AutoVM.Dostepnosc}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Grid.Column="1" Text="Marka"/>
+                                <TextBox Grid.Column="1" Margin="2,140,31,-138.8"
+                                         Text="{Binding AutoVM.Marka}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Grid.Column="1" Text="Kolor"/>
+                                <TextBox Grid.Column="1" Margin="2,179,31,-177.8"
+                                         Text="{Binding AutoVM.Kolor}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,202,0,-195.8" TextWrapping="Wrap" Grid.Column="1" Text="Skrzynia Biegów"/>
+                                <TextBox Grid.Column="1" Margin="2,218,31,-216.8"
+                                         Text="{Binding AutoVM.Skrzynia}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,243,0,-236.8" TextWrapping="Wrap" Grid.Column="1" Text="Id Oddzialu"/>
+                                <TextBox Grid.Column="1" Margin="2,259,31,-257.8"
+                                         Text="{Binding AutoVM.IdOddzial}"/>
+
+                            </Grid>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <!-- LISTA AUTA -->
+                    <ListBox 
+                        x:Name="lb_auta"
+                        Grid.Column="1"
+                        Background="#6d6394"
+                        ItemsSource="{Binding AutoVM.Lista}"
+                        SelectedItem="{Binding AutoVM.WybraneAuto}"
+                        >
+
+                    </ListBox>
+                    <Grid Background="#8D80BF" Margin="0,226,363,-0.4" Grid.ColumnSpan="2">
+
+                        <Button x:Name="button_EdytujA" Content="Edytuj" 
+                                Background="#6d6394"
+                            Margin="69,34,64,104"
+                            Command="{Binding AutoVM.EdytujAClick}"
+                                    
+                             />
+                        <Button x:Name="button_UsunA" Content="Usuń" 
+                                Background="#6d6394"
+                            Margin="69,68,64,70"
+                            Command="{Binding AutoVM.UsunAClick}"
+                             />
+                        <Button x:Name="button_DodajA" Content="Dodaj" 
+                                Background="#6d6394"
+                            Margin="69,102,64,36"
+                            Command="{Binding AutoVM.UsunAClick}"
+                             />
+                    </Grid>
+                </Grid>
+            </TabItem>
+<!--**********************************PRACOWNICY************************************-->
+            <TabItem x:Name="pracownicy" Header="Pracownicy" Height="22" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="425*" />
+                        <ColumnDefinition Width="363*" />
+                    </Grid.ColumnDefinitions>
+                    <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,363,163.6"
+                                  VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
+                        <StackPanel Height="300">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,0" TextWrapping="Wrap" Text="Id Pracownik"/>
+                                <TextBox Grid.Column="0" Margin="2,23,31,-21.6"
+                                         Text="{Binding PracownicyVM.IdPracownik}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Imię"/>
+                                <TextBox Grid.Column="0" Margin="2,62,31,-60.8"
+                                         Text="{Binding PracownicyVM.Imie}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Płeć"/>
+                                <TextBox Grid.Column="0" Margin="2,100,31,-98.8"
+                                         Text="{Binding PracownicyVM.Plec}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Text="Numer Telefonu"/>
+                                <TextBox Grid.Column="0" Margin="2,140,31,-138.8"
+                                         Text="{Binding PracownicyVM.NrTelefonu}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Text="Data Urodzenia"/>
+                                <TextBox Grid.Column="0" Margin="2,179,31,-177.8"
+                                         Text="{Binding PracownicyVM.DataUrodzenia}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,202,0,-195.8" TextWrapping="Wrap" Text="Pensja"/>
+                                <TextBox Grid.Column="0" Margin="2,218,31,-216.8"
+                                         Text="{Binding PracownicyVM.Pensja}"/>
+                                
+
+
+                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,-0.8" TextWrapping="Wrap" Grid.Column="1" Text=" Id Oddzialu"/>
+                                <TextBox Grid.Column="1" Margin="2,23,31,-21.6"
+                                         Text="{Binding PracownicyVM.IdOddzial}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Grid.Column="1" Text="Pesel" />
+                                <TextBox Grid.Column="1" Margin="2,62,31,-60.8"
+                                         Text="{Binding PracownicyVM.Pesel}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Grid.Column="1" Text="Nazwisko"/>
+                                <TextBox Grid.Column="1" Margin="2,100,31,-98.8"
+                                         Text="{Binding PracownicyVM.Nazwisko}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Grid.Column="1" Text="Adres"/>
+                                <TextBox Grid.Column="1" Margin="2,140,31,-138.8"
+                                         Text="{Binding PracownicyVM.Adres}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Grid.Column="1" Text="Email"/>
+                                <TextBox Grid.Column="1" Margin="2,179,31,-177.8"
+                                         Text="{Binding PracownicyVM.Email}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,202,0,-195.8" TextWrapping="Wrap" Grid.Column="1" Text="Numer Prawa Jazdy"/>
+                                <TextBox Grid.Column="1" Margin="2,218,31,-216.8"
+                                         Text="{Binding PracownicyVM.NrPrawaJazdy}"/>
+
+                            </Grid>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <!-- LISTA Pracownicy -->
+                    <ListBox 
+                        x:Name="lb_pracownicy"
+                        Grid.Column="1"
+                        Background="#6d6394"
+                        ItemsSource="{Binding PracownicyVM.ListaPracownikow}"
+                        SelectedItem="{Binding PracownicyVM.WybranyPracownik}"
+                        
+                        >
+
+                    </ListBox>
+                    <Grid Background="#8D80BF" Margin="0,226,363,-0.4" Grid.ColumnSpan="2">
+
+                        <Button x:Name="button_EdytujP" Content="Edytuj" 
+                                Background="#6d6394"
+                            Margin="69,34,64,104"
+                            Command="{Binding PracownicyVM.EdytujPClick}"
+                                    
+                             />
+                        <Button x:Name="button_UsunP" Content="Usuń" 
+                                Background="#6d6394"
+                            Margin="69,68,64,70"
+                            Command="{Binding PracownicyVM.UsunPClick}"
+                             />
+                        <Button x:Name="button_DodajP" Content="Dodaj" 
+                                Background="#6d6394"
+                            Margin="69,102,64,36"
+                            Command="{Binding PracownicyVM.DodajPClick}"
+                             />
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+<!--**********************************KLIENCI************************************-->
+            <TabItem x:Name="klienci" Header="Klienci" Height="22" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="425*" />
+                        <ColumnDefinition Width="363*" />
+                    </Grid.ColumnDefinitions>
+                    <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,363,163.6"
+                                  VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
+                        <StackPanel Height="300">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,0" TextWrapping="Wrap" Text="Id Klient"/>
+                                <TextBox Grid.Column="0" Margin="2,23,31,-21.6"
+                                         Text="{Binding KlienciVM.IdKlient}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Imię"/>
+                                <TextBox Grid.Column="0" Margin="2,62,31,-60.8"
+                                         Text="{Binding KlienciVM.Imie}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Płeć"/>
+                                <TextBox Grid.Column="0" Margin="2,100,31,-98.8"
+                                         Text="{Binding KlienciVM.Plec}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Text="Numer Telefonu"/>
+                                <TextBox Grid.Column="0" Margin="2,140,31,-138.8"
+                                         Text="{Binding KlienciVM.NrTelefonu}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Text="Data Urodzenia"/>
+                                <TextBox Grid.Column="0" Margin="2,179,31,-177.8"
+                                         Text="{Binding KlienciVM.DataUrodzenia}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,202,0,-195.8" TextWrapping="Wrap" Text="Id Karty kredytowej"/>
+                                <TextBox Grid.Column="0" Margin="2,218,31,-216.8"
+                                         Text="{Binding KlienciVM.IdKarty}"/>
+
+
+
+                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,-0.8" TextWrapping="Wrap" Grid.Column="1" Text="Nazwisko"/>
+                                <TextBox Grid.Column="1" Margin="2,23,31,-21.6"
+                                         Text="{Binding KlienciVM.Nazwisko}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Grid.Column="1" Text="Pesel" />
+                                <TextBox Grid.Column="1" Margin="2,62,31,-60.8"
+                                         Text="{Binding KlienciVM.Pesel}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Grid.Column="1" Text="Adres"/>
+                                <TextBox Grid.Column="1" Margin="2,100,31,-98.8"
+                                         Text="{Binding KlienciVM.Adres}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Grid.Column="1" Text="Email"/>
+                                <TextBox Grid.Column="1" Margin="2,140,31,-138.8"
+                                         Text="{Binding KlienciVM.Email}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Grid.Column="1" Text="Numer Prawa Jazdy"/>
+                                <TextBox Grid.Column="1" Margin="2,179,31,-177.8"
+                                         Text="{Binding KlienciVM.NrPrawaJazdy}"/>
+                               
+
+                            </Grid>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <!-- LISTA KLIENTÓW-->
+                    <ListBox 
+                        x:Name="lb_klienci"
+                        Grid.Column="1"
+                        Background="#6d6394"
+                        ItemsSource="{Binding KlienciVM.ListaKlientow}"
+                        SelectedItem="{Binding KlienciVM.WybranyKlient}">
+
+                    </ListBox>
+                    <Grid Background="#8D80BF" Margin="0,222,0,0">
+
+                        <Button x:Name="button_EdytujK" Content="Edytuj" 
+                                Background="#6d6394"
+                            Margin="69,34,64,104"
+                            Command="{Binding KlienciVM.EdytujKClick}" />
+                        <Button x:Name="button_UsunK" Content="Usuń" 
+                                Background="#6d6394"
+                            Margin="69,68,64,70"
+                            Command="{Binding KlienciVM.UsunKClick}"
+                             />
+                        <Button x:Name="button_DodajK" Content="Dodaj" 
+                                Background="#6d6394"
+                            Margin="69,102,64,36"
+                            Command="{Binding KlienciVM.DodajKClick}"
+                             />
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="zwrot" Header="Zwrot">
+
+            </TabItem>
+            <TabItem x:Name="wynajem" Header="Wynajem">
+
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
