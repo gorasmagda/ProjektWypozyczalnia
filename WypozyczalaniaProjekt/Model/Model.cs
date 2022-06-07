@@ -13,7 +13,7 @@ namespace WypozyczalaniaProjekt.Model
     class Model
     {
 
-        public ObservableCollection<Samochody> Samochody { get; set; } = new ObservableCollection<Samochody>();
+        public ObservableCollection<Samochod> Samochody { get; set; } = new ObservableCollection<Samochod>();
 
         public Model()
         {

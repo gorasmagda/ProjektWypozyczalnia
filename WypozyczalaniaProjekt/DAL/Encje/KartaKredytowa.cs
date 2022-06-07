@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WypozyczalaniaProjekt.DAL.Encje
 {
-    class KartyKredytowe
+    class KartaKredytowa
     {
         public sbyte? IdKarty { get; set; }
         public string Numer { get; set; }
@@ -19,7 +19,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
         public string Rodzaj { get; set; }
 
         //bardzo przydatny konstruktor tworzy obiekt na podstawie MySQLDataReader
-        public KartyKredytowe(MySqlDataReader reader)
+        public KartaKredytowa(MySqlDataReader reader)
         {
             IdKarty = sbyte.Parse(reader["id_karta"].ToString());
             Numer = reader["numer"].ToString();
@@ -32,7 +32,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
         }
 
         //konstruktor tworzacy obiekt nie dodany jeszcze do bazy z id pustym
-        public KartyKredytowe(string numer, DateTime dataWaznosci, string numerCVV, string imie, string nazwisko, string rodzaj)
+        public KartaKredytowa(string numer, DateTime dataWaznosci, string numerCVV, string imie, string nazwisko, string rodzaj)
         {
             IdKarty = null;
             Numer = numer.Trim();
@@ -43,7 +43,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             Rodzaj = rodzaj.Trim();
         }
 
-        public KartyKredytowe(KartyKredytowe kartykredytowe)
+        public KartaKredytowa(KartaKredytowa kartykredytowe)
         {
             IdKarty = kartykredytowe.IdKarty;
             Numer = kartykredytowe.Numer;

@@ -17,9 +17,9 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
         #endregion
 
         #region metody CRUD
-        public static List<Samochody> PobierzWszystkieSamochody()
+        public static List<Samochod> PobierzWszystkieSamochody()
         {
-            List<Samochody> samochody = new List<Samochody>();
+            List<Samochod> samochody = new List<Samochod>();
 
             using (var connection = DBConnection.Instance.Connection)
             {

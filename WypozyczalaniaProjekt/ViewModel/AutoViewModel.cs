@@ -21,13 +21,13 @@ namespace WypozyczalaniaProjekt.ViewModel
         private Model model = null;
         #endregion
 
-        public ObservableCollection<Samochody> Samochody { get; set; }
+        public ObservableCollection<Samochod> Samochody { get; set; }
 
         #region Konstruktory
         public AutoViewModel(Model model)
         {
             IdAuto = 10;
-            Samochody = new ObservableCollection<Samochody>();
+            Samochody = new ObservableCollection<Samochod>();
             //Lista.Add("Madzia");
 
             this.model = model;

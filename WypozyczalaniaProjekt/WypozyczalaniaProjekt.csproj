@@ -111,12 +111,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DAL\DBConnection.cs" />
-    <Compile Include="DAL\Encje\KartyKredytowe.cs" />
+    <Compile Include="DAL\Encje\KartaKredytowa.cs" />
     <Compile Include="DAL\Encje\Kategoria.cs" />
-    <Compile Include="DAL\Encje\Klienci.cs" />
-    <Compile Include="DAL\Encje\Oddzialy.cs" />
-    <Compile Include="DAL\Encje\Pracownicy.cs" />
-    <Compile Include="DAL\Encje\Samochody.cs" />
+    <Compile Include="DAL\Encje\Klient.cs" />
+    <Compile Include="DAL\Encje\Oddzial.cs" />
+    <Compile Include="DAL\Encje\Pracownik.cs" />
+    <Compile Include="DAL\Encje\Samochod.cs" />
     <Compile Include="DAL\Encje\Wynajem.cs" />
     <Compile Include="DAL\Repozytoria\RepozytoriumSamochody.cs" />
     <Compile Include="Model\Model.cs" />

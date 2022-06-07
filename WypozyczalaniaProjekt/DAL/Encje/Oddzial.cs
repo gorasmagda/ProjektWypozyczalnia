@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace WypozyczalaniaProjekt.DAL.Encje
 {
-    class Oddzialy
+    class Oddzial
     {
         public sbyte? IdOddzialu { get; set; }
         public string Adres { get; set; }
         public string NrTelefonu { get; set; }
         public string Nazwa { get; set; }
 
-        public Oddzialy(MySqlDataReader reader)
+        public Oddzial(MySqlDataReader reader)
         {
             IdOddzialu = sbyte.Parse(reader["id_oddzialu"].ToString());
             Adres = reader["adres"].ToString();
@@ -22,7 +22,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             Nazwa = reader["nazwa"].ToString();
         }
 
-        public Oddzialy(string adres, string nrtelefonu, string nazwa)
+        public Oddzial(string adres, string nrtelefonu, string nazwa)
         {
             IdOddzialu = null;
             Adres = adres.Trim();
@@ -30,7 +30,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             Nazwa = nazwa.Trim();
         }
 
-        public Oddzialy(Oddzialy oddzial)
+        public Oddzial(Oddzial oddzial)
         {
             IdOddzialu = oddzial.IdOddzialu;
             Adres = oddzial.Adres;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WypozyczalaniaProjekt.DAL.Encje
 {
-    class Pracownicy
+    class Pracownik
     {
         public sbyte? IdPracownik { get; set; }
         public string Imie { get; set; }
@@ -24,7 +24,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
         public decimal Pensja { get; set; }
 
 
-        public Pracownicy(MySqlDataReader reader)
+        public Pracownik(MySqlDataReader reader)
         {
             IdPracownik = sbyte.Parse(reader["id_pracownik"].ToString());
             Imie = reader["imie"].ToString();
@@ -41,7 +41,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
         }
 
-        public Pracownicy(string imie, string nazwisko, string plec, string email, string nrtelefonu, string adres, string pesel, string nrprawajazdy, DateTime dataurodzenia, sbyte idoddzialu, decimal pensja)
+        public Pracownik(string imie, string nazwisko, string plec, string email, string nrtelefonu, string adres, string pesel, string nrprawajazdy, DateTime dataurodzenia, sbyte idoddzialu, decimal pensja)
         {
             IdPracownik = null;
             Imie = imie.Trim();
@@ -57,7 +57,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             Pensja = pensja;
         }
 
-        public Pracownicy(Pracownicy pracownik)
+        public Pracownik(Pracownik pracownik)
         {
             IdPracownik = pracownik.IdPracownik;
             Imie = pracownik.Imie;

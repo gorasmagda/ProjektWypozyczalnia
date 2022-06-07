@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WypozyczalaniaProjekt.DAL.Encje
 {
-    class Klienci
+    class Klient
     {
         public sbyte? IdKlient { get; set; }
         public string Imie { get; set; }
@@ -22,7 +22,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
         public sbyte? IdKarty { get; set; }
 
 
-        public Klienci(MySqlDataReader reader)
+        public Klient(MySqlDataReader reader)
         {
             IdKlient = sbyte.Parse(reader["id_klient"].ToString());
             Imie = reader["imie"].ToString();
@@ -38,7 +38,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
         }
 
-        public Klienci(string imie, string nazwisko, string plec, string email, string nrtelefonu, string adres, string pesel, string nrprawajazdy, DateTime dataurodzenia, sbyte idkarty)
+        public Klient(string imie, string nazwisko, string plec, string email, string nrtelefonu, string adres, string pesel, string nrprawajazdy, DateTime dataurodzenia, sbyte idkarty)
         {
             IdKlient = null;
             Imie = imie.Trim();
@@ -53,7 +53,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             IdKarty = idkarty;
         }
 
-        public Klienci(Klienci klient)
+        public Klient(Klient klient)
         {
             IdKlient = klient.IdKarty;
             Imie = klient.Imie;
