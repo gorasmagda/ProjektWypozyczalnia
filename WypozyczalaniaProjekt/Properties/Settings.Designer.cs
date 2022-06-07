@@ -25,7 +25,7 @@ namespace WypozyczalaniaProjekt.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
+        [global::System.Configuration.DefaultSettingValueAttribute("server-wypozyczalnia.mysql.database.azure.com")]
         public string server {
             get {
                 return ((string)(this["server"]));
@@ -43,7 +43,7 @@ namespace WypozyczalaniaProjekt.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("root")]
+        [global::System.Configuration.DefaultSettingValueAttribute("wlasciciel@server-wypozyczalnia")]
         public string userID {
             get {
                 return ((string)(this["userID"]));
@@ -52,7 +52,7 @@ namespace WypozyczalaniaProjekt.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ZAQ!2wsx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("toJestMojaBaza123")]
         public string paswd {
             get {
                 return ((string)(this["paswd"]));

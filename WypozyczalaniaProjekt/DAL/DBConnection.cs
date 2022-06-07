@@ -34,7 +34,7 @@ namespace WypozyczalaniaProjekt.DAL
             stringBuilder.Database = Properties.Settings.Default.database;
             stringBuilder.Port = Properties.Settings.Default.port;
             stringBuilder.Password = Properties.Settings.Default.paswd;
-
+            stringBuilder.SslMode = MySqlSslMode.Required;
         }
     }
 }
