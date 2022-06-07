@@ -1,7 +1,21 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WypozyczalaniaProjekt.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="server" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">localhost</Value>
+    </Setting>
+    <Setting Name="database" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Wypozyczalnia_aut</Value>
+    </Setting>
+    <Setting Name="userID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">root</Value>
+    </Setting>
+    <Setting Name="paswd" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ZAQ!2wsx</Value>
+    </Setting>
+    <Setting Name="port" Type="System.UInt32" Scope="Application">
+      <Value Profile="(Default)">3306</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

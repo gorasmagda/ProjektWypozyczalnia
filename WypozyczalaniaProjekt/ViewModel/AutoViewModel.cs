@@ -11,20 +11,29 @@ namespace WypozyczalaniaProjekt.ViewModel
     using System.Collections.ObjectModel;
     using System.Windows.Input;
 
+    using WypozyczalaniaProjekt.Model;
+    using WypozyczalaniaProjekt.DAL.Encje;
+
     class AutoViewModel : ViewModelBase
     {
 
+        #region Składowe prywatne
+        private Model model = null;
+        #endregion
 
-        public ObservableCollection<string> Lista { get; set; }
+        public ObservableCollection<Samochody> Samochody { get; set; }
 
-        public AutoViewModel()
+        #region Konstruktory
+        public AutoViewModel(Model model)
         {
             IdAuto = 10;
-            Lista = new ObservableCollection<string>();
-            Lista.Add("Madzia");
-             
-        }
+            Samochody = new ObservableCollection<Samochody>();
+            //Lista.Add("Madzia");
 
+            this.model = model;
+            Samochody = model.Samochody;
+        }
+        #endregion
 
         private string wybraneAuto;
         public string WybraneAuto
@@ -73,13 +82,13 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string model;
-        public string Model
+        private string modelAuta;
+        public string ModelAuta
         {
-            get => model;
+            get => modelAuta;
             set
             {
-                model= value;
+                modelAuta = value;
                 onPropertyChanged(nameof(Model));
             }
         }

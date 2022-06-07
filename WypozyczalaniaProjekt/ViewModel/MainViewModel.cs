@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace WypozyczalaniaProjekt.ViewModel
 {
+
+    using WypozyczalaniaProjekt.Model;
+
     class MainViewModel
     {
 
         //stworzenie instancji modelu
-       
+
+        private Model model = new Model();
 
         public AutoViewModel AutoVM { get; set; }
         public PracownicyViewModel PracownicyVM { get; set; }
@@ -22,7 +26,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             //stworzenie viemodeli pomocniczych - dla każdej karty
             //przekazanie referencji do instancji modelu tak
             //aby wszystkie obiekty modeli widoków pracowały na tym samym modelu
-            AutoVM = new AutoViewModel();
+            AutoVM = new AutoViewModel(model);
             PracownicyVM = new PracownicyViewModel();
             KlienciVM = new KlienciViewModel();
 

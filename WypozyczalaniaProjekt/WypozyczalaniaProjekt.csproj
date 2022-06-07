@@ -110,6 +110,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DAL\DBConnection.cs" />
     <Compile Include="DAL\Encje\KartyKredytowe.cs" />
     <Compile Include="DAL\Encje\Kategoria.cs" />
     <Compile Include="DAL\Encje\Klienci.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="DAL\Encje\Pracownicy.cs" />
     <Compile Include="DAL\Encje\Samochody.cs" />
     <Compile Include="DAL\Encje\Wynajem.cs" />
+    <Compile Include="DAL\Repozytoria\RepozytoriumSamochody.cs" />
     <Compile Include="Model\Model.cs" />
     <Compile Include="ViewModel\AutoViewModel.cs" />
     <Compile Include="ViewModel\BaseClassess\RelayCommand.cs" />
