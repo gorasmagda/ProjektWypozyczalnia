@@ -40,7 +40,7 @@
                                          Text="{Binding AutoVM.Lokalizacja}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Text="Model"/>
                                 <TextBox Grid.Column="0" Margin="2,140,31,-138.8"
-                                         Text="{Binding AutoVM.Model}"/>
+                                         Text="{Binding AutoVM.ModelAuta}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Text="Rocznik"/>
                                 <TextBox Grid.Column="0" Margin="2,179,31,-177.8"
                                          Text="{Binding AutoVM.Rocznik}"/>
