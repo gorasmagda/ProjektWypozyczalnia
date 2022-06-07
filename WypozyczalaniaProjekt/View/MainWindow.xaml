@@ -82,7 +82,7 @@
                         x:Name="lb_auta"
                         Grid.Column="1"
                         Background="#6d6394"
-                        ItemsSource="{Binding AutoVM.Lista}"
+                        ItemsSource="{Binding AutoVM.Samochody}"
                         SelectedItem="{Binding AutoVM.WybraneAuto}"
                         >
 

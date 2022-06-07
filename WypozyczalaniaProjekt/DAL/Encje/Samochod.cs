@@ -81,5 +81,10 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             IdOddzialu = samochod.IdOddzialu;
             Nazwa = samochod.Nazwa;
         }
+
+        public override string ToString()
+        {
+            return IdAuto + ", " + Marka + ", " + Model + ", " + Kolor + ", " + Rocznik;
+        }
     }
 }

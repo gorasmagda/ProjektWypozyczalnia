@@ -26,8 +26,8 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
                 MySqlCommand command = new MySqlCommand(WSZYSTKIE_SAMOCHODY, connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
-                //while (reader.Read())
-                //    samochody.Add(new Samochody(reader));
+                while (reader.Read())
+                    samochody.Add(new Samochod(reader));
                 connection.Close();
 
             }
