@@ -11,55 +11,55 @@ namespace WypozyczalaniaProjekt.DAL.Encje
     {
         public sbyte? IdAuto { get; set; }
         public string Marka { get; set; }
-        public string Model { get; set; }
+        public string ModelAuta { get; set; }
         public int Rocznik { get; set; }
         public string Kolor { get; set; }
         public int IloscMiejsc { get; set; }
         public string Skrzynia { get; set; }
         public string NrRejestracyjny { get; set; }
-        public string AktualnaLokalizacja { get; set; }
+        public string Lokalizacja { get; set; }
         public decimal Cena { get; set; }
-        public decimal Kaucja { get; set; }
+        public string Kaucja { get; set; }
         public int Przebieg { get; set; }
         public string Dostepnosc { get; set; }
-        public sbyte? IdOddzialu { get; set; }
+        public sbyte? IdOddzial { get; set; }
         public string Nazwa { get; set; }
 
         public Samochod(MySqlDataReader reader)
         {
             IdAuto = sbyte.Parse(reader["id_auto"].ToString());
             Marka = reader["marka"].ToString();
-            Model = reader["model"].ToString();
+            ModelAuta = reader["model"].ToString();
             Rocznik = int.Parse(reader["rocznik"].ToString());
             Kolor = reader["kolor"].ToString();
             IloscMiejsc = int.Parse(reader["ilosc_miejsc"].ToString());
             Skrzynia = reader["skrzynia"].ToString();
             NrRejestracyjny = reader["nr_rejestracyjny"].ToString();
-            AktualnaLokalizacja = reader["aktualna_lokalizacja"].ToString();
+            Lokalizacja = reader["aktualna_lokalizacja"].ToString();
             Cena = decimal.Parse(reader["cena"].ToString());
-            Kaucja = decimal.Parse(reader["kaucja"].ToString());
+            Kaucja = reader["kaucja"].ToString();
             Przebieg = int.Parse(reader["przebieg"].ToString());
             Dostepnosc = reader["dostepnosc"].ToString();
-            IdOddzialu = sbyte.Parse(reader["id_oddzialu"].ToString());
+            IdOddzial = sbyte.Parse(reader["id_oddzialu"].ToString());
             Nazwa = reader["nazwa"].ToString();
         }
 
-        public Samochod(sbyte? idAuto, string marka, string model, int rocznik, string kolor, int iloscMiejsc, string skrzynia, string nrRejestracyjny, string aktualnaLokalizacja, decimal cena, decimal kaucja, int przebieg, string dostepnosc, sbyte? idOddzialu, string nazwa)
+        public Samochod(sbyte? IdAuto, string marka, string model, int rocznik, string kolor, int iloscMiejsc, string skrzynia, string nrRejestracyjny, string aktualnaLokalizacja, decimal cena, string kaucja, int przebieg, string dostepnosc, sbyte? idOddzialu, string nazwa)
         {
             IdAuto = null;
             Marka = marka.Trim();
-            Model = model.Trim();
+            ModelAuta = model.Trim();
             Rocznik = rocznik;
             Kolor = kolor.Trim();
             IloscMiejsc = iloscMiejsc;
             Skrzynia = skrzynia;
             NrRejestracyjny = nrRejestracyjny;
-            AktualnaLokalizacja = aktualnaLokalizacja;
+            Lokalizacja = aktualnaLokalizacja;
             Cena = cena;
             Kaucja = kaucja;
             Przebieg = przebieg;
             Dostepnosc = dostepnosc;
-            IdOddzialu = idOddzialu;
+            IdOddzial = idOddzialu;
             Nazwa = nazwa;
         }
 
@@ -67,24 +67,48 @@ namespace WypozyczalaniaProjekt.DAL.Encje
         {
             IdAuto = samochod.IdAuto;
             Marka = samochod.Marka;
-            Model = samochod.Model;
+            ModelAuta = samochod.ModelAuta;
             Rocznik = samochod.Rocznik;
             Kolor = samochod.Kolor;
             IloscMiejsc = samochod.IloscMiejsc;
             Skrzynia = samochod.Skrzynia;
             NrRejestracyjny = samochod.NrRejestracyjny;
-            AktualnaLokalizacja = samochod.AktualnaLokalizacja;
+            Lokalizacja = samochod.Lokalizacja;
             Cena = samochod.Cena;
             Kaucja = samochod.Kaucja;
             Przebieg = samochod.Przebieg;
             Dostepnosc = samochod.Dostepnosc;
-            IdOddzialu = samochod.IdOddzialu;
+            IdOddzial = samochod.IdOddzial;
             Nazwa = samochod.Nazwa;
         }
 
         public override string ToString()
         {
-            return IdAuto + ", " + Marka + ", " + Model + ", " + Kolor + ", " + Rocznik;
+            return IdAuto + ", " + Marka + ", " + ModelAuta + ", " + Kolor + ", " + Rocznik;
+        }
+
+        public string ToInsert()
+        {
+            //nie działa dodanie ID, brak okienka na nazwę 
+            //string ids = IdAuto.ToString();
+            //Console.WriteLine(ids);
+                string s = $"('{Marka}', '{ModelAuta}','{Rocznik}','{Kolor}',{IloscMiejsc}, '{Skrzynia}','{NrRejestracyjny}','{Lokalizacja}',{Cena},'{Kaucja}','{Przebieg}','{Dostepnosc}',{IdOddzial},'sportowy')";
+            Console.WriteLine(s);
+            return s;
+        }
+
+        //TO DO DKOKOŃCZYĆ 
+        public override bool Equals(object obj)
+        {
+            var samochod = obj as Samochod;
+            if (samochod is null) return false;
+            if (Marka.ToLower() != samochod.Marka.ToLower()) return false;
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

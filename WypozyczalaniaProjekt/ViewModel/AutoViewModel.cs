@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+//TO DO 
+//TextBox na nazwę + np. combobox dla skrzyni i nazwy + dla id_oddziału, aby wybrać ten, który już wgl istenieje. 
+//Naprawić numer ID przy dodawaniu auta 
 
 
 namespace WypozyczalaniaProjekt.ViewModel
@@ -29,6 +32,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             Samochody = new ObservableCollection<Samochod>();
             this.model = model;
             Samochody = model.Samochody;
+            //CzyscFormularz();
             
         }
         #endregion
@@ -58,8 +62,8 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private decimal kaucja;
-        public decimal Kaucja
+        private string kaucja;
+        public string Kaucja
         {
             get => kaucja;
             set
@@ -87,7 +91,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             set
             {
                 modelAuta = value;
-                onPropertyChanged(nameof(Model));
+                onPropertyChanged(nameof(ModelAuta));
             }
         }
 
@@ -200,7 +204,35 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
+        private string nazwa;
+        public string Nazwa
+        {
+            get => nazwa;
+            set
+            {
+                nazwa = value;
+                onPropertyChanged(nameof(Nazwa));
+            }
+        }
 
+        private void CzyscFormularz()
+        {
+            IdAuto = 0;
+            Marka = "";
+            Kaucja = "";
+            Lokalizacja = "";
+            ModelAuta = "";
+            Rocznik = 0;
+            IloscMiejsc = 0;
+            Przebieg = 0;
+            NrRejestracyjny = "";
+            Cena = 0;
+            Dostepnosc = "";
+            Kolor = "";
+            Skrzynia = "";
+            IdOddzial = 0;
+
+        }
 
 
 
@@ -237,10 +269,16 @@ namespace WypozyczalaniaProjekt.ViewModel
                     dodajAClick = new RelayCommand(
                     arg =>
                     {
-                        
+                        var samochod = new Samochod((sbyte)IdAuto, Marka, ModelAuta, Rocznik, Kolor,(int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, (int)Cena, Kaucja, Przebieg, Dostepnosc, (sbyte)IdOddzial, Nazwa);
+                        Console.WriteLine("Dodanie");
+                        if (model.DodajSamochodDoBazy(samochod))
+                        {
+                            CzyscFormularz();
+                            System.Windows.MessageBox.Show("Samochod został dodany!");
+                        }
                     }
 
-                   , null);
+                   , arg => (Marka != "") && (NrRejestracyjny != ""));
 
 
 
@@ -283,11 +321,12 @@ namespace WypozyczalaniaProjekt.ViewModel
                         {
                             if (IdWybranegoAuta > -1)
                             {
+                                //TODO IdAuto
                                 IdAuto = (int)WybraneAuto.IdAuto;
                                 Marka = WybraneAuto.Marka;
                                 Kaucja = WybraneAuto.Kaucja;
-                                Lokalizacja = WybraneAuto.AktualnaLokalizacja;
-                                ModelAuta = WybraneAuto.Model;
+                                Lokalizacja = WybraneAuto.Lokalizacja;
+                                ModelAuta = WybraneAuto.ModelAuta;
                                 Rocznik = WybraneAuto.Rocznik;
                                 IloscMiejsc = WybraneAuto.IloscMiejsc;
                                 Przebieg = WybraneAuto.Przebieg;
@@ -296,7 +335,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 Dostepnosc = WybraneAuto.Dostepnosc;
                                 Kolor = WybraneAuto.Kolor;
                                 Skrzynia = WybraneAuto.Skrzynia;
-                                IdOddzial = (int)WybraneAuto.IdOddzialu;
+                                IdOddzial = (int)WybraneAuto.IdOddzial;
 
 
 
@@ -304,15 +343,11 @@ namespace WypozyczalaniaProjekt.ViewModel
                             }
                             else
                             {
-                                
-                                //TO DO przypisanie wartości do pustego formularza 
-                                //np. zapytanie do sql o najwikesza wartosc ID i potem wypisanie o jeden wiekszego i przypisanie go do idauto w pustym formularzu 
-                                // i jeszcze rozwiazanie do oddziału? 
-
-                                IdAuto = (int) Samochody.Last().IdAuto + 1;
+                                //W sumie to nie wiem dokładnie po co to jest 
+                                IdAuto = (int)Samochody.Last().IdAuto + 1;
                                 Marka = "";
-                                Kaucja = 0;
-                                Lokalizacja = "Madzia";
+                                Kaucja = "";
+                                Lokalizacja = "";
                                 ModelAuta = "";
                                 Rocznik = 0;
                                 IloscMiejsc = 0;
@@ -322,7 +357,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 Dostepnosc = "";
                                 Kolor = "";
                                 Skrzynia = "";
-                                //IdOddzial = 0;
+                                IdOddzial = 0;
                             }
 
                         }

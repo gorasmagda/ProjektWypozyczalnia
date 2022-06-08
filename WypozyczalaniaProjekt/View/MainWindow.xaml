@@ -110,7 +110,7 @@
                         <Button x:Name="button_DodajA" Content="Dodaj" 
                                 Background="#6d6394"
                             Margin="69,102,64,36"
-                            Command="{Binding AutoVM.UsunAClick}"
+                            Command="{Binding AutoVM.DodajAClick}"
                              />
                     </Grid>
                 </Grid>

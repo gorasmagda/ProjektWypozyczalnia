@@ -35,5 +35,20 @@ namespace WypozyczalaniaProjekt.Model
 
         }
 
+
+        public bool CzySamochodJestJuzWBazie(Samochod samochod) => Samochody.Contains(samochod);
+        public bool DodajSamochodDoBazy(Samochod samochod)
+        {
+            if (!CzySamochodJestJuzWBazie(samochod))
+            {
+                if (RepozytoriumSamochody.DodajSamochodDoBazy(samochod))
+                {
+                    Console.WriteLine("Doaj sie");
+                    Samochody.Add(samochod);
+                    return true;
+                }
+            }
+            return false; 
+        }
     }
 }
