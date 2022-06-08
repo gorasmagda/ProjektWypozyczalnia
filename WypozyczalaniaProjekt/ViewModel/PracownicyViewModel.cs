@@ -9,14 +9,21 @@ namespace WypozyczalaniaProjekt.ViewModel
     using BaseClassess;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
+    using WypozyczalaniaProjekt.Model;
+    using WypozyczalaniaProjekt.DAL.Encje;
     class PracownicyViewModel : ViewModelBase
     {
-        public ObservableCollection<string> ListaPracownikow { get; set; }
-        public PracownicyViewModel()
+        #region Składowe prywatne
+        private Model model = null;
+        #endregion
+        public ObservableCollection<Pracownik> Pracownicy { get; set; }
+        public PracownicyViewModel(Model model)
         {
             NrPrawaJazdy = "63534";
-            ListaPracownikow = new ObservableCollection<string>();
-            ListaPracownikow.Add("Pracownik");
+            Pracownicy = new ObservableCollection<Pracownik>();
+            this.model = model;
+            Pracownicy = model.Pracownicy;
+
         }
 
         private string wybranyPracownik;

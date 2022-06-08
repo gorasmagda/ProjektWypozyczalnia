@@ -15,6 +15,8 @@ namespace WypozyczalaniaProjekt.Model
 
         public ObservableCollection<Samochod> Samochody { get; set; } = new ObservableCollection<Samochod>();
         public ObservableCollection<Klient> Klienci { get; set; } = new ObservableCollection<Klient>();
+
+        public ObservableCollection<Pracownik> Pracownicy { get; set; } = new ObservableCollection<Pracownik>();
  
         public Model()
         {
@@ -26,6 +28,10 @@ namespace WypozyczalaniaProjekt.Model
             var klienci = RepozytoriumKlienci.PobierzWszystkichKlientow();
             foreach (var k in klienci)
                 Klienci.Add(k);
+
+            var pracownicy = RepozytoriumPracownicy.PobierzWszystkichPracownikow();
+            foreach (var p in pracownicy)
+                Pracownicy.Add(p);
 
         }
 

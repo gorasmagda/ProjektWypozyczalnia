@@ -27,7 +27,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             //przekazanie referencji do instancji modelu tak
             //aby wszystkie obiekty modeli widoków pracowały na tym samym modelu
             AutoVM = new AutoViewModel(model);
-            PracownicyVM = new PracownicyViewModel();
+            PracownicyVM = new PracownicyViewModel(model);
             KlienciVM = new KlienciViewModel(model);
 
 

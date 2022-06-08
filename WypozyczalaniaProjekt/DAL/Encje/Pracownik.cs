@@ -72,6 +72,11 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             IdOddzial = pracownik.IdOddzial;
             Pensja = pracownik.Pensja;
         }
+
+        public override string ToString()
+        {
+            return IdPracownik + ", " + IdOddzial + ", " + Imie + ", " + Nazwisko + ", " + NrTelefonu + ", " + Email;
+        }
     }
 }
 

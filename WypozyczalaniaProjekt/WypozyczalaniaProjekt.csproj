@@ -119,6 +119,7 @@
     <Compile Include="DAL\Encje\Samochod.cs" />
     <Compile Include="DAL\Encje\Wynajem.cs" />
     <Compile Include="DAL\Repozytoria\RepozytoriumKlienci.cs" />
+    <Compile Include="DAL\Repozytoria\RepozytoriumPracownicy.cs" />
     <Compile Include="DAL\Repozytoria\RepozytoriumSamochody.cs" />
     <Compile Include="Model\Model.cs" />
     <Compile Include="ViewModel\AutoViewModel.cs" />

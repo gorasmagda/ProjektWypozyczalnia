@@ -172,7 +172,7 @@
                         x:Name="lb_pracownicy"
                         Grid.Column="1"
                         Background="#6d6394"
-                        ItemsSource="{Binding PracownicyVM.ListaPracownikow}"
+                        ItemsSource="{Binding PracownicyVM.Pracownicy}"
                         SelectedItem="{Binding PracownicyVM.WybranyPracownik}"
                         
                         >
