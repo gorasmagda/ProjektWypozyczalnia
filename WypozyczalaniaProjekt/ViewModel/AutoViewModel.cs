@@ -25,32 +25,31 @@ namespace WypozyczalaniaProjekt.ViewModel
         #region Konstruktory
         public AutoViewModel(Model model)
         {
-            IdAuto = 10;
+            
             Samochody = new ObservableCollection<Samochod>();
-            //Lista.Add("Madzia");
-
             this.model = model;
             Samochody = model.Samochody;
+            
         }
         #endregion
 
-        private string wybraneAuto;
-        public string WybraneAuto
+        public Samochod WybraneAuto { get; set; }
+
+        private int idWybranegoAuta;
+        public int IdWybranegoAuta
         {
-            get => wybraneAuto;
+            get { return idWybranegoAuta; }
             set
             {
-                wybraneAuto = value;
-                onPropertyChanged(nameof(WybraneAuto));
-                Console.WriteLine("Wybrane auto to madzia");
-
+                idWybranegoAuta = value;
+                onPropertyChanged(nameof(IdWybranegoAuta));
             }
         }
 
         private int idAuto;
         public int IdAuto
         {
-            get => idAuto;
+            get { return idAuto;  }
             set
             {
                 idAuto = value;
@@ -59,8 +58,8 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string kaucja;
-        public string Kaucja
+        private decimal kaucja;
+        public decimal Kaucja
         {
             get => kaucja;
             set
@@ -93,8 +92,8 @@ namespace WypozyczalaniaProjekt.ViewModel
         }
 
 
-        private string rocznik;
-        public string Rocznik
+        private int rocznik;
+        public int Rocznik
         {
             get => rocznik;
             set
@@ -104,8 +103,8 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string iloscMiejsc;
-        public string IloscMiejsc
+        private int iloscMiejsc;
+        public int IloscMiejsc
         {
             get => iloscMiejsc;
             set
@@ -115,8 +114,8 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string przebieg;
-        public string Przebieg
+        private int przebieg;
+        public int Przebieg
         {
             get => przebieg;
             set
@@ -273,10 +272,66 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         }
 
+        private ICommand zaladujFormularz = null;
+        public ICommand ZaladujFormularz
+        {
+            get
+            {
+                if (zaladujFormularz == null)
+                    zaladujFormularz = new RelayCommand
+                        (o =>
+                        {
+                            if (IdWybranegoAuta > -1)
+                            {
+                                IdAuto = (int)WybraneAuto.IdAuto;
+                                Marka = WybraneAuto.Marka;
+                                Kaucja = WybraneAuto.Kaucja;
+                                Lokalizacja = WybraneAuto.AktualnaLokalizacja;
+                                ModelAuta = WybraneAuto.Model;
+                                Rocznik = WybraneAuto.Rocznik;
+                                IloscMiejsc = WybraneAuto.IloscMiejsc;
+                                Przebieg = WybraneAuto.Przebieg;
+                                NrRejestracyjny = WybraneAuto.NrRejestracyjny;
+                                Cena = WybraneAuto.Cena;
+                                Dostepnosc = WybraneAuto.Dostepnosc;
+                                Kolor = WybraneAuto.Kolor;
+                                Skrzynia = WybraneAuto.Skrzynia;
+                                IdOddzial = (int)WybraneAuto.IdOddzialu;
 
-        
 
 
+
+                            }
+                            else
+                            {
+                                
+                                //TO DO przypisanie wartości do pustego formularza 
+                                //np. zapytanie do sql o najwikesza wartosc ID i potem wypisanie o jeden wiekszego i przypisanie go do idauto w pustym formularzu 
+                                // i jeszcze rozwiazanie do oddziału? 
+
+                                IdAuto = (int) Samochody.Last().IdAuto + 1;
+                                Marka = "";
+                                Kaucja = 0;
+                                Lokalizacja = "Madzia";
+                                ModelAuta = "";
+                                Rocznik = 0;
+                                IloscMiejsc = 0;
+                                Przebieg = 0;
+                                NrRejestracyjny = "";
+                                Cena = 0;
+                                Dostepnosc = "";
+                                Kolor = "";
+                                Skrzynia = "";
+                                //IdOddzial = 0;
+                            }
+
+                        }
+                        ,
+                        o => true
+                        );
+                return zaladujFormularz;
+            }
+        }
 
     }
 }

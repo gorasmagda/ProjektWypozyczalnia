@@ -13,7 +13,7 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
     {
 
         #region ZAPYTANIA
-        private const string WSZYSTKIE_SAMOCHODY = "SELECT * FROM samochody";
+        private const string WSZYSTKIE_SAMOCHODY = "SELECT * FROM samochody Order BY ID_AUTO ASC";
         #endregion
 
         #region metody CRUD

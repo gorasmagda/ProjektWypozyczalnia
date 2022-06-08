@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WypozyczalaniaProjekt"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         xmlns:vm="clr-namespace:WypozyczalaniaProjekt.ViewModel"
         Title="MainWindow" Height="450" Width="800">
@@ -78,13 +79,19 @@
                         </StackPanel>
                     </ScrollViewer>
                     <!-- LISTA AUTA -->
-                    <ListBox 
+                    <ListBox
                         x:Name="lb_auta"
                         Grid.Column="1"
                         Background="#6d6394"
                         ItemsSource="{Binding AutoVM.Samochody}"
                         SelectedItem="{Binding AutoVM.WybraneAuto}"
+                        SelectedIndex="{Binding AutoVM.IdWybranegoAuta, Mode=TwoWay}"  
                         >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding AutoVM.ZaladujFormularz}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
 
                     </ListBox>
                     <Grid Background="#8D80BF" Margin="0,226,363,-0.4" Grid.ColumnSpan="2">
