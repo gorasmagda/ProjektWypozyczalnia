@@ -14,13 +14,19 @@ namespace WypozyczalaniaProjekt.Model
     {
 
         public ObservableCollection<Samochod> Samochody { get; set; } = new ObservableCollection<Samochod>();
-
+        public ObservableCollection<Klient> Klienci { get; set; } = new ObservableCollection<Klient>();
+ 
         public Model()
         {
             //pobranie dabych z bazy do kolekcji
             var samochody = RepozytoriumSamochody.PobierzWszystkieSamochody();
             foreach (var s in samochody)
                 Samochody.Add(s);
+
+            var klienci = RepozytoriumKlienci.PobierzWszystkichKlientow();
+            foreach (var k in klienci)
+                Klienci.Add(k);
+
         }
 
     }

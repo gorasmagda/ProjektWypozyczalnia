@@ -9,17 +9,25 @@ namespace WypozyczalaniaProjekt.ViewModel
     using BaseClassess;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
+    using WypozyczalaniaProjekt.Model;
+    using WypozyczalaniaProjekt.DAL.Encje;
     class KlienciViewModel : ViewModelBase
     {
 
-        public ObservableCollection<string> ListaKlientow { get; set; }
+        #region Składowe prywatne
+        private Model model = null;
+        #endregion
+        public ObservableCollection<Klient> Klienci { get; set; }
 
-        public KlienciViewModel()
+        #region Konstruktory
+        public KlienciViewModel(Model model)
         {
-            IdKlient= 2;
-            ListaKlientow= new ObservableCollection<string>();
-            ListaKlientow.Add("Klient");
+            IdKlient = 10;
+            Klienci = new ObservableCollection<Klient>();
+            this.model = model;
+            Klienci = model.Klienci;
         }
+        #endregion
 
         private string wybranyKlient;
         public string WybranyKlient

@@ -28,7 +28,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             //aby wszystkie obiekty modeli widoków pracowały na tym samym modelu
             AutoVM = new AutoViewModel(model);
             PracownicyVM = new PracownicyViewModel();
-            KlienciVM = new KlienciViewModel();
+            KlienciVM = new KlienciViewModel(model);
 
 
         }

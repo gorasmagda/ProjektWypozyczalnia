@@ -67,5 +67,10 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             DataUrodzenia = klient.DataUrodzenia;
             IdKarty = klient.IdKarty;
         }
+
+        public override string ToString()
+        {
+            return IdKlient + ", " + Imie + ", " + Nazwisko + ", " + NrTelefonu + ", " + Email;
+        }
     }
 }

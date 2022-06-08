@@ -10,7 +10,6 @@ namespace WypozyczalaniaProjekt.ViewModel
     using BaseClassess;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
-
     using WypozyczalaniaProjekt.Model;
     using WypozyczalaniaProjekt.DAL.Encje;
 

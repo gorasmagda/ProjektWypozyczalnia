@@ -262,7 +262,7 @@
                         x:Name="lb_klienci"
                         Grid.Column="1"
                         Background="#6d6394"
-                        ItemsSource="{Binding KlienciVM.ListaKlientow}"
+                        ItemsSource="{Binding KlienciVM.Klienci}"
                         SelectedItem="{Binding KlienciVM.WybranyKlient}">
 
                     </ListBox>
