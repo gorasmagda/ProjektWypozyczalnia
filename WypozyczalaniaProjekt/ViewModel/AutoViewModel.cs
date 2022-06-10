@@ -233,9 +233,23 @@ namespace WypozyczalaniaProjekt.ViewModel
             IdOddzial = 0;
 
         }
-
-
-
+        private ICommand wyczyscAutoClick = null;
+        public ICommand WyczyscAutoClick
+        {
+            get
+            {
+                if(wyczyscAutoClick == null)
+                    wyczyscAutoClick = new RelayCommand(
+                        arg =>
+                        {
+                            CzyscFormularz();
+                        },
+                        null);
+                    return wyczyscAutoClick;
+                
+                
+            }
+        }
 
         private ICommand edytujAClick = null;
         

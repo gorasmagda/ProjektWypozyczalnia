@@ -14,7 +14,7 @@
     </Window.Resources>
     <Grid  DataContext="{StaticResource mainVM}" Background="#594c8f">
         <TabControl Background="#594c8f">
-<!--*********************************AUTA************************************-->
+            <!--*********************************AUTA************************************-->
             <TabItem x:Name="auto" Header="Auto" Height="22" VerticalAlignment="Top">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -98,24 +98,28 @@
 
                         <Button x:Name="button_EdytujA" Content="Edytuj" 
                                 Background="#6d6394"
-                            Margin="69,34,64,104"
+                            Margin="56,40,77,98.4"
                             Command="{Binding AutoVM.EdytujAClick}"
                                     
                              />
                         <Button x:Name="button_UsunA" Content="Usuń" 
                                 Background="#6d6394"
-                            Margin="69,68,64,70"
+                            Margin="56,74,77,64.4"
                             Command="{Binding AutoVM.UsunAClick}"
                              />
                         <Button x:Name="button_DodajA" Content="Dodaj" 
                                 Background="#6d6394"
-                            Margin="69,102,64,36"
+                            Margin="56,108,77,30.4"
                             Command="{Binding AutoVM.DodajAClick}"
                              />
+                        <Button Content="Wyczyść" HorizontalAlignment="Left" 
+                                Margin="326,10,0,0" 
+                                VerticalAlignment="Top" Width="75"
+                                Command="{Binding AutoVM.WyczyscAutoClick}"/>
                     </Grid>
                 </Grid>
             </TabItem>
-<!--**********************************PRACOWNICY************************************-->
+            <!--**********************************PRACOWNICY************************************-->
             <TabItem x:Name="pracownicy" Header="Pracownicy" Height="22" VerticalAlignment="Top">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -149,7 +153,7 @@
                                 <TextBlock HorizontalAlignment="Left" Margin="2,202,0,-195.8" TextWrapping="Wrap" Text="Pensja"/>
                                 <TextBox Grid.Column="0" Margin="2,218,31,-216.8"
                                          Text="{Binding PracownicyVM.Pensja}"/>
-                                
+
 
 
                                 <TextBlock HorizontalAlignment="Left" Margin="2,7,0,-0.8" TextWrapping="Wrap" Grid.Column="1" Text=" Id Oddzialu"/>
@@ -207,7 +211,7 @@
                 </Grid>
             </TabItem>
 
-<!--**********************************KLIENCI************************************-->
+            <!--**********************************KLIENCI************************************-->
             <TabItem x:Name="klienci" Header="Klienci" Height="22" VerticalAlignment="Top">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -259,7 +263,7 @@
                                 <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Grid.Column="1" Text="Numer Prawa Jazdy"/>
                                 <TextBox Grid.Column="1" Margin="2,179,31,-177.8"
                                          Text="{Binding KlienciVM.NrPrawaJazdy}"/>
-                               
+
 
                             </Grid>
                         </StackPanel>
