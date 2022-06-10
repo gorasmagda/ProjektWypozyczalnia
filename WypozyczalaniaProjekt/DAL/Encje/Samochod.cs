@@ -44,7 +44,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             Nazwa = reader["nazwa"].ToString();
         }
 
-        public Samochod(sbyte? IdAuto, string marka, string model, int rocznik, string kolor, int iloscMiejsc, string skrzynia, string nrRejestracyjny, string aktualnaLokalizacja, decimal cena, string kaucja, int przebieg, string dostepnosc, sbyte? idOddzialu, string nazwa)
+        public Samochod(string marka, string model, int rocznik, string kolor, int iloscMiejsc, string skrzynia, string nrRejestracyjny, string aktualnaLokalizacja, decimal cena, string kaucja, int przebieg, string dostepnosc, sbyte? idOddzialu, string nazwa)
         {
             IdAuto = null;
             Marka = marka.Trim();
@@ -84,17 +84,14 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
         public override string ToString()
         {
-            return IdAuto + ", " + Marka + ", " + ModelAuta + ", " + Kolor + ", " + Rocznik;
+            return IdAuto + ", " + Marka + ", " + ModelAuta + ", " + Kolor + ", " + Rocznik + ", " +Nazwa;
         }
 
         public string ToInsert()
         {
-            //nie działa dodanie ID, brak okienka na nazwę 
-            //string ids = IdAuto.ToString();
-            //Console.WriteLine(ids);
-                string s = $"('{Marka}', '{ModelAuta}','{Rocznik}','{Kolor}',{IloscMiejsc}, '{Skrzynia}','{NrRejestracyjny}','{Lokalizacja}',{Cena},'{Kaucja}','{Przebieg}','{Dostepnosc}',{IdOddzial},'sportowy')";
-            Console.WriteLine(s);
-            return s;
+            
+                return $"('{Marka}', '{ModelAuta}','{Rocznik}','{Kolor}',{IloscMiejsc}, '{Skrzynia}','{NrRejestracyjny}','{Lokalizacja}',{Cena},'{Kaucja}','{Przebieg}','{Dostepnosc}',{IdOddzial},{Nazwa})";
+
         }
 
         //TO DO DKOKOŃCZYĆ 

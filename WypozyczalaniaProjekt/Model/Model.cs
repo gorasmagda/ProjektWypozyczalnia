@@ -43,7 +43,6 @@ namespace WypozyczalaniaProjekt.Model
             {
                 if (RepozytoriumSamochody.DodajSamochodDoBazy(samochod))
                 {
-                    Console.WriteLine("Doaj sie");
                     Samochody.Add(samochod);
                     return true;
                 }

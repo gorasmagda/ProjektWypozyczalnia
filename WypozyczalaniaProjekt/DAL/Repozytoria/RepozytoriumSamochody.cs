@@ -48,10 +48,9 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             {
                 MySqlCommand command = new MySqlCommand($"{DODAJ_SAMOCHOD} {samochod.ToInsert()}", connection);
                 connection.Open();
-                Console.WriteLine(command.ToString());
                 var reader = command.ExecuteNonQuery();
                 stan = true;
-                Console.WriteLine("Stan to ", stan);
+                samochod.IdAuto = (sbyte)command.LastInsertedId;
                 connection.Close();
             }
             

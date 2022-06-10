@@ -50,17 +50,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private int idAuto;
-        public int IdAuto
-        {
-            get { return idAuto;  }
-            set
-            {
-                idAuto = value;
-                onPropertyChanged(nameof(IdAuto));
-
-            }
-        }
+        
 
         private string kaucja;
         public string Kaucja
@@ -217,7 +207,7 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         private void CzyscFormularz()
         {
-            IdAuto = 0;
+            
             Marka = "";
             Kaucja = "";
             Lokalizacja = "";
@@ -231,6 +221,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             Kolor = "";
             Skrzynia = "";
             IdOddzial = 0;
+            Nazwa = "";
 
         }
         private ICommand wyczyscAutoClick = null;
@@ -261,7 +252,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     edytujAClick = new RelayCommand(
                     arg =>
                     {
-                        IdAuto=12;
+                        
                     }
                          
                    ,null);
@@ -283,8 +274,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     dodajAClick = new RelayCommand(
                     arg =>
                     {
-                        var samochod = new Samochod((sbyte)IdAuto, Marka, ModelAuta, Rocznik, Kolor,(int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, (int)Cena, Kaucja, Przebieg, Dostepnosc, (sbyte)IdOddzial, Nazwa);
-                        Console.WriteLine("Dodanie");
+                        var samochod = new Samochod(Marka, ModelAuta, Rocznik, Kolor,(int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, (int)Cena, Kaucja, Przebieg, Dostepnosc, (sbyte)IdOddzial, Nazwa);
                         if (model.DodajSamochodDoBazy(samochod))
                         {
                             CzyscFormularz();
@@ -292,7 +282,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                         }
                     }
 
-                   , arg => (Marka != "") && (NrRejestracyjny != ""));
+                   , arg => (Marka != "") && (NrRejestracyjny != "")); //to do retsza
 
 
 
@@ -335,8 +325,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                         {
                             if (IdWybranegoAuta > -1)
                             {
-                                //TODO IdAuto
-                                IdAuto = (int)WybraneAuto.IdAuto;
+                                
                                 Marka = WybraneAuto.Marka;
                                 Kaucja = WybraneAuto.Kaucja;
                                 Lokalizacja = WybraneAuto.Lokalizacja;
@@ -350,6 +339,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 Kolor = WybraneAuto.Kolor;
                                 Skrzynia = WybraneAuto.Skrzynia;
                                 IdOddzial = (int)WybraneAuto.IdOddzial;
+                                Nazwa = WybraneAuto.Nazwa;
 
 
 
@@ -357,8 +347,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                             }
                             else
                             {
-                                //W sumie to nie wiem dokładnie po co to jest 
-                                IdAuto = (int)Samochody.Last().IdAuto + 1;
+                         
                                 Marka = "";
                                 Kaucja = "";
                                 Lokalizacja = "";
@@ -372,6 +361,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 Kolor = "";
                                 Skrzynia = "";
                                 IdOddzial = 0;
+                                Nazwa = "";
                             }
 
                         }
