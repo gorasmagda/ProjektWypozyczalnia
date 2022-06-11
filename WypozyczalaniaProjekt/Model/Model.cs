@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WypozyczalaniaProjekt.Model
+﻿namespace WypozyczalaniaProjekt.Model
 {
     using DAL.Encje;
     using DAL.Repozytoria;
@@ -17,7 +11,7 @@ namespace WypozyczalaniaProjekt.Model
         public ObservableCollection<Klient> Klienci { get; set; } = new ObservableCollection<Klient>();
 
         public ObservableCollection<Pracownik> Pracownicy { get; set; } = new ObservableCollection<Pracownik>();
- 
+
         public Model()
         {
             //pobranie dabych z bazy do kolekcji
@@ -47,7 +41,7 @@ namespace WypozyczalaniaProjekt.Model
                     return true;
                 }
             }
-            return false; 
+            return false;
         }
     }
 }

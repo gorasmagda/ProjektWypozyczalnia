@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WypozyczalaniaProjekt.ViewModel
+﻿namespace WypozyczalaniaProjekt.ViewModel
 {
 
     using WypozyczalaniaProjekt.Model;
@@ -19,7 +13,7 @@ namespace WypozyczalaniaProjekt.ViewModel
         public AutoViewModel AutoVM { get; set; }
         public PracownicyViewModel PracownicyVM { get; set; }
         public KlienciViewModel KlienciVM { get; set; }
-        
+
 
         public MainViewModel()
         {

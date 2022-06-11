@@ -154,7 +154,7 @@ namespace WypozyczalaniaProjekt.ViewModel
         #endregion
 
         #region Polecenia
-        
+
         private ICommand dodajKlienta = null;
         public ICommand DodajKlienta
         {

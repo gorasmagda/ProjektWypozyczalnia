@@ -1,9 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WypozyczalaniaProjekt.DAL.Encje
 {
@@ -30,7 +26,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             Plec = reader["plec"].ToString();
             Email = reader["email"].ToString();
             NrTelefonu = reader["nr_telefonu"].ToString();
-            Adres = reader["adres"].ToString(); 
+            Adres = reader["adres"].ToString();
             Pesel = reader["pesel"].ToString();
             NrPrawaJazdy = reader["nr_prawa_jazdy"].ToString();
             DataUrodzenia = DateTime.Parse(reader["data_urodzenia"].ToString());

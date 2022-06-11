@@ -1,9 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WypozyczalaniaProjekt.DAL.Encje
 {
@@ -19,7 +15,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
         public DateTime DataUrodzenia { get; set; }
         public string Pesel { get; set; }
         public string NrPrawaJazdy { get; set; }
-        
+
         public sbyte? IdOddzial { get; set; }
         public decimal Pensja { get; set; }
 

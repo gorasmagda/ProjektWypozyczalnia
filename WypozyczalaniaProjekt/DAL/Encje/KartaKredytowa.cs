@@ -1,9 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace WypozyczalaniaProjekt.DAL.Encje
@@ -51,7 +47,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             NumerCVV = kartykredytowe.Numer;
             Imie = kartykredytowe.Imie;
             Nazwisko = kartykredytowe.Nazwisko;
-            Rodzaj = kartykredytowe.Rodzaj; 
+            Rodzaj = kartykredytowe.Rodzaj;
         }
     }
 }

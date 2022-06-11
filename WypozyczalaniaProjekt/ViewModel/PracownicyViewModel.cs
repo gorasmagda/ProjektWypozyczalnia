@@ -19,7 +19,7 @@ namespace WypozyczalaniaProjekt.ViewModel
         private string imie, nazwisko, plec, nrTelefonu, dataUrodzenia, adres, email, nrPrawaJazdy, pesel;
 
         #endregion
-        
+
         #region Konstruktory
 
         public PracownicyViewModel(Model model)
