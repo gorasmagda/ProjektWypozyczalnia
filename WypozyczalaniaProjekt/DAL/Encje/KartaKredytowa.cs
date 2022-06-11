@@ -6,6 +6,9 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 {
     class KartaKredytowa
     {
+
+        #region Własności
+
         public sbyte? IdKarty { get; set; }
         public string Numer { get; set; }
         public DateTime DataWaznosci { get; set; }
@@ -14,7 +17,10 @@ namespace WypozyczalaniaProjekt.DAL.Encje
         public string Nazwisko { get; set; }
         public string Rodzaj { get; set; }
 
-        //bardzo przydatny konstruktor tworzy obiekt na podstawie MySQLDataReader
+        #endregion
+
+        #region Konstruktory
+
         public KartaKredytowa(MySqlDataReader reader)
         {
             IdKarty = sbyte.Parse(reader["id_karta"].ToString());
@@ -27,7 +33,6 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
         }
 
-        //konstruktor tworzacy obiekt nie dodany jeszcze do bazy z id pustym
         public KartaKredytowa(string numer, DateTime dataWaznosci, string numerCVV, string imie, string nazwisko, string rodzaj)
         {
             IdKarty = null;
@@ -49,5 +54,14 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             Nazwisko = kartykredytowe.Nazwisko;
             Rodzaj = kartykredytowe.Rodzaj;
         }
+
+        #endregion
+
+        #region Metody
+
+
+
+        #endregion
+
     }
 }

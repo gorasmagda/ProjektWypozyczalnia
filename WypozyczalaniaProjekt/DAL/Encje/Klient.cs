@@ -5,6 +5,9 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 {
     class Klient
     {
+
+        #region Własności
+
         public sbyte? IdKlient { get; set; }
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
@@ -17,6 +20,9 @@ namespace WypozyczalaniaProjekt.DAL.Encje
         public DateTime DataUrodzenia { get; set; }
         public sbyte? IdKarty { get; set; }
 
+        #endregion
+
+        #region Konstruktory
 
         public Klient(MySqlDataReader reader)
         {
@@ -31,7 +37,6 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             NrPrawaJazdy = reader["nr_prawa_jazdy"].ToString();
             DataUrodzenia = DateTime.Parse(reader["data_urodzenia"].ToString());
             IdKarty = sbyte.Parse(reader["id_karta"].ToString());
-
         }
 
         public Klient(string imie, string nazwisko, string plec, string email, string nrtelefonu, string adres, string pesel, string nrprawajazdy, DateTime dataurodzenia, sbyte idkarty)
@@ -64,9 +69,16 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             IdKarty = klient.IdKarty;
         }
 
+        #endregion
+
+        #region Metody
+
         public override string ToString()
         {
             return IdKlient + ", " + Imie + ", " + Nazwisko + ", " + NrTelefonu + ", " + Email;
         }
+
+        #endregion
+
     }
 }

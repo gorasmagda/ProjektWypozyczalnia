@@ -4,10 +4,17 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 {
     class Oddzial
     {
+
+        #region Własności
+
         public sbyte? IdOddzialu { get; set; }
         public string Adres { get; set; }
         public string NrTelefonu { get; set; }
         public string Nazwa { get; set; }
+
+        #endregion
+
+        #region Konstruktory
 
         public Oddzial(MySqlDataReader reader)
         {
@@ -32,6 +39,14 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             NrTelefonu = oddzial.NrTelefonu;
             Nazwa = oddzial.Nazwa;
         }
-    }
 
+        #endregion
+
+        #region Metody
+
+
+
+        #endregion
+
+    }
 }

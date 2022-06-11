@@ -4,8 +4,15 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 {
     class Kategoria
     {
+
+        #region Własności
+
         public string Nazwa { get; set; }
         public string Opis { get; set; }
+
+        #endregion
+
+        #region Konstruktory
 
         public Kategoria(MySqlDataReader reader)
         {
@@ -24,6 +31,14 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             Nazwa = kategoria.Nazwa;
             Opis = kategoria.Opis;
         }
+
+        #endregion
+
+        #region Metody
+
+
+
+        #endregion
 
     }
 }

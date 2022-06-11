@@ -4,6 +4,9 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 {
     class Samochod
     {
+
+        #region Własności
+
         public sbyte? IdAuto { get; set; }
         public string Marka { get; set; }
         public string ModelAuta { get; set; }
@@ -19,6 +22,10 @@ namespace WypozyczalaniaProjekt.DAL.Encje
         public string Dostepnosc { get; set; }
         public sbyte? IdOddzial { get; set; }
         public string Kategoria { get; set; }
+
+        #endregion
+
+        #region Konstruktory
 
         public Samochod(MySqlDataReader reader)
         {
@@ -77,6 +84,10 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             Kategoria = samochod.Kategoria;
         }
 
+        #endregion
+
+        #region Metody
+
         public override string ToString()
         {
             return IdAuto + ", " + Marka + ", " + ModelAuta + ", " + Kolor + ", " + Rocznik + ", " + Kategoria;
@@ -84,12 +95,10 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
         public string ToInsert()
         {
-
             return $"('{Marka}','{ModelAuta}','{Rocznik}','{Kolor}',{IloscMiejsc},'{Skrzynia}','{NrRejestracyjny}','{Lokalizacja}',{Cena},'{Kaucja}','{Przebieg}','{Dostepnosc}',{IdOddzial},{Kategoria})";
-
         }
 
-        //TO DO DOKOŃCZYĆ 
+        // TODO: Samochód - DOKOŃCZYĆ
         public override bool Equals(object obj)
         {
             var samochod = obj as Samochod;
@@ -102,5 +111,8 @@ namespace WypozyczalaniaProjekt.DAL.Encje
         {
             return base.GetHashCode();
         }
+
+        #endregion
+
     }
 }

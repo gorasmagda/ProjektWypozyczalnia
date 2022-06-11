@@ -5,6 +5,9 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 {
     class Pracownik
     {
+
+        #region Własności
+
         public sbyte? IdPracownik { get; set; }
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
@@ -15,10 +18,12 @@ namespace WypozyczalaniaProjekt.DAL.Encje
         public DateTime DataUrodzenia { get; set; }
         public string Pesel { get; set; }
         public string NrPrawaJazdy { get; set; }
-
         public sbyte? IdOddzial { get; set; }
         public decimal Pensja { get; set; }
 
+        #endregion
+
+        #region Konstruktory
 
         public Pracownik(MySqlDataReader reader)
         {
@@ -34,7 +39,6 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             DataUrodzenia = DateTime.Parse(reader["data_urodzenia"].ToString());
             IdOddzial = sbyte.Parse(reader["id_oddzialu"].ToString());
             Pensja = decimal.Parse(reader["pensja"].ToString());
-
         }
 
         public Pracownik(string imie, string nazwisko, string plec, string email, string nrtelefonu, string adres, string pesel, string nrprawajazdy, DateTime dataurodzenia, sbyte idoddzialu, decimal pensja)
@@ -69,10 +73,17 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             Pensja = pracownik.Pensja;
         }
 
+        #endregion
+
+        #region Metody
+
         public override string ToString()
         {
             return IdPracownik + ", " + IdOddzial + ", " + Imie + ", " + Nazwisko + ", " + NrTelefonu + ", " + Email;
         }
+
+        #endregion
+
     }
 }
 

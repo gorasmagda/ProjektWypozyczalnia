@@ -5,6 +5,9 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 {
     class Wynajem
     {
+
+        #region Własności
+
         public sbyte? IdWynajem { get; set; }
         public DateTime DataWypozyczenia { get; set; }
         public DateTime DataZwrotu { get; set; }
@@ -12,6 +15,11 @@ namespace WypozyczalaniaProjekt.DAL.Encje
         public sbyte? IdAuto { get; set; }
         public sbyte? IdKlient { get; set; }
         public sbyte? IdPracownik { get; set; }
+
+        #endregion
+
+        #region Konstruktory
+
         public Wynajem(MySqlDataReader reader)
         {
             IdWynajem = sbyte.Parse(reader["id_wynajem"].ToString());
@@ -44,5 +52,16 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             IdKlient = wynajem.IdKlient;
             IdPracownik = wynajem.IdPracownik;
         }
+
+        #endregion
+
+        #region Metody
+
+
+
+        #endregion
+
+
+
     }
 }
