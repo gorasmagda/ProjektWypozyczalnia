@@ -1,4 +1,7 @@
-﻿using System;
+﻿// TODO : KlienciVM - ComboBox na idKartyKredytowej 
+
+
+using System;
 
 namespace WypozyczalaniaProjekt.ViewModel
 {
@@ -16,7 +19,7 @@ namespace WypozyczalaniaProjekt.ViewModel
         private Klient wybranyKlient { get; set; }
 
         private int idWybranegoKlienta;
-        private int? idKlient, idKarty;
+        private int? idKarty;
         private string imie, nazwisko, plec, dataUrodzenia, pesel, nrTelefonu, adres, email, nrPrawaJazdy;
 
         #endregion
@@ -58,15 +61,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        public int? IdKlient
-        {
-            get => idKlient;
-            set
-            {
-                idKlient = value;
-                onPropertyChanged(nameof(IdKlient));
-            }
-        }
+        
         public string Imie
         {
             get => imie;
@@ -251,7 +246,6 @@ namespace WypozyczalaniaProjekt.ViewModel
                 Adres = WybranyKlient.Adres;
                 Email = WybranyKlient.Email;
                 NrPrawaJazdy = WybranyKlient.NrPrawaJazdy;
-                IdKlient = (int)WybranyKlient.IdKlient;
                 IdKarty = (int)WybranyKlient.IdKarty;
             }
             else
@@ -271,7 +265,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             Adres = "";
             Email = "";
             NrPrawaJazdy = "";
-            IdKlient = null;
             IdKarty = null;
         }
     }

@@ -233,23 +233,21 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,0" TextWrapping="Wrap" Text="Id Klient"/>
+                                
+                                <TextBlock HorizontalAlignment="Left" Margin="2,8,0,-0.8" TextWrapping="Wrap" Text="Imię"/>
                                 <TextBox Grid.Column="0" Margin="2,23,31,-21.6"
-                                         Text="{Binding KlienciVM.IdKlient}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Imię"/>
-                                <TextBox Grid.Column="0" Margin="2,62,31,-60.8"
                                          Text="{Binding KlienciVM.Imie}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Płeć"/>
-                                <TextBox Grid.Column="0" Margin="2,100,31,-98.8"
+                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Płeć"/>
+                                <TextBox Grid.Column="0" Margin="2,62,31,-60.8"
                                          Text="{Binding KlienciVM.Plec}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Text="Numer Telefonu"/>
-                                <TextBox Grid.Column="0" Margin="2,140,31,-138.8"
+                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Numer Telefonu"/>
+                                <TextBox Grid.Column="0" Margin="2,100,31,-98.8"
                                          Text="{Binding KlienciVM.NrTelefonu}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Text="Data Urodzenia"/>
-                                <TextBox Grid.Column="0" Margin="2,179,31,-177.8"
+                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Text="Data Urodzenia"/>
+                                <TextBox Grid.Column="0" Margin="2,140,31,-138.8"
                                          Text="{Binding KlienciVM.DataUrodzenia}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,202,0,-195.8" TextWrapping="Wrap" Text="Id Karty kredytowej"/>
-                                <TextBox Grid.Column="0" Margin="2,218,31,-216.8"
+                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Text="Id Karty kredytowej"/>
+                                <TextBox Grid.Column="0" Margin="2,179,31,-177.8"
                                          Text="{Binding KlienciVM.IdKarty}"/>
 
 
