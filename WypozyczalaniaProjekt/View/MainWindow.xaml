@@ -7,7 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         xmlns:vm="clr-namespace:WypozyczalaniaProjekt.ViewModel"
-        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="WYPOŻYCZALNIA SAMOCHODÓW" Height="450" Width="800" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <vm:MainViewModel x:Key="mainVM"/>
