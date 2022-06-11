@@ -9,13 +9,15 @@ namespace WypozyczalaniaProjekt.ViewModel
     using WypozyczalaniaProjekt.Model;
     class PracownicyViewModel : ViewModelBase
     {
+
         #region Składowe prywatne
 
         private Model model = null;
         private Pracownik wybranyPracownik;
 
-        private int idPracownik, idOddzial;
-        private decimal pensja;
+        private int idWybranegoPracownika;
+        private int? idPracownik, idOddzial;
+        private decimal? pensja;
         private string imie, nazwisko, plec, nrTelefonu, dataUrodzenia, adres, email, nrPrawaJazdy, pesel;
 
         #endregion
@@ -27,6 +29,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             Pracownicy = new ObservableCollection<Pracownik>();
             this.model = model;
             Pracownicy = model.Pracownicy;
+            IdWybranegoPracownika = -1;
         }
 
         #endregion
@@ -47,7 +50,17 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        public int IdPracownik
+        public int IdWybranegoPracownika
+        {
+            get => idWybranegoPracownika;
+            set
+            {
+                idWybranegoPracownika = value;
+                onPropertyChanged(nameof(IdWybranegoPracownika));
+            }
+        }
+
+        public int? IdPracownik
         {
             get => idPracownik;
             set
@@ -97,7 +110,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        public decimal Pensja
+        public decimal? Pensja
         {
             get => pensja;
             set
@@ -107,7 +120,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        public int IdOddzial
+        public int? IdOddzial
         {
             get => idOddzial;
             set
@@ -240,22 +253,41 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         private void ZaladujFormularz()
         {
-            Imie = WybranyPracownik.Imie;
-            Nazwisko = WybranyPracownik.Nazwisko;
-            Plec = WybranyPracownik.Plec;
-            NrTelefonu = WybranyPracownik.NrTelefonu;
-            DataUrodzenia = "Jakaś data";               // TODO: KlienciVM - Naprawić datę
-            Adres = WybranyPracownik.Adres;
-            Email = WybranyPracownik.Email;
-            NrPrawaJazdy = WybranyPracownik.NrPrawaJazdy;
-            Pesel = WybranyPracownik.Pesel;
-            IdPracownik = (int)WybranyPracownik.IdPracownik;
-            IdOddzial = (int)WybranyPracownik.IdOddzial;
-            Pensja = wybranyPracownik.Pensja;
+            if (IdWybranegoPracownika > -1)
+            {
+                Imie = WybranyPracownik.Imie;
+                Nazwisko = WybranyPracownik.Nazwisko;
+                Plec = WybranyPracownik.Plec;
+                NrTelefonu = WybranyPracownik.NrTelefonu;
+                DataUrodzenia = "Jakaś data";               // TODO: KlienciVM - Naprawić datę
+                Adres = WybranyPracownik.Adres;
+                Email = WybranyPracownik.Email;
+                NrPrawaJazdy = WybranyPracownik.NrPrawaJazdy;
+                Pesel = WybranyPracownik.Pesel;
+                IdPracownik = (int)WybranyPracownik.IdPracownik;
+                IdOddzial = (int)WybranyPracownik.IdOddzial;
+                Pensja = wybranyPracownik.Pensja;
+            }
+            else
+            {
+                CzyscFormularz();
+            }
+            
         }
         private void CzyscFormularz()
         {
-            throw new NotImplementedException();
+            Imie = "";
+            Nazwisko = "";
+            Plec = "";
+            NrTelefonu = "";
+            DataUrodzenia = "";
+            Adres = "";
+            Email = "";
+            NrPrawaJazdy = "";
+            Pesel = "";
+            IdPracownik = null;
+            IdOddzial = null;
+            Pensja = null;
         }
     }
 }

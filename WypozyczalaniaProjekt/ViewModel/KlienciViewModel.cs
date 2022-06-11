@@ -15,7 +15,8 @@ namespace WypozyczalaniaProjekt.ViewModel
         private Model model = null;
         private Klient wybranyKlient { get; set; }
 
-        private int idKlient, idKarty;
+        private int idWybranegoKlienta;
+        private int? idKlient, idKarty;
         private string imie, nazwisko, plec, dataUrodzenia, pesel, nrTelefonu, adres, email, nrPrawaJazdy;
 
         #endregion
@@ -27,6 +28,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             Klienci = new ObservableCollection<Klient>();
             this.model = model;
             Klienci = model.Klienci;
+            IdWybranegoKlienta = -1;
         }
 
         #endregion
@@ -46,7 +48,17 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        public int IdKlient
+        public int IdWybranegoKlienta
+        {
+            get => idWybranegoKlienta;
+            set
+            {
+                idWybranegoKlienta = value;
+                onPropertyChanged(nameof(IdWybranegoKlienta));
+            }
+        }
+
+        public int? IdKlient
         {
             get => idKlient;
             set
@@ -141,7 +153,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        public int IdKarty
+        public int? IdKarty
         {
             get => idKarty;
             set
@@ -223,22 +235,39 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         private void ZaladujFormularz()
         {
-            Imie = WybranyKlient.Imie;
-            Nazwisko = WybranyKlient.Nazwisko;
-            Plec = WybranyKlient.Plec;
-            DataUrodzenia = "Jakaś data";               // TODO: KlienciVM - Naprawić datę
-            Pesel = WybranyKlient.Pesel;
-            NrTelefonu = WybranyKlient.NrTelefonu;
-            Adres = WybranyKlient.Adres;
-            Email = WybranyKlient.Email;
-            NrPrawaJazdy = WybranyKlient.NrPrawaJazdy;
-            IdKlient = (int)WybranyKlient.IdKlient;
-            IdKarty = (int)WybranyKlient.IdKarty;
+            if (IdWybranegoKlienta > -1)
+            {
+                Imie = WybranyKlient.Imie;
+                Nazwisko = WybranyKlient.Nazwisko;
+                Plec = WybranyKlient.Plec;
+                DataUrodzenia = "Jakaś data";               // TODO: KlienciVM - Naprawić datę
+                Pesel = WybranyKlient.Pesel;
+                NrTelefonu = WybranyKlient.NrTelefonu;
+                Adres = WybranyKlient.Adres;
+                Email = WybranyKlient.Email;
+                NrPrawaJazdy = WybranyKlient.NrPrawaJazdy;
+                IdKlient = (int)WybranyKlient.IdKlient;
+                IdKarty = (int)WybranyKlient.IdKarty;
+            }
+            else
+            {
+                CzyscFormularz();
+            }
         }
 
         private void CzyscFormularz()
         {
-            throw new NotImplementedException();
+            Imie = "";
+            Nazwisko = "";
+            Plec = "";
+            DataUrodzenia = "";
+            Pesel = "";
+            NrTelefonu = "";
+            Adres = "";
+            Email = "";
+            NrPrawaJazdy = "";
+            IdKlient = null;
+            IdKarty = null;
         }
     }
 }

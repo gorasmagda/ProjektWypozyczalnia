@@ -18,10 +18,12 @@
             <TabItem x:Name="auto" Header="Auto" Height="22" VerticalAlignment="Top">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="425*" />
+                        <ColumnDefinition Width="61*" />
+                        <ColumnDefinition Width="15*"/>
+                        <ColumnDefinition Width="349*"/>
                         <ColumnDefinition Width="363*" />
                     </Grid.ColumnDefinitions>
-                    <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,363,163.6"
+                    <ScrollViewer Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,363,163.6"
                                   VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
                         <StackPanel Height="300">
                             <Grid>
@@ -81,11 +83,11 @@
                     <!-- LISTA AUTA -->
                     <ListBox
                         x:Name="lb_auta"
-                        Grid.Column="1"
+                        Grid.Column="3"
                         Background="#6d6394"
                         ItemsSource="{Binding AutoVM.Samochody}"
                         SelectedItem="{Binding AutoVM.WybraneAuto}"
-                        SelectedIndex="{Binding AutoVM.IdWybranegoAuta, Mode=TwoWay}"  
+                        SelectedIndex="{Binding AutoVM.IdWybranegoAuta, Mode=TwoWay}" Margin="0.2,0,0,-0.4"  
                         >
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
@@ -94,7 +96,7 @@
                         </i:Interaction.Triggers>
 
                     </ListBox>
-                    <Grid Background="#8D80BF" Margin="0,226,363,-0.4" Grid.ColumnSpan="2">
+                    <Grid Background="#8D80BF" Margin="0,226,363,-0.4" Grid.ColumnSpan="4">
 
                         <Button x:Name="button_EdytujA" Content="Edytuj" 
                                 Background="#6d6394"
@@ -185,7 +187,7 @@
                         Background="#6d6394"
                         ItemsSource="{Binding PracownicyVM.Pracownicy}"
                         SelectedItem="{Binding PracownicyVM.WybranyPracownik}"
-                        
+                        SelectedIndex="{Binding PracownicyVM.IdWybranegoPracownika, Mode=TwoWay}"
                         >
 
                     </ListBox>
@@ -207,6 +209,10 @@
                             Margin="69,102,64,36"
                             Command="{Binding PracownicyVM.DodajPracownika}"
                              />
+                        <Button Content="Wyczyść" HorizontalAlignment="Left" 
+                                Margin="326,10,0,0" 
+                                VerticalAlignment="Top" Width="75"
+                                Command="{Binding PracownicyVM.Wyczysc}"/>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -274,7 +280,8 @@
                         Grid.Column="1"
                         Background="#6d6394"
                         ItemsSource="{Binding KlienciVM.Klienci}"
-                        SelectedItem="{Binding KlienciVM.WybranyKlient}">
+                        SelectedItem="{Binding KlienciVM.WybranyKlient}"
+                        SelectedIndex="{Binding KlienciVM.IdWybranegoKlienta, Mode=TwoWay}">
 
                     </ListBox>
                     <Grid Background="#8D80BF" Margin="0,222,0,0">
@@ -293,6 +300,10 @@
                             Margin="69,102,64,36"
                             Command="{Binding KlienciVM.DodajKlienta}"
                              />
+                        <Button Content="Wyczyść" HorizontalAlignment="Left" 
+                                Margin="326,10,0,0" 
+                                VerticalAlignment="Top" Width="75"
+                                Command="{Binding KlienciVM.Wyczysc}"/>
                     </Grid>
                 </Grid>
             </TabItem>

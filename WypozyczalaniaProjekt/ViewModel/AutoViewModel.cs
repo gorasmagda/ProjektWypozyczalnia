@@ -275,20 +275,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                             }
                             else
                             {
-                                Marka = "";
-                                Kaucja = "";
-                                Lokalizacja = "";
-                                ModelAuta = "";
-                                Rocznik = 0;
-                                IloscMiejsc = 0;
-                                Przebieg = 0;
-                                NrRejestracyjny = "";
-                                Cena = "";
-                                Dostepnosc = "";
-                                Kolor = "";
-                                Skrzynia = "";
-                                IdOddzial = 0;
-                                Kategoria = "";
+                                CzyscFormularz();
                             }
                         },
                         null);
