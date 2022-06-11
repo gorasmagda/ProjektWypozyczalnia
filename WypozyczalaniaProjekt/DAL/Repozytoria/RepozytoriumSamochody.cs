@@ -13,7 +13,7 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
         // 'samochody' ('marka', 'model', 'rocznik', 'kolor', 'ilosc_miejsc', 'skrzynia', 'nr_rejestracyjny', 'aktualna_lokalizacja', 'cena', 'kaucja', 'przebieg', 'dostepnosc', 'id_oddzialu', 'nazwa')
 
         private const string WSZYSTKIE_SAMOCHODY = "SELECT * FROM samochody Order BY ID_AUTO ASC";
-        private const string DODAJ_SAMOCHOD = "INSERT INTO samochody ( marka, model, rocznik, kolor, ilosc_miejsc, skrzynia, nr_rejestracyjny, aktualna_lokalizacja, cena, kaucja, przebieg, dostepnosc, id_oddzialu, nazwa) VALUES ";
+        private const string DODAJ_SAMOCHOD = "INSERT INTO samochody ( marka, model, rocznik, kolor, ilosc_miejsc, skrzynia, nr_rejestracyjny, aktualna_lokalizacja, cena, kaucja, przebieg, dostepnosc, id_oddzialu, kategoria) VALUES ";
         #endregion
 
 
@@ -30,8 +30,8 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
                 while (reader.Read())
                     samochody.Add(new Samochod(reader));
                 connection.Close();
-
             }
+
             return samochody;
         }
 
@@ -48,10 +48,8 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
                 connection.Close();
             }
 
-
             return stan;
         }
-
 
         #endregion
 

@@ -82,6 +82,26 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             return IdPracownik + ", " + IdOddzial + ", " + Imie + ", " + Nazwisko + ", " + NrTelefonu + ", " + Email;
         }
 
+        public string ToInsert()
+        {
+            return $"(0,'{Imie}','{Nazwisko}','{Plec}','{Email}',{NrTelefonu},'{Adres}','{DataUrodzenia:yyyy-MM-dd HH:mm:ss}','{Pesel}','{NrPrawaJazdy}','{Pensja}','{IdOddzial}')";
+
+        }
+
+        // TODO: Pracownik - DOKOŃCZYĆ
+        public override bool Equals(object obj)
+        {
+            var pracownik = obj as Pracownik;
+            if (pracownik is null) return false;
+            if (Nazwisko.ToLower() != pracownik.Nazwisko.ToLower()) return false;
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         #endregion
 
     }

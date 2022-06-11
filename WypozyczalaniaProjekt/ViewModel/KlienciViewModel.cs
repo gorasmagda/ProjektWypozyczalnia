@@ -176,7 +176,12 @@ namespace WypozyczalaniaProjekt.ViewModel
                     dodajKlienta = new RelayCommand(
                         arg =>
                         {
-                            // TODO: KlienciVM - Dodawanie Klienta
+                            var klient = new Klient(Imie, Nazwisko, Plec, Email, NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Now, (sbyte)IdKarty);
+                            if (model.DodajKlientaDoBazy(klient))
+                            {
+                                CzyscFormularz();
+                                System.Windows.MessageBox.Show("Klient został dodany!");
+                            }
                         },
                         null);
                 return dodajKlienta;

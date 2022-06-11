@@ -78,6 +78,25 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             return IdKlient + ", " + Imie + ", " + Nazwisko + ", " + NrTelefonu + ", " + Email;
         }
 
+        public string ToInsert()
+        {
+            return $"(0,'{Imie}','{Nazwisko}','{Plec}','{Email}',{NrTelefonu},'{Adres}','{Pesel}','{NrPrawaJazdy}','{DataUrodzenia:yyyy-MM-dd HH:mm:ss}','{IdKarty}')";
+        }
+
+        // TODO: Klient - DOKOŃCZYĆ
+        public override bool Equals(object obj)
+        {
+            var klient = obj as Klient;
+            if (klient is null) return false;
+            if (Nazwisko.ToLower() != klient.Nazwisko.ToLower()) return false;
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         #endregion
 
     }

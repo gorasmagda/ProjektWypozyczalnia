@@ -7,8 +7,10 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
 
     class RepozytoriumKlienci
     {
+
         #region ZAPYTANIA
         private const string WSZYSCY_KLIENCI = "SELECT * FROM klienci";
+        private const string DODAJ_KLIENTA = "INSERT INTO klienci VALUES ";
         #endregion
 
         #region metody CRUD
@@ -28,6 +30,23 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             }
             return klienci;
         }
+
+        public static bool DodajKlientaDoBazy(Klient klient)
+        {
+            bool stan = false;
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                MySqlCommand command = new MySqlCommand($"{DODAJ_KLIENTA} {klient.ToInsert()}", connection);
+                connection.Open();
+                var reader = command.ExecuteNonQuery();
+                stan = true;
+                klient.IdKlient = (sbyte)command.LastInsertedId;
+                connection.Close();
+            }
+
+            return stan;
+        }
+
         #endregion
     }
 }

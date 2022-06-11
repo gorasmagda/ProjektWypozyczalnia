@@ -193,7 +193,12 @@ namespace WypozyczalaniaProjekt.ViewModel
                     dodajPracownika = new RelayCommand(
                         arg =>
                         {
-                            // TODO: PracownicyVM - Dodawanie Pracownika
+                            var pracownik = new Pracownik(Imie, Nazwisko, Plec, Email,NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)IdOddzial, (decimal)Pensja); // TODO: PracownicyVM - Naprawić DateTime
+                            if (model.DodajPracownikaDoBazy(pracownik))
+                            {
+                                CzyscFormularz();
+                                System.Windows.MessageBox.Show("Pracownik został dodany!");
+                            }
                         },
                         null);
                 return dodajPracownika;
@@ -259,7 +264,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                 Nazwisko = WybranyPracownik.Nazwisko;
                 Plec = WybranyPracownik.Plec;
                 NrTelefonu = WybranyPracownik.NrTelefonu;
-                DataUrodzenia = "Jakaś data";               // TODO: KlienciVM - Naprawić datę
+                DataUrodzenia = WybranyPracownik.DataUrodzenia.ToString();               // TODO: KlienciVM - Naprawić datę
                 Adres = WybranyPracownik.Adres;
                 Email = WybranyPracownik.Email;
                 NrPrawaJazdy = WybranyPracownik.NrPrawaJazdy;

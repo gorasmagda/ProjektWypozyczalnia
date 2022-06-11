@@ -4,10 +4,13 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
 {
     using Encje;
     using MySql.Data.MySqlClient;
+
     class RepozytoriumPracownicy
     {
+
         #region ZAPYTANIA
         private const string WSZYSCY_PRACOWNICY = "SELECT * FROM pracownicy";
+        private const string DODAJ_PRACOWNIKA = "INSERT INTO pracownicy VALUES ";
         #endregion
 
         #region metody CRUD
@@ -26,6 +29,22 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
 
             }
             return pracownicy;
+        }
+        
+        public static bool DodajPracownikaDoBazy(Pracownik pracownik)
+        {
+            bool stan = false;
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                MySqlCommand command = new MySqlCommand($"{DODAJ_PRACOWNIKA} {pracownik.ToInsert()}", connection);
+                connection.Open();
+                var reader = command.ExecuteNonQuery();
+                stan = true;
+                pracownik.IdPracownik = (sbyte)command.LastInsertedId;
+                connection.Close();
+            }
+
+            return stan;
         }
         #endregion
     }

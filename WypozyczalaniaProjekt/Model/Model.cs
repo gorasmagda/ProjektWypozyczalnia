@@ -9,12 +9,11 @@
 
         public ObservableCollection<Samochod> Samochody { get; set; } = new ObservableCollection<Samochod>();
         public ObservableCollection<Klient> Klienci { get; set; } = new ObservableCollection<Klient>();
-
         public ObservableCollection<Pracownik> Pracownicy { get; set; } = new ObservableCollection<Pracownik>();
 
         public Model()
         {
-            //pobranie dabych z bazy do kolekcji
+            //pobranie danych z bazy do kolekcji
             var samochody = RepozytoriumSamochody.PobierzWszystkieSamochody();
             foreach (var s in samochody)
                 Samochody.Add(s);
@@ -26,11 +25,12 @@
             var pracownicy = RepozytoriumPracownicy.PobierzWszystkichPracownikow();
             foreach (var p in pracownicy)
                 Pracownicy.Add(p);
-
         }
 
+        private bool CzySamochodJestJuzWBazie(Samochod samochod) => Samochody.Contains(samochod);
+        private bool CzyPracownikJestJuzWBazie(Pracownik pracownik) => Pracownicy.Contains(pracownik);
+        private bool CzyKlientJestJuzWBazie(Klient klient) => Klienci.Contains(klient);
 
-        public bool CzySamochodJestJuzWBazie(Samochod samochod) => Samochody.Contains(samochod);
         public bool DodajSamochodDoBazy(Samochod samochod)
         {
             if (!CzySamochodJestJuzWBazie(samochod))
@@ -43,5 +43,32 @@
             }
             return false;
         }
+
+        public bool DodajPracownikaDoBazy(Pracownik pracownik)
+        {
+            if (!CzyPracownikJestJuzWBazie(pracownik))
+            {
+                if (RepozytoriumPracownicy.DodajPracownikaDoBazy(pracownik))
+                {
+                    Pracownicy.Add(pracownik);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool DodajKlientaDoBazy(Klient klient)
+        {
+            if (!CzyKlientJestJuzWBazie(klient))
+            {
+                if (RepozytoriumKlienci.DodajKlientaDoBazy(klient))
+                {
+                    Klienci.Add(klient);
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }

@@ -95,7 +95,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
         public string ToInsert()
         {
-            return $"('{Marka}','{ModelAuta}','{Rocznik}','{Kolor}',{IloscMiejsc},'{Skrzynia}','{NrRejestracyjny}','{Lokalizacja}',{Cena},'{Kaucja}','{Przebieg}','{Dostepnosc}',{IdOddzial},{Kategoria})";
+            return $"('{Marka}','{ModelAuta}','{Rocznik}','{Kolor}',{IloscMiejsc},'{Skrzynia}','{NrRejestracyjny}','{Lokalizacja}',{Cena},'{Kaucja}','{Przebieg}','{Dostepnosc}',{IdOddzial},'{Kategoria}')";
         }
 
         // TODO: Samochód - DOKOŃCZYĆ
