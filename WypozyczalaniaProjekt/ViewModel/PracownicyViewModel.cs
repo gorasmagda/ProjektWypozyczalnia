@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WypozyczalaniaProjekt.ViewModel
 {
     using BaseClassess;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
-    using WypozyczalaniaProjekt.Model;
     using WypozyczalaniaProjekt.DAL.Encje;
+    using WypozyczalaniaProjekt.Model;
     class PracownicyViewModel : ViewModelBase
     {
         #region Składowe prywatne
@@ -204,7 +200,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     dodajPClick = new RelayCommand(
                     arg =>
                     {
-                       
+
                     }
 
                    , null);
@@ -227,7 +223,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     usunPClick = new RelayCommand(
                     arg =>
                     {
-                        Pesel = "87654"; 
+                        Pesel = "87654";
                     }
 
                    , null);

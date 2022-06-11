@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WypozyczalaniaProjekt.ViewModel
 {
     using BaseClassess;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
-    using WypozyczalaniaProjekt.Model;
     using WypozyczalaniaProjekt.DAL.Encje;
+    using WypozyczalaniaProjekt.Model;
     class KlienciViewModel : ViewModelBase
     {
 
@@ -35,7 +31,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             get => wybranyKlient;
             set
             {
-                wybranyKlient= value;
+                wybranyKlient = value;
                 onPropertyChanged(nameof(WybranyKlient));
                 Console.WriteLine("Wybrane klient to madzia");
 

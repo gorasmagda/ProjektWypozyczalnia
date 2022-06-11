@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-//TO DO 
+﻿//TO DO 
 //TextBox na nazwę + np. combobox dla skrzyni i nazwy + dla id_oddziału, aby wybrać ten, który już wgl istenieje. 
 //Naprawić numer ID przy dodawaniu auta 
-
 
 namespace WypozyczalaniaProjekt.ViewModel
 {
     using BaseClassess;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
-    using WypozyczalaniaProjekt.Model;
     using WypozyczalaniaProjekt.DAL.Encje;
+    using WypozyczalaniaProjekt.Model;
 
     class AutoViewModel : ViewModelBase
     {
@@ -28,12 +22,12 @@ namespace WypozyczalaniaProjekt.ViewModel
         #region Konstruktory
         public AutoViewModel(Model model)
         {
-            
+
             Samochody = new ObservableCollection<Samochod>();
             this.model = model;
             Samochody = model.Samochody;
             //CzyscFormularz();
-            
+
         }
         #endregion
 
@@ -50,7 +44,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        
+
 
         private string kaucja;
         public string Kaucja
@@ -194,20 +188,20 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string nazwa;
-        public string Nazwa
+        private string kategoria;
+        public string Kategoria
         {
-            get => nazwa;
+            get => kategoria;
             set
             {
-                nazwa = value;
-                onPropertyChanged(nameof(Nazwa));
+                kategoria = value;
+                onPropertyChanged(nameof(Kategoria));
             }
         }
 
         private void CzyscFormularz()
         {
-            
+
             Marka = "";
             Kaucja = "";
             Lokalizacja = "";
@@ -221,7 +215,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             Kolor = "";
             Skrzynia = "";
             IdOddzial = 0;
-            Nazwa = "";
+            Kategoria = "";
 
         }
         private ICommand wyczyscAutoClick = null;
@@ -229,21 +223,21 @@ namespace WypozyczalaniaProjekt.ViewModel
         {
             get
             {
-                if(wyczyscAutoClick == null)
+                if (wyczyscAutoClick == null)
                     wyczyscAutoClick = new RelayCommand(
                         arg =>
                         {
                             CzyscFormularz();
                         },
                         null);
-                    return wyczyscAutoClick;
-                
-                
+                return wyczyscAutoClick;
+
+
             }
         }
 
         private ICommand edytujAClick = null;
-        
+
         public ICommand EdytujAClick
         {
             get
@@ -252,10 +246,10 @@ namespace WypozyczalaniaProjekt.ViewModel
                     edytujAClick = new RelayCommand(
                     arg =>
                     {
-                        
+
                     }
-                         
-                   ,null);
+
+                   , null);
 
 
 
@@ -274,7 +268,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     dodajAClick = new RelayCommand(
                     arg =>
                     {
-                        var samochod = new Samochod(Marka, ModelAuta, Rocznik, Kolor,(int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, (int)Cena, Kaucja, Przebieg, Dostepnosc, (sbyte)IdOddzial, Nazwa);
+                        var samochod = new Samochod(Marka, ModelAuta, Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, (int)Cena, Kaucja, Przebieg, Dostepnosc, (sbyte)IdOddzial, Kategoria);
                         if (model.DodajSamochodDoBazy(samochod))
                         {
                             CzyscFormularz();
@@ -302,7 +296,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     usunAClick = new RelayCommand(
                     arg =>
                     {
-                       
+
                     }
 
                    , null);
@@ -325,7 +319,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                         {
                             if (IdWybranegoAuta > -1)
                             {
-                                
+
                                 Marka = WybraneAuto.Marka;
                                 Kaucja = WybraneAuto.Kaucja;
                                 Lokalizacja = WybraneAuto.Lokalizacja;
@@ -339,7 +333,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 Kolor = WybraneAuto.Kolor;
                                 Skrzynia = WybraneAuto.Skrzynia;
                                 IdOddzial = (int)WybraneAuto.IdOddzial;
-                                Nazwa = WybraneAuto.Nazwa;
+                                Kategoria = WybraneAuto.Kategoria;
 
 
 
@@ -347,7 +341,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                             }
                             else
                             {
-                         
+
                                 Marka = "";
                                 Kaucja = "";
                                 Lokalizacja = "";
@@ -361,7 +355,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 Kolor = "";
                                 Skrzynia = "";
                                 IdOddzial = 0;
-                                Nazwa = "";
+                                Kategoria = "";
                             }
 
                         }

@@ -30,9 +30,9 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,0" TextWrapping="Wrap" Text="Nazwa"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,0" TextWrapping="Wrap" Text="Kategoria"/>
                                 <TextBox Grid.Column="0" Margin="2,23,31,-21.6"
-                                         Text="{Binding AutoVM.Nazwa}"/>
+                                         Text="{Binding AutoVM.Kategoria}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Kaucja"/>
                                 <TextBox Grid.Column="0" Margin="2,62,31,-60.8"
                                          Text="{Binding AutoVM.Kaucja}"/>

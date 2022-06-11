@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace WypozyczalaniaProjekt.DAL.Repozytoria
 {
@@ -13,13 +9,12 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
     {
 
         #region ZAPYTANIA
+        // samochody (id_auto, marka, model, rocznik, kolor, ilosc_miejsc, skrzynia, nr_rejestracyjny, aktualna_lokalizacja, cena, kaucja, przebieg, dostepnosc, id_oddzialu, nazwa)
+        //  'samochody' ('marka', 'model', 'rocznik', 'kolor', 'ilosc_miejsc', 'skrzynia', 'nr_rejestracyjny', 'aktualna_lokalizacja', 'cena', 'kaucja', 'przebieg', 'dostepnosc', 'id_oddzialu', 'nazwa')
+
         private const string WSZYSTKIE_SAMOCHODY = "SELECT * FROM samochody Order BY ID_AUTO ASC";
         private const string DODAJ_SAMOCHOD = "INSERT INTO samochody ( marka, model, rocznik, kolor, ilosc_miejsc, skrzynia, nr_rejestracyjny, aktualna_lokalizacja, cena, kaucja, przebieg, dostepnosc, id_oddzialu, nazwa) VALUES ";
         #endregion
-
-        // samochody (id_auto, marka, model, rocznik, kolor, ilosc_miejsc, skrzynia, nr_rejestracyjny, aktualna_lokalizacja, cena, kaucja, przebieg, dostepnosc, id_oddzialu, nazwa)
-
-        //  'samochody' ('marka', 'model', 'rocznik', 'kolor', 'ilosc_miejsc', 'skrzynia', 'nr_rejestracyjny', 'aktualna_lokalizacja', 'cena', 'kaucja', 'przebieg', 'dostepnosc', 'id_oddzialu', 'nazwa')
 
 
         #region metody CRUD
@@ -34,7 +29,6 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                     samochody.Add(new Samochod(reader));
-                Console.WriteLine("Dupa");
                 connection.Close();
 
             }
@@ -43,8 +37,8 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
 
         public static bool DodajSamochodDoBazy(Samochod samochod)
         {
-            bool stan = false; 
-            using(var connection = DBConnection.Instance.Connection)
+            bool stan = false;
+            using (var connection = DBConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand($"{DODAJ_SAMOCHOD} {samochod.ToInsert()}", connection);
                 connection.Open();
@@ -53,8 +47,8 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
                 samochod.IdAuto = (sbyte)command.LastInsertedId;
                 connection.Close();
             }
-            
-            
+
+
             return stan;
         }
 

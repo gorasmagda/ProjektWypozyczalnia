@@ -1,9 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WypozyczalaniaProjekt.DAL.Encje
 {
@@ -23,7 +18,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
         public int Przebieg { get; set; }
         public string Dostepnosc { get; set; }
         public sbyte? IdOddzial { get; set; }
-        public string Nazwa { get; set; }
+        public string Kategoria { get; set; }
 
         public Samochod(MySqlDataReader reader)
         {
@@ -41,7 +36,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             Przebieg = int.Parse(reader["przebieg"].ToString());
             Dostepnosc = reader["dostepnosc"].ToString();
             IdOddzial = sbyte.Parse(reader["id_oddzialu"].ToString());
-            Nazwa = reader["nazwa"].ToString();
+            Kategoria = reader["kategoria"].ToString();
         }
 
         public Samochod(string marka, string model, int rocznik, string kolor, int iloscMiejsc, string skrzynia, string nrRejestracyjny, string aktualnaLokalizacja, decimal cena, string kaucja, int przebieg, string dostepnosc, sbyte? idOddzialu, string nazwa)
@@ -60,7 +55,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             Przebieg = przebieg;
             Dostepnosc = dostepnosc;
             IdOddzial = idOddzialu;
-            Nazwa = nazwa;
+            Kategoria = nazwa;
         }
 
         public Samochod(Samochod samochod)
@@ -79,18 +74,18 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             Przebieg = samochod.Przebieg;
             Dostepnosc = samochod.Dostepnosc;
             IdOddzial = samochod.IdOddzial;
-            Nazwa = samochod.Nazwa;
+            Kategoria = samochod.Kategoria;
         }
 
         public override string ToString()
         {
-            return IdAuto + ", " + Marka + ", " + ModelAuta + ", " + Kolor + ", " + Rocznik + ", " +Nazwa;
+            return IdAuto + ", " + Marka + ", " + ModelAuta + ", " + Kolor + ", " + Rocznik + ", " + Kategoria;
         }
 
         public string ToInsert()
         {
-            
-                return $"('{Marka}', '{ModelAuta}','{Rocznik}','{Kolor}',{IloscMiejsc}, '{Skrzynia}','{NrRejestracyjny}','{Lokalizacja}',{Cena},'{Kaucja}','{Przebieg}','{Dostepnosc}',{IdOddzial},{Nazwa})";
+
+            return $"('{Marka}','{ModelAuta}','{Rocznik}','{Kolor}',{IloscMiejsc},'{Skrzynia}','{NrRejestracyjny}','{Lokalizacja}',{Cena},'{Kaucja}','{Przebieg}','{Dostepnosc}',{IdOddzial},{Kategoria})";
 
         }
 
