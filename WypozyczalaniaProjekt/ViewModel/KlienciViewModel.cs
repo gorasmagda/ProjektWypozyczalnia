@@ -11,35 +11,41 @@ namespace WypozyczalaniaProjekt.ViewModel
     {
 
         #region Składowe prywatne
+
         private Model model = null;
+        private Klient wybranyKlient { get; set; }
+
+        private int idKlient, idKarty;
+        private string imie, nazwisko, plec, dataUrodzenia, pesel, nrTelefonu, adres, email, nrPrawaJazdy;
+
         #endregion
-        public ObservableCollection<Klient> Klienci { get; set; }
 
         #region Konstruktory
+
         public KlienciViewModel(Model model)
         {
-            IdKlient = 10;
             Klienci = new ObservableCollection<Klient>();
             this.model = model;
             Klienci = model.Klienci;
         }
+
         #endregion
 
-        private string wybranyKlient;
-        public string WybranyKlient
+        #region Właściwości
+
+        public ObservableCollection<Klient> Klienci { get; set; }
+
+        public Klient WybranyKlient
         {
             get => wybranyKlient;
             set
             {
                 wybranyKlient = value;
                 onPropertyChanged(nameof(WybranyKlient));
-                Console.WriteLine("Wybrane klient to madzia");
-
+                ZaladujFormularz();
             }
         }
 
-
-        private int idKlient;
         public int IdKlient
         {
             get => idKlient;
@@ -49,8 +55,6 @@ namespace WypozyczalaniaProjekt.ViewModel
                 onPropertyChanged(nameof(IdKlient));
             }
         }
-
-        private string imie;
         public string Imie
         {
             get => imie;
@@ -61,7 +65,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string plec;
         public string Plec
         {
             get => plec;
@@ -72,7 +75,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string nrTelefonu;
         public string NrTelefonu
         {
             get => nrTelefonu;
@@ -83,7 +85,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string dataUrodzenia;
         public string DataUrodzenia
         {
             get => dataUrodzenia;
@@ -93,8 +94,6 @@ namespace WypozyczalaniaProjekt.ViewModel
                 onPropertyChanged(nameof(DataUrodzenia));
             }
         }
-
-        private string pesel;
         public string Pesel
         {
             get => pesel;
@@ -104,8 +103,6 @@ namespace WypozyczalaniaProjekt.ViewModel
                 onPropertyChanged(nameof(Pesel));
             }
         }
-
-        private string nazwisko;
         public string Nazwisko
         {
             get => nazwisko;
@@ -115,8 +112,6 @@ namespace WypozyczalaniaProjekt.ViewModel
                 onPropertyChanged(nameof(Nazwisko));
             }
         }
-
-        private string adres;
         public string Adres
         {
             get => adres;
@@ -126,8 +121,6 @@ namespace WypozyczalaniaProjekt.ViewModel
                 onPropertyChanged(nameof(Adres));
             }
         }
-
-        private string email;
         public string Email
         {
             get => email;
@@ -138,7 +131,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string nrPrawaJazdy;
         public string NrPrawaJazdy
         {
             get => nrPrawaJazdy;
@@ -149,7 +141,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private int idKarty;
         public int IdKarty
         {
             get => idKarty;
@@ -160,74 +151,94 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private ICommand edytujKClick = null;
+        #endregion
 
-        public ICommand EdytujKClick
+        #region Polecenia
+        
+        private ICommand dodajKlienta = null;
+        public ICommand DodajKlienta
         {
             get
             {
-                if (edytujKClick == null)
-                    edytujKClick = new RelayCommand(
-                    arg =>
-                    {
-                        Pesel = "1234";
-                    }
-
-                   , null);
-
-
-
-                return edytujKClick;
+                if (dodajKlienta == null)
+                    dodajKlienta = new RelayCommand(
+                        arg =>
+                        {
+                            // TODO: KlienciVM - Dodawanie Klienta
+                        },
+                        null);
+                return dodajKlienta;
             }
-
         }
 
-        private ICommand dodajKClick = null;
-
-        public ICommand DodajKClick
+        private ICommand edytujKlienta = null;
+        public ICommand EdytujKlienta
         {
             get
             {
-                if (dodajKClick == null)
-                    dodajKClick = new RelayCommand(
-                    arg =>
-                    {
-
-                    }
-
-                   , null);
-
-
-
-                return dodajKClick;
+                if (edytujKlienta == null)
+                    edytujKlienta = new RelayCommand(
+                        arg =>
+                        {
+                            // TODO: KlienciVM - Edycja Klienta
+                        },
+                        null);
+                return edytujKlienta;
             }
-
         }
 
-
-        private ICommand usunKClick = null;
-
-        public ICommand UsunKClick
+        private ICommand usunKlienta = null;
+        public ICommand UsunKlienta
         {
             get
             {
-                if (usunKClick == null)
-                    usunKClick = new RelayCommand(
-                    arg =>
-                    {
-                        Pesel = "9876";
-                    }
-
-                   , null);
-
-
-
-                return usunKClick;
+                if (usunKlienta == null)
+                    usunKlienta = new RelayCommand(
+                        arg =>
+                        {
+                            // TODO: KlienciVM - Usuwanie Klienta
+                        },
+                        null);
+                return usunKlienta;
             }
-
         }
 
+        private ICommand wyczysc = null;
+        public ICommand Wyczysc
+        {
+            get
+            {
+                if (wyczysc == null)
+                    wyczysc = new RelayCommand(
+                        arg =>
+                        {
+                            CzyscFormularz();
+                        },
+                        null);
+                return wyczysc;
+            }
+        }
 
+        #endregion
 
+        private void ZaladujFormularz()
+        {
+            Imie = WybranyKlient.Imie;
+            Nazwisko = WybranyKlient.Nazwisko;
+            Plec = WybranyKlient.Plec;
+            DataUrodzenia = "Jakaś data";               // TODO: KlienciVM - Naprawić datę
+            Pesel = WybranyKlient.Pesel;
+            NrTelefonu = WybranyKlient.NrTelefonu;
+            Adres = WybranyKlient.Adres;
+            Email = WybranyKlient.Email;
+            NrPrawaJazdy = WybranyKlient.NrPrawaJazdy;
+            IdKlient = (int)WybranyKlient.IdKlient;
+            IdKarty = (int)WybranyKlient.IdKarty;
+        }
+
+        private void CzyscFormularz()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -29,7 +29,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             Samochody = new ObservableCollection<Samochod>();
             this.model = model;
             Samochody = model.Samochody;
-            //CzyscFormularz();
         }
 
         #endregion
@@ -193,20 +192,26 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         #region Polecenia
 
-        private ICommand wyczysc = null;
-        public ICommand Wyczysc
+        private ICommand dodajAuto = null;
+        public ICommand DodajAuto
         {
             get
             {
-                if (wyczysc == null)
-                    wyczysc = new RelayCommand(
+                if (dodajAuto == null)
+                    dodajAuto = new RelayCommand(
                         arg =>
                         {
-                            CzyscFormularz();
+                            var samochod = new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)IdOddzial, Kategoria);
+                            if (model.DodajSamochodDoBazy(samochod))
+                            {
+                                CzyscFormularz();
+                                System.Windows.MessageBox.Show("Samochod został dodany!");
+                            }
                         },
-                        null);
-                return wyczysc;
+                        arg => (Marka != "") && (NrRejestracyjny != "")); // TODO: AutoVM - walidacja danych
+                return dodajAuto;
             }
+
         }
 
         private ICommand edytujAuto = null;
@@ -226,29 +231,6 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         }
 
-        private ICommand dodajAuto = null;
-        public ICommand DodajAuto
-        {
-            get
-            {
-                if (dodajAuto == null)
-                    dodajAuto = new RelayCommand(
-                    arg =>
-                    {
-                        var samochod = new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)IdOddzial, Kategoria);
-                        if (model.DodajSamochodDoBazy(samochod))
-                        {
-                            CzyscFormularz();
-                            System.Windows.MessageBox.Show("Samochod został dodany!");
-                        }
-                    },
-                    arg => (Marka != "") && (NrRejestracyjny != "")); // TODO: AutoVM - walidacja danych
-                return dodajAuto;
-            }
-
-        }
-
-
         private ICommand usunAuto = null;
         public ICommand UsunAuto
         {
@@ -256,14 +238,13 @@ namespace WypozyczalaniaProjekt.ViewModel
             {
                 if (usunAuto == null)
                     usunAuto = new RelayCommand(
-                    arg =>
-                    {
-                        // TODO: AutoVM - Usuwanie Auta
-                    },
-                    null);
+                        arg =>
+                        {
+                            // TODO: AutoVM - Usuwanie Auta
+                        },
+                        null);
                 return usunAuto;
             }
-
         }
 
         private ICommand zaladujFormularz = null;
@@ -272,8 +253,8 @@ namespace WypozyczalaniaProjekt.ViewModel
             get
             {
                 if (zaladujFormularz == null)
-                    zaladujFormularz = new RelayCommand
-                        (o =>
+                    zaladujFormularz = new RelayCommand(
+                        o =>
                         {
                             if (IdWybranegoAuta > -1)
                             {
@@ -310,15 +291,29 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 Kategoria = "";
                             }
                         },
-                        o => true
-                        );
+                        null);
                 return zaladujFormularz;
+            }
+        }
+
+        private ICommand wyczysc = null;
+        public ICommand Wyczysc
+        {
+            get
+            {
+                if (wyczysc == null)
+                    wyczysc = new RelayCommand(
+                        arg =>
+                        {
+                            CzyscFormularz();
+                        },
+                        null);
+                return wyczysc;
             }
         }
 
         #endregion
 
-        #region Metody
         private void CzyscFormularz()
         {
             Marka = "";
@@ -336,8 +331,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             IdOddzial = null;
             Kategoria = "";
         }
-
-        #endregion
 
     }
 }

@@ -7,7 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         xmlns:vm="clr-namespace:WypozyczalaniaProjekt.ViewModel"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <vm:MainViewModel x:Key="mainVM"/>
@@ -30,7 +30,7 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,0" TextWrapping="Wrap" Text="Nazwa"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,0" TextWrapping="Wrap" Text="Kategoria"/>
                                 <TextBox Grid.Column="0" Margin="2,23,31,-21.6"
                                          Text="{Binding AutoVM.Kategoria}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Kaucja"/>
@@ -194,18 +194,18 @@
                         <Button x:Name="button_EdytujP" Content="Edytuj" 
                                 Background="#6d6394"
                             Margin="69,34,64,104"
-                            Command="{Binding PracownicyVM.EdytujPClick}"
+                            Command="{Binding PracownicyVM.EdytujPracownika}"
                                     
                              />
                         <Button x:Name="button_UsunP" Content="Usuń" 
                                 Background="#6d6394"
                             Margin="69,68,64,70"
-                            Command="{Binding PracownicyVM.UsunPClick}"
+                            Command="{Binding PracownicyVM.UsunPracownika}"
                              />
                         <Button x:Name="button_DodajP" Content="Dodaj" 
                                 Background="#6d6394"
                             Margin="69,102,64,36"
-                            Command="{Binding PracownicyVM.DodajPClick}"
+                            Command="{Binding PracownicyVM.DodajPracownika}"
                              />
                     </Grid>
                 </Grid>
@@ -282,16 +282,16 @@
                         <Button x:Name="button_EdytujK" Content="Edytuj" 
                                 Background="#6d6394"
                             Margin="69,34,64,104"
-                            Command="{Binding KlienciVM.EdytujKClick}" />
+                            Command="{Binding KlienciVM.EdytujKlienta}" />
                         <Button x:Name="button_UsunK" Content="Usuń" 
                                 Background="#6d6394"
                             Margin="69,68,64,70"
-                            Command="{Binding KlienciVM.UsunKClick}"
+                            Command="{Binding KlienciVM.UsunKlienta}"
                              />
                         <Button x:Name="button_DodajK" Content="Dodaj" 
                                 Background="#6d6394"
                             Margin="69,102,64,36"
-                            Command="{Binding KlienciVM.DodajKClick}"
+                            Command="{Binding KlienciVM.DodajKlienta}"
                              />
                     </Grid>
                 </Grid>

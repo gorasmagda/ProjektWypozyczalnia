@@ -10,32 +10,43 @@ namespace WypozyczalaniaProjekt.ViewModel
     class PracownicyViewModel : ViewModelBase
     {
         #region Składowe prywatne
+
         private Model model = null;
+        private Pracownik wybranyPracownik;
+
+        private int idPracownik, idOddzial;
+        private decimal pensja;
+        private string imie, nazwisko, plec, nrTelefonu, dataUrodzenia, adres, email, nrPrawaJazdy, pesel;
+
         #endregion
-        public ObservableCollection<Pracownik> Pracownicy { get; set; }
+        
+        #region Konstruktory
+
         public PracownicyViewModel(Model model)
         {
-            NrPrawaJazdy = "63534";
             Pracownicy = new ObservableCollection<Pracownik>();
             this.model = model;
             Pracownicy = model.Pracownicy;
-
         }
 
-        private string wybranyPracownik;
-        public string WybranyPracownik
+        #endregion
+
+        #region Właściwości
+
+        public ObservableCollection<Pracownik> Pracownicy { get; set; }
+
+        public Pracownik WybranyPracownik
         {
             get => wybranyPracownik;
             set
             {
                 wybranyPracownik = value;
                 onPropertyChanged(nameof(WybranyPracownik));
-                Console.WriteLine("Wybrany pracownik to madzia");
-
+                if (wybranyPracownik != null)
+                    ZaladujFormularz();
             }
         }
 
-        private int idPracownik;
         public int IdPracownik
         {
             get => idPracownik;
@@ -46,7 +57,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string imie;
         public string Imie
         {
             get => imie;
@@ -57,7 +67,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string plec;
         public string Plec
         {
             get => plec;
@@ -68,7 +77,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string nrTelefonu;
         public string NrTelefonu
         {
             get => nrTelefonu;
@@ -79,7 +87,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string dataUrodzenia;
         public string DataUrodzenia
         {
             get => dataUrodzenia;
@@ -90,7 +97,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private decimal pensja;
         public decimal Pensja
         {
             get => pensja;
@@ -101,7 +107,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private int idOddzial;
         public int IdOddzial
         {
             get => idOddzial;
@@ -112,7 +117,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string pesel;
         public string Pesel
         {
             get => pesel;
@@ -123,7 +127,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string nazwisko;
         public string Nazwisko
         {
             get => nazwisko;
@@ -134,7 +137,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string adres;
         public string Adres
         {
             get => adres;
@@ -145,7 +147,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string email;
         public string Email
         {
             get => email;
@@ -156,7 +157,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string nrPrawaJazdy;
         public string NrPrawaJazdy
         {
             get => nrPrawaJazdy;
@@ -167,73 +167,95 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
+        #endregion
 
-        private ICommand edytujPClick = null;
+        #region Polecenia
 
-        public ICommand EdytujPClick
+        private ICommand dodajPracownika = null;
+        public ICommand DodajPracownika
         {
             get
             {
-                if (edytujPClick == null)
-                    edytujPClick = new RelayCommand(
-                    arg =>
-                    {
-                        //NrPrawaJazdy = "000000";
-                    }
-
-                   , null);
-
-
-
-                return edytujPClick;
+                if (dodajPracownika == null)
+                    dodajPracownika = new RelayCommand(
+                        arg =>
+                        {
+                            // TODO: PracownicyVM - Dodawanie Pracownika
+                        },
+                        null);
+                return dodajPracownika;
             }
-
         }
 
-        private ICommand dodajPClick = null;
-
-        public ICommand DodajPClick
+        private ICommand edytujPracownika = null;
+        public ICommand EdytujPracownika
         {
             get
             {
-                if (dodajPClick == null)
-                    dodajPClick = new RelayCommand(
-                    arg =>
-                    {
-
-                    }
-
-                   , null);
-
-
-
-                return dodajPClick;
+                if (edytujPracownika == null)
+                    edytujPracownika = new RelayCommand(
+                        arg =>
+                        {
+                            // TODO: PracownicyVM - Edycja Pracownika
+                        },
+                        null);
+                return edytujPracownika;
             }
-
         }
 
+        private ICommand usunPracownika = null;
 
-        private ICommand usunPClick = null;
-
-        public ICommand UsunPClick
+        public ICommand UsunPracownika
         {
             get
             {
-                if (usunPClick == null)
-                    usunPClick = new RelayCommand(
-                    arg =>
-                    {
-                        Pesel = "87654";
-                    }
-
-                   , null);
-
-
-
-                return usunPClick;
+                if (usunPracownika == null)
+                    usunPracownika = new RelayCommand(
+                        arg =>
+                        {
+                            // TODO: PracownicyVM - Usuwanie Pracownika
+                        },
+                        null);
+                return usunPracownika;
             }
-
         }
 
+        private ICommand wyczysc = null;
+        public ICommand Wyczysc
+        {
+            get
+            {
+                if (wyczysc == null)
+                    wyczysc = new RelayCommand(
+                        arg =>
+                        {
+                            CzyscFormularz();
+                        },
+                        null);
+                return wyczysc;
+            }
+        }
+
+        #endregion
+
+        private void ZaladujFormularz()
+        {
+            Imie = WybranyPracownik.Imie;
+            Nazwisko = WybranyPracownik.Nazwisko;
+            Plec = WybranyPracownik.Plec;
+            NrTelefonu = WybranyPracownik.NrTelefonu;
+            DataUrodzenia = "Jakaś data";               // TODO: KlienciVM - Naprawić datę
+            Adres = WybranyPracownik.Adres;
+            Email = WybranyPracownik.Email;
+            NrPrawaJazdy = WybranyPracownik.NrPrawaJazdy;
+            Pesel = WybranyPracownik.Pesel;
+            IdPracownik = (int)WybranyPracownik.IdPracownik;
+            IdOddzial = (int)WybranyPracownik.IdOddzial;
+            Pensja = wybranyPracownik.Pensja;
+        }
+        private void CzyscFormularz()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
