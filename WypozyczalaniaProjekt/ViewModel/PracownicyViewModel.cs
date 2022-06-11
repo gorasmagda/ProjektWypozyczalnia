@@ -193,7 +193,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     dodajPracownika = new RelayCommand(
                         arg =>
                         {
-                            var pracownik = new Pracownik(Imie, Nazwisko, Plec, Email,NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)IdOddzial, (decimal)Pensja); // TODO: PracownicyVM - Naprawić DateTime
+                            var pracownik = new Pracownik(Imie, Nazwisko, Plec, Email,NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)IdOddzial, (decimal)Pensja);
                             if (model.DodajPracownikaDoBazy(pracownik))
                             {
                                 CzyscFormularz();
@@ -264,7 +264,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                 Nazwisko = WybranyPracownik.Nazwisko;
                 Plec = WybranyPracownik.Plec;
                 NrTelefonu = WybranyPracownik.NrTelefonu;
-                DataUrodzenia = WybranyPracownik.DataUrodzenia.ToString("yyyy-MM-dd");               // TODO: KlienciVM - Naprawić datę
+                DataUrodzenia = WybranyPracownik.DataUrodzenia.ToString("yyyy-MM-dd");
                 Adres = WybranyPracownik.Adres;
                 Email = WybranyPracownik.Email;
                 NrPrawaJazdy = WybranyPracownik.NrPrawaJazdy;

@@ -245,7 +245,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                 Imie = WybranyKlient.Imie;
                 Nazwisko = WybranyKlient.Nazwisko;
                 Plec = WybranyKlient.Plec;
-                DataUrodzenia = WybranyKlient.DataUrodzenia.ToString("yyyy-MM-dd");               // TODO: KlienciVM - Naprawić datę
+                DataUrodzenia = WybranyKlient.DataUrodzenia.ToString("yyyy-MM-dd");
                 Pesel = WybranyKlient.Pesel;
                 NrTelefonu = WybranyKlient.NrTelefonu;
                 Adres = WybranyKlient.Adres;
