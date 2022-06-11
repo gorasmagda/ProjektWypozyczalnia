@@ -16,7 +16,7 @@ namespace WypozyczalaniaProjekt.ViewModel
         private Pracownik wybranyPracownik;
 
         private int idWybranegoPracownika;
-        private int? idPracownik, idOddzial;
+        private int? idOddzial;
         private decimal? pensja;
         private string imie, nazwisko, plec, nrTelefonu, dataUrodzenia, adres, email, nrPrawaJazdy, pesel;
 
@@ -60,15 +60,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        public int? IdPracownik
-        {
-            get => idPracownik;
-            set
-            {
-                idPracownik = value;
-                onPropertyChanged(nameof(IdPracownik));
-            }
-        }
 
         public string Imie
         {
@@ -269,7 +260,6 @@ namespace WypozyczalaniaProjekt.ViewModel
                 Email = WybranyPracownik.Email;
                 NrPrawaJazdy = WybranyPracownik.NrPrawaJazdy;
                 Pesel = WybranyPracownik.Pesel;
-                IdPracownik = (int)WybranyPracownik.IdPracownik;
                 IdOddzial = (int)WybranyPracownik.IdOddzial;
                 Pensja = wybranyPracownik.Pensja;
             }
@@ -290,7 +280,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             Email = "";
             NrPrawaJazdy = "";
             Pesel = "";
-            IdPracownik = null;
             IdOddzial = null;
             Pensja = null;
         }

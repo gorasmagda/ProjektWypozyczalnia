@@ -32,48 +32,48 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,0" TextWrapping="Wrap" Text="Kategoria"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,0" TextWrapping="Wrap" Text="Model" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="2,23,31,-21.6"
-                                         Text="{Binding AutoVM.Kategoria}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Kaucja"/>
-                                <TextBox Grid.Column="0" Margin="2,62,31,-60.8"
-                                         Text="{Binding AutoVM.Kaucja}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Lokalizacja"/>
-                                <TextBox Grid.Column="0" Margin="2,100,31,-98.8"
-                                         Text="{Binding AutoVM.Lokalizacja}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Text="Model"/>
-                                <TextBox Grid.Column="0" Margin="2,140,31,-138.8"
                                          Text="{Binding AutoVM.ModelAuta}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Text="Rocznik"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Lokalizacja" Foreground="LightGray"/>
+                                <TextBox Grid.Column="0" Margin="2,62,31,-60.8"
+                                         Text="{Binding AutoVM.Lokalizacja}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Kaucja" Foreground="LightGray"/>
+                                <TextBox Grid.Column="0" Margin="2,100,31,-98.8"
+                                         Text="{Binding AutoVM.Kaucja}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Text="Kategoria" Foreground="LightGray"/>
+                                <TextBox Grid.Column="0" Margin="2,140,31,-138.8"
+                                         Text="{Binding AutoVM.Kategoria}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Text="Rocznik" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="2,179,31,-177.8"
                                          Text="{Binding AutoVM.Rocznik}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,202,0,-195.8" TextWrapping="Wrap" Text="Ilość Miejsc"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,202,0,-195.8" TextWrapping="Wrap" Text="Przebieg" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="2,218,31,-216.8"
-                                         Text="{Binding AutoVM.IloscMiejsc}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,243,0,-236.8" TextWrapping="Wrap" Text="Przebieg"/>
-                                <TextBox Grid.Column="0" Margin="2,259,31,-257.8"
                                          Text="{Binding AutoVM.Przebieg}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,243,0,-236.8" TextWrapping="Wrap" Text="Ilość Miejsc" Foreground="LightGray"/>
+                                <TextBox Grid.Column="0" Margin="2,259,31,-257.8"
+                                         Text="{Binding AutoVM.IloscMiejsc}"/>
 
 
-                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,-0.8" TextWrapping="Wrap" Grid.Column="1" Text="Numer Rejestracyjny"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,-0.8" TextWrapping="Wrap" Grid.Column="1" Text="Marka" Foreground="LightGray"/>
                                 <TextBox Grid.Column="1" Margin="2,23,31,-21.6"
-                                         Text="{Binding AutoVM.NrRejestracyjny}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Grid.Column="1" Text="Cena" />
-                                <TextBox Grid.Column="1" Margin="2,62,31,-60.8"
-                                         Text="{Binding AutoVM.Cena}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Grid.Column="1" Text="Dostępność"/>
-                                <TextBox Grid.Column="1" Margin="2,100,31,-98.8"
-                                         Text="{Binding AutoVM.Dostepnosc}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Grid.Column="1" Text="Marka"/>
-                                <TextBox Grid.Column="1" Margin="2,140,31,-138.8"
                                          Text="{Binding AutoVM.Marka}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Grid.Column="1" Text="Kolor"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Grid.Column="1" Text="Dostępność" Foreground="LightGray"/>
+                                <TextBox Grid.Column="1" Margin="2,62,31,-60.8"
+                                         Text="{Binding AutoVM.Dostepnosc}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Grid.Column="1" Text="Cena" Foreground="LightGray"/>
+                                <TextBox Grid.Column="1" Margin="2,100,31,-98.8"
+                                         Text="{Binding AutoVM.Cena}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Grid.Column="1" Text="Numer Rejestracyjny" Foreground="LightGray"/>
+                                <TextBox Grid.Column="1" Margin="2,140,31,-138.8"
+                                         Text="{Binding AutoVM.NrRejestracyjny}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Grid.Column="1" Text="Skrzynia Biegów" Foreground="LightGray"/>
                                 <TextBox Grid.Column="1" Margin="2,179,31,-177.8"
-                                         Text="{Binding AutoVM.Kolor}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,202,0,-195.8" TextWrapping="Wrap" Grid.Column="1" Text="Skrzynia Biegów"/>
-                                <TextBox Grid.Column="1" Margin="2,218,31,-216.8"
                                          Text="{Binding AutoVM.Skrzynia}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,243,0,-236.8" TextWrapping="Wrap" Grid.Column="1" Text="Id Oddzialu"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,202,0,-195.8" TextWrapping="Wrap" Grid.Column="1" Text="Kolor" Foreground="LightGray"/>
+                                <TextBox Grid.Column="1" Margin="2,218,31,-216.8"
+                                         Text="{Binding AutoVM.Kolor}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,243,0,-236.8" TextWrapping="Wrap" Grid.Column="1" Text="Id Oddzialu" Foreground="LightGray"/>
                                 <TextBox Grid.Column="1" Margin="2,259,31,-257.8"
                                          Text="{Binding AutoVM.IdOddzial}"/>
 
@@ -96,7 +96,7 @@
                         </i:Interaction.Triggers>
 
                     </ListBox>
-                    <Grid Background="#8D80BF" Margin="0,226,363,-0.4" Grid.ColumnSpan="4">
+                    <Grid Background="#8D80BF" Margin="0,222,358,-0.4" Grid.ColumnSpan="4">
 
                         <Button x:Name="button_EdytujA" Content="Edytuj" 
                                 Background="#6d6394"
@@ -137,45 +137,44 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,0" TextWrapping="Wrap" Text="Id Pracownik"/>
+
+                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,-0.8" TextWrapping="Wrap" Text="Imię" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="2,23,31,-21.6"
-                                         Text="{Binding PracownicyVM.IdPracownik}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Imię"/>
-                                <TextBox Grid.Column="0" Margin="2,62,31,-60.8"
                                          Text="{Binding PracownicyVM.Imie}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Płeć"/>
-                                <TextBox Grid.Column="0" Margin="2,100,31,-98.8"
+                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Płeć" Foreground="LightGray"/>
+                                <TextBox Grid.Column="0" Margin="2,62,31,-60.8"
                                          Text="{Binding PracownicyVM.Plec}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Text="Numer Telefonu"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Data Urodzenia" Foreground="LightGray"/>
+                                <TextBox Grid.Column="0" Margin="2,100,31,-98.8"
+                                         Text="{Binding PracownicyVM.DataUrodzenia}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Text="Numer Telefonu" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="2,140,31,-138.8"
                                          Text="{Binding PracownicyVM.NrTelefonu}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Text="Data Urodzenia"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Text="Pensja" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="2,179,31,-177.8"
-                                         Text="{Binding PracownicyVM.DataUrodzenia}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,202,0,-195.8" TextWrapping="Wrap" Text="Pensja"/>
-                                <TextBox Grid.Column="0" Margin="2,218,31,-216.8"
                                          Text="{Binding PracownicyVM.Pensja}"/>
-
-
-
-                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,-0.8" TextWrapping="Wrap" Grid.Column="1" Text=" Id Oddzialu"/>
-                                <TextBox Grid.Column="1" Margin="2,23,31,-21.6"
-                                         Text="{Binding PracownicyVM.IdOddzial}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Grid.Column="1" Text="Pesel" />
-                                <TextBox Grid.Column="1" Margin="2,62,31,-60.8"
-                                         Text="{Binding PracownicyVM.Pesel}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Grid.Column="1" Text="Nazwisko"/>
-                                <TextBox Grid.Column="1" Margin="2,100,31,-98.8"
-                                         Text="{Binding PracownicyVM.Nazwisko}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Grid.Column="1" Text="Adres"/>
-                                <TextBox Grid.Column="1" Margin="2,140,31,-138.8"
-                                         Text="{Binding PracownicyVM.Adres}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Grid.Column="1" Text="Email"/>
-                                <TextBox Grid.Column="1" Margin="2,179,31,-177.8"
-                                         Text="{Binding PracownicyVM.Email}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,202,0,-195.8" TextWrapping="Wrap" Grid.Column="1" Text="Numer Prawa Jazdy"/>
-                                <TextBox Grid.Column="1" Margin="2,218,31,-216.8"
+                                <TextBlock HorizontalAlignment="Left" Margin="2,202,0,-195.8" TextWrapping="Wrap" Grid.Column="0" Text="Numer Prawa Jazdy" Foreground="LightGray"/>
+                                <TextBox Grid.Column="0" Margin="2,218,31,-216.8"
                                          Text="{Binding PracownicyVM.NrPrawaJazdy}"/>
+
+
+
+                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,-0.8" TextWrapping="Wrap" Grid.Column="1" Text="Nazwisko" Foreground="LightGray"/>
+                                <TextBox Grid.Column="1" Margin="2,23,31,-21.6"
+                                         Text="{Binding PracownicyVM.Nazwisko}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Grid.Column="1" Text="Id Oddzialu" Foreground="LightGray" />
+                                <TextBox Grid.Column="1" Margin="2,62,31,-60.8"
+                                         Text="{Binding PracownicyVM.IdOddzial}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Grid.Column="1" Text="Pesel" Foreground="LightGray"/>
+                                <TextBox Grid.Column="1" Margin="2,100,31,-98.8"
+                                         Text="{Binding PracownicyVM.Pesel}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Grid.Column="1" Text="Email" Foreground="LightGray"/>
+                                <TextBox Grid.Column="1" Margin="2,140,31,-138.8"
+                                         Text="{Binding PracownicyVM.Email}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Grid.Column="1" Text="Adres" Foreground="LightGray"/>
+                                <TextBox Grid.Column="1" Margin="2,179,31,-177.8"
+                                         Text="{Binding PracownicyVM.Adres}"/>
+
 
                             </Grid>
                         </StackPanel>
@@ -191,22 +190,22 @@
                         >
 
                     </ListBox>
-                    <Grid Background="#8D80BF" Margin="0,226,363,-0.4" Grid.ColumnSpan="2">
+                    <Grid Background="#8D80BF" Margin="0,222,0,0">
 
                         <Button x:Name="button_EdytujP" Content="Edytuj" 
                                 Background="#6d6394"
-                            Margin="69,34,64,104"
+                            Margin="56,40,77,98.4"
                             Command="{Binding PracownicyVM.EdytujPracownika}"
                                     
                              />
                         <Button x:Name="button_UsunP" Content="Usuń" 
                                 Background="#6d6394"
-                            Margin="69,68,64,70"
+                            Margin="56,74,77,64.4"
                             Command="{Binding PracownicyVM.UsunPracownika}"
                              />
                         <Button x:Name="button_DodajP" Content="Dodaj" 
                                 Background="#6d6394"
-                            Margin="69,102,64,36"
+                            Margin="56,108,77,30.4"
                             Command="{Binding PracownicyVM.DodajPracownika}"
                              />
                         <Button Content="Wyczyść" HorizontalAlignment="Left" 
@@ -233,38 +232,38 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
 
-                                
-                                <TextBlock HorizontalAlignment="Left" Margin="2,8,0,-0.8" TextWrapping="Wrap" Text="Imię"/>
+
+                                <TextBlock HorizontalAlignment="Left" Margin="2,8,0,-0.8" TextWrapping="Wrap" Text="Imię" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="2,23,31,-21.6"
                                          Text="{Binding KlienciVM.Imie}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Płeć"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Płeć" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="2,62,31,-60.8"
                                          Text="{Binding KlienciVM.Plec}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Numer Telefonu"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Numer Telefonu" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="2,100,31,-98.8"
                                          Text="{Binding KlienciVM.NrTelefonu}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Text="Data Urodzenia"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Text="Data Urodzenia" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="2,140,31,-138.8"
                                          Text="{Binding KlienciVM.DataUrodzenia}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Text="Id Karty kredytowej"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Text="Id Karty kredytowej" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="2,179,31,-177.8"
                                          Text="{Binding KlienciVM.IdKarty}"/>
 
 
 
-                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,-0.8" TextWrapping="Wrap" Grid.Column="1" Text="Nazwisko"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,-0.8" TextWrapping="Wrap" Grid.Column="1" Text="Nazwisko" Foreground="LightGray"/>
                                 <TextBox Grid.Column="1" Margin="2,23,31,-21.6"
                                          Text="{Binding KlienciVM.Nazwisko}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Grid.Column="1" Text="Pesel" />
+                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Grid.Column="1" Text="Pesel" Foreground="LightGray" />
                                 <TextBox Grid.Column="1" Margin="2,62,31,-60.8"
                                          Text="{Binding KlienciVM.Pesel}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Grid.Column="1" Text="Adres"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Grid.Column="1" Text="Adres" Foreground="LightGray"/>
                                 <TextBox Grid.Column="1" Margin="2,100,31,-98.8"
                                          Text="{Binding KlienciVM.Adres}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Grid.Column="1" Text="Email"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Grid.Column="1" Text="Email" Foreground="LightGray"/>
                                 <TextBox Grid.Column="1" Margin="2,140,31,-138.8"
                                          Text="{Binding KlienciVM.Email}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Grid.Column="1" Text="Numer Prawa Jazdy"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Grid.Column="1" Text="Numer Prawa Jazdy" Foreground="LightGray"/>
                                 <TextBox Grid.Column="1" Margin="2,179,31,-177.8"
                                          Text="{Binding KlienciVM.NrPrawaJazdy}"/>
 
@@ -286,16 +285,16 @@
 
                         <Button x:Name="button_EdytujK" Content="Edytuj" 
                                 Background="#6d6394"
-                            Margin="69,34,64,104"
+                            Margin="56,40,77,98.4"
                             Command="{Binding KlienciVM.EdytujKlienta}" />
                         <Button x:Name="button_UsunK" Content="Usuń" 
                                 Background="#6d6394"
-                            Margin="69,68,64,70"
+                            Margin="56,74,77,64.4"
                             Command="{Binding KlienciVM.UsunKlienta}"
                              />
                         <Button x:Name="button_DodajK" Content="Dodaj" 
                                 Background="#6d6394"
-                            Margin="69,102,64,36"
+                            Margin="56,108,77,30.4"
                             Command="{Binding KlienciVM.DodajKlienta}"
                              />
                         <Button Content="Wyczyść" HorizontalAlignment="Left" 
