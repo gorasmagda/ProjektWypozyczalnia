@@ -80,7 +80,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
         public string ToInsert()
         {
-            return $"(0,'{Imie}','{Nazwisko}','{Plec}','{Email}',{NrTelefonu},'{Adres}','{Pesel}','{NrPrawaJazdy}','{DataUrodzenia:yyyy-MM-dd HH:mm:ss}','{IdKarty}')";
+            return $"(0,'{Imie}','{Nazwisko}','{Plec}','{Email}',{NrTelefonu},'{Adres}','{Pesel}','{NrPrawaJazdy}','{DataUrodzenia:yyyy-MM-dd}','{IdKarty}')";
         }
 
         // TODO: Klient - DOKOŃCZYĆ

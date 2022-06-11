@@ -176,7 +176,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     dodajKlienta = new RelayCommand(
                         arg =>
                         {
-                            var klient = new Klient(Imie, Nazwisko, Plec, Email, NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Now, (sbyte)IdKarty);
+                            var klient = new Klient(Imie, Nazwisko, Plec, Email, NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)IdKarty);
                             if (model.DodajKlientaDoBazy(klient))
                             {
                                 CzyscFormularz();
@@ -245,7 +245,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                 Imie = WybranyKlient.Imie;
                 Nazwisko = WybranyKlient.Nazwisko;
                 Plec = WybranyKlient.Plec;
-                DataUrodzenia = "Jakaś data";               // TODO: KlienciVM - Naprawić datę
+                DataUrodzenia = WybranyKlient.DataUrodzenia.ToString("yyyy-MM-dd");               // TODO: KlienciVM - Naprawić datę
                 Pesel = WybranyKlient.Pesel;
                 NrTelefonu = WybranyKlient.NrTelefonu;
                 Adres = WybranyKlient.Adres;

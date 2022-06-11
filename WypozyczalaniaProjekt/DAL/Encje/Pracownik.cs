@@ -84,7 +84,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
         public string ToInsert()
         {
-            return $"(0,'{Imie}','{Nazwisko}','{Plec}','{Email}',{NrTelefonu},'{Adres}','{DataUrodzenia:yyyy-MM-dd HH:mm:ss}','{Pesel}','{NrPrawaJazdy}','{Pensja}','{IdOddzial}')";
+            return $"(0,'{Imie}','{Nazwisko}','{Plec}','{Email}',{NrTelefonu},'{Adres}','{DataUrodzenia:yyyy-MM-dd}','{Pesel}','{NrPrawaJazdy}','{Pensja}','{IdOddzial}')";
 
         }
 
