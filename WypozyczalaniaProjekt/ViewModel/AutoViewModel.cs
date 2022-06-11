@@ -1,6 +1,5 @@
-﻿//TO DO 
-//TextBox na nazwę + np. combobox dla skrzyni i nazwy + dla id_oddziału, aby wybrać ten, który już wgl istenieje. 
-//Naprawić numer ID przy dodawaniu auta 
+﻿// TODO: AutoVM - TextBox na nazwę + np. combobox dla skrzyni i nazwy + dla id_oddziału, aby wybrać ten, który już wgl istnieje.
+// Naprawić numer ID przy dodawaniu auta 
 
 namespace WypozyczalaniaProjekt.ViewModel
 {
@@ -14,29 +13,35 @@ namespace WypozyczalaniaProjekt.ViewModel
     {
 
         #region Składowe prywatne
+
         private Model model = null;
+
+        private int idWybranegoAuta;
+        private int? rocznik, iloscMiejsc, przebieg, idOddzial;
+        private string kaucja, lokalizacja, modelAuta, nrRejestracyjny, cena, dostepnosc, marka, kolor, skrzynia, kategoria;
+
         #endregion
 
-        public ObservableCollection<Samochod> Samochody { get; set; }
-
         #region Konstruktory
+
         public AutoViewModel(Model model)
         {
-
             Samochody = new ObservableCollection<Samochod>();
             this.model = model;
             Samochody = model.Samochody;
             //CzyscFormularz();
-
         }
+
         #endregion
 
+        #region Właściwości
+
+        public ObservableCollection<Samochod> Samochody { get; set; }
         public Samochod WybraneAuto { get; set; }
 
-        private int idWybranegoAuta;
         public int IdWybranegoAuta
         {
-            get { return idWybranegoAuta; }
+            get => idWybranegoAuta;
             set
             {
                 idWybranegoAuta = value;
@@ -44,9 +49,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-
-
-        private string kaucja;
         public string Kaucja
         {
             get => kaucja;
@@ -57,7 +59,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string lokalizacja;
         public string Lokalizacja
         {
             get => lokalizacja;
@@ -68,7 +69,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string modelAuta;
         public string ModelAuta
         {
             get => modelAuta;
@@ -79,9 +79,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-
-        private int rocznik;
-        public int Rocznik
+        public int? Rocznik
         {
             get => rocznik;
             set
@@ -91,8 +89,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private int iloscMiejsc;
-        public int IloscMiejsc
+        public int? IloscMiejsc
         {
             get => iloscMiejsc;
             set
@@ -102,8 +99,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private int przebieg;
-        public int Przebieg
+        public int? Przebieg
         {
             get => przebieg;
             set
@@ -113,7 +109,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string nrRejestracyjny;
         public string NrRejestracyjny
         {
             get => nrRejestracyjny;
@@ -124,8 +119,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private decimal cena;
-        public decimal Cena
+        public string Cena
         {
             get => cena;
             set
@@ -135,7 +129,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string dostepnosc;
         public string Dostepnosc
         {
             get => dostepnosc;
@@ -145,7 +138,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                 onPropertyChanged(nameof(Dostepnosc));
             }
         }
-        private string marka;
+
         public string Marka
         {
             get => marka;
@@ -155,7 +148,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                 onPropertyChanged(nameof(Marka));
             }
         }
-        private string kolor;
+
         public string Kolor
         {
             get => kolor;
@@ -166,7 +159,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string skrzynia;
         public string Skrzynia
         {
             get => skrzynia;
@@ -177,8 +169,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private int idOddzial;
-        public int IdOddzial
+        public int? IdOddzial
         {
             get => idOddzial;
             set
@@ -188,7 +179,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private string kategoria;
         public string Kategoria
         {
             get => kategoria;
@@ -199,111 +189,79 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private void CzyscFormularz()
-        {
+        #endregion
 
-            Marka = "";
-            Kaucja = "";
-            Lokalizacja = "";
-            ModelAuta = "";
-            Rocznik = 0;
-            IloscMiejsc = 0;
-            Przebieg = 0;
-            NrRejestracyjny = "";
-            Cena = 0;
-            Dostepnosc = "";
-            Kolor = "";
-            Skrzynia = "";
-            IdOddzial = 0;
-            Kategoria = "";
+        #region Polecenia
 
-        }
-        private ICommand wyczyscAutoClick = null;
-        public ICommand WyczyscAutoClick
+        private ICommand wyczysc = null;
+        public ICommand Wyczysc
         {
             get
             {
-                if (wyczyscAutoClick == null)
-                    wyczyscAutoClick = new RelayCommand(
+                if (wyczysc == null)
+                    wyczysc = new RelayCommand(
                         arg =>
                         {
                             CzyscFormularz();
                         },
                         null);
-                return wyczyscAutoClick;
-
-
+                return wyczysc;
             }
         }
 
-        private ICommand edytujAClick = null;
-
-        public ICommand EdytujAClick
+        private ICommand edytujAuto = null;
+        public ICommand EdytujAuto
         {
             get
             {
-                if (edytujAClick == null)
-                    edytujAClick = new RelayCommand(
-                    arg =>
-                    {
-
-                    }
-
-                   , null);
-
-
-
-                return edytujAClick;
+                if (edytujAuto == null)
+                    edytujAuto = new RelayCommand(
+                        arg =>
+                        {
+                            // TODO: AutoVM - Edycja Auta
+                        },
+                        null);
+                return edytujAuto;
             }
 
         }
 
-        private ICommand dodajAClick = null;
-
-        public ICommand DodajAClick
+        private ICommand dodajAuto = null;
+        public ICommand DodajAuto
         {
             get
             {
-                if (dodajAClick == null)
-                    dodajAClick = new RelayCommand(
+                if (dodajAuto == null)
+                    dodajAuto = new RelayCommand(
                     arg =>
                     {
-                        var samochod = new Samochod(Marka, ModelAuta, Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, (int)Cena, Kaucja, Przebieg, Dostepnosc, (sbyte)IdOddzial, Kategoria);
+                        var samochod = new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)IdOddzial, Kategoria);
                         if (model.DodajSamochodDoBazy(samochod))
                         {
                             CzyscFormularz();
                             System.Windows.MessageBox.Show("Samochod został dodany!");
                         }
-                    }
-
-                   , arg => (Marka != "") && (NrRejestracyjny != "")); //to do retsza
-
-
-
-                return dodajAClick;
+                    },
+                    arg => (Marka != "") && (NrRejestracyjny != "")); // TODO: AutoVM - walidacja danych
+                return dodajAuto;
             }
 
         }
 
 
-        private ICommand usunAClick = null;
-
-        public ICommand UsunAClick
+        private ICommand usunAuto = null;
+        public ICommand UsunAuto
         {
             get
             {
-                if (usunAClick == null)
-                    usunAClick = new RelayCommand(
+                if (usunAuto == null)
+                    usunAuto = new RelayCommand(
                     arg =>
                     {
-
-                    }
-
-                   , null);
-
-
-
-                return usunAClick;
+                        // TODO: AutoVM - Usuwanie Auta
+                    },
+                    null);
+                return usunAuto;
             }
 
         }
@@ -319,7 +277,6 @@ namespace WypozyczalaniaProjekt.ViewModel
                         {
                             if (IdWybranegoAuta > -1)
                             {
-
                                 Marka = WybraneAuto.Marka;
                                 Kaucja = WybraneAuto.Kaucja;
                                 Lokalizacja = WybraneAuto.Lokalizacja;
@@ -334,14 +291,9 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 Skrzynia = WybraneAuto.Skrzynia;
                                 IdOddzial = (int)WybraneAuto.IdOddzial;
                                 Kategoria = WybraneAuto.Kategoria;
-
-
-
-
                             }
                             else
                             {
-
                                 Marka = "";
                                 Kaucja = "";
                                 Lokalizacja = "";
@@ -350,21 +302,42 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 IloscMiejsc = 0;
                                 Przebieg = 0;
                                 NrRejestracyjny = "";
-                                Cena = 0;
+                                Cena = "";
                                 Dostepnosc = "";
                                 Kolor = "";
                                 Skrzynia = "";
                                 IdOddzial = 0;
                                 Kategoria = "";
                             }
-
-                        }
-                        ,
+                        },
                         o => true
                         );
                 return zaladujFormularz;
             }
         }
+
+        #endregion
+
+        #region Metody
+        private void CzyscFormularz()
+        {
+            Marka = "";
+            Kaucja = "";
+            Lokalizacja = "";
+            ModelAuta = "";
+            Rocznik = null;
+            IloscMiejsc = null;
+            Przebieg = null;
+            NrRejestracyjny = "";
+            Cena = null;
+            Dostepnosc = "";
+            Kolor = "";
+            Skrzynia = "";
+            IdOddzial = null;
+            Kategoria = "";
+        }
+
+        #endregion
 
     }
 }

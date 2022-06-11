@@ -13,7 +13,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
         public string Skrzynia { get; set; }
         public string NrRejestracyjny { get; set; }
         public string Lokalizacja { get; set; }
-        public decimal Cena { get; set; }
+        public string Cena { get; set; }
         public string Kaucja { get; set; }
         public int Przebieg { get; set; }
         public string Dostepnosc { get; set; }
@@ -31,7 +31,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             Skrzynia = reader["skrzynia"].ToString();
             NrRejestracyjny = reader["nr_rejestracyjny"].ToString();
             Lokalizacja = reader["aktualna_lokalizacja"].ToString();
-            Cena = decimal.Parse(reader["cena"].ToString());
+            Cena = reader["cena"].ToString();
             Kaucja = reader["kaucja"].ToString();
             Przebieg = int.Parse(reader["przebieg"].ToString());
             Dostepnosc = reader["dostepnosc"].ToString();
@@ -39,7 +39,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             Kategoria = reader["kategoria"].ToString();
         }
 
-        public Samochod(string marka, string model, int rocznik, string kolor, int iloscMiejsc, string skrzynia, string nrRejestracyjny, string aktualnaLokalizacja, decimal cena, string kaucja, int przebieg, string dostepnosc, sbyte? idOddzialu, string nazwa)
+        public Samochod(string marka, string model, int rocznik, string kolor, int iloscMiejsc, string skrzynia, string nrRejestracyjny, string aktualnaLokalizacja, string cena, string kaucja, int przebieg, string dostepnosc, sbyte? idOddzialu, string nazwa)
         {
             IdAuto = null;
             Marka = marka.Trim();
@@ -89,7 +89,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
         }
 
-        //TO DO DKOKOŃCZYĆ 
+        //TO DO DOKOŃCZYĆ 
         public override bool Equals(object obj)
         {
             var samochod = obj as Samochod;

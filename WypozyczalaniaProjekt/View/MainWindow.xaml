@@ -30,7 +30,7 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,0" TextWrapping="Wrap" Text="Kategoria"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,0" TextWrapping="Wrap" Text="Nazwa"/>
                                 <TextBox Grid.Column="0" Margin="2,23,31,-21.6"
                                          Text="{Binding AutoVM.Kategoria}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Kaucja"/>
@@ -99,23 +99,23 @@
                         <Button x:Name="button_EdytujA" Content="Edytuj" 
                                 Background="#6d6394"
                             Margin="56,40,77,98.4"
-                            Command="{Binding AutoVM.EdytujAClick}"
+                            Command="{Binding AutoVM.EdytujAuto}"
                                     
                              />
                         <Button x:Name="button_UsunA" Content="Usuń" 
                                 Background="#6d6394"
                             Margin="56,74,77,64.4"
-                            Command="{Binding AutoVM.UsunAClick}"
+                            Command="{Binding AutoVM.UsunAuto}"
                              />
                         <Button x:Name="button_DodajA" Content="Dodaj" 
                                 Background="#6d6394"
                             Margin="56,108,77,30.4"
-                            Command="{Binding AutoVM.DodajAClick}"
+                            Command="{Binding AutoVM.DodajAuto}"
                              />
                         <Button Content="Wyczyść" HorizontalAlignment="Left" 
                                 Margin="326,10,0,0" 
                                 VerticalAlignment="Top" Width="75"
-                                Command="{Binding AutoVM.WyczyscAutoClick}"/>
+                                Command="{Binding AutoVM.Wyczysc}"/>
                     </Grid>
                 </Grid>
             </TabItem>
