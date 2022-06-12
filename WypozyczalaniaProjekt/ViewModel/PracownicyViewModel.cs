@@ -29,7 +29,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             Pracownicy = new ObservableCollection<Pracownik>();
             this.model = model;
             Pracownicy = model.Pracownicy;
-            IdWybranegoPracownika = -1;
+            idWybranegoPracownika = -1;
         }
 
         #endregion
@@ -38,18 +38,8 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         public ObservableCollection<Pracownik> Pracownicy { get; set; }
 
-        public Pracownik WybranyPracownik
-        {
-            get => wybranyPracownik;
-            set
-            {
-                wybranyPracownik = value;
-                onPropertyChanged(nameof(WybranyPracownik));
-                if (wybranyPracownik != null)
-                    ZaladujFormularz();
-            }
-        }
-
+        public Pracownik WybranyPracownik { get; set; }
+        
         public int IdWybranegoPracownika
         {
             get => idWybranegoPracownika;
@@ -205,9 +195,10 @@ namespace WypozyczalaniaProjekt.ViewModel
                     edytujPracownika = new RelayCommand(
                         arg =>
                         {
-                            // TODO: PracownicyVM - Edycja Pracownika
+                            model.EdytujPracownikaWBazie(new Pracownik(Imie, Nazwisko, Plec, Email, NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)IdOddzial, (decimal)Pensja), (sbyte)WybranyPracownik.IdPracownik);
+                            idWybranegoPracownika = -1;
                         },
-                        null);
+                        arg => idWybranegoPracownika > -1);
                 return edytujPracownika;
             }
         }
@@ -245,30 +236,47 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
+
+        private ICommand zaladujFormularz = null;
+        public ICommand ZaladujFormularz
+        {
+            get
+            {
+                if (zaladujFormularz == null)
+                    zaladujFormularz = new RelayCommand(
+                        o =>
+                        {
+                            if (IdWybranegoPracownika > -1)
+                            {
+                                Imie = WybranyPracownik.Imie;
+                                Nazwisko = WybranyPracownik.Nazwisko;
+                                Plec = WybranyPracownik.Plec;
+                                NrTelefonu = WybranyPracownik.NrTelefonu;
+                                DataUrodzenia = WybranyPracownik.DataUrodzenia.ToString("yyyy-MM-dd");
+                                Adres = WybranyPracownik.Adres;
+                                Email = WybranyPracownik.Email;
+                                NrPrawaJazdy = WybranyPracownik.NrPrawaJazdy;
+                                Pesel = WybranyPracownik.Pesel;
+                                IdOddzial = (int)WybranyPracownik.IdOddzial;
+                                Pensja = WybranyPracownik.Pensja;
+                            }
+                            else
+                            {
+                                CzyscFormularz();
+                            }
+                        },
+                        null);
+                return zaladujFormularz;
+            }
+        }
+
         #endregion
 
-        private void ZaladujFormularz()
-        {
-            if (IdWybranegoPracownika > -1)
-            {
-                Imie = WybranyPracownik.Imie;
-                Nazwisko = WybranyPracownik.Nazwisko;
-                Plec = WybranyPracownik.Plec;
-                NrTelefonu = WybranyPracownik.NrTelefonu;
-                DataUrodzenia = WybranyPracownik.DataUrodzenia.ToString("yyyy-MM-dd");
-                Adres = WybranyPracownik.Adres;
-                Email = WybranyPracownik.Email;
-                NrPrawaJazdy = WybranyPracownik.NrPrawaJazdy;
-                Pesel = WybranyPracownik.Pesel;
-                IdOddzial = (int)WybranyPracownik.IdOddzial;
-                Pensja = wybranyPracownik.Pensja;
-            }
-            else
-            {
-                CzyscFormularz();
-            }
-            
-        }
+
+
+
+      
+        
         private void CzyscFormularz()
         {
             Imie = "";

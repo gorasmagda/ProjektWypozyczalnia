@@ -88,6 +88,23 @@
             return false;
         }
 
+        public bool EdytujPracownikaWBazie(Pracownik pracownik, sbyte idPracownik)
+        {
+            if (RepozytoriumPracownicy.EdytujPracownikaWBazie(pracownik, idPracownik))
+            {
+                for (int i = 0; i < Pracownicy.Count; i++)
+                {
+                    if (Pracownicy[i].IdPracownik == idPracownik)
+                    {
+                        pracownik.IdPracownik = idPracownik;
+                        Pracownicy[i] = new Pracownik(pracownik);
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+
         public bool DodajKlientaDoBazy(Klient klient)
         {
             if (!CzyKlientJestJuzWBazie(klient))
