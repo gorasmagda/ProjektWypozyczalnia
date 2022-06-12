@@ -223,9 +223,10 @@ namespace WypozyczalaniaProjekt.ViewModel
                     edytujAuto = new RelayCommand(
                         arg =>
                         {
-                            // TODO: AutoVM - Edycja Auta
+                            model.EdytujSamochodWBazie(new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)IdOddzial, Kategoria), (sbyte)WybraneAuto.IdAuto);
+                            idWybranegoAuta = -1;
                         },
-                        null);
+                        null);  // TODO: AutoVM - Edycja Auta - walidacja
                 return edytujAuto;
             }
 

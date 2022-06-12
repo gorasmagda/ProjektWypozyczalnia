@@ -42,12 +42,31 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             {
                 MySqlCommand command = new MySqlCommand($"{DODAJ_SAMOCHOD} {samochod.ToInsert()}", connection);
                 connection.Open();
-                var reader = command.ExecuteNonQuery();
+                var add = command.ExecuteNonQuery();
                 stan = true;
                 samochod.IdAuto = (sbyte)command.LastInsertedId;
                 connection.Close();
             }
 
+            return stan;
+        }
+
+        public static bool EdytujSamochodWBazie(Samochod s,sbyte idAuta)
+        {
+            bool stan = false;
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                string EDYTUJ_SAMOCHOD = $"UPDATE samochody SET marka='{s.Marka}', model='{s.ModelAuta}', rocznik='{s.Rocznik}', kolor='{s.Kolor}', " +
+                    $"ilosc_miejsc='{s.IloscMiejsc}', skrzynia='{s.Skrzynia}', nr_rejestracyjny='{s.NrRejestracyjny}', aktualna_lokalizacja='{s.Lokalizacja}', " +
+                    $"cena='{s.Cena}', kaucja='{s.Kaucja}', przebieg='{s.Przebieg}', dostepnosc='{s.Dostepnosc}', id_oddzialu='{s.IdOddzial}', " +
+                    $"kategoria='{s.Kategoria}' WHERE id_auto='{idAuta}'";
+                
+                MySqlCommand command = new MySqlCommand(EDYTUJ_SAMOCHOD, connection);
+                connection.Open();
+                var edit = command.ExecuteNonQuery();
+                if (edit == 1) stan = true;
+                connection.Close();
+            }
             return stan;
         }
 

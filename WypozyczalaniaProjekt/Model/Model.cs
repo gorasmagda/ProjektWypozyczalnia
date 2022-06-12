@@ -44,6 +44,23 @@
             return false;
         }
 
+        public bool EdytujSamochodWBazie(Samochod samochod, sbyte idAuta)
+        {
+            if (RepozytoriumSamochody.EdytujSamochodWBazie(samochod, idAuta))
+            {
+                for (int i=0; i<Samochody.Count; i++)
+                {
+                    if (Samochody[i].IdAuto == idAuta)
+                    {
+                        samochod.IdAuto = idAuta;
+                        Samochody[i] = new Samochod(samochod);
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+
         public bool DodajPracownikaDoBazy(Pracownik pracownik)
         {
             if (!CzyPracownikJestJuzWBazie(pracownik))
