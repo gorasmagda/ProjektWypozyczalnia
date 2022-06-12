@@ -65,6 +65,22 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return stan;
         }
 
+        public static bool UsunKlientaZBazy(sbyte idKlient)
+        {
+            bool stan = false;
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                string USUN_KLIENTA = $"DELETE FROM klienci WHERE id_klient='{idKlient}'";
+
+                MySqlCommand command = new MySqlCommand(USUN_KLIENTA, connection);
+                connection.Open();
+                var delete = command.ExecuteNonQuery();
+                if (delete == 1) stan = true;
+                connection.Close();
+            }
+            return stan;
+        }
+
         #endregion
     }
 }

@@ -16,7 +16,6 @@ namespace WypozyczalaniaProjekt.ViewModel
         #region Składowe prywatne
 
         private Model model = null;
-        private Klient wybranyKlient { get; set; }
 
         private int idWybranegoKlienta;
         private int? idKarty;
@@ -31,7 +30,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             Klienci = new ObservableCollection<Klient>();
             this.model = model;
             Klienci = model.Klienci;
-            IdWybranegoKlienta = -1;
+            idWybranegoKlienta = -1;
         }
 
         #endregion
@@ -200,9 +199,10 @@ namespace WypozyczalaniaProjekt.ViewModel
                     usunKlienta = new RelayCommand(
                         arg =>
                         {
-                            // TODO: KlienciVM - Usuwanie Klienta
+                            model.UsunKlientaZBazy((sbyte)WybranyKlient.IdKlient);
+                            IdWybranegoKlienta= -1;
                         },
-                        null);
+                        arg => IdWybranegoKlienta > -1);
                 return usunKlienta;
             }
         }

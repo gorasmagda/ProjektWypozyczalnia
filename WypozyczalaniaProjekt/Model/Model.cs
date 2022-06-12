@@ -151,5 +151,23 @@
             }
             return false;
         }
+
+        public bool UsunKlientaZBazy(sbyte idKlient)
+        {
+            if (RepozytoriumKlienci.UsunKlientaZBazy(idKlient))
+            {
+                for (int i = 0; i < Klienci.Count; i++)
+                {
+                    if (Klienci[i].IdKlient == idKlient)
+                    {
+                        Klienci.RemoveAt(i);
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+
+
     }
 }
