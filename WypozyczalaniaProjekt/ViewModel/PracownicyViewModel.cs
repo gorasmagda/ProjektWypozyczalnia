@@ -13,7 +13,6 @@ namespace WypozyczalaniaProjekt.ViewModel
         #region Składowe prywatne
 
         private Model model = null;
-        private Pracownik wybranyPracownik;
 
         private int idWybranegoPracownika;
         private int? idOddzial;
@@ -196,9 +195,9 @@ namespace WypozyczalaniaProjekt.ViewModel
                         arg =>
                         {
                             model.EdytujPracownikaWBazie(new Pracownik(Imie, Nazwisko, Plec, Email, NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)IdOddzial, (decimal)Pensja), (sbyte)WybranyPracownik.IdPracownik);
-                            idWybranegoPracownika = -1;
+                            IdWybranegoPracownika = -1;
                         },
-                        arg => idWybranegoPracownika > -1);
+                        arg => IdWybranegoPracownika > -1);
                 return edytujPracownika;
             }
         }
@@ -213,9 +212,10 @@ namespace WypozyczalaniaProjekt.ViewModel
                     usunPracownika = new RelayCommand(
                         arg =>
                         {
-                            // TODO: PracownicyVM - Usuwanie Pracownika
+                            model.UsunPracownikaZBazy((sbyte)WybranyPracownik.IdPracownik);
+                            IdWybranegoPracownika = -1;
                         },
-                        null);
+                        arg => IdWybranegoPracownika > -1);
                 return usunPracownika;
             }
         }

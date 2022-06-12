@@ -64,6 +64,22 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             }
             return stan;
         }
+
+        public static bool UsunPracownikaZBazy(sbyte idPracownik)
+        {
+            bool stan = false;
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                string USUN_PRACOWNIKA = $"DELETE FROM pracownicy WHERE id_pracownik={idPracownik}";
+
+                MySqlCommand command = new MySqlCommand(USUN_PRACOWNIKA, connection);
+                connection.Open();
+                var delete = command.ExecuteNonQuery();
+                if (delete == 1) stan = true;
+                connection.Close();
+            }
+            return stan;
+        }
         #endregion
     }
 }

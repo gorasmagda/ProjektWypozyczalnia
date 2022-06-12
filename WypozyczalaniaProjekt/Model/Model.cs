@@ -105,6 +105,23 @@
             return false;
         }
 
+
+        public bool UsunPracownikaZBazy(sbyte idPracownik)
+        {
+            if (RepozytoriumPracownicy.UsunPracownikaZBazy(idPracownik))
+            {
+                for (int i = 0; i < Pracownicy.Count; i++)
+                {
+                    if (Pracownicy[i].IdPracownik == idPracownik)
+                    {
+                        Pracownicy.RemoveAt(i);
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+
         public bool DodajKlientaDoBazy(Klient klient)
         {
             if (!CzyKlientJestJuzWBazie(klient))

@@ -226,9 +226,9 @@ namespace WypozyczalaniaProjekt.ViewModel
                         arg =>
                         {
                             model.EdytujSamochodWBazie(new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)IdOddzial, Kategoria), (sbyte)WybraneAuto.IdAuto);
-                            idWybranegoAuta = -1;
+                            IdWybranegoAuta = -1;
                         },
-                        arg => idWybranegoAuta > -1);  // TODO: AutoVM - Edycja Auta - walidacja
+                        arg => IdWybranegoAuta > -1);  // TODO: AutoVM - Edycja Auta - walidacja
                 return edytujAuto;
             }
         }
@@ -245,7 +245,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                             model.UsunSamochodZBazy((sbyte)WybraneAuto.IdAuto);
                             IdWybranegoAuta = -1;
                         },
-                        arg => idWybranegoAuta > -1);
+                        arg => IdWybranegoAuta > -1);
                 return usunAuto;
             }
         }
