@@ -51,7 +51,7 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return stan;
         }
 
-        public static bool EdytujSamochodWBazie(Samochod s,sbyte idAuta)
+        public static bool EdytujSamochodWBazie(Samochod s, sbyte idAuta)
         {
             bool stan = false;
             using (var connection = DBConnection.Instance.Connection)
@@ -65,6 +65,22 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
                 connection.Open();
                 var edit = command.ExecuteNonQuery();
                 if (edit == 1) stan = true;
+                connection.Close();
+            }
+            return stan;
+        }
+
+        public static bool UsunSamochodZBazy(sbyte idAuta)
+        {
+            bool stan = false;
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                string USUN_SAMOCHOD = $"DELETE FROM samochody WHERE id_auto={idAuta}";
+
+                MySqlCommand command = new MySqlCommand(USUN_SAMOCHOD, connection);
+                connection.Open();
+                var delete = command.ExecuteNonQuery();
+                if (delete == 1) stan = true;
                 connection.Close();
             }
             return stan;

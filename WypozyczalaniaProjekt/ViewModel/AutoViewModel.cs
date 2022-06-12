@@ -4,6 +4,7 @@
 namespace WypozyczalaniaProjekt.ViewModel
 {
     using BaseClassess;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
     using WypozyczalaniaProjekt.DAL.Encje;
@@ -29,6 +30,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             Samochody = new ObservableCollection<Samochod>();
             this.model = model;
             Samochody = model.Samochody;
+            idWybranegoAuta = -1;
         }
 
         #endregion
@@ -208,7 +210,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 System.Windows.MessageBox.Show("Samochod został dodany!");
                             }
                         },
-                        arg => (Marka != "") && (NrRejestracyjny != "")); // TODO: AutoVM - walidacja danych
+                        arg => SprawdzFormularz()); // TODO: AutoVM - walidacja danych
                 return dodajAuto;
             }
 
@@ -226,10 +228,9 @@ namespace WypozyczalaniaProjekt.ViewModel
                             model.EdytujSamochodWBazie(new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)IdOddzial, Kategoria), (sbyte)WybraneAuto.IdAuto);
                             idWybranegoAuta = -1;
                         },
-                        null);  // TODO: AutoVM - Edycja Auta - walidacja
+                        arg => idWybranegoAuta > -1);  // TODO: AutoVM - Edycja Auta - walidacja
                 return edytujAuto;
             }
-
         }
 
         private ICommand usunAuto = null;
@@ -241,9 +242,10 @@ namespace WypozyczalaniaProjekt.ViewModel
                     usunAuto = new RelayCommand(
                         arg =>
                         {
-                            // TODO: AutoVM - Usuwanie Auta
+                            model.UsunSamochodZBazy((sbyte)WybraneAuto.IdAuto);
+                            IdWybranegoAuta = -1;
                         },
-                        null);
+                        arg => idWybranegoAuta > -1);
                 return usunAuto;
             }
         }
@@ -318,6 +320,21 @@ namespace WypozyczalaniaProjekt.ViewModel
             Skrzynia = "";
             IdOddzial = null;
             Kategoria = "";
+        }
+
+        private bool SprawdzFormularz()
+        {
+            bool wynik = true;
+            // private int? rocznik, iloscMiejsc, przebieg, idOddzial;
+            // private string kaucja, lokalizacja, modelAuta, nrRejestracyjny, cena, dostepnosc, marka, kolor, skrzynia, kategoria;
+
+            if (Rocznik == null || IloscMiejsc == null || Przebieg == null || IdOddzial == null)
+                wynik = false;
+            if (Kaucja == "" || Lokalizacja == "" || ModelAuta == "" || NrRejestracyjny == "" ||
+                Cena == "" || Dostepnosc == "" || Marka == "" || Kolor == "" || Skrzynia == "" || Kategoria == "")
+                wynik = false;
+
+            return wynik;
         }
 
     }

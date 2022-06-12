@@ -6,7 +6,6 @@
 
     class Model
     {
-
         public ObservableCollection<Samochod> Samochody { get; set; } = new ObservableCollection<Samochod>();
         public ObservableCollection<Klient> Klienci { get; set; } = new ObservableCollection<Klient>();
         public ObservableCollection<Pracownik> Pracownicy { get; set; } = new ObservableCollection<Pracownik>();
@@ -61,6 +60,21 @@
             return false;
         }
 
+        public bool UsunSamochodZBazy(sbyte idAuta)
+        {
+            if (RepozytoriumSamochody.UsunSamochodZBazy(idAuta))
+            {
+                for (int i = 0; i < Samochody.Count; i++)
+                {
+                    if (Samochody[i].IdAuto == idAuta)
+                    {
+                        Samochody.RemoveAt(i);
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
         public bool DodajPracownikaDoBazy(Pracownik pracownik)
         {
             if (!CzyPracownikJestJuzWBazie(pracownik))
