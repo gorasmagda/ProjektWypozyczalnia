@@ -284,6 +284,12 @@
                         ItemsSource="{Binding KlienciVM.Klienci}"
                         SelectedItem="{Binding KlienciVM.WybranyKlient}"
                         SelectedIndex="{Binding KlienciVM.IdWybranegoKlienta, Mode=TwoWay}">
+                        
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding KlienciVM.ZaladujFormularz}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
 
                     </ListBox>
                     <Grid Background="#8D80BF" Margin="0,222,0,0">

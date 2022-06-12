@@ -135,5 +135,21 @@
             return false;
         }
 
+        public bool EdytujKleintaWBazie(Klient klient, sbyte idKlient)
+        {
+            if (RepozytoriumKlienci.EdytujKlientaWBazie(klient, idKlient))
+            {
+                for (int i = 0; i < Klienci.Count; i++)
+                {
+                    if (Klienci[i].IdKlient == idKlient)
+                    {
+                        klient.IdKlient = idKlient;
+                        Klienci[i] = new Klient(klient);
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -40,16 +40,7 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         public ObservableCollection<Klient> Klienci { get; set; }
 
-        public Klient WybranyKlient
-        {
-            get => wybranyKlient;
-            set
-            {
-                wybranyKlient = value;
-                onPropertyChanged(nameof(WybranyKlient));
-                ZaladujFormularz();
-            }
-        }
+        public Klient WybranyKlient { get; set; }
 
         public int IdWybranegoKlienta
         {
@@ -192,9 +183,10 @@ namespace WypozyczalaniaProjekt.ViewModel
                     edytujKlienta = new RelayCommand(
                         arg =>
                         {
-                            // TODO: KlienciVM - Edycja Klienta
+                            model.EdytujKleintaWBazie(new Klient(Imie, Nazwisko, Plec, Email, NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)IdKarty), (sbyte)WybranyKlient.IdKlient);
+                            IdWybranegoKlienta = -1;
                         },
-                        null);
+                        arg => IdWybranegoKlienta > -1);
                 return edytujKlienta;
             }
         }
@@ -231,28 +223,44 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        #endregion
 
-        private void ZaladujFormularz()
+        private ICommand zaladujFormularz = null;
+        public ICommand ZaladujFormularz
         {
-            if (IdWybranegoKlienta > -1)
+            get
             {
-                Imie = WybranyKlient.Imie;
-                Nazwisko = WybranyKlient.Nazwisko;
-                Plec = WybranyKlient.Plec;
-                DataUrodzenia = WybranyKlient.DataUrodzenia.ToString("yyyy-MM-dd");
-                Pesel = WybranyKlient.Pesel;
-                NrTelefonu = WybranyKlient.NrTelefonu;
-                Adres = WybranyKlient.Adres;
-                Email = WybranyKlient.Email;
-                NrPrawaJazdy = WybranyKlient.NrPrawaJazdy;
-                IdKarty = (int)WybranyKlient.IdKarty;
-            }
-            else
-            {
-                CzyscFormularz();
+                if (zaladujFormularz == null)
+                    zaladujFormularz = new RelayCommand(
+                        o =>
+                        {
+                            if (IdWybranegoKlienta > -1)
+                            {
+                                Imie = WybranyKlient.Imie;
+                                Nazwisko = WybranyKlient.Nazwisko;
+                                Plec = WybranyKlient.Plec;
+                                DataUrodzenia = WybranyKlient.DataUrodzenia.ToString("yyyy-MM-dd");
+                                Pesel = WybranyKlient.Pesel;
+                                NrTelefonu = WybranyKlient.NrTelefonu;
+                                Adres = WybranyKlient.Adres;
+                                Email = WybranyKlient.Email;
+                                NrPrawaJazdy = WybranyKlient.NrPrawaJazdy;
+                                IdKarty = (int)WybranyKlient.IdKarty;
+                            }
+                            else
+                            {
+                                CzyscFormularz();
+                            }
+                        },
+                        null);
+                return zaladujFormularz;
             }
         }
+
+
+        #endregion
+
+       
+        
 
         private void CzyscFormularz()
         {

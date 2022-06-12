@@ -47,6 +47,24 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return stan;
         }
 
+        public static bool EdytujKlientaWBazie(Klient k, sbyte idKlient)
+        {
+            bool stan = false;
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                string EDYTUJ_KLIENTA = $"UPDATE klienci SET imie='{k.Imie}', nazwisko='{k.Nazwisko}', plec='{k.Plec}', email='{k.Email}', " +
+                    $"nr_telefonu='{k.NrTelefonu}', adres='{k.Adres}', pesel='{k.Pesel}', nr_prawa_jazdy='{k.NrPrawaJazdy}', " +
+                    $"data_urodzenia='{k.DataUrodzenia:yyyy-MM-dd}', id_karta='{k.IdKarty}' WHERE id_klient='{idKlient}'";
+
+                MySqlCommand command = new MySqlCommand(EDYTUJ_KLIENTA, connection);
+                connection.Open();
+                var edit = command.ExecuteNonQuery();
+                if (edit == 1) stan = true;
+                connection.Close();
+            }
+            return stan;
+        }
+
         #endregion
     }
 }
