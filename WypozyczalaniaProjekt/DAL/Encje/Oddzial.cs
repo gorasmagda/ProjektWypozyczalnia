@@ -46,7 +46,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
         public override string ToString()
         {
-            return IdOddzialu + ", " + NrTelefonu + ", " + Nazwa;
+            return Nazwa + ", " + Adres;
         }
         public string ToInsert()
         {

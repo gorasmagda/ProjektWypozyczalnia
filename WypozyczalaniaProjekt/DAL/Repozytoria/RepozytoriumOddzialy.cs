@@ -55,7 +55,7 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             bool stan = false;
             using (var connenction = DBConnection.Instance.Connection)
             {
-                string EDYTUJ_ODDZIAL = $"UPDATE oddzialy SET adres='{o.Adres}',nr_telefonu='{o.NrTelefonu}', nazwa='{o.Nazwa}'";
+                string EDYTUJ_ODDZIAL = $"UPDATE oddzialy SET adres='{o.Adres}',nr_telefonu='{o.NrTelefonu}', nazwa='{o.Nazwa}' WHERE id_oddzialu = {idOddzialu}";
 
                 MySqlCommand command = new MySqlCommand(EDYTUJ_ODDZIAL, connenction);
                 connenction.Open();

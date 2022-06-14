@@ -103,9 +103,8 @@
             <TabItem x:Name="auto" Header="Auto" Height="22" VerticalAlignment="Top">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="69*" />
-                        <ColumnDefinition Width="325*"/>
-                        <ColumnDefinition Width="394*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <ScrollViewer Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,363,163.6"
                                   VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
@@ -158,8 +157,10 @@
                                 <TextBox Grid.Column="1" Margin="2,218,31,-216.8"
                                          Text="{Binding AutoVM.Kolor}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,243,0,-236.8" TextWrapping="Wrap" Grid.Column="1" Text="Id Oddzialu" Foreground="LightGray"/>
-                                <TextBox Grid.Column="1" Margin="2,259,31,-257.8"
-                                         Text="{Binding AutoVM.IdOddzial}"/>
+                                <ComboBox Margin="2,259,31,-257.8" Grid.Column="1" 
+                                          ItemsSource="{Binding AutoVM.Oddzialy}"
+                                          SelectedItem="{Binding AutoVM.WybranyOddzial}"
+                                          />
 
                             </Grid>
                         </StackPanel>
@@ -195,7 +196,7 @@
                         </i:Interaction.Triggers>
 
                     </DataGrid>
-                    <Grid Background="#8D80BF" Margin="0,222,0.4,-0.4" Grid.ColumnSpan="2">
+                    <Grid Background="#8D80BF" Margin="0,222,0.4,-0.4">
 
                         <Button x:Name="button_EdytujA" Content="Edytuj" 
                                 Background="#6d6394"

@@ -29,8 +29,10 @@ namespace WypozyczalaniaProjekt.ViewModel
         public AutoViewModel(Model model)
         {
             Samochody = new ObservableCollection<Samochod>();
+            Oddzialy = new ObservableCollection<Oddzial>();
             this.model = model;
             Samochody = model.Samochody;
+            Oddzialy = model.Oddzialy;
             idWybranegoAuta = -1;
         }
 
@@ -39,7 +41,9 @@ namespace WypozyczalaniaProjekt.ViewModel
         #region Właściwości
 
         public ObservableCollection<Samochod> Samochody { get; set; }
+        public ObservableCollection<Oddzial> Oddzialy { get; set; }
         public Samochod WybraneAuto { get; set; }
+        public Oddzial WybranyOddzial { get; set; }
 
         public int IdWybranegoAuta
         {
