@@ -11,6 +11,18 @@
 
     <Window.Resources>
         <vm:MainViewModel x:Key="mainVM"/>
+
+        <Style TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Background" Value="#291c5f" />
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0,0,2,0"/>
+            <Setter Property="Foreground" Value="LightGray"/>
+            <Setter Property="Padding" Value="3,2,3,3"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+        </Style>
+
     </Window.Resources>
     <Grid  DataContext="{StaticResource mainVM}" Background="#594c8f">
         <TabControl Background="#594c8f">
@@ -91,12 +103,11 @@
             <TabItem x:Name="auto" Header="Auto" Height="22" VerticalAlignment="Top">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="61*" />
-                        <ColumnDefinition Width="15*"/>
-                        <ColumnDefinition Width="349*"/>
-                        <ColumnDefinition Width="363*" />
+                        <ColumnDefinition Width="69*" />
+                        <ColumnDefinition Width="325*"/>
+                        <ColumnDefinition Width="394*" />
                     </Grid.ColumnDefinitions>
-                    <ScrollViewer Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,363,163.6"
+                    <ScrollViewer Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,363,163.6"
                                   VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
                         <StackPanel Height="300">
                             <Grid>
@@ -154,22 +165,37 @@
                         </StackPanel>
                     </ScrollViewer>
                     <!-- LISTA AUTA -->
-                    <ListBox
-                        x:Name="lb_auta"
-                        Grid.Column="3"
-                        Background="#6d6394"
-                        ItemsSource="{Binding AutoVM.Samochody}"
-                        SelectedItem="{Binding AutoVM.WybraneAuto}"
-                        SelectedIndex="{Binding AutoVM.IdWybranegoAuta, Mode=TwoWay}" Margin="0.2,0,0,-0.4"  
-                        >
+                    <DataGrid Grid.Column="2"
+                              Background="#6d6394"
+                              ItemsSource="{Binding AutoVM.Samochody}"
+                              SelectedItem="{Binding AutoVM.WybraneAuto}"
+                              SelectedIndex="{Binding AutoVM.IdWybranegoAuta, Mode=TwoWay}"
+                              RowBackground="#8D80BF"
+                              AlternatingRowBackground="#ADA0DF"
+                              GridLinesVisibility="None"
+                              IsReadOnly="True"
+                              AutoGenerateColumns="False"
+                              HeadersVisibility="Column"
+                              FontSize="12" CanUserReorderColumns="False"
+                              BorderThickness="0"
+                              >
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Marka" Binding="{Binding Marka}"/>
+                            <DataGridTextColumn Header="Model" Binding="{Binding ModelAuta}"/>
+                            <DataGridTextColumn Header="Kolor" Binding="{Binding Kolor}"/>
+                            <DataGridTextColumn Header="Rocznik" Binding="{Binding Rocznik}"/>
+                            <DataGridTextColumn Header="Cena" Binding="{Binding Cena}"/>
+                        </DataGrid.Columns>
+
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <i:InvokeCommandAction Command="{Binding AutoVM.ZaladujFormularz}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
 
-                    </ListBox>
-                    <Grid Background="#8D80BF" Margin="0,222,358,-0.4" Grid.ColumnSpan="4">
+                    </DataGrid>
+                    <Grid Background="#8D80BF" Margin="0,222,0.4,-0.4" Grid.ColumnSpan="2">
 
                         <Button x:Name="button_EdytujA" Content="Edytuj" 
                                 Background="#6d6394"
@@ -198,8 +224,8 @@
             <TabItem x:Name="pracownicy" Header="Pracownicy" Height="22" VerticalAlignment="Top">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="425*" />
-                        <ColumnDefinition Width="363*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
                     <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,363,163.6"
                                   VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
@@ -298,8 +324,8 @@
             <TabItem x:Name="klienci" Header="Klienci" Height="22" VerticalAlignment="Top">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="425*" />
-                        <ColumnDefinition Width="363*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
                     <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,363,163.6"
                                   VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
@@ -357,7 +383,7 @@
                         ItemsSource="{Binding KlienciVM.Klienci}"
                         SelectedItem="{Binding KlienciVM.WybranyKlient}"
                         SelectedIndex="{Binding KlienciVM.IdWybranegoKlienta, Mode=TwoWay}">
-                        
+
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <i:InvokeCommandAction Command="{Binding KlienciVM.ZaladujFormularz}"/>
