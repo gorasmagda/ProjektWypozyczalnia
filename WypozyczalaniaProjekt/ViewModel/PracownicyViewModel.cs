@@ -180,7 +180,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 System.Windows.MessageBox.Show("Pracownik został dodany!");
                             }
                         },
-                        null);
+                        arg => SprawdzFormularz());
                 return dodajPracownika;
             }
         }
@@ -271,11 +271,6 @@ namespace WypozyczalaniaProjekt.ViewModel
         }
 
         #endregion
-
-
-
-
-      
         
         private void CzyscFormularz()
         {
@@ -290,6 +285,19 @@ namespace WypozyczalaniaProjekt.ViewModel
             Pesel = "";
             IdOddzial = null;
             Pensja = null;
+        }
+
+        private bool SprawdzFormularz()
+        {
+            bool wynik = true;
+
+            if (IdOddzial == null || Pensja == null)
+                wynik = false;
+            if (Imie == "" || Nazwisko == "" || Plec == "" || DataUrodzenia == "" ||
+                Pesel == "" || NrTelefonu == "" || Adres == "" || Email == "" || NrPrawaJazdy == "")
+                wynik = false;
+
+            return wynik;
         }
     }
 }

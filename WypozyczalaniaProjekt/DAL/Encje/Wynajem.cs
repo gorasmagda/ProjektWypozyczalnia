@@ -60,8 +60,5 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
 
         #endregion
-
-
-
     }
 }

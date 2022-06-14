@@ -315,10 +315,10 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="zwrot" Header="Zwrot">
+            <TabItem x:Name="wynajem" Header="Wynajem">
 
             </TabItem>
-            <TabItem x:Name="wynajem" Header="Wynajem">
+            <TabItem x:Name="zwrot" Header="Zwrot">
 
             </TabItem>
         </TabControl>

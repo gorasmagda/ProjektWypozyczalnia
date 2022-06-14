@@ -168,7 +168,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 System.Windows.MessageBox.Show("Klient został dodany!");
                             }
                         },
-                        null);
+                        arg => SprawdzFormularz());
                 return dodajKlienta;
             }
         }
@@ -259,9 +259,6 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         #endregion
 
-       
-        
-
         private void CzyscFormularz()
         {
             Imie = "";
@@ -274,6 +271,19 @@ namespace WypozyczalaniaProjekt.ViewModel
             Email = "";
             NrPrawaJazdy = "";
             IdKarty = null;
+        }
+
+        private bool SprawdzFormularz()
+        {
+            bool wynik = true;
+
+            if (IdKarty == null)
+                wynik = false;
+            if (Imie == "" || Nazwisko == "" || Plec == "" || DataUrodzenia == "" ||
+                Pesel == "" || NrTelefonu == "" || Adres == "" || Email == "" || NrPrawaJazdy == "")
+                wynik = false;
+
+            return wynik;
         }
     }
 }
