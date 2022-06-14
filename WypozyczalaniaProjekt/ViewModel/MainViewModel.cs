@@ -13,6 +13,7 @@
         public AutoViewModel AutoVM { get; set; }
         public PracownicyViewModel PracownicyVM { get; set; }
         public KlienciViewModel KlienciVM { get; set; }
+        public OddzialViewModel OddzialVM { get; set; }
 
 
         public MainViewModel()
@@ -23,8 +24,7 @@
             AutoVM = new AutoViewModel(model);
             PracownicyVM = new PracownicyViewModel(model);
             KlienciVM = new KlienciViewModel(model);
-
-
+            OddzialVM = new OddzialViewModel(model);
         }
     }
 }

@@ -44,7 +44,14 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
         #region Metody
 
-
+        public override string ToString()
+        {
+            return IdOddzialu + ", " + NrTelefonu + ", " + Nazwa;
+        }
+        public string ToInsert()
+        {
+            return $"('{Adres}','{NrTelefonu}','{Nazwa}')";
+        }
 
         #endregion
 

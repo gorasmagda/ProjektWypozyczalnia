@@ -6,6 +6,7 @@ namespace WypozyczalaniaProjekt.ViewModel
     using BaseClassess;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Windows;
     using System.Windows.Input;
     using WypozyczalaniaProjekt.DAL.Encje;
     using WypozyczalaniaProjekt.Model;
@@ -207,7 +208,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                             if (model.DodajSamochodDoBazy(samochod))
                             {
                                 CzyscFormularz();
-                                System.Windows.MessageBox.Show("Samochod został dodany!");
+                                MessageBox.Show("Samochod został dodany!");
                             }
                         },
                         arg => SprawdzFormularz()); // TODO: AutoVM - walidacja danych
@@ -336,6 +337,5 @@ namespace WypozyczalaniaProjekt.ViewModel
 
             return wynik;
         }
-
     }
 }

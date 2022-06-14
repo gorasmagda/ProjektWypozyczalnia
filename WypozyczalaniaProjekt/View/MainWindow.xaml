@@ -14,6 +14,79 @@
     </Window.Resources>
     <Grid  DataContext="{StaticResource mainVM}" Background="#594c8f">
         <TabControl Background="#594c8f">
+
+            <!--*********************************ODDZIALY************************************-->
+            <TabItem x:Name="oddzialy" Header="Oddzialy">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="61*" />
+                        <ColumnDefinition Width="15*"/>
+                        <ColumnDefinition Width="349*"/>
+                        <ColumnDefinition Width="363*" />
+                    </Grid.ColumnDefinitions>
+                    <ScrollViewer Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,363,163.6"
+                                  VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
+                        <StackPanel Height="300">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,0" TextWrapping="Wrap" Text="Nazwa" Foreground="LightGray"/>
+                                <TextBox Grid.Column="0" Margin="2,23,31,-21.6"
+                                         Text="{Binding OddzialVM.Nazwa}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Adres" Foreground="LightGray"/>
+                                <TextBox Grid.Column="0" Margin="2,62,31,-60.8"
+                                         Text="{Binding OddzialVM.Adres}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Nr telefonu" Foreground="LightGray"/>
+                                <TextBox Grid.Column="0" Margin="2,100,31,-98.8"
+                                         Text="{Binding OddzialVM.NrTelefonu}"/>
+                            </Grid>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <!-- LISTA ODDZIAŁÓW -->
+                    <ListBox
+                        x:Name="lb_oddzialy"
+                        Grid.Column="3"
+                        Background="#6d6394"
+                        ItemsSource="{Binding OddzialVM.Oddzialy}"
+                        SelectedItem="{Binding OddzialVM.WybranyOddzial}"
+                        SelectedIndex="{Binding OddzialVM.IdWybranegoOddzialu, Mode=TwoWay}" Margin="0.2,0,0,-0.4"  
+                        >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding OddzialVM.ZaladujFormularz}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                    </ListBox>
+                    <Grid Background="#8D80BF" Margin="0,222,358,-0.4" Grid.ColumnSpan="4">
+
+                        <Button x:Name="button_Edytuj0" Content="Edytuj" 
+                                Background="#6d6394"
+                            Margin="56,40,77,98.4"
+                            Command="{Binding OddzialVM.EdytujOddzial}"
+                                    
+                             />
+                        <Button x:Name="button_UsunO" Content="Usuń" 
+                                Background="#6d6394"
+                            Margin="56,74,77,64.4"
+                            Command="{Binding OddzialVM.UsunOddzial}"
+                             />
+                        <Button x:Name="button_Dodaj0" Content="Dodaj" 
+                                Background="#6d6394"
+                            Margin="56,108,77,30.4"
+                            Command="{Binding OddzialVM.DodajOddzial}"
+                             />
+                        <Button Content="Wyczyść" HorizontalAlignment="Left" 
+                                Margin="326,10,0,0" 
+                                VerticalAlignment="Top" Width="75"
+                                Command="{Binding OddzialVM.Wyczysc}"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
             <!--*********************************AUTA************************************-->
             <TabItem x:Name="auto" Header="Auto" Height="22" VerticalAlignment="Top">
                 <Grid>

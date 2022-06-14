@@ -7,6 +7,7 @@ namespace WypozyczalaniaProjekt.ViewModel
 {
     using BaseClassess;
     using System.Collections.ObjectModel;
+    using System.Windows;
     using System.Windows.Input;
     using WypozyczalaniaProjekt.DAL.Encje;
     using WypozyczalaniaProjekt.Model;
@@ -165,7 +166,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                             if (model.DodajKlientaDoBazy(klient))
                             {
                                 CzyscFormularz();
-                                System.Windows.MessageBox.Show("Klient został dodany!");
+                                MessageBox.Show("Klient został dodany!");
                             }
                         },
                         arg => SprawdzFormularz());
@@ -182,7 +183,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     edytujKlienta = new RelayCommand(
                         arg =>
                         {
-                            model.EdytujKleintaWBazie(new Klient(Imie, Nazwisko, Plec, Email, NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)IdKarty), (sbyte)WybranyKlient.IdKlient);
+                            model.EdytujKlientaWBazie(new Klient(Imie, Nazwisko, Plec, Email, NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)IdKarty), (sbyte)WybranyKlient.IdKlient);
                             IdWybranegoKlienta = -1;
                         },
                         arg => IdWybranegoKlienta > -1);
