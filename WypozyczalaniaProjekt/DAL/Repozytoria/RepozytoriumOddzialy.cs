@@ -50,12 +50,12 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return stan;
         }
 
-        public static bool EdytujOddzialWBazie(Oddzial o, sbyte idOddzialu)
+        public static bool EdytujOddzialWBazie(Oddzial od, sbyte idOddzialu)
         {
             bool stan = false;
             using (var connenction = DBConnection.Instance.Connection)
             {
-                string EDYTUJ_ODDZIAL = $"UPDATE oddzialy SET adres='{o.Adres}',nr_telefonu='{o.NrTelefonu}', nazwa='{o.Nazwa}'";
+                string EDYTUJ_ODDZIAL = $"UPDATE oddzialy SET adres='{od.Adres}',nr_telefonu='{od.NrTelefonu}', nazwa='{od.Nazwa}' WHERE id_oddzialu='{idOddzialu}'";
 
                 MySqlCommand command = new MySqlCommand(EDYTUJ_ODDZIAL, connenction);
                 connenction.Open();
