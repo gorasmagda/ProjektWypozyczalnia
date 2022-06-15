@@ -357,7 +357,7 @@
 
         #region Wyłączanie przycisków
 
-        private bool addEnabled, editEnabled, deleteEnabled, cleanEnabled;
+        private bool addEnabled, editEnabled, deleteEnabled;
         public bool AddEnabled
         {
             get => addEnabled;
