@@ -37,7 +37,24 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         public ObservableCollection<Klient> Klienci { get; set; }
 
-        public Klient WybranyKlient { get; set; }
+        private Klient wybranyKlient;
+        public Klient WybranyKlient
+        {
+            get => wybranyKlient;
+            set
+            {
+                wybranyKlient = value;
+                if (wybranyKlient != null)
+                {
+                    DeleteEnabled = true;
+                }
+                else
+                {
+                    DeleteEnabled = false;
+                }
+                onPropertyChanged(nameof(WybranyKlient));
+            }
+        }
 
         public int IdWybranegoKlienta
         {
@@ -45,6 +62,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             set
             {
                 idWybranegoKlienta = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(IdWybranegoKlienta));
             }
         }
@@ -56,6 +74,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             set
             {
                 imie = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(Imie));
             }
         }
@@ -66,6 +85,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             set
             {
                 plec = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(Plec));
             }
         }
@@ -76,6 +96,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             set
             {
                 nrTelefonu = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(NrTelefonu));
             }
         }
@@ -86,6 +107,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             set
             {
                 dataUrodzenia = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(DataUrodzenia));
             }
         }
@@ -95,6 +117,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             set
             {
                 pesel = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(Pesel));
             }
         }
@@ -104,6 +127,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             set
             {
                 nazwisko = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(Nazwisko));
             }
         }
@@ -113,6 +137,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             set
             {
                 adres = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(Adres));
             }
         }
@@ -122,6 +147,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             set
             {
                 email = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(Email));
             }
         }
@@ -132,6 +158,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             set
             {
                 nrPrawaJazdy = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(NrPrawaJazdy));
             }
         }
@@ -142,6 +169,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             set
             {
                 idKarty = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(IdKarty));
             }
         }
@@ -257,6 +285,41 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         #endregion
 
+        #region Wyłączanie przycisków
+
+        private bool addEnabled, editEnabled, deleteEnabled, cleanEnabled;
+        public bool AddEnabled
+        {
+            get => addEnabled;
+            set
+            {
+                addEnabled = value;
+                onPropertyChanged(nameof(AddEnabled));
+            }
+        }
+
+        public bool EditEnabled
+        {
+            get => editEnabled;
+            set
+            {
+                editEnabled = value;
+                onPropertyChanged(nameof(EditEnabled));
+            }
+        }
+
+        public bool DeleteEnabled
+        {
+            get => deleteEnabled;
+            set
+            {
+                deleteEnabled = value;
+                onPropertyChanged(nameof(DeleteEnabled));
+            }
+        }
+
+        #endregion
+
         private void CzyscFormularz()
         {
             Imie = "";
@@ -269,6 +332,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             Email = "";
             NrPrawaJazdy = "";
             IdKarty = null;
+            WybranyKlient = null;
         }
 
         private bool SprawdzFormularz()
@@ -281,6 +345,8 @@ namespace WypozyczalaniaProjekt.ViewModel
                 Pesel == "" || NrTelefonu == "" || Adres == "" || Email == "" || NrPrawaJazdy == "")
                 wynik = false;
 
+            AddEnabled = wynik;
+            EditEnabled = wynik;
             return wynik;
         }
     }

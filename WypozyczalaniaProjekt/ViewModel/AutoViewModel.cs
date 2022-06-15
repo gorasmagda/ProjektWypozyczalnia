@@ -44,7 +44,25 @@
         public ObservableCollection<Samochod> Samochody { get; set; }
         public ObservableCollection<Oddzial> Oddzialy { get; set; }
         public ObservableCollection<Kategoria> Kategorie { get; set; }
-        public Samochod WybraneAuto { get; set; }
+
+        private Samochod wybraneAuto;
+        public Samochod WybraneAuto
+        {
+            get => wybraneAuto;
+            set
+            {
+                wybraneAuto = value;
+                if (wybraneAuto != null)
+                {
+                    DeleteEnabled = true;
+                }
+                else
+                {
+                    DeleteEnabled = false;
+                }
+                onPropertyChanged(nameof(WybraneAuto));
+            }
+        }
 
         public int IdWybranegoAuta
         {
@@ -52,6 +70,7 @@
             set
             {
                 idWybranegoAuta = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(IdWybranegoAuta));
             }
         }
@@ -62,6 +81,7 @@
             set
             {
                 kaucja = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(Kaucja));
             }
         }
@@ -72,6 +92,7 @@
             set
             {
                 lokalizacja = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(Lokalizacja));
             }
         }
@@ -82,6 +103,7 @@
             set
             {
                 modelAuta = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(ModelAuta));
             }
         }
@@ -92,6 +114,7 @@
             set
             {
                 rocznik = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(Rocznik));
             }
         }
@@ -102,6 +125,7 @@
             set
             {
                 iloscMiejsc = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(IloscMiejsc));
             }
         }
@@ -112,6 +136,7 @@
             set
             {
                 przebieg = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(Przebieg));
             }
         }
@@ -122,6 +147,7 @@
             set
             {
                 nrRejestracyjny = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(NrRejestracyjny));
             }
         }
@@ -132,6 +158,7 @@
             set
             {
                 cena = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(Cena));
             }
         }
@@ -142,6 +169,7 @@
             set
             {
                 dostepnosc = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(Dostepnosc));
             }
         }
@@ -152,6 +180,7 @@
             set
             {
                 marka = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(Marka));
             }
         }
@@ -162,6 +191,7 @@
             set
             {
                 kolor = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(Kolor));
             }
         }
@@ -172,6 +202,7 @@
             set
             {
                 skrzynia = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(Skrzynia));
             }
         }
@@ -182,6 +213,7 @@
             set
             {
                 wybranyOddzial = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(WybranyOddzial));
             }
         }
@@ -192,6 +224,7 @@
             set
             {
                 wybranaKategoria = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(WybranaKategoria));
             }
         }
@@ -322,6 +355,41 @@
 
         #endregion
 
+        #region Wyłączanie przycisków
+
+        private bool addEnabled, editEnabled, deleteEnabled, cleanEnabled;
+        public bool AddEnabled
+        {
+            get => addEnabled;
+            set
+            {
+                addEnabled = value;
+                onPropertyChanged(nameof(AddEnabled));
+            }
+        }
+
+        public bool EditEnabled
+        {
+            get => editEnabled;
+            set
+            {
+                editEnabled = value;
+                onPropertyChanged(nameof(EditEnabled));
+            }
+        }
+
+        public bool DeleteEnabled
+        {
+            get => deleteEnabled;
+            set
+            {
+                deleteEnabled = value;
+                onPropertyChanged(nameof(DeleteEnabled));
+            }
+        }
+
+        #endregion
+
         private void CzyscFormularz()
         {
             Marka = "";
@@ -338,13 +406,12 @@
             Skrzynia = "";
             WybranyOddzial = null;
             WybranaKategoria = null;
+            WybraneAuto = null;
         }
 
-        private bool SprawdzFormularz()
+        private bool SprawdzFormularz() // TODO: WALIDACJA DO EDYCJI AUT
         {
             bool wynik = true;
-            // private int? rocznik, iloscMiejsc, przebieg, idOddzial;
-            // private string kaucja, lokalizacja, modelAuta, nrRejestracyjny, cena, dostepnosc, marka, kolor, skrzynia, kategoria;
 
             if (Rocznik == null || IloscMiejsc == null || Przebieg == null || WybranyOddzial == null || WybranaKategoria == null)
                 wynik = false;
@@ -352,6 +419,8 @@
                 Cena == "" || Dostepnosc == "" || Marka == "" || Kolor == "" || Skrzynia == "")
                 wynik = false;
 
+            AddEnabled = wynik;
+            EditEnabled = wynik;
             return wynik;
         }
     }

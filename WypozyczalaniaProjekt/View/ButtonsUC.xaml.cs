@@ -26,6 +26,46 @@ namespace WypozyczalaniaProjekt.View
         }
 
         // ----------------------------------------------------------------------------
+        // ADD BUTTON IS ENABLED
+        public static readonly DependencyProperty AddEProperty =
+            DependencyProperty.Register(
+                nameof(AddE),
+                typeof(bool),
+                typeof(ButtonsUC));
+
+        public bool AddE
+        {
+            get { return (bool)GetValue(AddEProperty); }
+            set { SetValue(AddEProperty, value); }
+        }
+
+        // EDIT BUTTON IS ENABLED
+        public static readonly DependencyProperty EditEProperty =
+            DependencyProperty.Register(
+                nameof(EditE),
+                typeof(bool),
+                typeof(ButtonsUC));
+
+        public bool EditE
+        {
+            get { return (bool)GetValue(EditEProperty); }
+            set { SetValue(EditEProperty, value); }
+        }
+
+        // DELETE BUTTON IS ENABLED
+        public static readonly DependencyProperty DeleteEProperty =
+            DependencyProperty.Register(
+                nameof(DeleteE),
+                typeof(bool),
+                typeof(ButtonsUC));
+
+        public bool DeleteE
+        {
+            get { return (bool)GetValue(DeleteEProperty); }
+            set { SetValue(DeleteEProperty, value); }
+        }
+
+        // ----------------------------------------------------------------------------
         // EVENTS
         // ----------------------------------------------------------------------------
 
