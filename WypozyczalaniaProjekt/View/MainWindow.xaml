@@ -26,7 +26,7 @@
             <Setter Property="HeadersVisibility" Value="Column"/>
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
-        
+
         <Style TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="Background" Value="#291c5f" />
             <Setter Property="BorderBrush" Value="Black"/>
@@ -135,7 +135,7 @@
                                   HorizontalScrollBarVisibility="Auto"
                                   VerticalAlignment="Top"
                                   Height="250">
-                        
+
                         <StackPanel Height="300">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -361,7 +361,7 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
-                    <ScrollViewer Grid.Column="0" Margin="0,0,0,163.6"
+                    <ScrollViewer Grid.Column="0" Margin="0,0,0,150"
                                   VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
                         <StackPanel Height="300">
                             <Grid>
@@ -372,40 +372,44 @@
 
 
                                 <TextBlock HorizontalAlignment="Left" Margin="2,8,0,-0.8" TextWrapping="Wrap" Text="Imię" Foreground="LightGray"/>
-                                <TextBox Grid.Column="0" Margin="2,23,31,-21.6"
+                                <TextBox Grid.Column="0" Margin="6,25,36,47"
                                          Text="{Binding KlienciVM.Imie}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Płeć" Foreground="LightGray"/>
-                                <TextBox Grid.Column="0" Margin="2,62,31,-60.8"
+                                <TextBox Grid.Column="0" Margin="6,62,36,10"
                                          Text="{Binding KlienciVM.Plec}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Numer Telefonu" Foreground="LightGray"/>
-                                <TextBox Grid.Column="0" Margin="2,100,31,-98.8"
+                                <TextBox Grid.Column="0" Margin="6,102,36,-30"
                                          Text="{Binding KlienciVM.NrTelefonu}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Text="Data Urodzenia" Foreground="LightGray"/>
-                                <TextBox Grid.Column="0" Margin="2,140,31,-138.8"
+                                <TextBox Grid.Column="0" Margin="6,141,36,-69"
                                          Text="{Binding KlienciVM.DataUrodzenia}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Text="Id Karty kredytowej" Foreground="LightGray"/>
-                                <TextBox Grid.Column="0" Margin="2,179,31,-177.8"
+                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-157" TextWrapping="Wrap" Text="Numer Prawa Jazdy" Foreground="LightGray"/>
+                                <TextBox Margin="6,179,36,-113"
+                                         Text="{Binding KlienciVM.NrPrawaJazdy}"/>
+                                
+                                <TextBlock HorizontalAlignment="Left" Margin="2,225,0,-219" TextWrapping="Wrap" Text="Id Karty kredytowej" Foreground="LightGray"/>
+                                <TextBox Grid.Column="0" Margin="6,240,36,-175"
                                          Text="{Binding KlienciVM.IdKarty}"/>
 
 
 
-                                <TextBlock HorizontalAlignment="Left" Margin="2,7,0,-0.8" TextWrapping="Wrap" Grid.Column="1" Text="Nazwisko" Foreground="LightGray"/>
-                                <TextBox Grid.Column="1" Margin="2,23,31,-21.6"
+                                <TextBlock HorizontalAlignment="Left" Margin="2,8,0,-0.8" TextWrapping="Wrap" Grid.Column="1" Text="Nazwisko" Foreground="LightGray"/>
+                                <TextBox Grid.Column="1" Margin="2,25,31,47"
                                          Text="{Binding KlienciVM.Nazwisko}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Grid.Column="1" Text="Pesel" Foreground="LightGray" />
-                                <TextBox Grid.Column="1" Margin="2,62,31,-60.8"
+                                <TextBox Grid.Column="1" Margin="2,62,31,10"
                                          Text="{Binding KlienciVM.Pesel}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Grid.Column="1" Text="Adres" Foreground="LightGray"/>
-                                <TextBox Grid.Column="1" Margin="2,100,31,-98.8"
+                                <TextBox Grid.Column="1" Margin="2,102,31,-30"
                                          Text="{Binding KlienciVM.Adres}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Grid.Column="1" Text="Email" Foreground="LightGray"/>
-                                <TextBox Grid.Column="1" Margin="2,140,31,-138.8"
+                                <TextBox Grid.Column="1" Margin="2,141,31,-69"
                                          Text="{Binding KlienciVM.Email}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Grid.Column="1" Text="Numer Prawa Jazdy" Foreground="LightGray"/>
-                                <TextBox Grid.Column="1" Margin="2,179,31,-177.8"
-                                         Text="{Binding KlienciVM.NrPrawaJazdy}"/>
+                                
+                                
+                                
 
-
+                                <Line Margin="2,157,0,-125" Grid.Column="0" Grid.ColumnSpan="2" X1="1" Y1="60" X2="370" Y2="60" Stroke="#291c5f" StrokeThickness="4" />
                             </Grid>
                         </StackPanel>
                     </ScrollViewer>

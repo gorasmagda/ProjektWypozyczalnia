@@ -59,7 +59,10 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
         #region Metody
 
-
+        public string ToInsert()
+        {
+            return$"(0,'{Numer}','{DataWaznosci}','{NumerCVV}','{Imie}','{Nazwisko}','{Rodzaj}')";
+        }
 
         #endregion
 
