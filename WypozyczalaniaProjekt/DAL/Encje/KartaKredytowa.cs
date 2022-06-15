@@ -61,7 +61,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
         public string ToInsert()
         {
-            return $"(0,'{Numer}','{DataWaznosci}','{NumerCVV}','{Imie}','{Nazwisko}','{Rodzaj}')";
+            return $"(0,'{Numer}','{DataWaznosci:yyyy-MM-dd}','{NumerCVV}','{Imie}','{Nazwisko}','{Rodzaj}')";
         }
 
         #endregion

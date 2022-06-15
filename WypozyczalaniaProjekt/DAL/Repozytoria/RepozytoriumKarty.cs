@@ -57,7 +57,7 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             bool stan = false;
             using (var connection = DBConnection.Instance.Connection)
             {
-                string EDYTUJ_KARTE = $"UPDATE karty_kredytowe SET numer='{kk.Numer}', data_waznosci='{kk.DataWaznosci}', numer_CVV='{kk.NumerCVV}', imie='{k.Imie}', nazwisko='{k.Nazwisko}', rodzaj='{kk.Rodzaj}' WHERE id_karta='{idKarta}'";
+                string EDYTUJ_KARTE = $"UPDATE karty_kredytowe SET numer='{kk.Numer}', data_waznosci='{kk.DataWaznosci:yyyy-MM-dd}', numer_CVV='{kk.NumerCVV}', imie='{k.Imie}', nazwisko='{k.Nazwisko}', rodzaj='{kk.Rodzaj}' WHERE id_karta='{idKarta}'";
 
                 MySqlCommand command = new MySqlCommand(EDYTUJ_KARTE, connection);
                 connection.Open();
