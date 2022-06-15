@@ -205,7 +205,15 @@
                             <DataGridTextColumn Header="Model" Binding="{Binding ModelAuta}"/>
                             <DataGridTextColumn Header="Kolor" Binding="{Binding Kolor}"/>
                             <DataGridTextColumn Header="Rocznik" Binding="{Binding Rocznik}"/>
+                            <DataGridTextColumn Header="Skrz." Binding="{Binding Skrzynia}"/>
+                            <DataGridTextColumn Header="Rejestracja" Binding="{Binding NrRejestracyjny}"/>
+                            <DataGridTextColumn Header="Lokalizacja" Binding="{Binding Lokalizacja}"/>
                             <DataGridTextColumn Header="Cena" Binding="{Binding Cena}"/>
+                            <DataGridTextColumn Header="Kaucja" Binding="{Binding Kaucja}"/>
+                            <DataGridTextColumn Header="Przebieg" Binding="{Binding Przebieg}"/>
+                            <DataGridTextColumn Header="Dostepnosc" Binding="{Binding Dostepny}"/>
+                            <DataGridTextColumn Header="Oddział" Binding="{Binding IdOddzial}"/>
+                            <DataGridTextColumn Header="Kategoria" Binding="{Binding Kategoria}"/>
                         </DataGrid.Columns>
 
                         <i:Interaction.Triggers>
