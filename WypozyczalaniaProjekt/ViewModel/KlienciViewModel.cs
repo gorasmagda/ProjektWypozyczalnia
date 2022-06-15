@@ -225,12 +225,16 @@ namespace WypozyczalaniaProjekt.ViewModel
                     dodajKlienta = new RelayCommand(
                         arg =>
                         {
-                            var klient = new Klient(Imie, Nazwisko, Plec, Email, NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)IdKarty);
-                            var karta = new KartaKredytowa(Numer, DateTime.Parse(DataWaznosci), NumerCVV,klient.Imie,klient.Nazwisko,Rodzaj);
-                            if (model.DodajKlientaDoBazy(klient) && model.DodajKarteDoBazy(karta))
+                            var karta = new KartaKredytowa(Numer, DateTime.Parse(DataWaznosci), NumerCVV, Imie, Nazwisko, Rodzaj);
+                            if (model.DodajKarteDoBazy(karta))
                             {
-                                CzyscFormularz();
-                                MessageBox.Show("Klient został dodany!");
+                                var noweIdKarty = model.Karty[model.Karty.Count - 1].IdKarty;
+                                var klient = new Klient(Imie, Nazwisko, Plec, Email, NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)noweIdKarty);
+                                if (model.DodajKlientaDoBazy(klient))
+                                {
+                                    CzyscFormularz();
+                                    MessageBox.Show("Klient został dodany!");
+                                }
                             }
                         },
                         arg => SprawdzFormularz());
@@ -247,6 +251,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     edytujKlienta = new RelayCommand(
                         arg =>
                         {
+                            // TODO: DOKOŃCZYĆ EDYCJE KLIENTA I KARTY
                             model.EdytujKlientaWBazie(new Klient(Imie, Nazwisko, Plec, Email, NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)IdKarty), (sbyte)WybranyKlient.IdKlient);
                             IdWybranegoKlienta = -1;
                         },

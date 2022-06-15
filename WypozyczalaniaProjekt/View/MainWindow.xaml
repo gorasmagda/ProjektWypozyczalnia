@@ -263,7 +263,7 @@
                     <ScrollViewer Grid.Column="0" Margin="0,0,0,150"
                                   VerticalScrollBarVisibility="Visible"
                                   HorizontalScrollBarVisibility="Auto">
-                        <StackPanel Height="300">
+                        <StackPanel Height="250">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -374,7 +374,7 @@
                     </Grid.ColumnDefinitions>
                     <ScrollViewer Grid.Column="0" Margin="0,0,0,150"
                                   VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
-                        <StackPanel Height="400">
+                        <StackPanel Height="320">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
