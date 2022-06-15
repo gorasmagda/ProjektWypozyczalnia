@@ -10,6 +10,7 @@
         public ObservableCollection<Klient> Klienci { get; set; } = new ObservableCollection<Klient>();
         public ObservableCollection<Pracownik> Pracownicy { get; set; } = new ObservableCollection<Pracownik>();
         public ObservableCollection<Oddzial> Oddzialy { get; set; } = new ObservableCollection<Oddzial>();
+        public ObservableCollection<Kategoria> Kategorie { get; set; } = new ObservableCollection<Kategoria>();
 
         public Model()
         {
@@ -29,6 +30,10 @@
             var oddzialy = RepozytoriumOddzialy.PobierzWszystkieOddzialy();
             foreach (var o in oddzialy)
                 Oddzialy.Add(o);
+
+            var kategorie = RepozytoriumKategorie.PobierzWszystkieKategorie();
+            foreach (var k in kategorie)
+                Kategorie.Add(k);
         }
 
         private bool CzySamochodJestJuzWBazie(Samochod samochod) => Samochody.Contains(samochod);

@@ -36,7 +36,10 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
         #region Metody
 
-
+        public override string ToString()
+        {
+            return Nazwa;
+        }
 
         #endregion
 

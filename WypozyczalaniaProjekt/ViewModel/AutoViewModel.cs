@@ -20,7 +20,9 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         private int idWybranegoAuta;
         private int? rocznik, iloscMiejsc, przebieg, idOddzial;
-        private string kaucja, lokalizacja, modelAuta, nrRejestracyjny, cena, dostepnosc, marka, kolor, skrzynia, kategoria;
+        private string kaucja, lokalizacja, modelAuta, nrRejestracyjny, cena, dostepnosc, marka, kolor, skrzynia;
+        private Kategoria wybranaKategoria;
+        private Oddzial wybranyOddzial;
 
         #endregion
 
@@ -30,9 +32,11 @@ namespace WypozyczalaniaProjekt.ViewModel
         {
             Samochody = new ObservableCollection<Samochod>();
             Oddzialy = new ObservableCollection<Oddzial>();
+            Kategorie = new ObservableCollection<Kategoria>();
             this.model = model;
             Samochody = model.Samochody;
             Oddzialy = model.Oddzialy;
+            Kategorie = model.Kategorie;
             idWybranegoAuta = -1;
         }
 
@@ -42,8 +46,8 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         public ObservableCollection<Samochod> Samochody { get; set; }
         public ObservableCollection<Oddzial> Oddzialy { get; set; }
+        public ObservableCollection<Kategoria> Kategorie { get; set; }
         public Samochod WybraneAuto { get; set; }
-        public Oddzial WybranyOddzial { get; set; }
 
         public int IdWybranegoAuta
         {
@@ -175,23 +179,23 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        public int? IdOddzial
+        public Oddzial WybranyOddzial
         {
-            get => idOddzial;
+            get => wybranyOddzial;
             set
             {
-                idOddzial = value;
-                onPropertyChanged(nameof(IdOddzial));
+                wybranyOddzial = value;
+                onPropertyChanged(nameof(WybranyOddzial));
             }
         }
 
-        public string Kategoria
+        public Kategoria WybranaKategoria
         {
-            get => kategoria;
+            get => wybranaKategoria;
             set
             {
-                kategoria = value;
-                onPropertyChanged(nameof(Kategoria));
+                wybranaKategoria = value;
+                onPropertyChanged(nameof(WybranaKategoria));
             }
         }
 
@@ -208,7 +212,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     dodajAuto = new RelayCommand(
                         arg =>
                         {
-                            var samochod = new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)IdOddzial, Kategoria);
+                            var samochod = new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)WybranyOddzial.IdOddzialu, WybranaKategoria.Nazwa);
                             if (model.DodajSamochodDoBazy(samochod))
                             {
                                 CzyscFormularz();
@@ -230,7 +234,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     edytujAuto = new RelayCommand(
                         arg =>
                         {
-                            model.EdytujSamochodWBazie(new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)IdOddzial, Kategoria), (sbyte)WybraneAuto.IdAuto);
+                            model.EdytujSamochodWBazie(new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)WybranyOddzial.IdOddzialu, WybranaKategoria.Nazwa), (sbyte)WybraneAuto.IdAuto);
                             IdWybranegoAuta = -1;
                         },
                         arg => IdWybranegoAuta > -1);  // TODO: AutoVM - Edycja Auta - walidacja
@@ -278,8 +282,20 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 Dostepnosc = WybraneAuto.Dostepnosc;
                                 Kolor = WybraneAuto.Kolor;
                                 Skrzynia = WybraneAuto.Skrzynia;
-                                IdOddzial = (int)WybraneAuto.IdOddzial;
-                                Kategoria = WybraneAuto.Kategoria;
+                                foreach (var oddzial in Oddzialy)
+                                {
+                                    if (oddzial.IdOddzialu == (int)WybraneAuto.IdOddzial)
+                                    {
+                                        WybranyOddzial = oddzial;
+                                    }
+                                }
+                                foreach (var kategoria in Kategorie)
+                                {
+                                    if (kategoria.Nazwa == WybraneAuto.Kategoria)
+                                    {
+                                        WybranaKategoria = kategoria;
+                                    }
+                                }
                             }
                             else
                             {
@@ -323,8 +339,8 @@ namespace WypozyczalaniaProjekt.ViewModel
             Dostepnosc = "";
             Kolor = "";
             Skrzynia = "";
-            IdOddzial = null;
-            Kategoria = "";
+            WybranyOddzial = null;
+            WybranaKategoria = null;
         }
 
         private bool SprawdzFormularz()
@@ -333,10 +349,10 @@ namespace WypozyczalaniaProjekt.ViewModel
             // private int? rocznik, iloscMiejsc, przebieg, idOddzial;
             // private string kaucja, lokalizacja, modelAuta, nrRejestracyjny, cena, dostepnosc, marka, kolor, skrzynia, kategoria;
 
-            if (Rocznik == null || IloscMiejsc == null || Przebieg == null || IdOddzial == null)
+            if (Rocznik == null || IloscMiejsc == null || Przebieg == null || WybranyOddzial == null || WybranaKategoria == null)
                 wynik = false;
             if (Kaucja == "" || Lokalizacja == "" || ModelAuta == "" || NrRejestracyjny == "" ||
-                Cena == "" || Dostepnosc == "" || Marka == "" || Kolor == "" || Skrzynia == "" || Kategoria == "")
+                Cena == "" || Dostepnosc == "" || Marka == "" || Kolor == "" || Skrzynia == "")
                 wynik = false;
 
             return wynik;

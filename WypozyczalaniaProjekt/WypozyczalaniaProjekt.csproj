@@ -124,6 +124,7 @@
     <Compile Include="DAL\Encje\Pracownik.cs" />
     <Compile Include="DAL\Encje\Samochod.cs" />
     <Compile Include="DAL\Encje\Wynajem.cs" />
+    <Compile Include="DAL\Repozytoria\RepozytoriumKategorie.cs" />
     <Compile Include="DAL\Repozytoria\RepozytoriumKlienci.cs" />
     <Compile Include="DAL\Repozytoria\RepozytoriumOddzialy.cs" />
     <Compile Include="DAL\Repozytoria\RepozytoriumPracownicy.cs" />

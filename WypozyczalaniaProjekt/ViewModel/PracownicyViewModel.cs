@@ -36,8 +36,10 @@ namespace WypozyczalaniaProjekt.ViewModel
         #region Właściwości
 
         public ObservableCollection<Pracownik> Pracownicy { get; set; }
-
+        public ObservableCollection<Oddzial> Oddzialy { get; set; }
         public Pracownik WybranyPracownik { get; set; }
+        public Oddzial WybranyOddzial { get; set; }
+        
         
         public int IdWybranegoPracownika
         {
@@ -173,7 +175,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     dodajPracownika = new RelayCommand(
                         arg =>
                         {
-                            var pracownik = new Pracownik(Imie, Nazwisko, Plec, Email,NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)IdOddzial, (decimal)Pensja);
+                            var pracownik = new Pracownik(Imie, Nazwisko, Plec, Email,NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)WybranyOddzial.IdOddzialu, (decimal)Pensja);
                             if (model.DodajPracownikaDoBazy(pracownik))
                             {
                                 CzyscFormularz();
@@ -194,7 +196,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     edytujPracownika = new RelayCommand(
                         arg =>
                         {
-                            model.EdytujPracownikaWBazie(new Pracownik(Imie, Nazwisko, Plec, Email, NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)IdOddzial, (decimal)Pensja), (sbyte)WybranyPracownik.IdPracownik);
+                            model.EdytujPracownikaWBazie(new Pracownik(Imie, Nazwisko, Plec, Email, NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)WybranyOddzial.IdOddzialu, (decimal)Pensja), (sbyte)WybranyPracownik.IdPracownik);
                             IdWybranegoPracownika = -1;
                         },
                         arg => IdWybranegoPracownika > -1);
