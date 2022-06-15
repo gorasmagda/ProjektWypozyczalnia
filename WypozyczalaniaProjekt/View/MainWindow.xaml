@@ -102,20 +102,23 @@
 
                     </DataGrid>
                     <view:ButtonsUC Height="150"
-                                    VerticalAlignment="Bottom">
+                                    VerticalAlignment="Bottom"
+                                    AddE="{Binding OddzialVM.AddEnabled, Mode=TwoWay}"
+                                    EditE="{Binding OddzialVM.EditEnabled, Mode=TwoWay}"
+                                    DeleteE="{Binding OddzialVM.DeleteEnabled, Mode=TwoWay}">
 
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="AddClick">
-                                <i:InvokeCommandAction Command="{Binding OddzialVM.DodajOddzial}"/>
+                                <i:InvokeCommandAction Command="{Binding OddzialVM.DodajOddzial, UpdateSourceTrigger=PropertyChanged}"/>
                             </i:EventTrigger>
                             <i:EventTrigger EventName="EditClick">
-                                <i:InvokeCommandAction Command="{Binding OddzialVM.EdytujOddzial}"/>
+                                <i:InvokeCommandAction Command="{Binding OddzialVM.EdytujOddzial, UpdateSourceTrigger=PropertyChanged}"/>
                             </i:EventTrigger>
                             <i:EventTrigger EventName="DeleteClick">
-                                <i:InvokeCommandAction Command="{Binding OddzialVM.UsunOddzial}"/>
+                                <i:InvokeCommandAction Command="{Binding OddzialVM.UsunOddzial, UpdateSourceTrigger=PropertyChanged}"/>
                             </i:EventTrigger>
                             <i:EventTrigger EventName="CleanClick">
-                                <i:InvokeCommandAction Command="{Binding OddzialVM.Wyczysc}"/>
+                                <i:InvokeCommandAction Command="{Binding OddzialVM.Wyczysc, UpdateSourceTrigger=PropertyChanged}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
 
@@ -226,7 +229,10 @@
 
                     </DataGrid>
                     <view:ButtonsUC Height="150"
-                                    VerticalAlignment="Bottom">
+                                    VerticalAlignment="Bottom"
+                                    AddE="{Binding AutoVM.AddEnabled, Mode=TwoWay}"
+                                    EditE="{Binding AutoVM.EditEnabled, Mode=TwoWay}"
+                                    DeleteE="{Binding AutoVM.DeleteEnabled, Mode=TwoWay}">
 
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="AddClick">
@@ -333,7 +339,10 @@
 
                     </DataGrid>
                     <view:ButtonsUC Height="150"
-                                    VerticalAlignment="Bottom">
+                                    VerticalAlignment="Bottom"
+                                    AddE="{Binding PracownicyVM.AddEnabled, Mode=TwoWay}"
+                                    EditE="{Binding PracownicyVM.EditEnabled, Mode=TwoWay}"
+                                    DeleteE="{Binding PracownicyVM.DeleteEnabled, Mode=TwoWay}">
 
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="AddClick">
@@ -436,7 +445,10 @@
 
                     </DataGrid>
                     <view:ButtonsUC Height="150"
-                                    VerticalAlignment="Bottom">
+                                    VerticalAlignment="Bottom"
+                                    AddE="{Binding KlienciVM.AddEnabled, Mode=TwoWay}"
+                                    EditE="{Binding KlienciVM.EditEnabled, Mode=TwoWay}"
+                                    DeleteE="{Binding KlienciVM.DeleteEnabled, Mode=TwoWay}">
 
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="AddClick">

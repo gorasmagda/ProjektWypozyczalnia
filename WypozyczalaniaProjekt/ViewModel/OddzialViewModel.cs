@@ -38,13 +38,32 @@ namespace WypozyczalaniaProjekt.ViewModel
         #region Właściwości
 
         public ObservableCollection<Oddzial> Oddzialy { get; set; }
-        public Oddzial WybranyOddzial { get; set; }
+
+        private Oddzial wybranyOddzial;
+        public Oddzial WybranyOddzial
+        {
+            get => wybranyOddzial;
+            set
+            {
+                wybranyOddzial = value;
+                if (wybranyOddzial != null)
+                {
+                    DeleteEnabled = true;
+                }
+                else
+                {
+                    DeleteEnabled = false;
+                }
+                onPropertyChanged(nameof(WybranyOddzial));
+            }
+        }
         public int IdWybranegoOddzialu
         {
             get => idWybranegoOddzialu;
             set
             {
                 idWybranegoOddzialu = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(IdWybranegoOddzialu));
             }
         }
@@ -54,6 +73,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             set
             {
                 adres = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(Adres));
             }
         }
@@ -72,6 +92,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             set
             {
                 nazwa = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(Nazwa));
             }
         }
@@ -93,6 +114,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                             if(model.DodajOddzialDoBazy(oddzial))
                             {
                                 CzyscFormularz();
+                                WybranyOddzial = null;
                                 MessageBox.Show("Oddział został dodany!");
                             }
                         },
@@ -111,7 +133,8 @@ namespace WypozyczalaniaProjekt.ViewModel
                         arg =>
                         {
                             model.EdytujOddzialWBazie(new Oddzial(Adres, NrTelefonu, Nazwa), (sbyte)WybranyOddzial.IdOddzialu);
-                            IdWybranegoOddzialu = -1;
+                            CzyscFormularz();
+                            WybranyOddzial = null;
                         },
                         arg => IdWybranegoOddzialu > -1);
                 return edytujOddzial;
@@ -176,22 +199,62 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
+        #endregion
+
+        #region Wyłączanie przycisków
+
+        private bool addEnabled, editEnabled, deleteEnabled, cleanEnabled;
+        public bool AddEnabled
+        {
+            get => addEnabled;
+            set
+            {
+                addEnabled = value;
+                onPropertyChanged(nameof(AddEnabled));
+            }
+        }
+
+        public bool EditEnabled
+        {
+            get => editEnabled;
+            set
+            {
+                editEnabled = value;
+                onPropertyChanged(nameof(EditEnabled));
+            }
+        }
+
+        public bool DeleteEnabled
+        {
+            get => deleteEnabled;
+            set
+            {
+                deleteEnabled = value;
+                onPropertyChanged(nameof(DeleteEnabled));
+            }
+        }
+
+        #endregion
+
         private void CzyscFormularz()
         {
             Adres = "";
             NrTelefonu = "";
             Nazwa = "";
+            WybranyOddzial = null;
         }
-        private bool SprawdzFormularz()
+        private bool SprawdzFormularz() // TODO: ZROBIENIE WALIDACJI DLA EDYCJI ODDZIALU
         {
             bool wynik = true;
             if (Adres == null || NrTelefonu == null || Nazwa == null)
                 wynik = false;
             if (Adres == "" || NrTelefonu == "" || Nazwa == "")
                 wynik = false;
+
+            AddEnabled = wynik;
+            EditEnabled = wynik;
             return wynik;
         }
 
-        #endregion
     }
 }
