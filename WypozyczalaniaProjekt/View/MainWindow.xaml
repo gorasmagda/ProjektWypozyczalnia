@@ -34,7 +34,7 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    <ScrollViewer Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,363,163.6"
+                    <ScrollViewer Grid.Column="0" Margin="0,0,0,163"
                                   VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
                         <StackPanel Height="300">
                             <Grid>
@@ -104,7 +104,7 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    <ScrollViewer Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,363,163.6"
+                    <ScrollViewer Grid.Column="0" Margin="0,0,0,163.6"
                                   VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
                         <StackPanel Height="300">
                             <Grid>
@@ -227,7 +227,7 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
-                    <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,363,163.6"
+                    <ScrollViewer Grid.Column="0" Margin="0,0,0,163.6"
                                   VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
                         <StackPanel Height="300">
                             <Grid>
@@ -327,7 +327,7 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
-                    <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,363,163.6"
+                    <ScrollViewer Grid.Column="0" Margin="0,0,0,163.6"
                                   VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
                         <StackPanel Height="300">
                             <Grid>
