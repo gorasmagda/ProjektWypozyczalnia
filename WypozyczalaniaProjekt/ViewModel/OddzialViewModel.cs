@@ -185,7 +185,9 @@ namespace WypozyczalaniaProjekt.ViewModel
         private bool SprawdzFormularz()
         {
             bool wynik = true;
-            if(Adres == "" || NrTelefonu == "" || Nazwa == "")
+            if (Adres == null || NrTelefonu == null || Nazwa == null)
+                wynik = false;
+            if (Adres == "" || NrTelefonu == "" || Nazwa == "")
                 wynik = false;
             return wynik;
         }

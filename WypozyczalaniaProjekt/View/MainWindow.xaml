@@ -75,7 +75,7 @@
                     </ListBox>
                     <Grid Background="#8D80BF" Margin="0,222,358,-0.4" Grid.ColumnSpan="4">
 
-                        <Button x:Name="button_Edytuj0" Content="Edytuj" 
+                        <Button x:Name="button_EdytujO" Content="Edytuj" 
                                 Background="#6d6394"
                             Margin="56,40,77,98.4"
                             Command="{Binding OddzialVM.EdytujOddzial}"
@@ -86,7 +86,7 @@
                             Margin="56,74,77,64.4"
                             Command="{Binding OddzialVM.UsunOddzial}"
                              />
-                        <Button x:Name="button_Dodaj0" Content="Dodaj" 
+                        <Button x:Name="button_DodajO" Content="Dodaj" 
                                 Background="#6d6394"
                             Margin="56,108,77,30.4"
                             Command="{Binding OddzialVM.DodajOddzial}"
