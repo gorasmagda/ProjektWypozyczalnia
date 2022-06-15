@@ -19,6 +19,8 @@ namespace WypozyczalaniaProjekt.ViewModel
         private int? idKarty;
         private string imie, nazwisko, plec, dataUrodzenia, pesel, nrTelefonu, adres, email, nrPrawaJazdy;
 
+        private string numer, dataWaznosci, numerCVV, rodzaj;
+
         #endregion
 
         #region Konstruktory
@@ -148,7 +150,6 @@ namespace WypozyczalaniaProjekt.ViewModel
                 onPropertyChanged(nameof(Email));
             }
         }
-
         public string NrPrawaJazdy
         {
             get => nrPrawaJazdy;
@@ -159,7 +160,6 @@ namespace WypozyczalaniaProjekt.ViewModel
                 onPropertyChanged(nameof(NrPrawaJazdy));
             }
         }
-
         public int? IdKarty
         {
             get => idKarty;
@@ -168,6 +168,47 @@ namespace WypozyczalaniaProjekt.ViewModel
                 idKarty = value;
                 SprawdzFormularz();
                 onPropertyChanged(nameof(IdKarty));
+            }
+        }
+
+        public string Numer
+        {
+            get => numer;
+            set
+            {
+                numer = value;
+                SprawdzFormularz();
+                onPropertyChanged(nameof(Numer));
+            }
+        }
+        public string DataWaznosci
+        {
+            get => dataWaznosci;
+            set
+            {
+                dataWaznosci = value;
+                SprawdzFormularz();
+                onPropertyChanged(nameof(DataWaznosci));
+            }
+        }
+        public string NumerCVV
+        {
+            get => numerCVV;
+            set
+            {
+                numerCVV = value;
+                SprawdzFormularz();
+                onPropertyChanged(nameof(NumerCVV));
+            }
+        }
+        public string Rodzaj
+        {
+            get => rodzaj;
+            set
+            {
+                rodzaj = value;
+                SprawdzFormularz();
+                onPropertyChanged(nameof(Rodzaj));
             }
         }
 
@@ -185,7 +226,8 @@ namespace WypozyczalaniaProjekt.ViewModel
                         arg =>
                         {
                             var klient = new Klient(Imie, Nazwisko, Plec, Email, NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)IdKarty);
-                            if (model.DodajKlientaDoBazy(klient))
+                            var karta = new KartaKredytowa(Numer, DateTime.Parse(DataWaznosci), NumerCVV,klient.Imie,klient.Nazwisko,Rodzaj);
+                            if (model.DodajKlientaDoBazy(klient) && model.DodajKarteDoBazy(karta))
                             {
                                 CzyscFormularz();
                                 MessageBox.Show("Klient został dodany!");
@@ -330,16 +372,23 @@ namespace WypozyczalaniaProjekt.ViewModel
             NrPrawaJazdy = "";
             IdKarty = null;
             WybranyKlient = null;
+
+            Numer = "";
+            DataWaznosci = "";
+            NumerCVV = "";
+            Rodzaj = "";
+
         }
 
         private bool SprawdzFormularz()
         {
             bool wynik = true;
 
-            if (IdKarty == null)
+            if (IdKarty == null || Numer == null || DataWaznosci == null || NumerCVV == null || Rodzaj == null)
                 wynik = false;
             if (Imie == "" || Nazwisko == "" || Plec == "" || DataUrodzenia == "" ||
-                Pesel == "" || NrTelefonu == "" || Adres == "" || Email == "" || NrPrawaJazdy == "")
+                Pesel == "" || NrTelefonu == "" || Adres == "" || Email == "" || NrPrawaJazdy == "" ||
+                Numer == "" || DataWaznosci == "" || NumerCVV == "" || Rodzaj == "")
                 wynik = false;
 
             AddEnabled = wynik;

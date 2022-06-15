@@ -38,7 +38,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             IdKarty = null;
             Numer = numer.Trim();
             DataWaznosci = dataWaznosci;
-            NumerCVV = NumerCVV.Trim();
+            NumerCVV = numerCVV.Trim();
             Imie = imie.Trim();
             Nazwisko = nazwisko.Trim();
             Rodzaj = rodzaj.Trim();
@@ -61,7 +61,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
         public string ToInsert()
         {
-            return$"(0,'{Numer}','{DataWaznosci}','{NumerCVV}','{Imie}','{Nazwisko}','{Rodzaj}')";
+            return $"(0,'{Numer}','{DataWaznosci}','{NumerCVV}','{Imie}','{Nazwisko}','{Rodzaj}')";
         }
 
         #endregion

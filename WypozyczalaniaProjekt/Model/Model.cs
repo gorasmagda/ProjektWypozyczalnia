@@ -11,6 +11,7 @@
         public ObservableCollection<Pracownik> Pracownicy { get; set; } = new ObservableCollection<Pracownik>();
         public ObservableCollection<Oddzial> Oddzialy { get; set; } = new ObservableCollection<Oddzial>();
         public ObservableCollection<Kategoria> Kategorie { get; set; } = new ObservableCollection<Kategoria>();
+        public ObservableCollection<KartaKredytowa> Karty { get; set; } = new ObservableCollection<KartaKredytowa>();
 
         public Model()
         {
@@ -34,12 +35,17 @@
             var kategorie = RepozytoriumKategorie.PobierzWszystkieKategorie();
             foreach (var k in kategorie)
                 Kategorie.Add(k);
+
+            var karty = RepozytoriumKarty.PobierzWszystkieKarty();
+            foreach (var k in karty)
+                Karty.Add(k);
         }
 
         private bool CzySamochodJestJuzWBazie(Samochod samochod) => Samochody.Contains(samochod);
         private bool CzyPracownikJestJuzWBazie(Pracownik pracownik) => Pracownicy.Contains(pracownik);
         private bool CzyKlientJestJuzWBazie(Klient klient) => Klienci.Contains(klient);
         private bool CzyOddzialJestJuzWBazie(Oddzial oddzial) => Oddzialy.Contains(oddzial);
+        private bool CzyKartaJestJuzWBazie(KartaKredytowa karta) => Karty.Contains(karta);
 
         public bool DodajSamochodDoBazy(Samochod samochod)
         {
@@ -218,6 +224,52 @@
                     if (Oddzialy[i].IdOddzialu == idOddzialu)
                     {
                         Oddzialy.RemoveAt(i);
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+
+        public bool DodajKarteDoBazy(KartaKredytowa karta)
+        {
+            if (!CzyKartaJestJuzWBazie(karta))
+            {
+                if (RepozytoriumKarty.DodajKarteDoBazy(karta))
+                {
+                    Karty.Add(karta);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool EdytujKarteWBazie(KartaKredytowa karta, sbyte idKarty, Klient klient) //NIE WIEM CZY TO DZIALA
+        {
+            if (RepozytoriumKarty.EdytujKarteWBazie(karta, idKarty, klient))
+            {
+                for (int i = 0; i < Karty.Count; i++)
+                {
+                    if (Karty[i].IdKarty == idKarty)
+                    {
+                        karta.IdKarty = idKarty;
+                        Karty[i] = new KartaKredytowa(karta);
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+
+        public bool UsunKarteZBazy(sbyte idKarty)
+        {
+            if (RepozytoriumKarty.UsunKarteZBazy(idKarty))
+            {
+                for (int i = 0; i < Karty.Count; i++)
+                {
+                    if (Karty[i].IdKarty == idKarty)
+                    {
+                        Karty.RemoveAt(i);
                     }
                 }
                 return true;

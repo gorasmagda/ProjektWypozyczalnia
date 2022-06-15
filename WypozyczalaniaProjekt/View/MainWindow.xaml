@@ -403,10 +403,10 @@
                                          Text="{Binding KlienciVM.IdKarty}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,265,0,-219" TextWrapping="Wrap" Text="Data ważności" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="6,279,36,-218"
-                                         Text="{Binding KlienciVM.IdKarty}"/>
+                                         Text="{Binding KlienciVM.DataWaznosci}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,307,0,-259" TextWrapping="Wrap" Text="Rodzaj" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="6,319,36,-259"
-                                         Text="{Binding KlienciVM.IdKarty}"/>
+                                         Text="{Binding KlienciVM.Rodzaj}"/>
 
 
 
@@ -425,10 +425,10 @@
 
                                 <TextBlock HorizontalAlignment="Left" Margin="2,225,0,-219" TextWrapping="Wrap" Grid.Column="1" Text="Numer" Foreground="LightGray"/>
                                 <TextBox Grid.Column="1" Margin="2,240,31,-175"
-                                         Text="{Binding KlienciVM.Email}"/>
+                                         Text="{Binding KlienciVM.Numer}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,265,0,-219" TextWrapping="Wrap" Grid.Column="1" Text="Numer CVV" Foreground="LightGray"/>
                                 <TextBox Grid.Column="1" Margin="2,279,31,-218"
-                                         Text="{Binding KlienciVM.Email}"/>
+                                         Text="{Binding KlienciVM.NumerCVV}"/>
 
 
                                 <Line Margin="2,157,0,-125" Grid.Column="0" Grid.ColumnSpan="2" X1="1" Y1="60" X2="370" Y2="60" Stroke="#291c5f" StrokeThickness="4" />
