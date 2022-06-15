@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WypozyczalaniaProjekt"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
+        xmlns:view="clr-namespace:WypozyczalaniaProjekt.View"
         xmlns:vm="clr-namespace:WypozyczalaniaProjekt.ViewModel"
         Title="WYPOŻYCZALNIA SAMOCHODÓW" Height="450" Width="800" WindowStartupLocation="CenterScreen">
 
@@ -50,17 +51,18 @@
 
     </Window.Resources>
     <Grid  DataContext="{StaticResource mainVM}" Background="#594c8f">
-        <TabControl Background="#594c8f">
+        <TabControl Background="#594c8f" BorderThickness="0" Padding="0">
 
             <!--*********************************ODDZIALY************************************-->
-            <TabItem x:Name="oddzialy" Header="Oddzialy">
+            <TabItem x:Name="oddzialy" Header="Oddzialy" Padding="0">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    <ScrollViewer Grid.Column="0" Margin="0,0,0,163"
-                                  VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
+                    <ScrollViewer Grid.Column="0"
+                                  VerticalScrollBarVisibility="Visible"
+                                  HorizontalScrollBarVisibility="Disabled">
                         <StackPanel>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -99,29 +101,25 @@
                         </i:Interaction.Triggers>
 
                     </DataGrid>
-                    <Grid Background="#8D80BF" Margin="0,222,0,-0.6">
+                    <view:ButtonsUC Height="150"
+                                    VerticalAlignment="Bottom">
 
-                        <Button x:Name="button_EdytujO" Content="Edytuj" 
-                                Background="#6d6394"
-                            Margin="56,40,77,98.4"
-                            Command="{Binding OddzialVM.EdytujOddzial}"
-                                    
-                             />
-                        <Button x:Name="button_UsunO" Content="Usuń" 
-                                Background="#6d6394"
-                            Margin="56,74,77,64.4"
-                            Command="{Binding OddzialVM.UsunOddzial}"
-                             />
-                        <Button x:Name="button_DodajO" Content="Dodaj" 
-                                Background="#6d6394"
-                            Margin="56,108,77,30.4"
-                            Command="{Binding OddzialVM.DodajOddzial}"
-                             />
-                        <Button Content="Wyczyść" HorizontalAlignment="Left" 
-                                Margin="326,10,0,0" 
-                                VerticalAlignment="Top" Width="75"
-                                Command="{Binding OddzialVM.Wyczysc}"/>
-                    </Grid>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="AddClick">
+                                <i:InvokeCommandAction Command="{Binding OddzialVM.DodajOddzial}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="EditClick">
+                                <i:InvokeCommandAction Command="{Binding OddzialVM.EdytujOddzial}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="DeleteClick">
+                                <i:InvokeCommandAction Command="{Binding OddzialVM.UsunOddzial}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="CleanClick">
+                                <i:InvokeCommandAction Command="{Binding OddzialVM.Wyczysc}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                    </view:ButtonsUC>
                 </Grid>
             </TabItem>
 
@@ -211,7 +209,7 @@
                             <DataGridTextColumn Header="Cena" Binding="{Binding Cena}"/>
                             <DataGridTextColumn Header="Kaucja" Binding="{Binding Kaucja}"/>
                             <DataGridTextColumn Header="Przebieg" Binding="{Binding Przebieg}"/>
-                            <DataGridTextColumn Header="Dostepnosc" Binding="{Binding Dostepny}"/>
+                            <DataGridTextColumn Header="Dostepny" Binding="{Binding Dostepnosc}"/>
                             <DataGridTextColumn Header="Oddział" Binding="{Binding IdOddzial}"/>
                             <DataGridTextColumn Header="Kategoria" Binding="{Binding Kategoria}"/>
                         </DataGrid.Columns>
