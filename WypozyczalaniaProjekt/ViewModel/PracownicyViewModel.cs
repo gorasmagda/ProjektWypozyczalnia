@@ -15,9 +15,9 @@ namespace WypozyczalaniaProjekt.ViewModel
         private Model model = null;
 
         private int idWybranegoPracownika;
-        private int? idOddzial;
         private decimal? pensja;
         private string imie, nazwisko, plec, nrTelefonu, dataUrodzenia, adres, email, nrPrawaJazdy, pesel;
+        private Oddzial wybranyOddzial;
 
         #endregion
 
@@ -26,8 +26,10 @@ namespace WypozyczalaniaProjekt.ViewModel
         public PracownicyViewModel(Model model)
         {
             Pracownicy = new ObservableCollection<Pracownik>();
+            Oddzialy = new ObservableCollection<Oddzial>();
             this.model = model;
             Pracownicy = model.Pracownicy;
+            Oddzialy = model.Oddzialy;
             idWybranegoPracownika = -1;
         }
 
@@ -38,7 +40,6 @@ namespace WypozyczalaniaProjekt.ViewModel
         public ObservableCollection<Pracownik> Pracownicy { get; set; }
         public ObservableCollection<Oddzial> Oddzialy { get; set; }
         public Pracownik WybranyPracownik { get; set; }
-        public Oddzial WybranyOddzial { get; set; }
         
         
         public int IdWybranegoPracownika
@@ -102,13 +103,13 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        public int? IdOddzial
+        public Oddzial WybranyOddzial
         {
-            get => idOddzial;
+            get => wybranyOddzial;
             set
             {
-                idOddzial = value;
-                onPropertyChanged(nameof(IdOddzial));
+                wybranyOddzial = value;
+                onPropertyChanged(nameof(WybranyOddzial));
             }
         }
 
@@ -259,8 +260,15 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 Email = WybranyPracownik.Email;
                                 NrPrawaJazdy = WybranyPracownik.NrPrawaJazdy;
                                 Pesel = WybranyPracownik.Pesel;
-                                IdOddzial = (int)WybranyPracownik.IdOddzial;
                                 Pensja = WybranyPracownik.Pensja;
+                                foreach (var oddzial in Oddzialy)
+                                {
+                                    if (oddzial.IdOddzialu == (int)WybranyPracownik.IdOddzial)
+                                    {
+                                        WybranyOddzial = oddzial;
+                                    }
+                                }
+                                
                             }
                             else
                             {
@@ -285,7 +293,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             Email = "";
             NrPrawaJazdy = "";
             Pesel = "";
-            IdOddzial = null;
+            WybranyOddzial = null;
             Pensja = null;
         }
 
@@ -293,7 +301,7 @@ namespace WypozyczalaniaProjekt.ViewModel
         {
             bool wynik = true;
 
-            if (IdOddzial == null || Pensja == null)
+            if (WybranyOddzial == null || Pensja == null)
                 wynik = false;
             if (Imie == "" || Nazwisko == "" || Plec == "" || DataUrodzenia == "" ||
                 Pesel == "" || NrTelefonu == "" || Adres == "" || Email == "" || NrPrawaJazdy == "")

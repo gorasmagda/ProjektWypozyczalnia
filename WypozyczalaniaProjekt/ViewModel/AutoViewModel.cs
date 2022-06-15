@@ -16,7 +16,7 @@
         private Model model = null;
 
         private int idWybranegoAuta;
-        private int? rocznik, iloscMiejsc, przebieg, idOddzial;
+        private int? rocznik, iloscMiejsc, przebieg;
         private string kaucja, lokalizacja, modelAuta, nrRejestracyjny, cena, dostepnosc, marka, kolor, skrzynia;
         private Kategoria wybranaKategoria;
         private Oddzial wybranyOddzial;

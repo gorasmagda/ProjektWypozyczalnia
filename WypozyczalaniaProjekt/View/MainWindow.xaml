@@ -241,7 +241,7 @@
                 </Grid>
             </TabItem>
             <!--**********************************PRACOWNICY************************************-->
-            <TabItem x:Name="pracownicy" Header="Pracownicy" Margin="-2,-2,-1.8,2.4">
+            <TabItem x:Name="pracownicy" Header="Pracownicy">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
@@ -283,8 +283,8 @@
                                          Text="{Binding PracownicyVM.Nazwisko}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Grid.Column="1" Text="Oddzial" Foreground="LightGray" />
                                 <ComboBox Margin="2,62,31,-60.8" Grid.Column="2"
-                                          ItemsSource="{Binding AutoVM.Oddzialy}"
-                                          SelectedItem="{Binding AutoVM.WybranyOddzial}"/>
+                                          ItemsSource="{Binding PracownicyVM.Oddzialy}"
+                                          SelectedItem="{Binding PracownicyVM.WybranyOddzial, Mode=TwoWay}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Grid.Column="1" Text="Pesel" Foreground="LightGray"/>
                                 <TextBox Grid.Column="1" Margin="2,100,31,-98.8"
                                          Text="{Binding PracownicyVM.Pesel}"/>
