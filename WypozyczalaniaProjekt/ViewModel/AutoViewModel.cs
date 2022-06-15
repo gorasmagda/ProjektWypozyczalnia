@@ -1,7 +1,4 @@
-﻿// TODO: AutoVM - TextBox na nazwę + np. combobox dla skrzyni i nazwy + dla id_oddziału, aby wybrać ten, który już wgl istnieje.
-// Naprawić numer ID przy dodawaniu auta 
-
-namespace WypozyczalaniaProjekt.ViewModel
+﻿namespace WypozyczalaniaProjekt.ViewModel
 {
     using BaseClassess;
     using System.Collections.Generic;

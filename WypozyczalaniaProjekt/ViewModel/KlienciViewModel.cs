@@ -1,7 +1,4 @@
-﻿// TODO : KlienciVM - ComboBox na idKartyKredytowej 
-
-
-using System;
+﻿using System;
 
 namespace WypozyczalaniaProjekt.ViewModel
 {

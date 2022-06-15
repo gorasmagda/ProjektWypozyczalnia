@@ -12,6 +12,20 @@
     <Window.Resources>
         <vm:MainViewModel x:Key="mainVM"/>
 
+        <Style TargetType="{x:Type DataGrid}">
+            <Setter Property="Background" Value="#6d6394"/>
+            <Setter Property="RowBackground" Value="#8D80BF"/>
+            <Setter Property="AlternatingRowBackground" Value="#ADA0DF"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="CanUserReorderColumns" Value="False"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        
         <Style TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="Background" Value="#291c5f" />
             <Setter Property="BorderBrush" Value="Black"/>
@@ -26,10 +40,12 @@
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="TextWrapping" Value="WrapWithOverflow" />
             <Setter Property="Width" Value="150" />
+            <Setter Property="Height" Value="22" />
         </Style>
 
         <Style TargetType="{x:Type ComboBox}">
             <Setter Property="Width" Value="150" />
+            <Setter Property="Height" Value="22" />
         </Style>
 
     </Window.Resources>
@@ -45,7 +61,7 @@
                     </Grid.ColumnDefinitions>
                     <ScrollViewer Grid.Column="0" Margin="0,0,0,163"
                                   VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
-                        <StackPanel Height="300">
+                        <StackPanel>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -65,21 +81,24 @@
                         </StackPanel>
                     </ScrollViewer>
                     <!-- LISTA ODDZIAŁÓW -->
-                    <ListBox
-                        x:Name="lb_oddzialy"
-                        Grid.Column="1"
-                        Background="#6d6394"
-                        ItemsSource="{Binding OddzialVM.Oddzialy}"
-                        SelectedItem="{Binding OddzialVM.WybranyOddzial}"
-                        SelectedIndex="{Binding OddzialVM.IdWybranegoOddzialu, Mode=TwoWay}" Margin="0.2,0,0,-0.4"  
-                        >
+                    <DataGrid Grid.Column="2"
+                              ItemsSource="{Binding OddzialVM.Oddzialy}"
+                              SelectedItem="{Binding OddzialVM.WybranyOddzial}"
+                              SelectedIndex="{Binding OddzialVM.IdWybranegoOddzialu, Mode=TwoWay}" >
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
+                            <DataGridTextColumn Header="Adres" Binding="{Binding Adres}"/>
+                            <DataGridTextColumn Header="Telefon" Binding="{Binding NrTelefonu}"/>
+                        </DataGrid.Columns>
+
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <i:InvokeCommandAction Command="{Binding OddzialVM.ZaladujFormularz}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
 
-                    </ListBox>
+                    </DataGrid>
                     <Grid Background="#8D80BF" Margin="0,222,0,-0.6">
 
                         <Button x:Name="button_EdytujO" Content="Edytuj" 
@@ -176,18 +195,9 @@
                     </ScrollViewer>
                     <!-- LISTA AUTA -->
                     <DataGrid Grid.Column="2"
-                              Background="#6d6394"
                               ItemsSource="{Binding AutoVM.Samochody}"
                               SelectedItem="{Binding AutoVM.WybraneAuto}"
                               SelectedIndex="{Binding AutoVM.IdWybranegoAuta, Mode=TwoWay}"
-                              RowBackground="#8D80BF"
-                              AlternatingRowBackground="#ADA0DF"
-                              GridLinesVisibility="None"
-                              IsReadOnly="True"
-                              AutoGenerateColumns="False"
-                              HeadersVisibility="Column"
-                              FontSize="12" CanUserReorderColumns="False"
-                              BorderThickness="0"
                               >
 
                         <DataGrid.Columns>
@@ -231,7 +241,7 @@
                 </Grid>
             </TabItem>
             <!--**********************************PRACOWNICY************************************-->
-            <TabItem x:Name="pracownicy" Header="Pracownicy" Height="22" VerticalAlignment="Top">
+            <TabItem x:Name="pracownicy" Header="Pracownicy" Margin="-2,-2,-1.8,2.4">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
@@ -290,21 +300,32 @@
                         </StackPanel>
                     </ScrollViewer>
                     <!-- LISTA Pracownicy -->
-                    <ListBox 
-                        x:Name="lb_pracownicy"
-                        Grid.Column="1"
-                        Background="#6d6394"
-                        ItemsSource="{Binding PracownicyVM.Pracownicy}"
-                        SelectedItem="{Binding PracownicyVM.WybranyPracownik}"
-                        SelectedIndex="{Binding PracownicyVM.IdWybranegoPracownika, Mode=TwoWay}"
-                        >
+                    <DataGrid Grid.Column="2"
+                              ItemsSource="{Binding PracownicyVM.Pracownicy}"
+                              SelectedItem="{Binding PracownicyVM.WybranyPracownik}"
+                              SelectedIndex="{Binding PracownicyVM.IdWybranegoPracownika, Mode=TwoWay}">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}"/>
+                            <DataGridTextColumn Header="Imię" Binding="{Binding Imie}"/>
+                            <DataGridTextColumn Header="Telefon" Binding="{Binding NrTelefonu}"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                            <DataGridTextColumn Header="Data Urodzenia" Binding="{Binding DataUrodzenia}"/>
+                            <DataGridTextColumn Header="Plec" Binding="{Binding Plec}"/>
+                            <DataGridTextColumn Header="Adres" Binding="{Binding Adres}"/>
+                            <DataGridTextColumn Header="Pensja" Binding="{Binding Pensja}"/>
+                            <DataGridTextColumn Header="Prawo Jazdy" Binding="{Binding NrPrawaJazdy}"/>
+                            <DataGridTextColumn Header="Pesel" Binding="{Binding Pesel}"/>
+                            <DataGridTextColumn Header="Oddział" Binding="{Binding IdOddzial}"/>
+                        </DataGrid.Columns>
+
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <i:InvokeCommandAction Command="{Binding PracownicyVM.ZaladujFormularz}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
 
-                    </ListBox>
+                    </DataGrid>
                     <Grid Background="#8D80BF" Margin="0,222,0,0">
 
                         <Button x:Name="button_EdytujP" Content="Edytuj" 
@@ -387,13 +408,23 @@
                         </StackPanel>
                     </ScrollViewer>
                     <!-- LISTA KLIENTÓW-->
-                    <ListBox 
-                        x:Name="lb_klienci"
-                        Grid.Column="1"
-                        Background="#6d6394"
-                        ItemsSource="{Binding KlienciVM.Klienci}"
-                        SelectedItem="{Binding KlienciVM.WybranyKlient}"
-                        SelectedIndex="{Binding KlienciVM.IdWybranegoKlienta, Mode=TwoWay}">
+                    <DataGrid Grid.Column="2"
+                              ItemsSource="{Binding KlienciVM.Klienci}"
+                              SelectedItem="{Binding KlienciVM.WybranyKlient}"
+                              SelectedIndex="{Binding KlienciVM.IdWybranegoKlienta, Mode=TwoWay}">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}"/>
+                            <DataGridTextColumn Header="Imię" Binding="{Binding Imie}"/>
+                            <DataGridTextColumn Header="Telefon" Binding="{Binding NrTelefonu}"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                            <DataGridTextColumn Header="Data Urodzenia" Binding="{Binding DataUrodzenia}"/>
+                            <DataGridTextColumn Header="Plec" Binding="{Binding Plec}"/>
+                            <DataGridTextColumn Header="Adres" Binding="{Binding Adres}"/>
+                            <DataGridTextColumn Header="Prawo Jazdy" Binding="{Binding NrPrawaJazdy}"/>
+                            <DataGridTextColumn Header="Pesel" Binding="{Binding Pesel}"/>
+                            <DataGridTextColumn Header="Karta" Binding="{Binding IdKarty}"/>
+                        </DataGrid.Columns>
 
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
@@ -401,7 +432,7 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
 
-                    </ListBox>
+                    </DataGrid>
                     <Grid Background="#8D80BF" Margin="0,222,0,0">
 
                         <Button x:Name="button_EdytujK" Content="Edytuj" 
