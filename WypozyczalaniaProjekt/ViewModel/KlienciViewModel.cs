@@ -78,7 +78,6 @@ namespace WypozyczalaniaProjekt.ViewModel
                 onPropertyChanged(nameof(Imie));
             }
         }
-
         public string Plec
         {
             get => plec;
@@ -89,7 +88,6 @@ namespace WypozyczalaniaProjekt.ViewModel
                 onPropertyChanged(nameof(Plec));
             }
         }
-
         public string NrTelefonu
         {
             get => nrTelefonu;
@@ -100,7 +98,6 @@ namespace WypozyczalaniaProjekt.ViewModel
                 onPropertyChanged(nameof(NrTelefonu));
             }
         }
-
         public string DataUrodzenia
         {
             get => dataUrodzenia;

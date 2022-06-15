@@ -372,7 +372,7 @@
                     </Grid.ColumnDefinitions>
                     <ScrollViewer Grid.Column="0" Margin="0,0,0,150"
                                   VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
-                        <StackPanel Height="300">
+                        <StackPanel Height="400">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -395,9 +395,15 @@
                                 <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-157" TextWrapping="Wrap" Text="Numer Prawa Jazdy" Foreground="LightGray"/>
                                 <TextBox Margin="6,179,36,-113"
                                          Text="{Binding KlienciVM.NrPrawaJazdy}"/>
-                                
+
                                 <TextBlock HorizontalAlignment="Left" Margin="2,225,0,-219" TextWrapping="Wrap" Text="Id Karty kredytowej" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="6,240,36,-175"
+                                         Text="{Binding KlienciVM.IdKarty}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,265,0,-219" TextWrapping="Wrap" Text="Data ważności" Foreground="LightGray"/>
+                                <TextBox Grid.Column="0" Margin="6,279,36,-218"
+                                         Text="{Binding KlienciVM.IdKarty}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,307,0,-259" TextWrapping="Wrap" Text="Rodzaj" Foreground="LightGray"/>
+                                <TextBox Grid.Column="0" Margin="6,319,36,-259"
                                          Text="{Binding KlienciVM.IdKarty}"/>
 
 
@@ -414,9 +420,14 @@
                                 <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Grid.Column="1" Text="Email" Foreground="LightGray"/>
                                 <TextBox Grid.Column="1" Margin="2,141,31,-69"
                                          Text="{Binding KlienciVM.Email}"/>
-                                
-                                
-                                
+
+                                <TextBlock HorizontalAlignment="Left" Margin="2,225,0,-219" TextWrapping="Wrap" Grid.Column="1" Text="Numer" Foreground="LightGray"/>
+                                <TextBox Grid.Column="1" Margin="2,240,31,-175"
+                                         Text="{Binding KlienciVM.Email}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,265,0,-219" TextWrapping="Wrap" Grid.Column="1" Text="Numer CVV" Foreground="LightGray"/>
+                                <TextBox Grid.Column="1" Margin="2,279,31,-218"
+                                         Text="{Binding KlienciVM.Email}"/>
+
 
                                 <Line Margin="2,157,0,-125" Grid.Column="0" Grid.ColumnSpan="2" X1="1" Y1="60" X2="370" Y2="60" Stroke="#291c5f" StrokeThickness="4" />
                             </Grid>
