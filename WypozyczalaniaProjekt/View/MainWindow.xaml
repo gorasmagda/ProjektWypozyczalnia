@@ -54,7 +54,7 @@
         <TabControl Background="#594c8f" BorderThickness="0" Padding="0">
 
             <!--*********************************ODDZIALY************************************-->
-            <TabItem x:Name="oddzialy" Header="Oddzialy" Padding="0">
+            <TabItem x:Name="oddzialy" Header="Oddzialy">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
@@ -124,14 +124,18 @@
             </TabItem>
 
             <!--*********************************AUTA************************************-->
-            <TabItem x:Name="auto" Header="Auto" Height="22" VerticalAlignment="Top">
+            <TabItem x:Name="auto" Header="Auto">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    <ScrollViewer Grid.Column="0" Margin="0,0,0,163.6"
-                                  VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
+                    <ScrollViewer Grid.Column="0"
+                                  VerticalScrollBarVisibility="Visible"
+                                  HorizontalScrollBarVisibility="Auto"
+                                  VerticalAlignment="Top"
+                                  Height="250">
+                        
                         <StackPanel Height="300">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -221,29 +225,25 @@
                         </i:Interaction.Triggers>
 
                     </DataGrid>
-                    <Grid Background="#8D80BF" Margin="0,222,0.4,-0.4">
+                    <view:ButtonsUC Height="150"
+                                    VerticalAlignment="Bottom">
 
-                        <Button x:Name="button_EdytujA" Content="Edytuj" 
-                                Background="#6d6394"
-                            Margin="56,40,77,98.4"
-                            Command="{Binding AutoVM.EdytujAuto}"
-                                    
-                             />
-                        <Button x:Name="button_UsunA" Content="Usuń" 
-                                Background="#6d6394"
-                            Margin="56,74,77,64.4"
-                            Command="{Binding AutoVM.UsunAuto}"
-                             />
-                        <Button x:Name="button_DodajA" Content="Dodaj" 
-                                Background="#6d6394"
-                            Margin="56,108,77,30.4"
-                            Command="{Binding AutoVM.DodajAuto}"
-                             />
-                        <Button Content="Wyczyść" HorizontalAlignment="Left" 
-                                Margin="326,10,0,0" 
-                                VerticalAlignment="Top" Width="75"
-                                Command="{Binding AutoVM.Wyczysc}"/>
-                    </Grid>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="AddClick">
+                                <i:InvokeCommandAction Command="{Binding AutoVM.DodajAuto}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="EditClick">
+                                <i:InvokeCommandAction Command="{Binding AutoVM.EdytujAuto}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="DeleteClick">
+                                <i:InvokeCommandAction Command="{Binding AutoVM.UsunAuto}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="CleanClick">
+                                <i:InvokeCommandAction Command="{Binding AutoVM.Wyczysc}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                    </view:ButtonsUC>
                 </Grid>
             </TabItem>
             <!--**********************************PRACOWNICY************************************-->
@@ -332,34 +332,30 @@
                         </i:Interaction.Triggers>
 
                     </DataGrid>
-                    <Grid Background="#8D80BF" Margin="0,222,0,0">
+                    <view:ButtonsUC Height="150"
+                                    VerticalAlignment="Bottom">
 
-                        <Button x:Name="button_EdytujP" Content="Edytuj" 
-                                Background="#6d6394"
-                            Margin="56,40,77,98.4"
-                            Command="{Binding PracownicyVM.EdytujPracownika}"
-                                    
-                             />
-                        <Button x:Name="button_UsunP" Content="Usuń" 
-                                Background="#6d6394"
-                            Margin="56,74,77,64.4"
-                            Command="{Binding PracownicyVM.UsunPracownika}"
-                             />
-                        <Button x:Name="button_DodajP" Content="Dodaj" 
-                                Background="#6d6394"
-                            Margin="56,108,77,30.4"
-                            Command="{Binding PracownicyVM.DodajPracownika}"
-                             />
-                        <Button Content="Wyczyść" HorizontalAlignment="Left" 
-                                Margin="326,10,0,0" 
-                                VerticalAlignment="Top" Width="75"
-                                Command="{Binding PracownicyVM.Wyczysc}"/>
-                    </Grid>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="AddClick">
+                                <i:InvokeCommandAction Command="{Binding PracownicyVM.DodajPracownika}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="EditClick">
+                                <i:InvokeCommandAction Command="{Binding PracownicyVM.EdytujPracownika}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="DeleteClick">
+                                <i:InvokeCommandAction Command="{Binding PracownicyVM.UsunPracownika}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="CleanClick">
+                                <i:InvokeCommandAction Command="{Binding PracownicyVM.Wyczysc}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                    </view:ButtonsUC>
                 </Grid>
             </TabItem>
 
             <!--**********************************KLIENCI************************************-->
-            <TabItem x:Name="klienci" Header="Klienci" Height="22" VerticalAlignment="Top">
+            <TabItem x:Name="klienci" Header="Klienci">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
@@ -439,27 +435,25 @@
                         </i:Interaction.Triggers>
 
                     </DataGrid>
-                    <Grid Background="#8D80BF" Margin="0,222,0,0">
+                    <view:ButtonsUC Height="150"
+                                    VerticalAlignment="Bottom">
 
-                        <Button x:Name="button_EdytujK" Content="Edytuj" 
-                                Background="#6d6394"
-                            Margin="56,40,77,98.4"
-                            Command="{Binding KlienciVM.EdytujKlienta}" />
-                        <Button x:Name="button_UsunK" Content="Usuń" 
-                                Background="#6d6394"
-                            Margin="56,74,77,64.4"
-                            Command="{Binding KlienciVM.UsunKlienta}"
-                             />
-                        <Button x:Name="button_DodajK" Content="Dodaj" 
-                                Background="#6d6394"
-                            Margin="56,108,77,30.4"
-                            Command="{Binding KlienciVM.DodajKlienta}"
-                             />
-                        <Button Content="Wyczyść" HorizontalAlignment="Left" 
-                                Margin="326,10,0,0" 
-                                VerticalAlignment="Top" Width="75"
-                                Command="{Binding KlienciVM.Wyczysc}"/>
-                    </Grid>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="AddClick">
+                                <i:InvokeCommandAction Command="{Binding KlienciVM.DodajKlienta}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="EditClick">
+                                <i:InvokeCommandAction Command="{Binding KlienciVM.EdytujKlienta}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="DeleteClick">
+                                <i:InvokeCommandAction Command="{Binding KlienciVM.UsunKlienta}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="CleanClick">
+                                <i:InvokeCommandAction Command="{Binding KlienciVM.Wyczysc}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                    </view:ButtonsUC>
                 </Grid>
             </TabItem>
             <TabItem x:Name="wynajem" Header="Wynajem">
