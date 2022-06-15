@@ -398,15 +398,12 @@
                                 <TextBox Margin="6,179,36,-113"
                                          Text="{Binding KlienciVM.NrPrawaJazdy}"/>
 
-                                <TextBlock HorizontalAlignment="Left" Margin="2,225,0,-219" TextWrapping="Wrap" Text="Id Karty kredytowej" Foreground="LightGray"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,225,0,-219" TextWrapping="Wrap" Text="Rodzaj" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="6,240,36,-175"
-                                         Text="{Binding KlienciVM.IdKarty}"/>
+                                         Text="{Binding KlienciVM.Rodzaj}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,265,0,-219" TextWrapping="Wrap" Text="Data ważności" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="6,279,36,-218"
                                          Text="{Binding KlienciVM.DataWaznosci}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,307,0,-259" TextWrapping="Wrap" Text="Rodzaj" Foreground="LightGray"/>
-                                <TextBox Grid.Column="0" Margin="6,319,36,-259"
-                                         Text="{Binding KlienciVM.Rodzaj}"/>
 
 
 
