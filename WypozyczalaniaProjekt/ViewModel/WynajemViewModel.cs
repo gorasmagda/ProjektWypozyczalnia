@@ -34,23 +34,30 @@ namespace WypozyczalaniaProjekt.ViewModel
         {
             this.model = model;
             Wynajmy = new ObservableCollection<Wynajem>();
+            WynajmySamochodyKlienci = new ObservableCollection<WynajemSamochodKlient>();
             Samochody = new ObservableCollection<Samochod>();
+            Klienci = new ObservableCollection<Klient>();
             Daty = new ObservableCollection<DwieDaty>();
             Wynajmy = model.Wynajmy;
             Samochody = model.Samochody;
+            Klienci = model.Klienci;
             IdWybranegoWynajmu = -1;
             DataRozpoczecia = DateTime.Today;
             DataZakonczenia = DateTime.Today;
             RozpoczecieStart = DateTime.Today;
             ZakonczenieStart = DateTime.Today;
-            WidocznoscTabeli = "Collapsed";
+            WidocznoscTabeli = "Visible";
+            StworzKolekcje();
         }
+
         #endregion
 
         #region Właściwości
 
         public ObservableCollection<Wynajem> Wynajmy { get; set; }
+        public ObservableCollection<WynajemSamochodKlient> WynajmySamochodyKlienci { get; set; }
         public ObservableCollection<Samochod> Samochody { get; set; }
+        public ObservableCollection<Klient> Klienci { get; set; }
         public ObservableCollection<DwieDaty> Daty { get; set; }
 
         private Wynajem wybranyWynajem;
@@ -337,13 +344,14 @@ namespace WypozyczalaniaProjekt.ViewModel
                     dodajWynajem = new RelayCommand(
                         arg =>
                         {
-                            //var oddzial = new Oddzial(Adres, NrTelefonu, Nazwa);
-                            //if (model.DodajOddzialDoBazy(oddzial))
-                            //{
-                            //    CzyscFormularz();
-                            //    WybranyOddzial = null;
-                            //    MessageBox.Show("Oddział został dodany!");
-                            //}
+                            var wynajem = new Wynajem(DataRozpoczecia, DataZakonczenia, 100, WybranySamochod.IdAuto, WybranyKlient.IdKlient, 1);
+                            if (model.DodajWynajemDoBazy(wynajem))
+                            {
+                                CzyscFormularz();
+                                WybranyWynajem = null;
+                                StworzKolekcje();
+                                MessageBox.Show("Wynajem został dodany!");
+                            }
                         },
                         arg => SprawdzFormularz());
                 return dodajWynajem;
@@ -503,6 +511,36 @@ namespace WypozyczalaniaProjekt.ViewModel
             AddEnabled = wynik;
             EditEnabled = wynik;
             return wynik;
+        }
+
+        private void StworzKolekcje()
+        {
+            WynajmySamochodyKlienci.Clear();
+            foreach (var w in Wynajmy)
+            {
+                string marka = "", modelA = "";
+                string nazwisko = "", imie = "";
+                foreach (var s in Samochody)
+                {
+                    if (w.IdAuto == s.IdAuto)
+                    {
+                        marka = s.Marka;
+                        modelA = s.ModelAuta;
+                    }
+                }
+
+                foreach (var k in Klienci)
+                {
+                    if (w.IdKlient == k.IdKlient)
+                    {
+                        nazwisko = k.Nazwisko;
+                        imie = k.Imie;
+                    }
+                }
+
+                var x = new WynajemSamochodKlient(w.IdWynajem, w.DataWypozyczenia, w.DataZwrotu, w.CalkowityKoszt, w.IdAuto, w.IdKlient, w.IdPracownik, marka, modelA, nazwisko, imie);
+                WynajmySamochodyKlienci.Add(x);
+            }
         }
 
     }

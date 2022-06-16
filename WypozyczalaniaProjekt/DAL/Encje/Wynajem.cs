@@ -31,7 +31,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             IdPracownik = sbyte.Parse(reader["id_pracownik"].ToString());
         }
 
-        public Wynajem(sbyte? idWynajem, DateTime dataWypozyczenia, DateTime dataZwrotu, decimal calkowityKoszt, sbyte? idAuto, sbyte? idKlient, sbyte? idPracownik)
+        public Wynajem(DateTime dataWypozyczenia, DateTime dataZwrotu, decimal calkowityKoszt, sbyte? idAuto, sbyte? idKlient, sbyte? idPracownik)
         {
             IdWynajem = null;
             DataWypozyczenia = dataWypozyczenia;

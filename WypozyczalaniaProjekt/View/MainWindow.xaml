@@ -634,7 +634,7 @@
 
 
                             <DataGrid Grid.Column="1"
-                                      ItemsSource="{Binding KlienciVM.Klienci}"
+                                      ItemsSource="{Binding WynajemVM.Klienci}"
                                       SelectedItem="{Binding WynajemVM.WybranyKlient}">
 
                                 <DataGrid.Columns>
@@ -692,15 +692,20 @@
                     <!-- LISTA WYNAJMÓW -->
                     <DataGrid Grid.Column="2"
                               Margin="0 200 0 0"
-                              ItemsSource="{Binding WynajemVM.Wynajmy}"
+                              BorderBrush="Black"
+                              BorderThickness="0,3,0,0"
+                              ItemsSource="{Binding WynajemVM.WynajmySamochodyKlienci}"
                               SelectedItem="{Binding WynajemVM.WybranyWynajem}"
                               SelectedIndex="{Binding WynajemVM.IdWybranegoWynajmu, Mode=TwoWay}" >
 
                         <DataGrid.Columns>
+                            <DataGridTextColumn Header="Marka." Binding="{Binding Marka}"/>
+                            <DataGridTextColumn Header="Model" Binding="{Binding ModelAuta}"/>
                             <DataGridTextColumn Header="Data roz." Binding="{Binding DataWypozyczenia, StringFormat=\{0:dd-MM-yy\}}"/>
                             <DataGridTextColumn Header="Data zwr." Binding="{Binding DataZwrotu, StringFormat=\{0:dd-MM-yy\}}"/>
                             <DataGridTextColumn Header="Koszt" Binding="{Binding CalkowityKoszt}"/>
-                            <DataGridTextColumn Header="IdAuta" Binding="{Binding IdAuto}"/>
+                            <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}"/>
+                            <DataGridTextColumn Header="Imie" Binding="{Binding Imie}"/>
                         </DataGrid.Columns>
 
                         <i:Interaction.Triggers>
