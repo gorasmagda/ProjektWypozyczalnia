@@ -142,6 +142,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\OddzialViewModel.cs" />
     <Compile Include="ViewModel\PracownicyViewModel.cs" />
+    <Compile Include="ViewModel\WynajemViewModel.cs" />
     <Compile Include="View\ButtonsUC.xaml.cs">
       <DependentUpon>ButtonsUC.xaml</DependentUpon>
     </Compile>

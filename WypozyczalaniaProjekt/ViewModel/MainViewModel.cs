@@ -14,7 +14,7 @@
         public PracownicyViewModel PracownicyVM { get; set; }
         public KlienciViewModel KlienciVM { get; set; }
         public OddzialViewModel OddzialVM { get; set; }
-
+        public WynajemViewModel WynajemVM { get; set; }
 
         public MainViewModel()
         {
@@ -25,6 +25,7 @@
             PracownicyVM = new PracownicyViewModel(model);
             KlienciVM = new KlienciViewModel(model);
             OddzialVM = new OddzialViewModel(model);
+            WynajemVM = new WynajemViewModel(model);
         }
     }
 }
