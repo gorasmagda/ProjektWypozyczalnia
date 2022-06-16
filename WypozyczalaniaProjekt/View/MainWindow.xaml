@@ -555,17 +555,21 @@
 
                                 <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Marka Auta" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="2,62,31,-60.8"
-                                         Text="{Binding WynajemVM.Marka}"/>
+                                         Text="{Binding WynajemVM.Marka}"
+                                         IsReadOnly="True"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Grid.Column="1" Text="Model Auta" Foreground="LightGray"/>
                                 <TextBox Grid.Column="1" Margin="2,62,31,-60.8"
-                                         Text="{Binding WynajemVM.ModelAuta}"/>
+                                         Text="{Binding WynajemVM.ModelAuta}"
+                                         IsReadOnly="True"/>
 
                                 <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Nazwisko" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="2,100,31,-98.8"
-                                         Text="{Binding WynajemVM.Nazwisko}"/>
+                                         Text="{Binding WynajemVM.Nazwisko}"
+                                         IsReadOnly="True"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Grid.Column="1" Text="Imię" Foreground="LightGray"/>
                                 <TextBox Grid.Column="1" Margin="2,100,31,-98.8"
-                                         Text="{Binding WynajemVM.Imie}"/>
+                                         Text="{Binding WynajemVM.Imie}"
+                                         IsReadOnly="True"/>
                             </Grid>
                         </StackPanel>
                     </ScrollViewer>
@@ -650,13 +654,15 @@
                         <!-- DRUGI WIDOK -->
                         <Grid Visibility="{Binding WynajemVM.WidocznoscKalendarza}">
 
-                            <Viewbox>
-                                <Calendar>
+                                <ListBox ItemsSource="{Binding WynajemVM.Daty}"
+                                         Margin="50,0,50,0"
+                                         Padding="0"
+                                         Background="#6d6394"
+                                         FontSize="15"
+                                         HorizontalContentAlignment="Center"
+                                         BorderThickness="0"/>
 
-                                </Calendar>
-                            </Viewbox>
-
-                            <Button Grid.Column="0"
+                                <Button Grid.Column="0"
                                     Height="15"
                                     Width="15"
                                     Margin="0,0,0,15"
@@ -665,9 +671,9 @@
                                     ToolTipService.InitialShowDelay="50" 
                                     ToolTipService.ShowDuration="5000" 
                                     ToolTipService.BetweenShowDelay="1000" 
-                                    ToolTip="Resetuj kalendarz."
+                                    ToolTip="Czyść listę."
                                     Background="#291c5f"
-                                    Command="{Binding WynajemVM.ResetujKalendarz}"/>
+                                    Command="{Binding WynajemVM.CzyscListe}"/>
                             <Button Grid.Column="0"
                                     Height="15"
                                     Width="15"
@@ -722,7 +728,7 @@
                                 Command="{Binding WynajemVM.SzukajAut}"/>
 
                         <Button Grid.Column="1"
-                                Content="WYSZUKAJ WOLNE DATY"
+                                Content="WYSZUKAJ ZAJĘTE DATY"
                                 Height="27.5"
                                 Background="#291c5f"
                                 Foreground="LightGray"
