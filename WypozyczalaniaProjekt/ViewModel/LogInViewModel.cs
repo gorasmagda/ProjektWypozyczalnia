@@ -1,25 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using WypozyczalaniaProjekt.ViewModel.BaseClassess;
 
 namespace WypozyczalaniaProjekt.ViewModel
 {
-    class LogInViewModel : INotifyPropertyChanged
+    class LogInViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private ICommand zalogujClick;
-
         public ICommand ZalogujClick => zalogujClick ?? (zalogujClick = new RelayCommand(
-            o => 
+            o =>
             {
                 Console.WriteLine("Zadziało się");
-            }, null));
+            },
+            null));
     }
 }
