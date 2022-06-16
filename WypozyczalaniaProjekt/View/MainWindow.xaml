@@ -13,6 +13,30 @@
     <Window.Resources>
         <vm:MainViewModel x:Key="mainVM"/>
 
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="BorderThickness" Value="10"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Border x:Name="grid" Background="#291c5f">
+                            <ContentPresenter>
+                                <ContentPresenter.Content>
+                                    <TextBlock Margin="5" Foreground="LightGray" Text="{TemplateBinding Content}"/>
+                                </ContentPresenter.Content>
+                            </ContentPresenter>
+                        </Border>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type TabItem}},Path=IsSelected}" Value="True">
+                                <Setter TargetName="grid" Property="Background" Value="#8D80BF"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
         <Style TargetType="{x:Type DataGrid}">
             <Setter Property="Background" Value="#6d6394"/>
             <Setter Property="RowBackground" Value="#8D80BF"/>
@@ -559,7 +583,7 @@
                             <DataGrid Grid.Column="0"
                                       BorderThickness="0,0,3,0"
                                       BorderBrush="Black"
-                                      ItemsSource="{Binding AutoVM.Samochody}"
+                                      ItemsSource="{Binding WynajemVM.Samochody}"
                                       SelectedItem="{Binding WynajemVM.WybranySamochod}">
 
                                 <DataGrid.Columns>

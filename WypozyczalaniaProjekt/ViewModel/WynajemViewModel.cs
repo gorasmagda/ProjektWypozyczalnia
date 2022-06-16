@@ -33,7 +33,9 @@ namespace WypozyczalaniaProjekt.ViewModel
         {
             this.model = model;
             Wynajmy = new ObservableCollection<Wynajem>();
+            Samochody = new ObservableCollection<Samochod>();
             Wynajmy = model.Wynajmy;
+            Samochody = model.Samochody;
             IdWybranegoWynajmu = -1;
             DataRozpoczecia = DateTime.Today;
             DataZakonczenia = DateTime.Today;
@@ -45,6 +47,7 @@ namespace WypozyczalaniaProjekt.ViewModel
         #region Właściwości
 
         public ObservableCollection<Wynajem> Wynajmy { get; set; }
+        public ObservableCollection<Samochod> Samochody { get; set; }
 
         private Wynajem wybranyWynajem;
         public Wynajem WybranyWynajem
