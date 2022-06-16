@@ -36,7 +36,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
         <Style TargetType="{x:Type DataGrid}">
             <Setter Property="Background" Value="#6d6394"/>
             <Setter Property="RowBackground" Value="#8D80BF"/>
@@ -570,6 +570,17 @@
                                 <TextBox Grid.Column="1" Margin="2,100,31,-98.8"
                                          Text="{Binding WynajemVM.Imie}"
                                          IsReadOnly="True"/>
+
+                                <TextBlock HorizontalAlignment="Left" Margin="2,122,0,-116" TextWrapping="Wrap" Text="Całkowity Koszt" Foreground="LightGray"/>
+                                <TextBox Grid.Column="0" Margin="6,138,34.4,-137"
+                                         Text="{Binding WynajemVM.CalkowityKoszt}"
+                                         IsReadOnly="True"/>
+
+                                <TextBlock HorizontalAlignment="Left" Margin="1.6,122,0,-116" TextWrapping="Wrap" Text="Cena" Foreground="LightGray" Grid.Column="1"/>
+                                <TextBox Grid.Column="1" Margin="6.6,138,33,-136"
+                                         Text="{Binding WynajemVM.Cena}"
+                                         IsReadOnly="True"/>
+
                             </Grid>
                         </StackPanel>
                     </ScrollViewer>
@@ -577,7 +588,7 @@
                     <Grid Grid.Column="2"
                           Margin="0,0,0,185"
                           Background="#8D80BF">
-                        
+
                         <!-- PIERWSZY WIDOK -->
                         <Grid Visibility="{Binding WynajemVM.WidocznoscTabeli}">
 
@@ -585,7 +596,7 @@
                                 <ColumnDefinition Width="5*"/>
                                 <ColumnDefinition Width="4*"/>
                             </Grid.ColumnDefinitions>
-                            
+
                             <DataGrid Grid.Column="0"
                                       BorderThickness="0,0,3,0"
                                       BorderBrush="Black"
@@ -650,11 +661,11 @@
 
                             </DataGrid>
                         </Grid>
-                        
+
                         <!-- DRUGI WIDOK -->
                         <Grid Visibility="{Binding WynajemVM.WidocznoscKalendarza}">
 
-                                <ListBox ItemsSource="{Binding WynajemVM.Daty}"
+                            <ListBox ItemsSource="{Binding WynajemVM.Daty}"
                                          Margin="50,0,50,0"
                                          Padding="0"
                                          Background="#6d6394"
@@ -662,7 +673,7 @@
                                          HorizontalContentAlignment="Center"
                                          BorderThickness="0"/>
 
-                                <Button Grid.Column="0"
+                            <Button Grid.Column="0"
                                     Height="15"
                                     Width="15"
                                     Margin="0,0,0,15"
@@ -687,7 +698,7 @@
                                     Background="#291c5f"
                                     Command="{Binding WynajemVM.PrzelaczWidok}"/>
                         </Grid>
-                        
+
                     </Grid>
                     <!-- LISTA WYNAJMÓW -->
                     <DataGrid Grid.Column="2"
@@ -722,7 +733,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        
+
                         <Button Grid.Column="0"
                                 Content="WYSZUKAJ WOLNE AUTA"
                                 Height="27.5"

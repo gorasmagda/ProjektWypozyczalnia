@@ -22,7 +22,8 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         private Model model = null;
         private int idWybranegoWynajmu;
-        private string marka, modelAuta, nazwisko, imie;
+        private int? calkowityKoszt;
+        private string marka, modelAuta, nazwisko, imie, cena;
         private DateTime dataRozpoczecia, dataZakonczenia, rozpoczecieStart, zakonczenieStart;
         private string widocznoscTabeli, widocznoscKalendarza;
 
@@ -153,6 +154,26 @@ namespace WypozyczalaniaProjekt.ViewModel
             {
                 zakonczenieStart = value;
                 onPropertyChanged(nameof(ZakonczenieStart));
+            }
+        }
+
+        public int? CalkowityKoszt
+        {
+            get => calkowityKoszt;
+            set
+            {
+                calkowityKoszt = value;
+                onPropertyChanged(nameof(CalkowityKoszt));
+            }
+        }
+
+        public string Cena
+        {
+            get => cena;
+            set
+            {
+                cena = value;
+                onPropertyChanged(nameof(Cena));
             }
         }
 
@@ -344,6 +365,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     dodajWynajem = new RelayCommand(
                         arg =>
                         {
+                            // TODO: OBLICZANIE CALKOWITEJ KWOTY
                             var wynajem = new Wynajem(DataRozpoczecia, DataZakonczenia, 100, WybranySamochod.IdAuto, WybranyKlient.IdKlient, 1);
                             if (model.DodajWynajemDoBazy(wynajem))
                             {
@@ -367,6 +389,8 @@ namespace WypozyczalaniaProjekt.ViewModel
                     edytujWynajem = new RelayCommand(
                         arg =>
                         {
+
+                            // TODO: EDYCJA WYNAJMU
                             //model.EdytujOddzialWBazie(new Oddzial(Adres, NrTelefonu, Nazwa), (sbyte)WybranyOddzial.IdOddzialu);
                             //CzyscFormularz();
                             //WybranyOddzial = null;
@@ -385,6 +409,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     usunWynajem = new RelayCommand(
                         arg =>
                         {
+                            // TODO: USUNIECIE WYNAJMU
                             //model.UsunOddzialZBazy((sbyte)WybranyOddzial.IdOddzialu);
                             //IdWybranegoOddzialu = -1;
                         },
@@ -420,6 +445,8 @@ namespace WypozyczalaniaProjekt.ViewModel
                         {
                             Marka = WybranySamochod.Marka;
                             ModelAuta = WybranySamochod.ModelAuta;
+                            Cena = WybranySamochod.Cena;
+                            CalkowityKoszt = 100;           // TODO: OBLICZANIE CAŁKOWITEGO KOSZTU
                         },
                         null);
                 return zaladujFormularzAuto;
