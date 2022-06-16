@@ -105,6 +105,14 @@
                 WyszukaneSamochody.Add(s);
         }
 
+        public void PobierzWszystkieSamochody()
+        {
+            var samochody = RepozytoriumSamochody.PobierzWszystkieSamochody();
+            Samochody.Clear();
+            foreach (var s in samochody)
+                Samochody.Add(s);
+        }
+
         #endregion
 
         #region Pracownik

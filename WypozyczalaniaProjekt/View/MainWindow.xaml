@@ -573,7 +573,9 @@
                     <Grid Grid.Column="2"
                           Margin="0,0,0,185"
                           Background="#8D80BF">
-                        <Grid Visibility="Visible">
+                        
+                        <!-- PIERWSZY WIDOK -->
+                        <Grid Visibility="{Binding WynajemVM.WidocznoscTabeli}">
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="5*"/>
@@ -583,6 +585,7 @@
                             <DataGrid Grid.Column="0"
                                       BorderThickness="0,0,3,0"
                                       BorderBrush="Black"
+                                      VerticalScrollBarVisibility="Visible"
                                       ItemsSource="{Binding WynajemVM.Samochody}"
                                       SelectedItem="{Binding WynajemVM.WybranySamochod}">
 
@@ -599,6 +602,32 @@
                                 </i:Interaction.Triggers>
 
                             </DataGrid>
+
+                            <Button Grid.Column="0"
+                                    Height="15"
+                                    Width="15"
+                                    Margin="0,0,20,15"
+                                    VerticalAlignment="Bottom"
+                                    HorizontalAlignment="Right"
+                                    ToolTipService.InitialShowDelay="50" 
+                                    ToolTipService.ShowDuration="5000" 
+                                    ToolTipService.BetweenShowDelay="1000" 
+                                    ToolTip="Resetuj tabelę."
+                                    Background="#291c5f"
+                                    Command="{Binding WynajemVM.ResetujTabele}"/>
+                            <Button Grid.Column="0"
+                                    Height="15"
+                                    Width="15"
+                                    Margin="0,0,20,0"
+                                    VerticalAlignment="Bottom"
+                                    HorizontalAlignment="Right"
+                                    ToolTipService.InitialShowDelay="50" 
+                                    ToolTipService.ShowDuration="5000" 
+                                    ToolTipService.BetweenShowDelay="1000" 
+                                    ToolTip="Przełącz widok."
+                                    Background="#291c5f"
+                                    Command="{Binding WynajemVM.PrzelaczWidok}"/>
+
 
                             <DataGrid Grid.Column="1"
                                       ItemsSource="{Binding KlienciVM.Klienci}"
@@ -617,16 +646,46 @@
 
                             </DataGrid>
                         </Grid>
-                        <Viewbox Visibility="Collapsed">
-                            <Calendar>
+                        
+                        <!-- DRUGI WIDOK -->
+                        <Grid Visibility="{Binding WynajemVM.WidocznoscKalendarza}">
 
-                            </Calendar>
-                        </Viewbox>
+                            <Viewbox>
+                                <Calendar>
+
+                                </Calendar>
+                            </Viewbox>
+
+                            <Button Grid.Column="0"
+                                    Height="15"
+                                    Width="15"
+                                    Margin="0,0,0,15"
+                                    VerticalAlignment="Bottom"
+                                    HorizontalAlignment="Right"
+                                    ToolTipService.InitialShowDelay="50" 
+                                    ToolTipService.ShowDuration="5000" 
+                                    ToolTipService.BetweenShowDelay="1000" 
+                                    ToolTip="Resetuj kalendarz."
+                                    Background="#291c5f"
+                                    Command="{Binding WynajemVM.ResetujKalendarz}"/>
+                            <Button Grid.Column="0"
+                                    Height="15"
+                                    Width="15"
+                                    Margin="0,0,0,0"
+                                    VerticalAlignment="Bottom"
+                                    HorizontalAlignment="Right"
+                                    ToolTipService.InitialShowDelay="50" 
+                                    ToolTipService.ShowDuration="5000" 
+                                    ToolTipService.BetweenShowDelay="1000" 
+                                    ToolTip="Przełącz widok."
+                                    Background="#291c5f"
+                                    Command="{Binding WynajemVM.PrzelaczWidok}"/>
+                        </Grid>
                         
                     </Grid>
                     <!-- LISTA WYNAJMÓW -->
                     <DataGrid Grid.Column="2"
-                              Margin="0 205 0 0"
+                              Margin="0 200 0 0"
                               ItemsSource="{Binding WynajemVM.Wynajmy}"
                               SelectedItem="{Binding WynajemVM.WybranyWynajem}"
                               SelectedIndex="{Binding WynajemVM.IdWybranegoWynajmu, Mode=TwoWay}" >
@@ -646,7 +705,7 @@
 
                     </DataGrid>
                     <Grid Background="#8D80BF"
-                          Margin="0,205,0,145">
+                          Margin="0,200,0,145">
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -668,7 +727,8 @@
                                 Background="#291c5f"
                                 Foreground="LightGray"
                                 Margin="5 0 50 1"
-                                BorderThickness="0"/>
+                                BorderThickness="0"
+                                Command="{Binding WynajemVM.SzukajDat}"/>
 
                     </Grid>
                     <view:ButtonsUC Height="150"

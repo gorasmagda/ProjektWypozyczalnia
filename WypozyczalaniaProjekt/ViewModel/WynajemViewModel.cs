@@ -23,6 +23,7 @@ namespace WypozyczalaniaProjekt.ViewModel
         private int idWybranegoWynajmu;
         private string marka, modelAuta, nazwisko, imie;
         private DateTime dataRozpoczecia, dataZakonczenia, rozpoczecieStart, zakonczenieStart;
+        private string widocznoscTabeli, widocznoscKalendarza;
 
         #endregion
 
@@ -40,6 +41,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             DataZakonczenia = DateTime.Today;
             RozpoczecieStart = DateTime.Today;
             ZakonczenieStart = DateTime.Today;
+            WidocznoscTabeli = "Visible";
         }
         #endregion
 
@@ -188,6 +190,34 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
+        public string WidocznoscTabeli
+        {
+            get => widocznoscTabeli;
+            set
+            {
+                widocznoscTabeli = value;
+                if (widocznoscTabeli == "Visible")
+                {
+                    WidocznoscKalendarza = "Collapsed";
+                }
+                else
+                {
+                    WidocznoscKalendarza = "Visible";
+                }
+                onPropertyChanged(nameof(WidocznoscTabeli));
+            }
+        }
+
+        public string WidocznoscKalendarza
+        {
+            get => widocznoscKalendarza;
+            set
+            {
+                widocznoscKalendarza = value;
+                onPropertyChanged(nameof(widocznoscKalendarza));
+            }
+        }
+
         #endregion
 
         #region Polecenia
@@ -201,6 +231,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     szukajAut = new RelayCommand(
                         arg =>
                         {
+                            WidocznoscTabeli = "Visible";
                             model.SzukajSamochodow(DataRozpoczecia, DataZakonczenia);
                             Samochody.Clear();
                             foreach (var s in model.WyszukaneSamochody)
@@ -221,14 +252,69 @@ namespace WypozyczalaniaProjekt.ViewModel
                     szukajDat = new RelayCommand(
                         arg =>
                         {
-                            model.SzukajSamochodow(DataRozpoczecia, DataZakonczenia);
-                            Samochody.Clear();
-                            foreach (var s in model.WyszukaneSamochody)
-                                Samochody.Add(s);
-                            MessageBox.Show("Lista dostępnych samochodów została zaktualizowana!");
+                            WidocznoscTabeli = "Collapsed";
+                            
                         },
                         arg => SprawdzFormularz());
                 return szukajDat;
+            }
+        }
+
+        private ICommand przelaczWidok = null;
+        public ICommand PrzelaczWidok
+        {
+            get
+            {
+                if (przelaczWidok == null)
+                    przelaczWidok = new RelayCommand(
+                        arg =>
+                        {
+                            if (WidocznoscTabeli == "Visible")
+                            {
+                                WidocznoscTabeli = "Collapsed";
+                            }
+                            else
+                            {
+                                WidocznoscTabeli = "Visible";
+                            }
+                        },
+                        arg => SprawdzFormularz());
+                return przelaczWidok;
+            }
+        }
+
+        private ICommand resetujTabele = null;
+        public ICommand ResetujTabele
+        {
+            get
+            {
+                if (resetujTabele == null)
+                    resetujTabele = new RelayCommand(
+                        arg =>
+                        {
+                            Samochody.Clear();
+                            model.PobierzWszystkieSamochody();
+                            foreach (var s in model.Samochody.ToList())
+                                Samochody.Add(s);
+                        },
+                        arg => SprawdzFormularz());
+                return resetujTabele;
+            }
+        }
+
+        private ICommand resetujKalendarz = null;
+        public ICommand ResetujKalendarz
+        {
+            get
+            {
+                if (resetujKalendarz == null)
+                    resetujKalendarz = new RelayCommand(
+                        arg =>
+                        {
+
+                        },
+                        arg => SprawdzFormularz());
+                return resetujKalendarz;
             }
         }
 
