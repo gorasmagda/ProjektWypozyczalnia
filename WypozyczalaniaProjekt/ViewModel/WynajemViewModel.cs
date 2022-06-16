@@ -10,6 +10,7 @@ namespace WypozyczalaniaProjekt.ViewModel
     using BaseClassess;
     using System.Collections.ObjectModel;
     using System.Windows;
+    using System.Windows.Controls;
     using System.Windows.Input;
     using WypozyczalaniaProjekt.DAL.Encje;
     using WypozyczalaniaProjekt.Model;
@@ -34,6 +35,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             this.model = model;
             Wynajmy = new ObservableCollection<Wynajem>();
             Samochody = new ObservableCollection<Samochod>();
+            Daty = new ObservableCollection<DwieDaty>();
             Wynajmy = model.Wynajmy;
             Samochody = model.Samochody;
             IdWybranegoWynajmu = -1;
@@ -41,7 +43,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             DataZakonczenia = DateTime.Today;
             RozpoczecieStart = DateTime.Today;
             ZakonczenieStart = DateTime.Today;
-            WidocznoscTabeli = "Visible";
+            WidocznoscTabeli = "Collapsed";
         }
         #endregion
 
@@ -49,6 +51,7 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         public ObservableCollection<Wynajem> Wynajmy { get; set; }
         public ObservableCollection<Samochod> Samochody { get; set; }
+        public ObservableCollection<DwieDaty> Daty { get; set; }
 
         private Wynajem wybranyWynajem;
         public Wynajem WybranyWynajem
@@ -253,7 +256,14 @@ namespace WypozyczalaniaProjekt.ViewModel
                         arg =>
                         {
                             WidocznoscTabeli = "Collapsed";
-                            
+                            Daty.Clear();
+                            for (int i = 0; i < Wynajmy.Count; i++)
+                            {
+                                if (Wynajmy[i].IdAuto == WybranySamochod.IdAuto)
+                                {
+                                    Daty.Add(new DwieDaty(Wynajmy[i].DataWypozyczenia, Wynajmy[i].DataZwrotu));
+                                }
+                            }
                         },
                         arg => SprawdzFormularz());
                 return szukajDat;
@@ -302,19 +312,19 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        private ICommand resetujKalendarz = null;
-        public ICommand ResetujKalendarz
+        private ICommand czyscListe = null;
+        public ICommand CzyscListe
         {
             get
             {
-                if (resetujKalendarz == null)
-                    resetujKalendarz = new RelayCommand(
+                if (czyscListe == null)
+                    czyscListe = new RelayCommand(
                         arg =>
                         {
-
+                            Daty.Clear();
                         },
                         arg => SprawdzFormularz());
-                return resetujKalendarz;
+                return czyscListe;
             }
         }
 

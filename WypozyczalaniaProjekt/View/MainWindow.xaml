@@ -650,13 +650,15 @@
                         <!-- DRUGI WIDOK -->
                         <Grid Visibility="{Binding WynajemVM.WidocznoscKalendarza}">
 
-                            <Viewbox>
-                                <Calendar>
+                                <ListBox ItemsSource="{Binding WynajemVM.Daty}"
+                                         Margin="50,0,50,0"
+                                         Padding="0"
+                                         Background="#6d6394"
+                                         FontSize="15"
+                                         HorizontalContentAlignment="Center"
+                                         BorderThickness="0"/>
 
-                                </Calendar>
-                            </Viewbox>
-
-                            <Button Grid.Column="0"
+                                <Button Grid.Column="0"
                                     Height="15"
                                     Width="15"
                                     Margin="0,0,0,15"
@@ -665,9 +667,9 @@
                                     ToolTipService.InitialShowDelay="50" 
                                     ToolTipService.ShowDuration="5000" 
                                     ToolTipService.BetweenShowDelay="1000" 
-                                    ToolTip="Resetuj kalendarz."
+                                    ToolTip="Czyść listę."
                                     Background="#291c5f"
-                                    Command="{Binding WynajemVM.ResetujKalendarz}"/>
+                                    Command="{Binding WynajemVM.CzyscListe}"/>
                             <Button Grid.Column="0"
                                     Height="15"
                                     Width="15"
@@ -722,7 +724,7 @@
                                 Command="{Binding WynajemVM.SzukajAut}"/>
 
                         <Button Grid.Column="1"
-                                Content="WYSZUKAJ WOLNE DATY"
+                                Content="WYSZUKAJ ZAJĘTE DATY"
                                 Height="27.5"
                                 Background="#291c5f"
                                 Foreground="LightGray"
