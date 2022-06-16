@@ -6,7 +6,44 @@
         xmlns:local="clr-namespace:WypozyczalaniaProjekt.View"
         mc:Ignorable="d"
         Title="LOGOWANIE DO APLIKACJI" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Background="#594c8f">
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="LOGOWANIE" Foreground="White" FontSize="26" FontWeight="Bold"/>
+        <Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="25" Content="Zaloguj"/>
+
+        <Grid Grid.Row="1" Grid.Column="1" Background="#6d6394">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2.7*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Login" Foreground="White" FontSize="16"/>
+            <TextBox x:Name="loginBox" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left"  VerticalAlignment="Center" Background="LightGray" Width="115" Height="21"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Hasło" Foreground="White" FontSize="16"/>
+            <TextBox x:Name="hasloBox" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left"  VerticalAlignment="Center" Background="LightGray" Width="115" Height="21"/>
+        </Grid>
     </Grid>
 </Window>
