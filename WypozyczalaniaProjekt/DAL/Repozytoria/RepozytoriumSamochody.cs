@@ -4,6 +4,7 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
 {
     using Encje;
     using MySql.Data.MySqlClient;
+    using System;
 
     class RepozytoriumSamochody
     {
@@ -14,6 +15,8 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
 
         private const string WSZYSTKIE_SAMOCHODY = "SELECT * FROM samochody Order BY ID_AUTO ASC";
         private const string DODAJ_SAMOCHOD = "INSERT INTO samochody ( marka, model, rocznik, kolor, ilosc_miejsc, skrzynia, nr_rejestracyjny, aktualna_lokalizacja, cena, kaucja, przebieg, dostepnosc, id_oddzialu, kategoria) VALUES ";
+        private const string SZUKAJ_SAMOCHODOW = "SELECT * FROM samochody WHERE id_auto NOT IN (SELECT id_auto FROM wynajem WHERE";
+
         #endregion
 
 
@@ -86,6 +89,29 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return stan;
         }
 
+        public static List<Samochod> PobierzWyszukaneSamochody(DateTime r, DateTime z)
+        {
+            List<Samochod> samochody = new List<Samochod>();
+
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                string warunki = $"(data_wypozyczenia < '{r:yyyy-MM-dd}' AND data_zwrotu > '{z:yyyy-MM-dd}') " +
+                                 $"OR (data_wypozyczenia > '{r:yyyy-MM-dd}' AND data_zwrotu < '{z:yyyy-MM-dd}') " +
+                                 $"OR (data_zwrotu > '{r:yyyy-MM-dd}' AND data_zwrotu < '{z:yyyy-MM-dd}') " +
+                                 $"OR (data_wypozyczenia > '{r:yyyy-MM-dd}' AND data_wypozyczenia < '{z:yyyy-MM-dd}'))";
+                MySqlCommand command = new MySqlCommand($"{SZUKAJ_SAMOCHODOW} {warunki}", connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                    samochody.Add(new Samochod(reader));
+                connection.Close();
+            }
+            return samochody;
+        }
+        //(data_wypozyczenia< '2022-05-25' AND data_zwrotu> '2022-06-25')
+        //OR(data_wypozyczenia > '2022-05-25' AND data_zwrotu < '2022-06-25')
+        //OR(data_zwrotu > '2022-05-25' AND data_zwrotu < '2022-06-25')
+        //OR(data_wypozyczenia > '2022-05-25' AND data_wypozyczenia < '2022-06-25'));
         #endregion
 
     }

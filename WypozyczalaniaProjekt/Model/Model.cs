@@ -2,11 +2,13 @@
 {
     using DAL.Encje;
     using DAL.Repozytoria;
+    using System;
     using System.Collections.ObjectModel;
 
     class Model
     {
         public ObservableCollection<Samochod> Samochody { get; set; } = new ObservableCollection<Samochod>();
+        public ObservableCollection<Samochod> WyszukaneSamochody { get; set; } = new ObservableCollection<Samochod>();
         public ObservableCollection<Klient> Klienci { get; set; } = new ObservableCollection<Klient>();
         public ObservableCollection<Pracownik> Pracownicy { get; set; } = new ObservableCollection<Pracownik>();
         public ObservableCollection<Oddzial> Oddzialy { get; set; } = new ObservableCollection<Oddzial>();
@@ -93,6 +95,14 @@
                 return true;
             }
             return false;
+        }
+
+        public void SzukajSamochodow(DateTime r, DateTime z)
+        {
+            var samochody = RepozytoriumSamochody.PobierzWyszukaneSamochody(r, z);
+            WyszukaneSamochody.Clear();
+            foreach (var s in samochody)
+                WyszukaneSamochody.Add(s);
         }
 
         #endregion

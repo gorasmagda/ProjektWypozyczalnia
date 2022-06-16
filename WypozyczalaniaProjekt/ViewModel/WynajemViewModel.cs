@@ -22,7 +22,6 @@ namespace WypozyczalaniaProjekt.ViewModel
         private Model model = null;
         private int idWybranegoWynajmu;
         private string marka, modelAuta, nazwisko, imie;
-        private string adres;
         private DateTime dataRozpoczecia, dataZakonczenia, rozpoczecieStart, zakonczenieStart;
 
         #endregion
@@ -192,6 +191,46 @@ namespace WypozyczalaniaProjekt.ViewModel
         #endregion
 
         #region Polecenia
+
+        private ICommand szukajAut = null;
+        public ICommand SzukajAut
+        {
+            get
+            {
+                if (szukajAut == null)
+                    szukajAut = new RelayCommand(
+                        arg =>
+                        {
+                            model.SzukajSamochodow(DataRozpoczecia, DataZakonczenia);
+                            Samochody.Clear();
+                            foreach (var s in model.WyszukaneSamochody)
+                                Samochody.Add(s);
+                            MessageBox.Show("Lista dostępnych samochodów została zaktualizowana!");
+                        },
+                        arg => SprawdzFormularz());
+                return szukajAut;
+            }
+        }
+
+        private ICommand szukajDat = null;
+        public ICommand SzukajDat
+        {
+            get
+            {
+                if (szukajDat == null)
+                    szukajDat = new RelayCommand(
+                        arg =>
+                        {
+                            model.SzukajSamochodow(DataRozpoczecia, DataZakonczenia);
+                            Samochody.Clear();
+                            foreach (var s in model.WyszukaneSamochody)
+                                Samochody.Add(s);
+                            MessageBox.Show("Lista dostępnych samochodów została zaktualizowana!");
+                        },
+                        arg => SprawdzFormularz());
+                return szukajDat;
+            }
+        }
 
         private ICommand dodajWynajem = null;
         public ICommand DodajWynajem
