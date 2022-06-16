@@ -8,7 +8,7 @@ using WypozyczalaniaProjekt.DAL.Encje;
 
 namespace WypozyczalaniaProjekt.DAL.Repozytoria
 {
-    class RepozytoriumWynajem
+    class RepozytoriumWynajmy
     {
         #region ZAPYTANIA
 
