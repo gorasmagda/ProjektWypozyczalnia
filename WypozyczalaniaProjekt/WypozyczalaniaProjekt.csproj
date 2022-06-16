@@ -134,6 +134,7 @@
     <Compile Include="DAL\Repozytoria\RepozytoriumOddzialy.cs" />
     <Compile Include="DAL\Repozytoria\RepozytoriumPracownicy.cs" />
     <Compile Include="DAL\Repozytoria\RepozytoriumSamochody.cs" />
+    <Compile Include="DAL\Repozytoria\RepozytoriumWynajem.cs" />
     <Compile Include="Model\Model.cs" />
     <Compile Include="ViewModel\AutoViewModel.cs" />
     <Compile Include="ViewModel\BaseClassess\RelayCommand.cs" />

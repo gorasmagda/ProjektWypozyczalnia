@@ -57,7 +57,10 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
         #region Metody
 
-
+        public string ToInsert()
+        {
+            return $"(0, '{DataWypozyczenia:yyyy-MM-dd}', '{DataZwrotu:yyyy-MM-dd}','{CalkowityKoszt}','{IdAuto}','{IdKlient}','{IdPracownik}')";
+        }
 
         #endregion
     }
