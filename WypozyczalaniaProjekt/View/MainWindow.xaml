@@ -28,7 +28,7 @@
         </Style>
 
         <Style TargetType="{x:Type DataGridColumnHeader}">
-            <Setter Property="Background" Value="#291c5f" />
+            <Setter Property="Background" Value="#291c5f"/>
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="BorderThickness" Value="0,0,2,0"/>
             <Setter Property="Foreground" Value="LightGray"/>
@@ -47,6 +47,22 @@
         <Style TargetType="{x:Type ComboBox}">
             <Setter Property="Width" Value="150" />
             <Setter Property="Height" Value="22" />
+        </Style>
+
+        <Style x:Key="styleCalendar" TargetType="{x:Type Calendar}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Calendar}">
+                        <!-- Wrapping in ViewBox will enlarge calendar of that size.-->
+                        <Viewbox Height="250">
+                            <CalendarItem x:Name="PART_CalendarItem"
+                              Background="{TemplateBinding Background}"
+                              BorderBrush="{TemplateBinding BorderBrush}"
+                              BorderThickness="{TemplateBinding BorderThickness}"/>
+                        </Viewbox>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
     </Window.Resources>
@@ -324,7 +340,7 @@
                             <DataGridTextColumn Header="Imię" Binding="{Binding Imie}"/>
                             <DataGridTextColumn Header="Telefon" Binding="{Binding NrTelefonu}"/>
                             <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
-                            <DataGridTextColumn Header="Data Urodzenia" Binding="{Binding DataUrodzenia}"/>
+                            <DataGridTextColumn Header="Data Urodzenia" Binding="{Binding DataUrodzenia, StringFormat=\{0:dd-MM-yy\}}"/>
                             <DataGridTextColumn Header="Plec" Binding="{Binding Plec}"/>
                             <DataGridTextColumn Header="Adres" Binding="{Binding Adres}"/>
                             <DataGridTextColumn Header="Pensja" Binding="{Binding Pensja}"/>
@@ -443,7 +459,7 @@
                             <DataGridTextColumn Header="Imię" Binding="{Binding Imie}"/>
                             <DataGridTextColumn Header="Telefon" Binding="{Binding NrTelefonu}"/>
                             <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
-                            <DataGridTextColumn Header="Data Urodzenia" Binding="{Binding DataUrodzenia}"/>
+                            <DataGridTextColumn Header="Data Urodzenia" Binding="{Binding DataUrodzenia, StringFormat=\{0:dd-MM-yy\}}"/>
                             <DataGridTextColumn Header="Plec" Binding="{Binding Plec}"/>
                             <DataGridTextColumn Header="Adres" Binding="{Binding Adres}"/>
                             <DataGridTextColumn Header="Prawo Jazdy" Binding="{Binding NrPrawaJazdy}"/>
@@ -492,7 +508,7 @@
                     <ScrollViewer Grid.Column="0"
                                   VerticalScrollBarVisibility="Visible"
                                   HorizontalScrollBarVisibility="Disabled"
-                                  Margin="0,0,0,150">
+                                  Margin="0,0,0,185">
                         <StackPanel>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -503,33 +519,133 @@
                                 <TextBlock HorizontalAlignment="Left" Margin="2,7,0,0" TextWrapping="Wrap" Text="Data rozpoczęcia" Foreground="LightGray"/>
                                 <DatePicker Grid.Column="0" Margin="5,23,31,-21.6"
                                             Padding="0" BorderThickness="0"
-                                            SelectedDate="{Binding WynajemVM.DataRozpoczecia}"/>
+                                            CalendarStyle="{StaticResource styleCalendar}"
+                                            SelectedDate="{Binding WynajemVM.DataRozpoczecia}"
+                                            DisplayDateStart="{Binding WynajemVM.RozpoczecieStart}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="190,7,0,-1" TextWrapping="Wrap" Text="Data zakończenia" Foreground="LightGray" Grid.ColumnSpan="2"/>
                                 <DatePicker Grid.Column="1" Margin="3.6,23,32,-21.8"
                                             Padding="0" BorderThickness="0"
-                                            SelectedDate="{Binding WynajemVM.DataZakonczenia}"/>
+                                            CalendarStyle="{StaticResource styleCalendar}"
+                                            SelectedDate="{Binding WynajemVM.DataZakonczenia}"
+                                            DisplayDateStart="{Binding WynajemVM.ZakonczenieStart}"/>
+
+                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Marka Auta" Foreground="LightGray"/>
+                                <TextBox Grid.Column="0" Margin="2,62,31,-60.8"
+                                         Text="{Binding WynajemVM.Marka}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Grid.Column="1" Text="Model Auta" Foreground="LightGray"/>
+                                <TextBox Grid.Column="1" Margin="2,62,31,-60.8"
+                                         Text="{Binding WynajemVM.ModelAuta}"/>
+
+                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Nazwisko" Foreground="LightGray"/>
+                                <TextBox Grid.Column="0" Margin="2,100,31,-98.8"
+                                         Text="{Binding WynajemVM.Nazwisko}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Grid.Column="1" Text="Imię" Foreground="LightGray"/>
+                                <TextBox Grid.Column="1" Margin="2,100,31,-98.8"
+                                         Text="{Binding WynajemVM.Imie}"/>
                             </Grid>
                         </StackPanel>
                     </ScrollViewer>
+                    <!-- LISTA WYSZUKANYCH AUT -->
+                    <Grid Grid.Column="2"
+                          Margin="0,0,0,185"
+                          Background="#8D80BF">
+                        <Grid Visibility="Visible">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <DataGrid Grid.Column="0"
+                                      BorderThickness="0,0,3,0"
+                                      BorderBrush="Black"
+                                      ItemsSource="{Binding AutoVM.Samochody}"
+                                      SelectedItem="{Binding WynajemVM.WybranySamochod}">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Marka" Binding="{Binding Marka}"/>
+                                    <DataGridTextColumn Header="Model" Binding="{Binding ModelAuta}"/>
+                                    <DataGridTextColumn Header="Cena" Binding="{Binding Cena}"/>
+                                </DataGrid.Columns>
+
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding WynajemVM.ZaladujFormularzAuto}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+
+                            </DataGrid>
+
+                            <DataGrid Grid.Column="1"
+                                      ItemsSource="{Binding KlienciVM.Klienci}"
+                                      SelectedItem="{Binding WynajemVM.WybranyKlient}">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}"/>
+                                    <DataGridTextColumn Header="Imie" Binding="{Binding Imie}"/>
+                                </DataGrid.Columns>
+
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding WynajemVM.ZaladujFormularzKlient}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+
+                            </DataGrid>
+                        </Grid>
+                        <Viewbox Visibility="Collapsed">
+                            <Calendar>
+
+                            </Calendar>
+                        </Viewbox>
+                        
+                    </Grid>
                     <!-- LISTA WYNAJMÓW -->
                     <DataGrid Grid.Column="2"
+                              Margin="0 205 0 0"
                               ItemsSource="{Binding WynajemVM.Wynajmy}"
-                              SelectedItem="{Binding OddzialVM.WybranyOddzial}"
-                              SelectedIndex="{Binding OddzialVM.IdWybranegoOddzialu, Mode=TwoWay}" >
+                              SelectedItem="{Binding WynajemVM.WybranyWynajem}"
+                              SelectedIndex="{Binding WynajemVM.IdWybranegoWynajmu, Mode=TwoWay}" >
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
-                            <DataGridTextColumn Header="Adres" Binding="{Binding Adres}"/>
-                            <DataGridTextColumn Header="Telefon" Binding="{Binding NrTelefonu}"/>
+                            <DataGridTextColumn Header="Data roz." Binding="{Binding DataWypozyczenia, StringFormat=\{0:dd-MM-yy\}}"/>
+                            <DataGridTextColumn Header="Data zwr." Binding="{Binding DataZwrotu, StringFormat=\{0:dd-MM-yy\}}"/>
+                            <DataGridTextColumn Header="Koszt" Binding="{Binding CalkowityKoszt}"/>
+                            <DataGridTextColumn Header="IdAuta" Binding="{Binding IdAuto}"/>
                         </DataGrid.Columns>
 
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
-                                <i:InvokeCommandAction Command="{Binding OddzialVM.ZaladujFormularz}"/>
+                                <i:InvokeCommandAction Command="{Binding WynajemVM.ZaladujFormularz}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
 
                     </DataGrid>
+                    <Grid Background="#8D80BF"
+                          Margin="0,205,0,145">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Button Grid.Column="0"
+                                Content="WYSZUKAJ WOLNE AUTA"
+                                Height="27.5"
+                                Background="#291c5f"
+                                Foreground="LightGray"
+                                Margin="50 0 5 1"
+                                BorderThickness="0"/>
+
+                        <Button Grid.Column="1"
+                                Content="WYSZUKAJ WOLNE DATY"
+                                Height="27.5"
+                                Background="#291c5f"
+                                Foreground="LightGray"
+                                Margin="5 0 50 1"
+                                BorderThickness="0"/>
+
+                    </Grid>
                     <view:ButtonsUC Height="150"
                                     VerticalAlignment="Bottom"
                                     AddE="{Binding WynajemVM.AddEnabled, Mode=TwoWay}"

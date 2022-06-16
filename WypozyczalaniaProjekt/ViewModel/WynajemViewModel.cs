@@ -21,8 +21,9 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         private Model model = null;
         private int idWybranegoWynajmu;
+        private string marka, modelAuta, nazwisko, imie;
         private string adres;
-        private DateTime dataRozpoczecia, dataZakonczenia;
+        private DateTime dataRozpoczecia, dataZakonczenia, rozpoczecieStart, zakonczenieStart;
 
         #endregion
 
@@ -32,8 +33,12 @@ namespace WypozyczalaniaProjekt.ViewModel
         {
             this.model = model;
             Wynajmy = new ObservableCollection<Wynajem>();
-            //Wynajmy = model.Wynajmy;
+            Wynajmy = model.Wynajmy;
             IdWybranegoWynajmu = -1;
+            DataRozpoczecia = DateTime.Today;
+            DataZakonczenia = DateTime.Today;
+            RozpoczecieStart = DateTime.Today;
+            ZakonczenieStart = DateTime.Today;
         }
         #endregion
 
@@ -59,6 +64,29 @@ namespace WypozyczalaniaProjekt.ViewModel
                 onPropertyChanged(nameof(WybranyWynajem));
             }
         }
+
+        private Samochod wybranySamochod;
+        public Samochod WybranySamochod
+        {
+            get => wybranySamochod;
+            set
+            {
+                wybranySamochod = value;
+                onPropertyChanged(nameof(WybranySamochod));
+            }
+        }
+
+        private Klient wybranyKlient;
+        public Klient WybranyKlient
+        {
+            get => wybranyKlient;
+            set
+            {
+                wybranyKlient = value;
+                onPropertyChanged(nameof(WybranyKlient));
+            }
+        }
+
         public int IdWybranegoWynajmu
         {
             get => idWybranegoWynajmu;
@@ -76,6 +104,8 @@ namespace WypozyczalaniaProjekt.ViewModel
             set
             {
                 dataRozpoczecia = value;
+                DataZakonczenia = value;
+                ZakonczenieStart = value;
                 SprawdzFormularz();
                 onPropertyChanged(nameof(DataRozpoczecia));
             }
@@ -92,14 +122,67 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        public string Adres
+        public DateTime RozpoczecieStart
         {
-            get => adres;
+            get => rozpoczecieStart;
             set
             {
-                adres = value;
+                rozpoczecieStart = value;
+                onPropertyChanged(nameof(RozpoczecieStart));
+            }
+        }
+
+        public DateTime ZakonczenieStart
+        {
+            get => zakonczenieStart;
+            set
+            {
+                zakonczenieStart = value;
+                onPropertyChanged(nameof(ZakonczenieStart));
+            }
+        }
+
+        public string Marka
+        {
+            get => marka;
+            set
+            {
+                marka = value;
                 SprawdzFormularz();
-                onPropertyChanged(nameof(Adres));
+                onPropertyChanged(nameof(Marka));
+            }
+        }
+
+        public string ModelAuta
+        {
+            get => modelAuta;
+            set
+            {
+                modelAuta = value;
+                SprawdzFormularz();
+                onPropertyChanged(nameof(ModelAuta));
+            }
+        }
+
+        public string Nazwisko
+        {
+            get => nazwisko;
+            set
+            {
+                nazwisko = value;
+                SprawdzFormularz();
+                onPropertyChanged(nameof(Nazwisko));
+            }
+        }
+
+        public string Imie
+        {
+            get => imie;
+            set
+            {
+                imie = value;
+                SprawdzFormularz();
+                onPropertyChanged(nameof(Imie));
             }
         }
 
@@ -173,19 +256,44 @@ namespace WypozyczalaniaProjekt.ViewModel
                     zaladujFormularz = new RelayCommand(
                         o =>
                         {
-                            if (IdWybranegoWynajmu > -1)
-                            {
-                                //Adres = WybranyOddzial.Adres;
-                                //NrTelefonu = WybranyOddzial.NrTelefonu;
-                                //Nazwa = WybranyOddzial.Nazwa;
-                            }
-                            else
-                            {
-                                CzyscFormularz();
-                            }
+                            // TODO: ZALADOWANIE FORMULARZA
                         },
                         null);
                 return zaladujFormularz;
+            }
+        }
+
+        private ICommand zaladujFormularzAuto = null;
+        public ICommand ZaladujFormularzAuto
+        {
+            get
+            {
+                if (zaladujFormularzAuto == null)
+                    zaladujFormularzAuto = new RelayCommand(
+                        o =>
+                        {
+                            Marka = WybranySamochod.Marka;
+                            ModelAuta = WybranySamochod.ModelAuta;
+                        },
+                        null);
+                return zaladujFormularzAuto;
+            }
+        }
+
+        private ICommand zaladujFormularzKlient = null;
+        public ICommand ZaladujFormularzKlient
+        {
+            get
+            {
+                if (zaladujFormularzKlient == null)
+                    zaladujFormularzKlient = new RelayCommand(
+                        o =>
+                        {
+                            Nazwisko = WybranyKlient.Nazwisko;
+                            Imie = WybranyKlient.Imie;
+                        },
+                        null);
+                return zaladujFormularzKlient;
             }
         }
 

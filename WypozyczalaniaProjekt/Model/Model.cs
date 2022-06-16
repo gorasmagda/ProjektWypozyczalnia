@@ -301,7 +301,7 @@
 
         #endregion
 
-        #region Baza
+        #region Wynajem
         private bool CzyWynajemJestJuzWBazie(Wynajem wynajem) => Wynajmy.Contains(wynajem);
 
         public bool DodajWynajemDoBazy(Wynajem wynajem)
