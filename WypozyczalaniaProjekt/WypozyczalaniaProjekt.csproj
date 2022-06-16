@@ -142,6 +142,7 @@
     <Compile Include="ViewModel\BaseClassess\RelayCommand.cs" />
     <Compile Include="ViewModel\BaseClassess\ViewModelBase.cs" />
     <Compile Include="ViewModel\KlienciViewModel.cs" />
+    <Compile Include="ViewModel\LogInViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\OddzialViewModel.cs" />
     <Compile Include="ViewModel\PracownicyViewModel.cs" />
