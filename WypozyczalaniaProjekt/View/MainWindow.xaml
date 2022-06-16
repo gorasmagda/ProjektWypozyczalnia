@@ -555,17 +555,21 @@
 
                                 <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Marka Auta" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="2,62,31,-60.8"
-                                         Text="{Binding WynajemVM.Marka}"/>
+                                         Text="{Binding WynajemVM.Marka}"
+                                         IsReadOnly="True"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Grid.Column="1" Text="Model Auta" Foreground="LightGray"/>
                                 <TextBox Grid.Column="1" Margin="2,62,31,-60.8"
-                                         Text="{Binding WynajemVM.ModelAuta}"/>
+                                         Text="{Binding WynajemVM.ModelAuta}"
+                                         IsReadOnly="True"/>
 
                                 <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Nazwisko" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="2,100,31,-98.8"
-                                         Text="{Binding WynajemVM.Nazwisko}"/>
+                                         Text="{Binding WynajemVM.Nazwisko}"
+                                         IsReadOnly="True"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Grid.Column="1" Text="Imię" Foreground="LightGray"/>
                                 <TextBox Grid.Column="1" Margin="2,100,31,-98.8"
-                                         Text="{Binding WynajemVM.Imie}"/>
+                                         Text="{Binding WynajemVM.Imie}"
+                                         IsReadOnly="True"/>
                             </Grid>
                         </StackPanel>
                     </ScrollViewer>
