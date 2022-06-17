@@ -49,7 +49,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             IdKarty = kartykredytowe.IdKarty;
             Numer = kartykredytowe.Numer;
             DataWaznosci = kartykredytowe.DataWaznosci;
-            NumerCVV = kartykredytowe.Numer;
+            NumerCVV = kartykredytowe.NumerCVV;
             Imie = kartykredytowe.Imie;
             Nazwisko = kartykredytowe.Nazwisko;
             Rodzaj = kartykredytowe.Rodzaj;
