@@ -61,14 +61,14 @@ namespace WypozyczalaniaProjekt.ViewModel
         public ObservableCollection<Klient> Klienci { get; set; }
         public ObservableCollection<DwieDaty> Daty { get; set; }
 
-        private Wynajem wybranyWynajem;
-        public Wynajem WybranyWynajem
+        private WynajemSamochodKlient wybranyWynajemSamochodKlient;
+        public WynajemSamochodKlient WybranyWynajemSamochodKlient
         {
-            get => wybranyWynajem;
+            get => wybranyWynajemSamochodKlient;
             set
             {
-                wybranyWynajem = value;
-                if (wybranyWynajem != null)
+                wybranyWynajemSamochodKlient = value;
+                if (wybranyWynajemSamochodKlient != null)
                 {
                     DeleteEnabled = true;
                 }
@@ -76,7 +76,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                 {
                     DeleteEnabled = false;
                 }
-                onPropertyChanged(nameof(WybranyWynajem));
+                onPropertyChanged(nameof(WybranyWynajemSamochodKlient));
             }
         }
 
@@ -370,7 +370,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                             if (model.DodajWynajemDoBazy(wynajem))
                             {
                                 CzyscFormularz();
-                                WybranyWynajem = null;
+                                WybranyWynajemSamochodKlient = null;
                                 StworzKolekcje();
                                 MessageBox.Show("Wynajem został dodany!");
                             }
@@ -389,7 +389,13 @@ namespace WypozyczalaniaProjekt.ViewModel
                     edytujWynajem = new RelayCommand(
                         arg =>
                         {
-
+                            if (model.EdytujWynajemWBazie(new Wynajem(DataRozpoczecia, DataZakonczenia, 100, WybranySamochod.IdAuto, WybranyKlient.IdKlient, 1), (sbyte)WybranyWynajemSamochodKlient.IdWynajem))
+                            {
+                                CzyscFormularz();
+                                WybranyWynajemSamochodKlient = null;
+                                MessageBox.Show("Edycja wynajmu przebiegła pomyślnie");
+                                StworzKolekcje();
+                            }
                             // TODO: EDYCJA WYNAJMU
                             //model.EdytujOddzialWBazie(new Oddzial(Adres, NrTelefonu, Nazwa), (sbyte)WybranyOddzial.IdOddzialu);
                             //CzyscFormularz();
@@ -427,7 +433,32 @@ namespace WypozyczalaniaProjekt.ViewModel
                     zaladujFormularz = new RelayCommand(
                         o =>
                         {
-                            // TODO: ZALADOWANIE FORMULARZA
+                            if (WybranyWynajemSamochodKlient != null)
+                            {
+                                DataRozpoczecia = WybranyWynajemSamochodKlient.DataWypozyczenia;
+                                DataZakonczenia = WybranyWynajemSamochodKlient.DataZwrotu;
+                                Marka = WybranyWynajemSamochodKlient.Marka;
+                                ModelAuta = WybranyWynajemSamochodKlient.ModelAuta;
+                                Nazwisko = WybranyWynajemSamochodKlient.Nazwisko;
+                                Imie = WybranyWynajemSamochodKlient.Imie;
+                                CalkowityKoszt = (int)WybranyWynajemSamochodKlient.CalkowityKoszt;
+
+                                foreach (var s in Samochody)
+                                {
+                                    if (WybranyWynajemSamochodKlient.IdAuto == s.IdAuto)
+                                    {
+                                        Cena = s.Cena;
+                                        WybranySamochod = s;
+                                    }
+                                }
+                                foreach (var k in Klienci)
+                                {
+                                    if (WybranyWynajemSamochodKlient.IdKlient == k.IdKlient)
+                                    {
+                                        WybranyKlient = k;
+                                    }
+                                }
+                            }
                         },
                         null);
                 return zaladujFormularz;
@@ -525,8 +556,16 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         private void CzyscFormularz()
         {
-            
+            DataRozpoczecia = DateTime.Today;
+            DataZakonczenia = DateTime.Today;
+            Marka = "";
+            ModelAuta = "";
+            Nazwisko = "";
+            Imie = "";
+            CalkowityKoszt = null;
+            Cena = "";
         }
+
         private bool SprawdzFormularz() // TODO: ZROBIENIE WALIDACJI DLA EDYCJI ODDZIALU
         {
             bool wynik = true;

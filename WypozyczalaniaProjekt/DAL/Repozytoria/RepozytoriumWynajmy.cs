@@ -57,7 +57,7 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             bool stan = false;
             using (var connection = DBConnection.Instance.Connection)
             {
-                string EDYTUJ_WYNAJEM = $"UPDATE wynajem SET data_wypozyczenia='{w.DataWypozyczenia:yyyy-MM-dd}', data_zwortu='{w.DataZwrotu:yyyy-MM-dd}', calkowity_koszt='{w.CalkowityKoszt}', id_auto='{w.IdAuto}', id_klient='{w.IdKlient}', id_pracownik='{w.IdPracownik}' WHERE id_wynajem='{idWynajem}'";
+                string EDYTUJ_WYNAJEM = $"UPDATE wynajem SET data_wypozyczenia='{w.DataWypozyczenia:yyyy-MM-dd}', data_zwrotu='{w.DataZwrotu:yyyy-MM-dd}', calkowity_koszt='{w.CalkowityKoszt}', id_auto='{w.IdAuto}', id_klient='{w.IdKlient}', id_pracownik='{w.IdPracownik}' WHERE id_wynajem='{idWynajem}'";
 
                 MySqlCommand command = new MySqlCommand(EDYTUJ_WYNAJEM, connection);
                 connection.Open();
