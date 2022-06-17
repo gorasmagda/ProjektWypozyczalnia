@@ -396,10 +396,6 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 MessageBox.Show("Edycja wynajmu przebiegła pomyślnie");
                                 StworzKolekcje();
                             }
-                            // TODO: EDYCJA WYNAJMU
-                            //model.EdytujOddzialWBazie(new Oddzial(Adres, NrTelefonu, Nazwa), (sbyte)WybranyOddzial.IdOddzialu);
-                            //CzyscFormularz();
-                            //WybranyOddzial = null;
                         },
                         arg => IdWybranegoWynajmu > -1);
                 return edytujWynajem;
@@ -415,9 +411,20 @@ namespace WypozyczalaniaProjekt.ViewModel
                     usunWynajem = new RelayCommand(
                         arg =>
                         {
-                            // TODO: USUNIECIE WYNAJMU
-                            //model.UsunOddzialZBazy((sbyte)WybranyOddzial.IdOddzialu);
-                            //IdWybranegoOddzialu = -1;
+                            if (MessageBox.Show("Czy chcesz usunąć wybrany wynajem?", "Usuwanie wynajmu", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                            {
+                                if (model.UsunWynajemZBazy((sbyte)WybranyWynajemSamochodKlient.IdWynajem))
+                                {
+                                    CzyscFormularz();
+                                    WybranyWynajemSamochodKlient = null;
+                                    MessageBox.Show("Usunięto wybrany wynajem.");
+                                    StworzKolekcje();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Usuwanie nie powiodło się");
+                                }
+                            }
                         },
                         arg => IdWybranegoWynajmu > -1);
                 return usunWynajem;
@@ -566,7 +573,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             Cena = "";
         }
 
-        private bool SprawdzFormularz() // TODO: ZROBIENIE WALIDACJI DLA EDYCJI ODDZIALU
+        private bool SprawdzFormularz() // TODO: ZROBIENIE WALIDACJI DLA EDYCJI WYNAJMU
         {
             bool wynik = true;
             //if (Adres == null || NrTelefonu == null || Nazwa == null)
