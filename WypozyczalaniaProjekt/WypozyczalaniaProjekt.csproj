@@ -108,10 +108,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\LogInWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -142,16 +138,12 @@
     <Compile Include="ViewModel\BaseClassess\RelayCommand.cs" />
     <Compile Include="ViewModel\BaseClassess\ViewModelBase.cs" />
     <Compile Include="ViewModel\KlienciViewModel.cs" />
-    <Compile Include="ViewModel\LogInViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\OddzialViewModel.cs" />
     <Compile Include="ViewModel\PracownicyViewModel.cs" />
     <Compile Include="ViewModel\WynajemViewModel.cs" />
     <Compile Include="View\ButtonsUC.xaml.cs">
       <DependentUpon>ButtonsUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\LogInWindow.xaml.cs">
-      <DependentUpon>LogInWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

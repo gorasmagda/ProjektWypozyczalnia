@@ -14,7 +14,7 @@
     <Window.Resources>
         <vm:MainViewModel x:Key="mainVM"/>
 
-        <Style TargetType="{x:Type TabItem}">
+        <!--<Style TargetType="{x:Type TabItem}">
             <Setter Property="BorderThickness" Value="10"/>
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="Padding" Value="0"/>
@@ -36,7 +36,7 @@
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
+        </Style>-->
 
         <Style TargetType="{x:Type DataGrid}">
             <Setter Property="Background" Value="#6d6394"/>
@@ -94,6 +94,94 @@
     <Grid  DataContext="{StaticResource mainVM}" Background="#594c8f">
         <TabControl Background="#594c8f" BorderThickness="0" Padding="0">
 
+            <TabItem x:Name="logowanie" Header="LOGOWANIE">
+                <Grid Background="#594c8f">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="1.5*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="1" 
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center" 
+                   Text="LOGOWANIE" 
+                   Foreground="White" 
+                   FontSize="26" 
+                   FontWeight="Bold"/>
+
+                    <Button Grid.Row="2" Grid.Column="1" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Width="100" Height="25" 
+                Content="Wyczyść"
+                Command="{Binding WyczyscClick}"/>
+
+                    <Button Grid.Row="2" Grid.Column="2" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Width="100" Height="25" 
+                Content="Zaloguj"
+                Command="{Binding ZalogujClick}"/>
+
+                    <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Background="#6d6394">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2.7*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="1" Grid.Column="1"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" 
+                       Text="Login" 
+                       Foreground="White" 
+                       FontSize="16"/>
+
+                        <TextBox x:Name="loginBox" 
+                     Grid.Row="1" Grid.Column="2" 
+                     HorizontalAlignment="Left"  
+                     VerticalAlignment="Center" 
+                     Background="LightGray"
+                     Width="115" Height="21"
+                     Text="{Binding Login}"/>
+
+                        <TextBlock Grid.Row="2" Grid.Column="1" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center" 
+                       Text="Hasło" 
+                       Foreground="White" 
+                       FontSize="16"/>
+
+                        <TextBox x:Name="hasloBox" 
+                     Grid.Row="2" Grid.Column="2" 
+                     HorizontalAlignment="Left"  
+                     VerticalAlignment="Center" 
+                     Background="LightGray" 
+                     Width="115" Height="21"
+                     Text="{Binding Haslo}"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            
             <!--*********************************ODDZIALY************************************-->
             <TabItem x:Name="oddzialy" Header="Oddzialy">
                 <Grid>
