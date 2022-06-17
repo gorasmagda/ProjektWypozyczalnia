@@ -284,11 +284,15 @@ namespace WypozyczalaniaProjekt.ViewModel
                         {
                             if (MessageBox.Show("Czy chcesz usunąć wybranego klienta?", "Usuwanie klienta", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                             {
+                                var tempWybranyKlient = WybranyKlient;
                                 if (model.UsunKlientaZBazy((sbyte)WybranyKlient.IdKlient))
                                 {
-                                    CzyscFormularz();
-                                    IdWybranegoKlienta = -1;
-                                    MessageBox.Show("Usunięto wybranego klienta.");
+                                    if (model.UsunKarteZBazy((sbyte)tempWybranyKlient.IdKarty))
+                                    {
+                                        CzyscFormularz();
+                                        IdWybranegoKlienta = -1;
+                                        MessageBox.Show("Usunięto wybranego klienta wraz z jego kartą");
+                                    }
                                 }
                                 else
                                 {
