@@ -281,8 +281,19 @@
                     usunAuto = new RelayCommand(
                         arg =>
                         {
-                            model.UsunSamochodZBazy((sbyte)WybraneAuto.IdAuto);
-                            IdWybranegoAuta = -1;
+                            if (MessageBox.Show("Czy chcesz usunąć wybrany samochodów?", "Usuwanie samochodu", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                            {
+                                if (model.UsunSamochodZBazy((sbyte)WybraneAuto.IdAuto))
+                                {
+                                    CzyscFormularz();
+                                    IdWybranegoAuta = -1;
+                                    MessageBox.Show("Usunięto wybrany samochód.");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Usuwanie nie powiodło się");
+                                }
+                            }
                         },
                         arg => IdWybranegoAuta > -1);
                 return usunAuto;

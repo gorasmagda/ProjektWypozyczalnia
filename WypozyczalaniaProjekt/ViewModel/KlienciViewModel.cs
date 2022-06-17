@@ -269,8 +269,19 @@ namespace WypozyczalaniaProjekt.ViewModel
                     usunKlienta = new RelayCommand(
                         arg =>
                         {
-                            model.UsunKlientaZBazy((sbyte)WybranyKlient.IdKlient);
-                            IdWybranegoKlienta= -1;
+                            if (MessageBox.Show("Czy chcesz usunąć wybranego klienta?", "Usuwanie klienta", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                            {
+                                if (model.UsunKlientaZBazy((sbyte)WybranyKlient.IdKlient))
+                                {
+                                    CzyscFormularz();
+                                    IdWybranegoKlienta = -1;
+                                    MessageBox.Show("Usunięto wybranego klienta.");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Usuwanie nie powiodło się");
+                                }
+                            }
                         },
                         arg => IdWybranegoKlienta > -1);
                 return usunKlienta;

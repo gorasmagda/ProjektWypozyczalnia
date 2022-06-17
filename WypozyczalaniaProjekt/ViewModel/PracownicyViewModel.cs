@@ -4,6 +4,7 @@ namespace WypozyczalaniaProjekt.ViewModel
 {
     using BaseClassess;
     using System.Collections.ObjectModel;
+    using System.Windows;
     using System.Windows.Input;
     using WypozyczalaniaProjekt.DAL.Encje;
     using WypozyczalaniaProjekt.Model;
@@ -245,8 +246,19 @@ namespace WypozyczalaniaProjekt.ViewModel
                     usunPracownika = new RelayCommand(
                         arg =>
                         {
-                            model.UsunPracownikaZBazy((sbyte)WybranyPracownik.IdPracownik);
-                            IdWybranegoPracownika = -1;
+                            if (MessageBox.Show("Czy chcesz usunąć wybranego pracownika?", "Usuwanie pracownika", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                            {
+                                if (model.UsunPracownikaZBazy((sbyte)WybranyPracownik.IdPracownik))
+                                {
+                                    CzyscFormularz();
+                                    IdWybranegoPracownika = -1;
+                                    MessageBox.Show("Usunięto wybranego pracownika.");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Usuwanie nie powiodło się");
+                                }
+                            }
                         },
                         arg => IdWybranegoPracownika > -1);
                 return usunPracownika;
