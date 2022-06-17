@@ -15,6 +15,7 @@
         public KlienciViewModel KlienciVM { get; set; }
         public OddzialViewModel OddzialVM { get; set; }
         public WynajemViewModel WynajemVM { get; set; }
+        public LogowanieViewModel LogowanieVM { get; set; }
 
         public MainViewModel()
         {
@@ -26,6 +27,7 @@
             KlienciVM = new KlienciViewModel(model);
             OddzialVM = new OddzialViewModel(model);
             WynajemVM = new WynajemViewModel(model);
+            LogowanieVM = new LogowanieViewModel(model);
         }
     }
 }

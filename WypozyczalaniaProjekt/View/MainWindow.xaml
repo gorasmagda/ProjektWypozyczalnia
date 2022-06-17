@@ -94,7 +94,7 @@
     <Grid  DataContext="{StaticResource mainVM}" Background="#594c8f">
         <TabControl Background="#594c8f" BorderThickness="0" Padding="0">
 
-            <TabItem x:Name="logowanie" Header="LOGOWANIE">
+            <TabItem x:Name="logowanie" Header="LOGOWANIE" Visibility="Collapsed">
                 <Grid Background="#594c8f">
 
                     <Grid.RowDefinitions>
@@ -110,30 +110,20 @@
                         <ColumnDefinition Width="1.5*"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="0" Grid.Column="1" 
-                   Grid.ColumnSpan="2"
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center" 
-                   Text="LOGOWANIE" 
-                   Foreground="White" 
-                   FontSize="26" 
-                   FontWeight="Bold"/>
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="1" 
+                               Grid.ColumnSpan="2"
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center" 
+                               Text="LOGOWANIE" 
+                               Foreground="White" 
+                               FontSize="26" 
+                               FontWeight="Bold"/>      
 
-                    <Button Grid.Row="2" Grid.Column="1" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Center" 
-                Width="100" Height="25" 
-                Content="Wyczyść"
-                Command="{Binding WyczyscClick}"/>
-
-                    <Button Grid.Row="2" Grid.Column="2" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Center" 
-                Width="100" Height="25" 
-                Content="Zaloguj"
-                Command="{Binding ZalogujClick}"/>
-
-                    <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Background="#6d6394">
+                    <Grid Grid.Row="1"
+                          Grid.Column="1"
+                          Grid.ColumnSpan="2"
+                          Background="#6d6394">
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"/>
@@ -149,41 +139,77 @@
                             <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="1" Grid.Column="1"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center" 
-                       Text="Login" 
-                       Foreground="White" 
-                       FontSize="16"/>
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="1"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" 
+                                   Text="Login" 
+                                   Foreground="White" 
+                                   FontSize="16"/>
 
                         <TextBox x:Name="loginBox" 
-                     Grid.Row="1" Grid.Column="2" 
-                     HorizontalAlignment="Left"  
-                     VerticalAlignment="Center" 
-                     Background="LightGray"
-                     Width="115" Height="21"
-                     Text="{Binding Login}"/>
+                                 Grid.Row="1"
+                                 Grid.Column="2" 
+                                 HorizontalAlignment="Left"  
+                                 VerticalAlignment="Center" 
+                                 Background="LightGray"
+                                 Width="115"
+                                 Height="21"
+                                 Text="{Binding LogowanieVM.Login}"/>
 
-                        <TextBlock Grid.Row="2" Grid.Column="1" 
-                       HorizontalAlignment="Center" 
-                       VerticalAlignment="Center" 
-                       Text="Hasło" 
-                       Foreground="White" 
-                       FontSize="16"/>
+                        <TextBlock Grid.Row="2"
+                                   Grid.Column="1" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" 
+                                   Text="Hasło" 
+                                   Foreground="White" 
+                                   FontSize="16"/>
 
                         <TextBox x:Name="hasloBox" 
-                     Grid.Row="2" Grid.Column="2" 
-                     HorizontalAlignment="Left"  
-                     VerticalAlignment="Center" 
-                     Background="LightGray" 
-                     Width="115" Height="21"
-                     Text="{Binding Haslo}"/>
+                                 Grid.Row="2"
+                                 Grid.Column="2" 
+                                 HorizontalAlignment="Left"  
+                                 VerticalAlignment="Center" 
+                                 Background="LightGray" 
+                                 Width="115"
+                                 Height="21"
+                                 Text="{Binding LogowanieVM.Haslo}">
+                            <TextBox.InputBindings>
+                                <!--Disable CTRL+C (COPY) -->
+                                <KeyBinding Command="ApplicationCommands.NotACommand"
+                                        Key="C"
+                                        Modifiers="Control" />
+                                <!--Disable CTRL+X (CUT) -->
+                                <KeyBinding Command="ApplicationCommands.NotACommand"
+                                        Key="X"
+                                        Modifiers="Control" />
+                            </TextBox.InputBindings>
+                        </TextBox>
                     </Grid>
+
+                    <Button Grid.Row="2"
+                            Grid.Column="1" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            Width="100"
+                            Height="25" 
+                            Content="Wyczyść"
+                            Command="{Binding LogowanieVM.Wyczysc}"/>
+
+                    <Button Grid.Row="2"
+                            Grid.Column="2" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            Width="100"
+                            Height="25" 
+                            Content="Zaloguj"
+                            Command="{Binding LogowanieVM.Zaloguj}"/>
+                    
                 </Grid>
             </TabItem>
             
             <!--*********************************ODDZIALY************************************-->
-            <TabItem x:Name="oddzialy" Header="Oddzialy">
+            <TabItem x:Name="oddzialy" Header="Oddzialy" Visibility="{Binding LogowanieVM.WidocznoscZakladekAdmina}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
@@ -257,7 +283,7 @@
             </TabItem>
 
             <!--*********************************AUTA************************************-->
-            <TabItem x:Name="auto" Header="Auto">
+            <TabItem x:Name="auto" Header="Auto"  Visibility="{Binding LogowanieVM.WidocznoscZakladekPracownika}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
@@ -383,7 +409,7 @@
                 </Grid>
             </TabItem>
             <!--**********************************PRACOWNICY************************************-->
-            <TabItem x:Name="pracownicy" Header="Pracownicy">
+            <TabItem x:Name="pracownicy" Header="Pracownicy"  Visibility="{Binding LogowanieVM.WidocznoscZakladekAdmina}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
@@ -495,7 +521,7 @@
             </TabItem>
 
             <!--**********************************KLIENCI************************************-->
-            <TabItem x:Name="klienci" Header="Klienci">
+            <TabItem x:Name="klienci" Header="Klienci"  Visibility="{Binding LogowanieVM.WidocznoscZakladekPracownika}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
@@ -611,7 +637,7 @@
                     </view:ButtonsUC>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="wynajem" Header="Wynajem">
+            <TabItem x:Name="wynajem" Header="Wynajem"  Visibility="{Binding LogowanieVM.WidocznoscZakladekPracownika}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
@@ -866,7 +892,7 @@
                     </view:ButtonsUC>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="zwrot" Header="Zwrot">
+            <TabItem x:Name="zwrot" Header="Zwrot"  Visibility="{Binding LogowanieVM.WidocznoscZakladekPracownika}">
 
             </TabItem>
         </TabControl>

@@ -17,5 +17,11 @@
     <Setting Name="port" Type="System.UInt32" Scope="Application">
       <Value Profile="(Default)">3306</Value>
     </Setting>
+    <Setting Name="LoginAdmin" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">M.Wysocki@wp.pl</Value>
+    </Setting>
+    <Setting Name="HasloAdmin" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">89080128211</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
