@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         xmlns:view="clr-namespace:WypozyczalaniaProjekt.View"
         xmlns:vm="clr-namespace:WypozyczalaniaProjekt.ViewModel"
-        Title="WYPOŻYCZALNIA SAMOCHODÓW" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="WYPOŻYCZALNIA SAMOCHODÓW" Height="450" Width="800" 
+        WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <vm:MainViewModel x:Key="mainVM"/>
