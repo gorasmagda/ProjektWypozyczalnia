@@ -61,14 +61,14 @@ namespace WypozyczalaniaProjekt.ViewModel
         public ObservableCollection<Klient> Klienci { get; set; }
         public ObservableCollection<DwieDaty> Daty { get; set; }
 
-        private Wynajem wybranyWynajem;
-        public Wynajem WybranyWynajem
+        private WynajemSamochodKlient wybranyWynajemSamochodKlient;
+        public WynajemSamochodKlient WybranyWynajemSamochodKlient
         {
-            get => wybranyWynajem;
+            get => wybranyWynajemSamochodKlient;
             set
             {
-                wybranyWynajem = value;
-                if (wybranyWynajem != null)
+                wybranyWynajemSamochodKlient = value;
+                if (wybranyWynajemSamochodKlient != null)
                 {
                     DeleteEnabled = true;
                 }
@@ -76,7 +76,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                 {
                     DeleteEnabled = false;
                 }
-                onPropertyChanged(nameof(WybranyWynajem));
+                onPropertyChanged(nameof(WybranyWynajemSamochodKlient));
             }
         }
 
@@ -370,7 +370,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                             if (model.DodajWynajemDoBazy(wynajem))
                             {
                                 CzyscFormularz();
-                                WybranyWynajem = null;
+                                WybranyWynajemSamochodKlient = null;
                                 StworzKolekcje();
                                 MessageBox.Show("Wynajem został dodany!");
                             }
@@ -389,11 +389,13 @@ namespace WypozyczalaniaProjekt.ViewModel
                     edytujWynajem = new RelayCommand(
                         arg =>
                         {
-
-                            // TODO: EDYCJA WYNAJMU
-                            //model.EdytujOddzialWBazie(new Oddzial(Adres, NrTelefonu, Nazwa), (sbyte)WybranyOddzial.IdOddzialu);
-                            //CzyscFormularz();
-                            //WybranyOddzial = null;
+                            if (model.EdytujWynajemWBazie(new Wynajem(DataRozpoczecia, DataZakonczenia, 100, WybranySamochod.IdAuto, WybranyKlient.IdKlient, 1), (sbyte)WybranyWynajemSamochodKlient.IdWynajem))
+                            {
+                                CzyscFormularz();
+                                WybranyWynajemSamochodKlient = null;
+                                MessageBox.Show("Edycja wynajmu przebiegła pomyślnie");
+                                StworzKolekcje();
+                            }
                         },
                         arg => IdWybranegoWynajmu > -1);
                 return edytujWynajem;
@@ -409,9 +411,20 @@ namespace WypozyczalaniaProjekt.ViewModel
                     usunWynajem = new RelayCommand(
                         arg =>
                         {
-                            // TODO: USUNIECIE WYNAJMU
-                            //model.UsunOddzialZBazy((sbyte)WybranyOddzial.IdOddzialu);
-                            //IdWybranegoOddzialu = -1;
+                            if (MessageBox.Show("Czy chcesz usunąć wybrany wynajem?", "Usuwanie wynajmu", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                            {
+                                if (model.UsunWynajemZBazy((sbyte)WybranyWynajemSamochodKlient.IdWynajem))
+                                {
+                                    CzyscFormularz();
+                                    WybranyWynajemSamochodKlient = null;
+                                    MessageBox.Show("Usunięto wybrany wynajem.");
+                                    StworzKolekcje();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Usuwanie nie powiodło się");
+                                }
+                            }
                         },
                         arg => IdWybranegoWynajmu > -1);
                 return usunWynajem;
@@ -427,7 +440,32 @@ namespace WypozyczalaniaProjekt.ViewModel
                     zaladujFormularz = new RelayCommand(
                         o =>
                         {
-                            // TODO: ZALADOWANIE FORMULARZA
+                            if (WybranyWynajemSamochodKlient != null)
+                            {
+                                DataRozpoczecia = WybranyWynajemSamochodKlient.DataWypozyczenia;
+                                DataZakonczenia = WybranyWynajemSamochodKlient.DataZwrotu;
+                                Marka = WybranyWynajemSamochodKlient.Marka;
+                                ModelAuta = WybranyWynajemSamochodKlient.ModelAuta;
+                                Nazwisko = WybranyWynajemSamochodKlient.Nazwisko;
+                                Imie = WybranyWynajemSamochodKlient.Imie;
+                                CalkowityKoszt = (int)WybranyWynajemSamochodKlient.CalkowityKoszt;
+
+                                foreach (var s in Samochody)
+                                {
+                                    if (WybranyWynajemSamochodKlient.IdAuto == s.IdAuto)
+                                    {
+                                        Cena = s.Cena;
+                                        WybranySamochod = s;
+                                    }
+                                }
+                                foreach (var k in Klienci)
+                                {
+                                    if (WybranyWynajemSamochodKlient.IdKlient == k.IdKlient)
+                                    {
+                                        WybranyKlient = k;
+                                    }
+                                }
+                            }
                         },
                         null);
                 return zaladujFormularz;
@@ -525,9 +563,17 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         private void CzyscFormularz()
         {
-            
+            DataRozpoczecia = DateTime.Today;
+            DataZakonczenia = DateTime.Today;
+            Marka = "";
+            ModelAuta = "";
+            Nazwisko = "";
+            Imie = "";
+            CalkowityKoszt = null;
+            Cena = "";
         }
-        private bool SprawdzFormularz() // TODO: ZROBIENIE WALIDACJI DLA EDYCJI ODDZIALU
+
+        private bool SprawdzFormularz() // TODO: ZROBIENIE WALIDACJI DLA EDYCJI WYNAJMU
         {
             bool wynik = true;
             //if (Adres == null || NrTelefonu == null || Nazwa == null)

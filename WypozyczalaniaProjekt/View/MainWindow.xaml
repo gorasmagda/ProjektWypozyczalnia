@@ -707,7 +707,7 @@
                               BorderBrush="Black"
                               BorderThickness="0,3,0,0"
                               ItemsSource="{Binding WynajemVM.WynajmySamochodyKlienci}"
-                              SelectedItem="{Binding WynajemVM.WybranyWynajem}"
+                              SelectedItem="{Binding WynajemVM.WybranyWynajemSamochodKlient}"
                               SelectedIndex="{Binding WynajemVM.IdWybranegoWynajmu, Mode=TwoWay}" >
 
                         <DataGrid.Columns>

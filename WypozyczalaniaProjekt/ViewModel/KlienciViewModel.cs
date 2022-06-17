@@ -251,9 +251,22 @@ namespace WypozyczalaniaProjekt.ViewModel
                     edytujKlienta = new RelayCommand(
                         arg =>
                         {
+
+                            var tempDataWaznosci = DataWaznosci;
+                            var tempWybranyKlient = WybranyKlient;
+                            var tempNumer = Numer;
+                            var tempNumerCVV = NumerCVV;
+                            var tempRodzaj = Rodzaj;
                             // TODO: DOKOŃCZYĆ EDYCJE KLIENTA I KARTY
-                            model.EdytujKlientaWBazie(new Klient(Imie, Nazwisko, Plec, Email, NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)IdKarty), (sbyte)WybranyKlient.IdKlient);
-                            IdWybranegoKlienta = -1;
+                            if (model.EdytujKlientaWBazie(new Klient(Imie, Nazwisko, Plec, Email, NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)IdKarty), (sbyte)WybranyKlient.IdKlient))
+                            {
+                                if (model.EdytujKarteWBazie(new KartaKredytowa(tempNumer, DateTime.Parse(tempDataWaznosci), tempNumerCVV, Imie, Nazwisko, tempRodzaj), (sbyte)tempWybranyKlient.IdKarty, tempWybranyKlient))
+                                {
+                                    CzyscFormularz();
+                                    IdWybranegoKlienta = -1;
+                                    MessageBox.Show("Edycja klienta oraz karty przebiegła pomyślnie");
+                                }
+                            }
                         },
                         arg => IdWybranegoKlienta > -1);
                 return edytujKlienta;
@@ -269,8 +282,23 @@ namespace WypozyczalaniaProjekt.ViewModel
                     usunKlienta = new RelayCommand(
                         arg =>
                         {
-                            model.UsunKlientaZBazy((sbyte)WybranyKlient.IdKlient);
-                            IdWybranegoKlienta= -1;
+                            if (MessageBox.Show("Czy chcesz usunąć wybranego klienta?", "Usuwanie klienta", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                            {
+                                var tempWybranyKlient = WybranyKlient;
+                                if (model.UsunKlientaZBazy((sbyte)WybranyKlient.IdKlient))
+                                {
+                                    if (model.UsunKarteZBazy((sbyte)tempWybranyKlient.IdKarty))
+                                    {
+                                        CzyscFormularz();
+                                        IdWybranegoKlienta = -1;
+                                        MessageBox.Show("Usunięto wybranego klienta wraz z jego kartą");
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Usuwanie nie powiodło się");
+                                }
+                            }
                         },
                         arg => IdWybranegoKlienta > -1);
                 return usunKlienta;
@@ -315,6 +343,16 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 Email = WybranyKlient.Email;
                                 NrPrawaJazdy = WybranyKlient.NrPrawaJazdy;
                                 IdKarty = (int)WybranyKlient.IdKarty;
+                                foreach (var k in model.Karty)
+                                {
+                                    if (WybranyKlient.IdKarty == k.IdKarty)
+                                    {
+                                        Rodzaj = k.Rodzaj;
+                                        DataWaznosci = k.DataWaznosci.ToString("yyyy-MM-dd");
+                                        Numer = k.Numer;
+                                        NumerCVV = k.NumerCVV;
+                                    }
+                                }
                             }
                             else
                             {

@@ -150,8 +150,19 @@ namespace WypozyczalaniaProjekt.ViewModel
                     usunOddzial = new RelayCommand(
                         arg =>
                         {
-                            model.UsunOddzialZBazy((sbyte)WybranyOddzial.IdOddzialu);
-                            IdWybranegoOddzialu = -1;
+                            if (MessageBox.Show("Czy chcesz usunąć wybrany oddział?", "Usuwanie oddziału", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                            {
+                                if (model.UsunOddzialZBazy((sbyte)WybranyOddzial.IdOddzialu))
+                                {
+                                    CzyscFormularz();
+                                    IdWybranegoOddzialu = -1;
+                                    MessageBox.Show("Usunięto wybrany oddział.");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Usuwanie nie powiodło się");
+                                }
+                            }
                         },
                         arg => IdWybranegoOddzialu > -1);
                 return usunOddzial;
