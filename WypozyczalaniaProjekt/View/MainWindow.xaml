@@ -293,16 +293,24 @@
                      IsSelected="{Binding LogowanieVM.SamochodyPokazane}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="39*" />
+                        <ColumnDefinition Width="61*"/>
+                        <ColumnDefinition Width="100*"/>
                     </Grid.ColumnDefinitions>
                     <ScrollViewer Grid.Column="0"
                                   VerticalScrollBarVisibility="Visible"
                                   HorizontalScrollBarVisibility="Auto"
-                                  VerticalAlignment="Top"
-                                   Margin="0,0,0,150">
+                                  VerticalAlignment="Top" Height="241" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Margin="0,0,0,150">
+                        <ScrollViewer.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="0.163"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="0.537"/>
+                            </TransformGroup>
+                        </ScrollViewer.RenderTransform>
 
-                        <StackPanel Height="300">
+                        <StackPanel Height="340">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1*"/>
@@ -331,6 +339,9 @@
                                 <TextBlock HorizontalAlignment="Left" Margin="2,243,0,-236.8" TextWrapping="Wrap" Text="Ilość Miejsc" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="2,259,31,-257.8"
                                          Text="{Binding AutoVM.IloscMiejsc}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,283,0,-276.8" TextWrapping="Wrap" Text="Silnik" Foreground="LightGray"/>
+                                <TextBox Grid.Column="0" Margin="2,299,31,-297.8"
+                                         Text="{Binding AutoVM.Silnik}"/>
 
 
                                 <TextBlock HorizontalAlignment="Left" Margin="2,7,0,-0.8" TextWrapping="Wrap" Grid.Column="1" Text="Marka" Foreground="LightGray"/>
@@ -357,6 +368,9 @@
                                 <ComboBox Margin="2,259,31,-257.8" Grid.Column="1" 
                                           ItemsSource="{Binding AutoVM.Oddzialy}"
                                           SelectedItem="{Binding AutoVM.WybranyOddzial, Mode=TwoWay}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,283,0,-276.8" TextWrapping="Wrap" Grid.Column="1" Text="Moc" Foreground="LightGray"/>
+                                <TextBox Grid.Column="1" Margin="2,299,31,-297.8"
+                                         Text="{Binding AutoVM.Moc}"/>
 
                             </Grid>
                         </StackPanel>
@@ -397,7 +411,7 @@
                                     VerticalAlignment="Bottom"
                                     AddE="{Binding AutoVM.AddEnabled, Mode=TwoWay}"
                                     EditE="{Binding AutoVM.EditEnabled, Mode=TwoWay}"
-                                    DeleteE="{Binding AutoVM.DeleteEnabled, Mode=TwoWay}">
+                                    DeleteE="{Binding AutoVM.DeleteEnabled, Mode=TwoWay}" Grid.ColumnSpan="2">
 
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="AddClick">

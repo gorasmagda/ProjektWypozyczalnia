@@ -16,8 +16,8 @@
         private Model model = null;
 
         private int idWybranegoAuta;
-        private int? rocznik, iloscMiejsc, przebieg;
-        private string kaucja, lokalizacja, modelAuta, nrRejestracyjny, cena, dostepnosc, marka, kolor, skrzynia;
+        private int? rocznik, iloscMiejsc, przebieg, moc;
+        private string kaucja, lokalizacja, modelAuta, nrRejestracyjny, cena, dostepnosc, marka, kolor, skrzynia, silnik;
         private Kategoria wybranaKategoria;
         private Oddzial wybranyOddzial;
 
@@ -216,6 +216,28 @@
             }
         }
 
+        public string Silnik
+        {
+            get => silnik;
+            set
+            {
+                silnik = value;
+                SprawdzFormularz();
+                onPropertyChanged(nameof(Silnik));
+            }
+        }
+
+        public int? Moc
+        {
+            get => moc;
+            set
+            {
+                moc = value;
+                SprawdzFormularz();
+                onPropertyChanged(nameof(Moc));
+            }
+        }
+
         public Oddzial WybranyOddzial
         {
             get => wybranyOddzial;
@@ -251,7 +273,7 @@
                     dodajAuto = new RelayCommand(
                         arg =>
                         {
-                            var samochod = new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)WybranyOddzial.IdOddzialu, WybranaKategoria.Nazwa);
+                            var samochod = new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)WybranyOddzial.IdOddzialu, WybranaKategoria.Nazwa, Silnik, (int)Moc);
                             if (model.DodajSamochodDoBazy(samochod))
                             {
                                 CzyscFormularz();
@@ -273,7 +295,7 @@
                     edytujAuto = new RelayCommand(
                         arg =>
                         {
-                            model.EdytujSamochodWBazie(new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)WybranyOddzial.IdOddzialu, WybranaKategoria.Nazwa), (sbyte)WybraneAuto.IdAuto);
+                            model.EdytujSamochodWBazie(new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)WybranyOddzial.IdOddzialu, WybranaKategoria.Nazwa, Silnik, (int)Moc), (sbyte)WybraneAuto.IdAuto);
                             IdWybranegoAuta = -1;
                         },
                         arg => IdWybranegoAuta > -1);  // TODO: AutoVM - Edycja Auta - walidacja
@@ -332,6 +354,8 @@
                                 Dostepnosc = WybraneAuto.Dostepnosc;
                                 Kolor = WybraneAuto.Kolor;
                                 Skrzynia = WybraneAuto.Skrzynia;
+                                Silnik = WybraneAuto.Silnik;
+                                Moc = WybraneAuto.Moc;
                                 foreach (var oddzial in Oddzialy)
                                 {
                                     if (oddzial.IdOddzialu == (int)WybraneAuto.IdOddzial)
@@ -427,16 +451,18 @@
             WybranyOddzial = null;
             WybranaKategoria = null;
             WybraneAuto = null;
+            Silnik = "";
+            Moc = null;
         }
 
         private bool SprawdzFormularz() // TODO: WALIDACJA DO EDYCJI AUT
         {
             bool wynik = true;
 
-            if (Rocznik == null || IloscMiejsc == null || Przebieg == null || WybranyOddzial == null || WybranaKategoria == null)
+            if (Rocznik == null || IloscMiejsc == null || Przebieg == null || WybranyOddzial == null || WybranaKategoria == null || Moc == null)
                 wynik = false;
             if (Kaucja == "" || Lokalizacja == "" || ModelAuta == "" || NrRejestracyjny == "" ||
-                Cena == "" || Dostepnosc == "" || Marka == "" || Kolor == "" || Skrzynia == "")
+                Cena == "" || Dostepnosc == "" || Marka == "" || Kolor == "" || Skrzynia == "" || Silnik == "")
                 wynik = false;
 
             AddEnabled = wynik;
