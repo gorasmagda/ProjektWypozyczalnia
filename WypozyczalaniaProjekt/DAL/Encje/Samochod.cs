@@ -22,6 +22,8 @@ namespace WypozyczalaniaProjekt.DAL.Encje
         public string Dostepnosc { get; set; }
         public sbyte? IdOddzial { get; set; }
         public string Kategoria { get; set; }
+        public string Silnik { get; set; }
+        public int Moc { get; set; }
 
         #endregion
 
@@ -44,9 +46,11 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             Dostepnosc = reader["dostepnosc"].ToString();
             IdOddzial = sbyte.Parse(reader["id_oddzialu"].ToString());
             Kategoria = reader["kategoria"].ToString();
+            Silnik = reader["silnik"].ToString();
+            Moc = int.Parse(reader["moc"].ToString()) ;
         }
 
-        public Samochod(string marka, string model, int rocznik, string kolor, int iloscMiejsc, string skrzynia, string nrRejestracyjny, string aktualnaLokalizacja, string cena, string kaucja, int przebieg, string dostepnosc, sbyte? idOddzialu, string nazwa)
+        public Samochod(string marka, string model, int rocznik, string kolor, int iloscMiejsc, string skrzynia, string nrRejestracyjny, string aktualnaLokalizacja, string cena, string kaucja, int przebieg, string dostepnosc, sbyte? idOddzialu, string nazwa, string silnik, int moc)
         {
             IdAuto = null;
             Marka = marka.Trim();
@@ -63,6 +67,8 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             Dostepnosc = dostepnosc;
             IdOddzial = idOddzialu;
             Kategoria = nazwa;
+            Silnik = silnik;
+            Moc = moc;
         }
 
         public Samochod(Samochod samochod)
@@ -82,6 +88,8 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             Dostepnosc = samochod.Dostepnosc;
             IdOddzial = samochod.IdOddzial;
             Kategoria = samochod.Kategoria;
+            Silnik = samochod.Silnik;
+            Moc = samochod.Moc;
         }
 
         #endregion

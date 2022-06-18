@@ -14,7 +14,7 @@
     <Window.Resources>
         <vm:MainViewModel x:Key="mainVM"/>
 
-        <Style TargetType="{x:Type TabItem}">
+        <!--<Style TargetType="{x:Type TabItem}">
             <Setter Property="BorderThickness" Value="10"/>
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="Padding" Value="0"/>
@@ -36,7 +36,7 @@
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
+        </Style>-->
 
         <Style TargetType="{x:Type DataGrid}">
             <Setter Property="Background" Value="#6d6394"/>
@@ -120,7 +120,7 @@
                                Text="LOGOWANIE" 
                                Foreground="White" 
                                FontSize="26" 
-                               FontWeight="Bold"/>      
+                               FontWeight="Bold"/>
 
                     <Grid Grid.Row="1"
                           Grid.Column="1"
@@ -206,10 +206,10 @@
                             Height="25" 
                             Content="Zaloguj"
                             Command="{Binding LogowanieVM.Zaloguj}"/>
-                    
+
                 </Grid>
             </TabItem>
-            
+
             <!--*********************************ODDZIALY************************************-->
             <TabItem x:Name="oddzialy" Header="Oddzialy"
                      Visibility="{Binding LogowanieVM.WidocznoscZakladekAdmina}"
@@ -379,6 +379,8 @@
                             <DataGridTextColumn Header="Dostepny" Binding="{Binding Dostepnosc}"/>
                             <DataGridTextColumn Header="Oddział" Binding="{Binding IdOddzial}"/>
                             <DataGridTextColumn Header="Kategoria" Binding="{Binding Kategoria}"/>
+                            <DataGridTextColumn Header="Silnik" Binding="{Binding Silnik}"/>
+                            <DataGridTextColumn Header="Moc" Binding="{Binding Moc}"/>
                         </DataGrid.Columns>
 
                         <i:Interaction.Triggers>
@@ -703,7 +705,7 @@
                                 <ComboBox Margin="5,176,35.4,2"
                                           ItemsSource="{Binding WynajemVM.Statusy}"
                                           SelectedItem="{Binding WynajemVM.WybranyStatus, Mode=TwoWay}"/>
-                                
+
                             </Grid>
                         </StackPanel>
                     </ScrollViewer>
@@ -725,7 +727,7 @@
                                       BorderBrush="Black"
                                       VerticalScrollBarVisibility="Visible"
                                       ItemsSource="{Binding WynajemVM.Samochody}"
-                                      SelectedItem="{Binding WynajemVM.WybranySamochod}">
+                                      SelectedItem="{Binding WynajemVM.WybranySamochod}" Margin="0,0,0,22">
 
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Marka" Binding="{Binding Marka}"/>
@@ -767,9 +769,9 @@
                                     Command="{Binding WynajemVM.PrzelaczWidok}"/>
 
 
-                            <DataGrid Grid.Column="1"
+                            <DataGrid
                                       ItemsSource="{Binding WynajemVM.Klienci}"
-                                      SelectedItem="{Binding WynajemVM.WybranyKlient}">
+                                      SelectedItem="{Binding WynajemVM.WybranyKlient}" Grid.ColumnSpan="2" Margin="222,0,0,22">
 
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}"/>
@@ -824,8 +826,8 @@
 
                     </Grid>
                     <!-- LISTA WYNAJMÓW -->
-                    <DataGrid Grid.Column="2"
-                              Margin="0 200 0 0"
+                    <DataGrid Grid.Column="1"
+                              Margin="0,200,0,0"
                               BorderBrush="Black"
                               BorderThickness="0,3,0,0"
                               ItemsSource="{Binding WynajemVM.WynajmySamochodyKlienci}"

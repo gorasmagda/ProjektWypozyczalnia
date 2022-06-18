@@ -14,7 +14,7 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
         // 'samochody' ('marka', 'model', 'rocznik', 'kolor', 'ilosc_miejsc', 'skrzynia', 'nr_rejestracyjny', 'aktualna_lokalizacja', 'cena', 'kaucja', 'przebieg', 'dostepnosc', 'id_oddzialu', 'nazwa')
 
         private const string WSZYSTKIE_SAMOCHODY = "SELECT * FROM samochody Order BY ID_AUTO ASC";
-        private const string DODAJ_SAMOCHOD = "INSERT INTO samochody ( marka, model, rocznik, kolor, ilosc_miejsc, skrzynia, nr_rejestracyjny, aktualna_lokalizacja, cena, kaucja, przebieg, dostepnosc, id_oddzialu, kategoria) VALUES ";
+        private const string DODAJ_SAMOCHOD = "INSERT INTO samochody ( marka, model, rocznik, kolor, ilosc_miejsc, skrzynia, nr_rejestracyjny, aktualna_lokalizacja, cena, kaucja, przebieg, dostepnosc, id_oddzialu, kategoria, silnik, moc) VALUES ";
         private const string SZUKAJ_SAMOCHODOW = "SELECT * FROM samochody WHERE id_auto NOT IN (SELECT id_auto FROM wynajem WHERE";
 
         #endregion
@@ -61,7 +61,7 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
                 string EDYTUJ_SAMOCHOD = $"UPDATE samochody SET marka='{s.Marka}', model='{s.ModelAuta}', rocznik='{s.Rocznik}', kolor='{s.Kolor}', " +
                     $"ilosc_miejsc='{s.IloscMiejsc}', skrzynia='{s.Skrzynia}', nr_rejestracyjny='{s.NrRejestracyjny}', aktualna_lokalizacja='{s.Lokalizacja}', " +
                     $"cena='{s.Cena}', kaucja='{s.Kaucja}', przebieg='{s.Przebieg}', dostepnosc='{s.Dostepnosc}', id_oddzialu='{s.IdOddzial}', " +
-                    $"kategoria='{s.Kategoria}' WHERE id_auto='{idAuta}'";
+                    $"kategoria='{s.Kategoria}', silnik='{s.Silnik}', moc='{s.Moc}' WHERE id_auto='{idAuta}'";
                 
                 MySqlCommand command = new MySqlCommand(EDYTUJ_SAMOCHOD, connection);
                 connection.Open();
