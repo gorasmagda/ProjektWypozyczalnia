@@ -88,7 +88,7 @@ namespace WypozyczalaniaProjekt.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("pracownik")]
+        [global::System.Configuration.DefaultSettingValueAttribute("pracownik@server-wypozyczalnia")]
         public string pracownikID {
             get {
                 return ((string)(this["pracownikID"]));

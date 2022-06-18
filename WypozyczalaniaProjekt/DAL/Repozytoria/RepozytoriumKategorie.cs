@@ -18,11 +18,11 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
 
         #region metody CRUD
 
-        public static List<Kategoria> PobierzWszystkieKategorie()
+        public static List<Kategoria> PobierzWszystkieKategorie(IDBConnection database)
         {
             List<Kategoria> kategorie = new List<Kategoria>();
 
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 MySqlCommand command = new MySqlCommand(WSZYSTKIE_KATEGORIE, connection);
                 connection.Open();

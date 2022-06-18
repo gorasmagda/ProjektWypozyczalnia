@@ -19,13 +19,12 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
 
         #endregion
 
-
         #region metody CRUD
-        public static List<Samochod> PobierzWszystkieSamochody()
+        public static List<Samochod> PobierzWszystkieSamochody(IDBConnection database)
         {
             List<Samochod> samochody = new List<Samochod>();
 
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 MySqlCommand command = new MySqlCommand(WSZYSTKIE_SAMOCHODY, connection);
                 connection.Open();
@@ -38,10 +37,10 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return samochody;
         }
 
-        public static bool DodajSamochodDoBazy(Samochod samochod)
+        public static bool DodajSamochodDoBazy(IDBConnection database, Samochod samochod)
         {
             bool stan = false;
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 MySqlCommand command = new MySqlCommand($"{DODAJ_SAMOCHOD} {samochod.ToInsert()}", connection);
                 connection.Open();
@@ -54,10 +53,10 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return stan;
         }
 
-        public static bool EdytujSamochodWBazie(Samochod s, sbyte idAuta)
+        public static bool EdytujSamochodWBazie(IDBConnection database, Samochod s, sbyte idAuta)
         {
             bool stan = false;
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 string EDYTUJ_SAMOCHOD = $"UPDATE samochody SET marka='{s.Marka}', model='{s.ModelAuta}', rocznik='{s.Rocznik}', kolor='{s.Kolor}', " +
                     $"ilosc_miejsc='{s.IloscMiejsc}', skrzynia='{s.Skrzynia}', nr_rejestracyjny='{s.NrRejestracyjny}', aktualna_lokalizacja='{s.Lokalizacja}', " +
@@ -73,10 +72,10 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return stan;
         }
 
-        public static bool UsunSamochodZBazy(sbyte idAuta)
+        public static bool UsunSamochodZBazy(IDBConnection database, sbyte idAuta)
         {
             bool stan = false;
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 string USUN_SAMOCHOD = $"DELETE FROM samochody WHERE id_auto={idAuta}";
 
@@ -89,11 +88,11 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return stan;
         }
 
-        public static List<Samochod> PobierzWyszukaneSamochody(DateTime r, DateTime z)
+        public static List<Samochod> PobierzWyszukaneSamochody(IDBConnection database, DateTime r, DateTime z)
         {
             List<Samochod> samochody = new List<Samochod>();
 
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 string warunki = $"(data_wypozyczenia < '{r:yyyy-MM-dd}' AND data_zwrotu > '{z:yyyy-MM-dd}') " +
                                  $"OR (data_wypozyczenia > '{r:yyyy-MM-dd}' AND data_zwrotu < '{z:yyyy-MM-dd}') " +

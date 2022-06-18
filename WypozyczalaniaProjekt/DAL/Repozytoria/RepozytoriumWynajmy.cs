@@ -19,11 +19,11 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
 
         #region metody CRUD
 
-        public static List<Wynajem> PobierzWszystkieWynajmy()
+        public static List<Wynajem> PobierzWszystkieWynajmy(IDBConnection database)
         {
             List<Wynajem> wynajmy = new List<Wynajem>();
 
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 MySqlCommand command = new MySqlCommand(WSZYSTKIE_WYNAJMY, connection);
                 connection.Open();
@@ -36,10 +36,10 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return wynajmy;
         }
 
-        public static bool DodajWynajemDoBazy(Wynajem wynajem)
+        public static bool DodajWynajemDoBazy(IDBConnection database, Wynajem wynajem)
         {
             bool stan = false;
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 MySqlCommand command = new MySqlCommand($"{DODAJ_WYNAJEM} {wynajem.ToInsert()}", connection);
                 connection.Open();
@@ -52,10 +52,10 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return stan;
         }
 
-        public static bool EdytujWynajemWBazie(Wynajem w, sbyte idWynajem)
+        public static bool EdytujWynajemWBazie(IDBConnection database, Wynajem w, sbyte idWynajem)
         {
             bool stan = false;
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 string EDYTUJ_WYNAJEM = $"UPDATE wynajem SET data_wypozyczenia='{w.DataWypozyczenia:yyyy-MM-dd}', data_zwrotu='{w.DataZwrotu:yyyy-MM-dd}', calkowity_koszt='{w.CalkowityKoszt}', id_auto='{w.IdAuto}', id_klient='{w.IdKlient}', id_pracownik='{w.IdPracownik}', status_transakcji='{w.StatusTransakcji}' WHERE id_wynajem='{idWynajem}'";
 
@@ -68,10 +68,10 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return stan;
         }
 
-        public static bool UsunWynajemZBazy(sbyte idWynajem)
+        public static bool UsunWynajemZBazy(IDBConnection database, sbyte idWynajem)
         {
             bool stan = false;
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 string USUN_WYNAJEM = $"DELETE FROM wynajem WHERE id_wynajem='{idWynajem}'";
 

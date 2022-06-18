@@ -19,11 +19,11 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
 
         #region metody CRUD
 
-        public static List<KartaKredytowa> PobierzWszystkieKarty()
+        public static List<KartaKredytowa> PobierzWszystkieKarty(IDBConnection database)
         {
             List<KartaKredytowa> karty = new List<KartaKredytowa>();
 
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 MySqlCommand command = new MySqlCommand(WSZYSTKIE_KARTY, connection);
                 connection.Open();
@@ -36,10 +36,10 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return karty;
         }
 
-        public static bool DodajKarteDoBazy(KartaKredytowa karta)
+        public static bool DodajKarteDoBazy(IDBConnection database, KartaKredytowa karta)
         {
             bool stan = false;
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 MySqlCommand command = new MySqlCommand($"{DODAJ_KARTE} {karta.ToInsert()}", connection);
                 connection.Open();
@@ -52,10 +52,10 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return stan;
         }
 
-        public static bool EdytujKarteWBazie(KartaKredytowa kk, sbyte idKarta,Klient k)
+        public static bool EdytujKarteWBazie(IDBConnection database, KartaKredytowa kk, sbyte idKarta,Klient k)
         {
             bool stan = false;
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 string EDYTUJ_KARTE = $"UPDATE karty_kredytowe SET numer='{kk.Numer}', data_waznosci='{kk.DataWaznosci:yyyy-MM-dd}', numer_CVV='{kk.NumerCVV}', imie='{k.Imie}', nazwisko='{k.Nazwisko}', rodzaj='{kk.Rodzaj}' WHERE id_karta='{idKarta}'";
 
@@ -68,10 +68,10 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return stan;
         }
 
-        public static bool UsunKarteZBazy(sbyte idKarta)
+        public static bool UsunKarteZBazy(IDBConnection database, sbyte idKarta)
         {
             bool stan = false;
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 string USUN_KARTE = $"DELETE FROM karty_kredytowe WHERE id_karta='{idKarta}'";
 

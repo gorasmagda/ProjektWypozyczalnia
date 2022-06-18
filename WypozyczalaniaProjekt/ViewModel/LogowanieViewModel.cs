@@ -10,6 +10,7 @@ namespace WypozyczalaniaProjekt.ViewModel
     using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Input;
+    using WypozyczalaniaProjekt.DAL;
     using WypozyczalaniaProjekt.DAL.Encje;
     using WypozyczalaniaProjekt.Model;
 
@@ -154,12 +155,14 @@ namespace WypozyczalaniaProjekt.ViewModel
                         WidocznoscZakladekPracownika = "Visible";
                         WidocznoscWyloguj = "Visible";
                         OddzialyPokazane = true;
+                        model.Uzytkownik = "Admin";
                     }
                     else
                     {
                         WidocznoscZakladekPracownika = "Visible";
                         WidocznoscWyloguj = "Visible";
                         SamochodyPokazane = true;
+                        model.Uzytkownik = "User";
                     }
                 }
                 else

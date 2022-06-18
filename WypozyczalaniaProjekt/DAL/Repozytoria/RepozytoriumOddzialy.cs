@@ -19,11 +19,11 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
 
         #region metody CRUD
 
-        public static List<Oddzial> PobierzWszystkieOddzialy()
+        public static List<Oddzial> PobierzWszystkieOddzialy(IDBConnection database)
         {
             List<Oddzial> oddzialy = new List<Oddzial>();
 
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 MySqlCommand command = new MySqlCommand(WSZYSTKIE_ODDZIALY, connection);
                 connection.Open();
@@ -35,10 +35,10 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return oddzialy;
         }
 
-        public static bool DodajOddzialDoBazy(Oddzial oddzial)
+        public static bool DodajOddzialDoBazy(IDBConnection database, Oddzial oddzial)
         {
             bool stan = false;
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 MySqlCommand command = new MySqlCommand($"{DODAJ_ODDZIAL} {oddzial.ToInsert()}", connection);
                 connection.Open();
@@ -50,10 +50,10 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return stan;
         }
 
-        public static bool EdytujOddzialWBazie(Oddzial od, sbyte idOddzialu)
+        public static bool EdytujOddzialWBazie(IDBConnection database, Oddzial od, sbyte idOddzialu)
         {
             bool stan = false;
-            using (var connenction = DBConnection.Instance.Connection)
+            using (var connenction = database.GetConnection())
             {
                 string EDYTUJ_ODDZIAL = $"UPDATE oddzialy SET adres='{od.Adres}',nr_telefonu='{od.NrTelefonu}', nazwa='{od.Nazwa}' WHERE id_oddzialu='{idOddzialu}'";
 
@@ -66,10 +66,10 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return stan;
         }
 
-        public static bool UsunOddzialZBazy(sbyte idOddzialu)
+        public static bool UsunOddzialZBazy(IDBConnection database, sbyte idOddzialu)
         {
             bool stan = false;
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 string USUN_ODDZIAL = $"DELETE FROM oddzialy WHERE id_oddzialu={idOddzialu}";
 

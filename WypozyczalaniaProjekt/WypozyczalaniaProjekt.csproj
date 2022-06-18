@@ -117,6 +117,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DAL\DBConnection.cs" />
+    <Compile Include="DAL\DBConnectionAdmin.cs" />
+    <Compile Include="DAL\DBConnectionUser.cs" />
     <Compile Include="DAL\Encje\KartaKredytowa.cs" />
     <Compile Include="DAL\Encje\Kategoria.cs" />
     <Compile Include="DAL\Encje\Klient.cs" />
@@ -124,6 +126,7 @@
     <Compile Include="DAL\Encje\Pracownik.cs" />
     <Compile Include="DAL\Encje\Samochod.cs" />
     <Compile Include="DAL\Encje\Wynajem.cs" />
+    <Compile Include="DAL\IDBConnection.cs" />
     <Compile Include="DAL\Repozytoria\RepozytoriumKarty.cs" />
     <Compile Include="DAL\Repozytoria\RepozytoriumKategorie.cs" />
     <Compile Include="DAL\Repozytoria\RepozytoriumKlienci.cs" />

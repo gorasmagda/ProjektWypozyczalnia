@@ -14,11 +14,11 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
         #endregion
 
         #region metody CRUD
-        public static List<Pracownik> PobierzWszystkichPracownikow()
+        public static List<Pracownik> PobierzWszystkichPracownikow(IDBConnection database)
         {
             List<Pracownik> pracownicy = new List<Pracownik>();
 
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 MySqlCommand command = new MySqlCommand(WSZYSCY_PRACOWNICY, connection);
                 connection.Open();
@@ -31,10 +31,10 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return pracownicy;
         }
         
-        public static bool DodajPracownikaDoBazy(Pracownik pracownik)
+        public static bool DodajPracownikaDoBazy(IDBConnection database, Pracownik pracownik)
         {
             bool stan = false;
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 MySqlCommand command = new MySqlCommand($"{DODAJ_PRACOWNIKA} {pracownik.ToInsert()}", connection);
                 connection.Open();
@@ -47,10 +47,10 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return stan;
         }
 
-        public static bool EdytujPracownikaWBazie(Pracownik p, sbyte idPracownik)
+        public static bool EdytujPracownikaWBazie(IDBConnection database, Pracownik p, sbyte idPracownik)
         {
             bool stan = false;
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 string EDYTUJ_PRACOWNIKA = $"UPDATE pracownicy SET imie='{p.Imie}', nazwisko='{p.Nazwisko}', plec='{p.Plec}', email='{p.Email}', " +
                     $"nr_telefonu='{p.NrTelefonu}', adres='{p.Adres}', pesel='{p.Pesel}', nr_prawa_jazdy='{p.NrPrawaJazdy}', " +
@@ -65,10 +65,10 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return stan;
         }
 
-        public static bool UsunPracownikaZBazy(sbyte idPracownik)
+        public static bool UsunPracownikaZBazy(IDBConnection database, sbyte idPracownik)
         {
             bool stan = false;
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = database.GetConnection())
             {
                 string USUN_PRACOWNIKA = $"DELETE FROM pracownicy WHERE id_pracownik={idPracownik}";
 

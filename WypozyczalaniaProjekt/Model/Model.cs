@@ -4,6 +4,7 @@
     using DAL.Repozytoria;
     using System;
     using System.Collections.ObjectModel;
+    using WypozyczalaniaProjekt.DAL;
 
     class Model
     {
@@ -16,34 +17,56 @@
         public ObservableCollection<KartaKredytowa> Karty { get; set; } = new ObservableCollection<KartaKredytowa>();
         public ObservableCollection<Wynajem> Wynajmy { get; set; } = new ObservableCollection<Wynajem>();
 
+
+        private string uzytkownik;
+        public string Uzytkownik
+        {
+            get => uzytkownik;
+            set
+            {
+                uzytkownik = value;
+                if (uzytkownik == "Admin")
+                {
+                    database = DBConnectionAdmin.Instance;
+                }
+                else
+                {
+                    database = DBConnectionUser.Instance;
+                }
+            }
+        }
+        private static IDBConnection database;
+
         public Model()
         {
+            database = DBConnectionUser.Instance;
+
             //pobranie danych z bazy do kolekcji
-            var samochody = RepozytoriumSamochody.PobierzWszystkieSamochody();
+            var samochody = RepozytoriumSamochody.PobierzWszystkieSamochody(database);
             foreach (var s in samochody)
                 Samochody.Add(s);
 
-            var klienci = RepozytoriumKlienci.PobierzWszystkichKlientow();
+            var klienci = RepozytoriumKlienci.PobierzWszystkichKlientow(database);
             foreach (var k in klienci)
                 Klienci.Add(k);
 
-            var pracownicy = RepozytoriumPracownicy.PobierzWszystkichPracownikow();
+            var pracownicy = RepozytoriumPracownicy.PobierzWszystkichPracownikow(database);
             foreach (var p in pracownicy)
                 Pracownicy.Add(p);
 
-            var oddzialy = RepozytoriumOddzialy.PobierzWszystkieOddzialy();
+            var oddzialy = RepozytoriumOddzialy.PobierzWszystkieOddzialy(database);
             foreach (var o in oddzialy)
                 Oddzialy.Add(o);
 
-            var kategorie = RepozytoriumKategorie.PobierzWszystkieKategorie();
+            var kategorie = RepozytoriumKategorie.PobierzWszystkieKategorie(database);
             foreach (var k in kategorie)
                 Kategorie.Add(k);
 
-            var karty = RepozytoriumKarty.PobierzWszystkieKarty();
+            var karty = RepozytoriumKarty.PobierzWszystkieKarty(database);
             foreach (var k in karty)
                 Karty.Add(k);
 
-            var wynajmy = RepozytoriumWynajmy.PobierzWszystkieWynajmy();
+            var wynajmy = RepozytoriumWynajmy.PobierzWszystkieWynajmy(database);
             foreach (var w in wynajmy)
                 Wynajmy.Add(w);
         }
@@ -55,7 +78,7 @@
         {
             if (!CzySamochodJestJuzWBazie(samochod))
             {
-                if (RepozytoriumSamochody.DodajSamochodDoBazy(samochod))
+                if (RepozytoriumSamochody.DodajSamochodDoBazy(database, samochod))
                 {
                     Samochody.Add(samochod);
                     return true;
@@ -66,7 +89,7 @@
 
         public bool EdytujSamochodWBazie(Samochod samochod, sbyte idAuta)
         {
-            if (RepozytoriumSamochody.EdytujSamochodWBazie(samochod, idAuta))
+            if (RepozytoriumSamochody.EdytujSamochodWBazie(database, samochod, idAuta))
             {
                 for (int i=0; i<Samochody.Count; i++)
                 {
@@ -83,7 +106,7 @@
 
         public bool UsunSamochodZBazy(sbyte idAuta)
         {
-            if (RepozytoriumSamochody.UsunSamochodZBazy(idAuta))
+            if (RepozytoriumSamochody.UsunSamochodZBazy(database, idAuta))
             {
                 for (int i = 0; i < Samochody.Count; i++)
                 {
@@ -99,7 +122,7 @@
 
         public void SzukajSamochodow(DateTime r, DateTime z)
         {
-            var samochody = RepozytoriumSamochody.PobierzWyszukaneSamochody(r, z);
+            var samochody = RepozytoriumSamochody.PobierzWyszukaneSamochody(database, r, z);
             WyszukaneSamochody.Clear();
             foreach (var s in samochody)
                 WyszukaneSamochody.Add(s);
@@ -107,7 +130,7 @@
 
         public void PobierzWszystkieSamochody()
         {
-            var samochody = RepozytoriumSamochody.PobierzWszystkieSamochody();
+            var samochody = RepozytoriumSamochody.PobierzWszystkieSamochody(database);
             Samochody.Clear();
             foreach (var s in samochody)
                 Samochody.Add(s);
@@ -122,7 +145,7 @@
         {
             if (!CzyPracownikJestJuzWBazie(pracownik))
             {
-                if (RepozytoriumPracownicy.DodajPracownikaDoBazy(pracownik))
+                if (RepozytoriumPracownicy.DodajPracownikaDoBazy(database, pracownik))
                 {
                     Pracownicy.Add(pracownik);
                     return true;
@@ -133,7 +156,7 @@
 
         public bool EdytujPracownikaWBazie(Pracownik pracownik, sbyte idPracownik)
         {
-            if (RepozytoriumPracownicy.EdytujPracownikaWBazie(pracownik, idPracownik))
+            if (RepozytoriumPracownicy.EdytujPracownikaWBazie(database, pracownik, idPracownik))
             {
                 for (int i = 0; i < Pracownicy.Count; i++)
                 {
@@ -150,7 +173,7 @@
 
         public bool UsunPracownikaZBazy(sbyte idPracownik)
         {
-            if (RepozytoriumPracownicy.UsunPracownikaZBazy(idPracownik))
+            if (RepozytoriumPracownicy.UsunPracownikaZBazy(database, idPracownik))
             {
                 for (int i = 0; i < Pracownicy.Count; i++)
                 {
@@ -173,7 +196,7 @@
         {
             if (!CzyKlientJestJuzWBazie(klient))
             {
-                if (RepozytoriumKlienci.DodajKlientaDoBazy(klient))
+                if (RepozytoriumKlienci.DodajKlientaDoBazy(database, klient))
                 {
                     Klienci.Add(klient);
                     return true;
@@ -184,7 +207,7 @@
 
         public bool EdytujKlientaWBazie(Klient klient, sbyte idKlient)
         {
-            if (RepozytoriumKlienci.EdytujKlientaWBazie(klient, idKlient))
+            if (RepozytoriumKlienci.EdytujKlientaWBazie(database, klient, idKlient))
             {
                 for (int i = 0; i < Klienci.Count; i++)
                 {
@@ -201,7 +224,7 @@
 
         public bool UsunKlientaZBazy(sbyte idKlient)
         {
-            if (RepozytoriumKlienci.UsunKlientaZBazy(idKlient))
+            if (RepozytoriumKlienci.UsunKlientaZBazy(database, idKlient))
             {
                 for (int i = 0; i < Klienci.Count; i++)
                 {
@@ -224,7 +247,7 @@
         {
             if (!CzyOddzialJestJuzWBazie(oddzial))
             {
-                if (RepozytoriumOddzialy.DodajOddzialDoBazy(oddzial))
+                if (RepozytoriumOddzialy.DodajOddzialDoBazy(database, oddzial))
                 {
                     Oddzialy.Add(oddzial);
                     return true;
@@ -235,7 +258,7 @@
 
         public bool EdytujOddzialWBazie(Oddzial oddzial, sbyte idOddzialu)
         {
-            if (RepozytoriumOddzialy.EdytujOddzialWBazie(oddzial, idOddzialu))
+            if (RepozytoriumOddzialy.EdytujOddzialWBazie(database, oddzial, idOddzialu))
             {
                 for (int i = 0; i < Oddzialy.Count; i++)
                 {
@@ -252,7 +275,7 @@
 
         public bool UsunOddzialZBazy(sbyte idOddzialu)
         {
-            if (RepozytoriumOddzialy.UsunOddzialZBazy(idOddzialu))
+            if (RepozytoriumOddzialy.UsunOddzialZBazy(database, idOddzialu))
             {
                 for (int i = 0; i < Oddzialy.Count; i++)
                 {
@@ -275,7 +298,7 @@
         {
             if (!CzyKartaJestJuzWBazie(karta))
             {
-                if (RepozytoriumKarty.DodajKarteDoBazy(karta))
+                if (RepozytoriumKarty.DodajKarteDoBazy(database, karta))
                 {
                     Karty.Add(karta);
                     return true;
@@ -286,7 +309,7 @@
 
         public bool EdytujKarteWBazie(KartaKredytowa karta, sbyte idKarty, Klient klient)
         {
-            if (RepozytoriumKarty.EdytujKarteWBazie(karta, idKarty, klient))
+            if (RepozytoriumKarty.EdytujKarteWBazie(database, karta, idKarty, klient))
             {
                 for (int i = 0; i < Karty.Count; i++)
                 {
@@ -303,7 +326,7 @@
 
         public bool UsunKarteZBazy(sbyte idKarty)
         {
-            if (RepozytoriumKarty.UsunKarteZBazy(idKarty))
+            if (RepozytoriumKarty.UsunKarteZBazy(database, idKarty))
             {
                 for (int i = 0; i < Karty.Count; i++)
                 {
@@ -326,7 +349,7 @@
         {
             if (!CzyWynajemJestJuzWBazie(wynajem))
             {
-                if (RepozytoriumWynajmy.DodajWynajemDoBazy(wynajem))
+                if (RepozytoriumWynajmy.DodajWynajemDoBazy(database, wynajem))
                 {
                     Wynajmy.Add(wynajem);
                     return true;
@@ -337,7 +360,7 @@
 
         public bool EdytujWynajemWBazie(Wynajem wynajem, sbyte idWynajem)
         {
-            if (RepozytoriumWynajmy.EdytujWynajemWBazie(wynajem, idWynajem))
+            if (RepozytoriumWynajmy.EdytujWynajemWBazie(database, wynajem, idWynajem))
             {
                 for (int i = 0; i < Wynajmy.Count; i++)
                 {
@@ -354,7 +377,7 @@
 
         public bool UsunWynajemZBazy(sbyte idWynajem)
         {
-            if (RepozytoriumWynajmy.UsunWynajemZBazy(idWynajem))
+            if (RepozytoriumWynajmy.UsunWynajemZBazy(database, idWynajem))
             {
                 for (int i = 0; i < Wynajmy.Count; i++)
                 {
