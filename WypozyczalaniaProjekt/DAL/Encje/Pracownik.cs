@@ -88,12 +88,22 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
         }
 
-        // TODO: Pracownik - DOKOŃCZYĆ
         public override bool Equals(object obj)
         {
             var pracownik = obj as Pracownik;
             if (pracownik is null) return false;
-            if (Nazwisko.ToLower() != pracownik.Nazwisko.ToLower()) return false;
+            if (Imie.ToLower() != pracownik.Imie.ToLower()) return false;
+            if (!Nazwisko.ToLower().Equals(pracownik.Nazwisko.ToLower())) return false;
+            if (!Plec.ToLower().Equals(pracownik.Plec.ToLower())) return false;
+            if (!Email.ToLower().Equals(pracownik.Email.ToLower())) return false;
+            if (!NrTelefonu.ToLower().Equals(pracownik.NrTelefonu.ToLower())) return false;
+            if (!Adres.ToLower().Equals(pracownik.Adres.ToLower())) return false;
+            if (!DataUrodzenia.Equals(pracownik.DataUrodzenia)) return false;
+            if (!Pesel.ToLower().Equals(pracownik.Pesel.ToLower())) return false;
+            if (!NrPrawaJazdy.ToLower().Equals(pracownik.NrPrawaJazdy.ToLower())) return false;
+            if (!IdOddzial.Equals(pracownik.IdOddzial)) return false;
+            if (!Pensja.Equals(pracownik.Pensja)) return false;
+            
             return true;
         }
 

@@ -53,6 +53,22 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             return $"('{Adres}','{NrTelefonu}','{Nazwa}')";
         }
 
+        public override bool Equals(object obj)
+        {
+            var oddzial = obj as Oddzial;
+            if (oddzial is null) return false;
+            if (!Adres.ToLower().Equals(oddzial.Adres.ToLower())) return false;
+            if (!NrTelefonu.ToLower().Equals(oddzial.NrTelefonu.ToLower())) return false;
+            if (!Nazwa.ToLower().Equals(oddzial.Nazwa.ToLower())) return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         #endregion
 
     }

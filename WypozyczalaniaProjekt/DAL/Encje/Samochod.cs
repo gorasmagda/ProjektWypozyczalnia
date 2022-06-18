@@ -106,12 +106,27 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             return $"('{Marka}','{ModelAuta}','{Rocznik}','{Kolor}',{IloscMiejsc},'{Skrzynia}','{NrRejestracyjny}','{Lokalizacja}',{Cena},'{Kaucja}','{Przebieg}','{Dostepnosc}',{IdOddzial},'{Kategoria}')";
         }
 
-        // TODO: Samochód - DOKOŃCZYĆ
         public override bool Equals(object obj)
         {
             var samochod = obj as Samochod;
             if (samochod is null) return false;
             if (Marka.ToLower() != samochod.Marka.ToLower()) return false;
+            if (!ModelAuta.ToLower().Equals(samochod.ModelAuta.ToLower())) return false;
+            if (!Rocznik.Equals(samochod.Rocznik)) return false;
+            if (!Kolor.ToLower().Equals(samochod.Kolor.ToLower())) return false;
+            if (!IloscMiejsc.Equals(samochod.IloscMiejsc)) return false;
+            if (!Skrzynia.ToLower().Equals(samochod.Skrzynia.ToLower())) return false;
+            if (!NrRejestracyjny.ToLower().Equals(samochod.NrRejestracyjny.ToLower())) return false;
+            if (!Lokalizacja.ToLower().Equals(samochod.Lokalizacja.ToLower())) return false;
+            if (!Cena.ToLower().Equals(samochod.Cena.ToLower())) return false;
+            if (!Kaucja.ToLower().Equals(samochod.Kaucja.ToLower())) return false;
+            if (!Przebieg.Equals(samochod.Przebieg)) return false;
+            if (!Dostepnosc.ToLower().Equals(samochod.Dostepnosc.ToLower())) return false;
+            if (!IdOddzial.Equals(samochod.IdOddzial)) return false;
+            if (!Kategoria.ToLower().Equals(samochod.Kategoria.ToLower())) return false;
+            if (!Silnik.ToLower().Equals(samochod.Silnik.ToLower())) return false;
+            if (!Moc.Equals(samochod.Moc)) return false;
+            
             return true;
         }
 

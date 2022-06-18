@@ -41,6 +41,20 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             return Nazwa;
         }
 
+        public override bool Equals(object obj)
+        {
+            var kategoria = obj as Kategoria;
+            if (kategoria is null) return false;
+            if (!Opis.ToLower().Equals(kategoria.Opis.ToLower())) return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         #endregion
 
     }
