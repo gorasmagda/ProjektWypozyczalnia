@@ -288,7 +288,7 @@
             </TabItem>
 
             <!--*********************************AUTA************************************-->
-            <TabItem x:Name="auto" Header="Auto"
+            <TabItem x:Name="auto" Header="Samochody"
                      Visibility="{Binding LogowanieVM.WidocznoscZakladekPracownika}"
                      IsSelected="{Binding LogowanieVM.SamochodyPokazane}">
                 <Grid>
@@ -370,10 +370,10 @@
 
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Marka" Binding="{Binding Marka}"/>
-                            <DataGridTextColumn Header="Model" Binding="{Binding ModelAuta}"/>
+                            <DataGridTextColumn Header="Model" Binding="{Binding ModelAuta}" Width="100"/>
                             <DataGridTextColumn Header="Kolor" Binding="{Binding Kolor}"/>
                             <DataGridTextColumn Header="Rocznik" Binding="{Binding Rocznik}"/>
-                            <DataGridTextColumn Header="Skrz." Binding="{Binding Skrzynia}"/>
+                            <DataGridTextColumn Header="Skrz." Binding="{Binding Skrzynia}" Width="30"/>
                             <DataGridTextColumn Header="Rejestracja" Binding="{Binding NrRejestracyjny}"/>
                             <DataGridTextColumn Header="Lokalizacja" Binding="{Binding Lokalizacja}"/>
                             <DataGridTextColumn Header="Cena" Binding="{Binding Cena}"/>
