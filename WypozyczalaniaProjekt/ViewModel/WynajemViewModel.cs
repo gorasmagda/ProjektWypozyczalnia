@@ -45,7 +45,6 @@ namespace WypozyczalaniaProjekt.ViewModel
             Statusy.Add("zakonczona");
             Statusy.Add("nie zapłacono");
 
-
             Wynajmy = model.Wynajmy;
             Samochody = model.Samochody;
             Klienci = model.Klienci;
