@@ -293,22 +293,15 @@
                      IsSelected="{Binding LogowanieVM.SamochodyPokazane}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="39*" />
-                        <ColumnDefinition Width="61*"/>
-                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <ScrollViewer Grid.Column="0"
                                   VerticalScrollBarVisibility="Visible"
                                   HorizontalScrollBarVisibility="Auto"
-                                  VerticalAlignment="Top" Height="241" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Margin="0,0,0,150">
-                        <ScrollViewer.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform AngleX="0.163"/>
-                                <RotateTransform/>
-                                <TranslateTransform X="0.537"/>
-                            </TransformGroup>
-                        </ScrollViewer.RenderTransform>
+                                  VerticalAlignment="Top" Height="241"
+                                    Margin="0,0,0,150">
+                       
 
                         <StackPanel Height="340">
                             <Grid>
@@ -411,7 +404,7 @@
                                     VerticalAlignment="Bottom"
                                     AddE="{Binding AutoVM.AddEnabled, Mode=TwoWay}"
                                     EditE="{Binding AutoVM.EditEnabled, Mode=TwoWay}"
-                                    DeleteE="{Binding AutoVM.DeleteEnabled, Mode=TwoWay}" Grid.ColumnSpan="2">
+                                    DeleteE="{Binding AutoVM.DeleteEnabled, Mode=TwoWay}">
 
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="AddClick">
