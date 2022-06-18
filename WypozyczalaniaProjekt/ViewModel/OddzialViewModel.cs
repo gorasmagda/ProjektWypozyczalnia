@@ -254,7 +254,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             Nazwa = "";
             WybranyOddzial = null;
         }
-        private bool SprawdzFormularz() // TODO: ZROBIENIE WALIDACJI DLA EDYCJI ODDZIALU
+        private bool SprawdzFormularz()
         {
             bool wynik = true;
             if (Adres == null || NrTelefonu == null || Nazwa == null)

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace WypozyczalaniaProjekt.ViewModel
 {
-
     using BaseClassess;
     using System.Collections.ObjectModel;
     using System.Windows;
@@ -393,7 +392,6 @@ namespace WypozyczalaniaProjekt.ViewModel
                     dodajWynajem = new RelayCommand(
                         arg =>
                         {
-                            // TODO: OBLICZANIE CALKOWITEJ KWOTY
                             var wynajem = new Wynajem(DataRozpoczecia, DataZakonczenia, (decimal)CalkowityKoszt, WybranySamochod.IdAuto, WybranyKlient.IdKlient, (sbyte)model.IdZalogowanegoPracownika, WybranyStatus);
                             if (model.DodajWynajemDoBazy(wynajem))
                             {
@@ -515,7 +513,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 Marka = WybranySamochod.Marka;
                                 ModelAuta = WybranySamochod.ModelAuta;
                                 Cena = WybranySamochod.Cena;
-                                CalkowityKoszt = int.Parse(WybranySamochod.Cena);           // TODO: OBLICZANIE CAŁKOWITEGO KOSZTU
+                                CalkowityKoszt = int.Parse(WybranySamochod.Cena);
                             }
                         },
                         null);
