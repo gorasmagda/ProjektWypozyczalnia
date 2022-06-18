@@ -19,16 +19,15 @@ namespace WypozyczalaniaProjekt.DAL
 
         public MySqlConnection Connection => new MySqlConnection(stringBuilder.ToString());
 
-
         private DBConnection()
         {
 
             //stworzenie connection stringa na podstawie danych zapisanych w Sttings do których mamy dostęp spoza aplikacji 
-            stringBuilder.UserID = Properties.Settings.Default.userID;
+            stringBuilder.UserID = Properties.Settings.Default.wlascicielID;
             stringBuilder.Server = Properties.Settings.Default.server;
             stringBuilder.Database = Properties.Settings.Default.database;
             stringBuilder.Port = Properties.Settings.Default.port;
-            stringBuilder.Password = Properties.Settings.Default.paswd;
+            stringBuilder.Password = Properties.Settings.Default.wlascicielPaswd;
             stringBuilder.SslMode = MySqlSslMode.Required;
         }
     }

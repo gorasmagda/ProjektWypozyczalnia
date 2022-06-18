@@ -12,7 +12,7 @@ namespace WypozyczalaniaProjekt.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.2.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -44,18 +44,18 @@ namespace WypozyczalaniaProjekt.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("wlasciciel@server-wypozyczalnia")]
-        public string userID {
+        public string wlascicielID {
             get {
-                return ((string)(this["userID"]));
+                return ((string)(this["wlascicielID"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("toJestMojaBaza123")]
-        public string paswd {
+        public string wlascicielPaswd {
             get {
-                return ((string)(this["paswd"]));
+                return ((string)(this["wlascicielPaswd"]));
             }
         }
         
@@ -83,6 +83,24 @@ namespace WypozyczalaniaProjekt.Properties {
         public string HasloAdmin {
             get {
                 return ((string)(this["HasloAdmin"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("pracownik")]
+        public string pracownikID {
+            get {
+                return ((string)(this["pracownikID"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("toJestBazaWypozyczalni555")]
+        public string pracownikPaswd {
+            get {
+                return ((string)(this["pracownikPaswd"]));
             }
         }
     }

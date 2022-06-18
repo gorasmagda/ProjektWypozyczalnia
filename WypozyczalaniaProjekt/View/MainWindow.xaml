@@ -94,7 +94,9 @@
     <Grid  DataContext="{StaticResource mainVM}" Background="#594c8f">
         <TabControl Background="#594c8f" BorderThickness="0" Padding="0">
 
-            <TabItem x:Name="logowanie" Header="LOGOWANIE" Visibility="Collapsed">
+            <TabItem x:Name="logowanie" Header="LOGOWANIE"
+                     Visibility="Collapsed"
+                     IsSelected="{Binding LogowanieVM.LogowaniePokazane}">
                 <Grid Background="#594c8f">
 
                     <Grid.RowDefinitions>
@@ -897,5 +899,17 @@
                 </Grid>
             </TabItem>
         </TabControl>
+
+
+        <Button Width="75" Height="20"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                Content="Wyloguj"
+                Background="#291c5f"
+                Foreground="LightGray"
+                VerticalContentAlignment="Top"
+                Command="{Binding LogowanieVM.Wyloguj}"
+                Visibility="{Binding LogowanieVM.WidocznoscWyloguj}"/>
+
     </Grid>
 </Window>

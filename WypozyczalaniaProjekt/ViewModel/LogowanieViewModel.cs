@@ -31,6 +31,9 @@ namespace WypozyczalaniaProjekt.ViewModel
             Pracownicy = model.Pracownicy;
             WidocznoscZakladekAdmina = "Collapsed";
             WidocznoscZakladekPracownika = "Collapsed";
+            WidocznoscWyloguj = "Collapsed";
+
+
             Login = "M.Wysocki@wp.pl";
             Haslo = "89080128211";
         }
@@ -83,6 +86,17 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
+        private string widocznoscWyloguj;
+        public string WidocznoscWyloguj
+        {
+            get => widocznoscWyloguj;
+            set
+            {
+                widocznoscWyloguj = value;
+                onPropertyChanged(nameof(WidocznoscWyloguj));
+            }
+        }
+
         private bool oddzialyPokazane;
         public bool OddzialyPokazane
         {
@@ -104,6 +118,17 @@ namespace WypozyczalaniaProjekt.ViewModel
                 onPropertyChanged(nameof(SamochodyPokazane));
             }
         }
+        
+        private bool logowaniePokazane;
+        public bool LogowaniePokazane
+        {
+            get => logowaniePokazane;
+            set
+            {
+                logowaniePokazane = value;
+                onPropertyChanged(nameof(LogowaniePokazane));
+            }
+        }
 
         private ICommand wyczysc;
         public ICommand Wyczysc => wyczysc ?? (wyczysc = new RelayCommand(
@@ -118,6 +143,8 @@ namespace WypozyczalaniaProjekt.ViewModel
         public ICommand Zaloguj => zaloguj ?? (zaloguj = new RelayCommand(
             o =>
             {
+                WidocznoscZakladekAdmina = "Collapsed";
+                WidocznoscZakladekPracownika = "Collapsed";
                 if (CzyJestKtosTakiJestWBazie())
                 {
                     Console.WriteLine("Udalo sie");
@@ -125,11 +152,13 @@ namespace WypozyczalaniaProjekt.ViewModel
                     {
                         WidocznoscZakladekAdmina = "Visible";
                         WidocznoscZakladekPracownika = "Visible";
+                        WidocznoscWyloguj = "Visible";
                         OddzialyPokazane = true;
                     }
                     else
                     {
                         WidocznoscZakladekPracownika = "Visible";
+                        WidocznoscWyloguj = "Visible";
                         SamochodyPokazane = true;
                     }
                 }
@@ -139,7 +168,22 @@ namespace WypozyczalaniaProjekt.ViewModel
                 }
             },
             o => Login != null && Haslo != null && Login != "" && Haslo != ""));
-        
+
+        private ICommand wyloguj;
+        public ICommand Wyloguj => wyloguj ?? (wyloguj = new RelayCommand(
+            o =>
+            {
+                Login = "";
+                Haslo = "";
+                WidocznoscZakladekAdmina = "Collapsed";
+                WidocznoscZakladekPracownika = "Collapsed";
+                WidocznoscWyloguj = "Collapsed";
+                LogowaniePokazane = true;
+                OddzialyPokazane = false;
+                SamochodyPokazane = false;
+            },
+            null));
+
         public bool CzyJestKtosTakiJestWBazie()
         {
             bool wynik = false;
