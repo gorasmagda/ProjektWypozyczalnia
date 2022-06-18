@@ -31,7 +31,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             Oddzialy = new ObservableCollection<Oddzial>();
             Plcie = new List<string>();
             Plcie.Add("kobieta");
-            Plcie.Add("mężczyzna");
+            Plcie.Add("mezczyzna");
 
             this.model = model;
             Pracownicy = model.Pracownicy;

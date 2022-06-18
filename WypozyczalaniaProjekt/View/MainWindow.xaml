@@ -299,7 +299,7 @@
                     <ScrollViewer Grid.Column="0"
                                   VerticalScrollBarVisibility="Visible"
                                   HorizontalScrollBarVisibility="Auto"
-                                  VerticalAlignment="Top" Height="241"
+                                  VerticalAlignment="Top"
                                     Margin="0,0,0,150">
                        
 
