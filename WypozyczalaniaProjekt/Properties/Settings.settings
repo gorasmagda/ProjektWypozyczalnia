@@ -24,7 +24,7 @@
       <Value Profile="(Default)">89080128211</Value>
     </Setting>
     <Setting Name="pracownikID" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">pracownik</Value>
+      <Value Profile="(Default)">pracownik@server-wypozyczalnia</Value>
     </Setting>
     <Setting Name="pracownikPaswd" Type="System.String" Scope="Application">
       <Value Profile="(Default)">toJestBazaWypozyczalni555</Value>

@@ -366,7 +366,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                         arg =>
                         {
                             // TODO: OBLICZANIE CALKOWITEJ KWOTY
-                            var wynajem = new Wynajem(DataRozpoczecia, DataZakonczenia, 100, WybranySamochod.IdAuto, WybranyKlient.IdKlient, 1);
+                            var wynajem = new Wynajem(DataRozpoczecia, DataZakonczenia, 100, WybranySamochod.IdAuto, WybranyKlient.IdKlient, 1, "Zakonczona");
                             if (model.DodajWynajemDoBazy(wynajem))
                             {
                                 CzyscFormularz();
@@ -389,7 +389,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     edytujWynajem = new RelayCommand(
                         arg =>
                         {
-                            if (model.EdytujWynajemWBazie(new Wynajem(DataRozpoczecia, DataZakonczenia, 100, WybranySamochod.IdAuto, WybranyKlient.IdKlient, 1), (sbyte)WybranyWynajemSamochodKlient.IdWynajem))
+                        if (model.EdytujWynajemWBazie(new Wynajem(DataRozpoczecia, DataZakonczenia, 100, WybranySamochod.IdAuto, WybranyKlient.IdKlient, 1, "Zakonczona"), (sbyte)WybranyWynajemSamochodKlient.IdWynajem))
                             {
                                 CzyscFormularz();
                                 WybranyWynajemSamochodKlient = null;
