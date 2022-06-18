@@ -83,6 +83,28 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
+        private bool oddzialyPokazane;
+        public bool OddzialyPokazane
+        {
+            get => oddzialyPokazane;
+            set
+            {
+                oddzialyPokazane = value;
+                onPropertyChanged(nameof(OddzialyPokazane));
+            }
+        }
+
+        private bool samochodyPokazane;
+        public bool SamochodyPokazane
+        {
+            get => samochodyPokazane;
+            set
+            {
+                samochodyPokazane = value;
+                onPropertyChanged(nameof(SamochodyPokazane));
+            }
+        }
+
         private ICommand wyczysc;
         public ICommand Wyczysc => wyczysc ?? (wyczysc = new RelayCommand(
             o =>
@@ -103,10 +125,12 @@ namespace WypozyczalaniaProjekt.ViewModel
                     {
                         WidocznoscZakladekAdmina = "Visible";
                         WidocznoscZakladekPracownika = "Visible";
+                        OddzialyPokazane = true;
                     }
                     else
                     {
                         WidocznoscZakladekPracownika = "Visible";
+                        SamochodyPokazane = true;
                     }
                 }
                 else
