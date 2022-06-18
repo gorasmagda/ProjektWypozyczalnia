@@ -34,8 +34,8 @@ namespace WypozyczalaniaProjekt.ViewModel
             WidocznoscZakladekPracownika = "Collapsed";
             WidocznoscWyloguj = "Collapsed";
 
-            Login = "M.Wysocki@wp.pl";
-            Haslo = "89080128211";
+            //Login = "M.Wysocki@wp.pl";
+            //Haslo = "89080128211";
         }
 
         #endregion
