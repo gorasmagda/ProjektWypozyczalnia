@@ -209,7 +209,9 @@
             </TabItem>
             
             <!--*********************************ODDZIALY************************************-->
-            <TabItem x:Name="oddzialy" Header="Oddzialy" Visibility="{Binding LogowanieVM.WidocznoscZakladekAdmina}">
+            <TabItem x:Name="oddzialy" Header="Oddzialy"
+                     Visibility="{Binding LogowanieVM.WidocznoscZakladekAdmina}"
+                     IsSelected="{Binding LogowanieVM.OddzialyPokazane}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
@@ -283,7 +285,9 @@
             </TabItem>
 
             <!--*********************************AUTA************************************-->
-            <TabItem x:Name="auto" Header="Auto"  Visibility="{Binding LogowanieVM.WidocznoscZakladekPracownika}">
+            <TabItem x:Name="auto" Header="Auto"
+                     Visibility="{Binding LogowanieVM.WidocznoscZakladekPracownika}"
+                     IsSelected="{Binding LogowanieVM.SamochodyPokazane}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
