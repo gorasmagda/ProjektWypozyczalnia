@@ -270,7 +270,6 @@ namespace WypozyczalaniaProjekt.ViewModel
                             var tempNumer = Numer;
                             var tempNumerCVV = NumerCVV;
                             var tempRodzaj = Rodzaj;
-                            // TODO: DOKOŃCZYĆ EDYCJE KLIENTA I KARTY
                             if (model.EdytujKlientaWBazie(new Klient(Imie, Nazwisko, Plec, Email, NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)IdKarty), (sbyte)WybranyKlient.IdKlient))
                             {
                                 if (model.EdytujKarteWBazie(new KartaKredytowa(tempNumer, DateTime.Parse(tempDataWaznosci), tempNumerCVV, Imie, Nazwisko, tempRodzaj), (sbyte)tempWybranyKlient.IdKarty, tempWybranyKlient))

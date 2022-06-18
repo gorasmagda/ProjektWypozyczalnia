@@ -378,19 +378,20 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Marka" Binding="{Binding Marka}"/>
                             <DataGridTextColumn Header="Model" Binding="{Binding ModelAuta}" Width="100"/>
+                            <DataGridTextColumn Header="Moc" Binding="{Binding Moc}"/>
+                            <DataGridTextColumn Header="Silnik" Binding="{Binding Silnik}"/>
                             <DataGridTextColumn Header="Kolor" Binding="{Binding Kolor}"/>
+                            <DataGridTextColumn Header="Cena" Binding="{Binding Cena}"/>
                             <DataGridTextColumn Header="Rocznik" Binding="{Binding Rocznik}"/>
                             <DataGridTextColumn Header="Skrz." Binding="{Binding Skrzynia}" Width="30"/>
                             <DataGridTextColumn Header="Rejestracja" Binding="{Binding NrRejestracyjny}"/>
                             <DataGridTextColumn Header="Lokalizacja" Binding="{Binding Lokalizacja}"/>
-                            <DataGridTextColumn Header="Cena" Binding="{Binding Cena}"/>
                             <DataGridTextColumn Header="Kaucja" Binding="{Binding Kaucja}"/>
                             <DataGridTextColumn Header="Przebieg" Binding="{Binding Przebieg}"/>
                             <DataGridTextColumn Header="Dostepny" Binding="{Binding Dostepnosc}"/>
                             <DataGridTextColumn Header="Oddział" Binding="{Binding IdOddzial}"/>
                             <DataGridTextColumn Header="Kategoria" Binding="{Binding Kategoria}"/>
-                            <DataGridTextColumn Header="Silnik" Binding="{Binding Silnik}"/>
-                            <DataGridTextColumn Header="Moc" Binding="{Binding Moc}"/>
+                            
                         </DataGrid.Columns>
 
                         <i:Interaction.Triggers>

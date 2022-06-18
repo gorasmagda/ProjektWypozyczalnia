@@ -280,7 +280,7 @@
                                 MessageBox.Show("Samochod został dodany!");
                             }
                         },
-                        arg => SprawdzFormularz()); // TODO: AutoVM - walidacja danych
+                        arg => SprawdzFormularz());
                 return dodajAuto;
             }
 
@@ -298,7 +298,7 @@
                             model.EdytujSamochodWBazie(new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)WybranyOddzial.IdOddzialu, WybranaKategoria.Nazwa, Silnik, (int)Moc), (sbyte)WybraneAuto.IdAuto);
                             IdWybranegoAuta = -1;
                         },
-                        arg => IdWybranegoAuta > -1);  // TODO: AutoVM - Edycja Auta - walidacja
+                        arg => IdWybranegoAuta > -1);
                 return edytujAuto;
             }
         }
@@ -455,7 +455,7 @@
             Moc = null;
         }
 
-        private bool SprawdzFormularz() // TODO: WALIDACJA DO EDYCJI AUT
+        private bool SprawdzFormularz()
         {
             bool wynik = true;
 
