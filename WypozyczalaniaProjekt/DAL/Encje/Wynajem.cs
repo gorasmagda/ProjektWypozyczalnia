@@ -15,6 +15,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
         public sbyte? IdAuto { get; set; }
         public sbyte? IdKlient { get; set; }
         public sbyte? IdPracownik { get; set; }
+        public string StatusTransakcji { get; set; }
 
         #endregion
 
@@ -29,9 +30,10 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             IdAuto = sbyte.Parse(reader["id_auto"].ToString());
             IdKlient = sbyte.Parse(reader["id_klient"].ToString());
             IdPracownik = sbyte.Parse(reader["id_pracownik"].ToString());
+            StatusTransakcji = reader["status_transakcji"].ToString();
         }
 
-        public Wynajem(DateTime dataWypozyczenia, DateTime dataZwrotu, decimal calkowityKoszt, sbyte? idAuto, sbyte? idKlient, sbyte? idPracownik)
+        public Wynajem(DateTime dataWypozyczenia, DateTime dataZwrotu, decimal calkowityKoszt, sbyte? idAuto, sbyte? idKlient, sbyte? idPracownik, string statusTransakcji)
         {
             IdWynajem = null;
             DataWypozyczenia = dataWypozyczenia;
@@ -40,6 +42,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             IdAuto = idAuto;
             IdKlient = idKlient;
             IdPracownik = idPracownik;
+            StatusTransakcji = statusTransakcji;
         }
 
         public Wynajem(Wynajem wynajem)
@@ -51,6 +54,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             IdAuto = wynajem.IdAuto;
             IdKlient = wynajem.IdKlient;
             IdPracownik = wynajem.IdPracownik;
+            StatusTransakcji = wynajem.StatusTransakcji;
         }
 
         #endregion
@@ -59,7 +63,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
 
         public string ToInsert()
         {
-            return $"(0, '{DataWypozyczenia:yyyy-MM-dd}', '{DataZwrotu:yyyy-MM-dd}','{CalkowityKoszt}','{IdAuto}','{IdKlient}','{IdPracownik}')";
+            return $"(0, '{DataWypozyczenia:yyyy-MM-dd}', '{DataZwrotu:yyyy-MM-dd}','{CalkowityKoszt}','{IdAuto}','{IdKlient}','{IdPracownik}','{StatusTransakcji}')";
         }
 
         #endregion
