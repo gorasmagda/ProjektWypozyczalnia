@@ -160,6 +160,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                         WidocznoscWyloguj = "Visible";
                         OddzialyPokazane = true;
                         model.Uzytkownik = "Admin";
+                        model.NazwiskoZalogowanegoPracownika = "Wysocki";
                     }
                     else
                     {
@@ -167,6 +168,13 @@ namespace WypozyczalaniaProjekt.ViewModel
                         WidocznoscWyloguj = "Visible";
                         SamochodyPokazane = true;
                         model.Uzytkownik = "User";
+                        foreach (var p in model.Pracownicy)
+                        {
+                            if (Login == p.Email)
+                            {
+                                model.NazwiskoZalogowanegoPracownika = p.Nazwisko;
+                            }
+                        }
                     }
                 }
                 else

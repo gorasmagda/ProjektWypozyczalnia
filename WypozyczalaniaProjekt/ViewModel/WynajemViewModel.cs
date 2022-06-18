@@ -161,6 +161,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             set
             {
                 rozpoczecieStart = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(RozpoczecieStart));
             }
         }
@@ -171,6 +172,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             set
             {
                 zakonczenieStart = value;
+                SprawdzFormularz();
                 onPropertyChanged(nameof(ZakonczenieStart));
             }
         }
@@ -180,7 +182,13 @@ namespace WypozyczalaniaProjekt.ViewModel
             get => calkowityKoszt;
             set
             {
-                calkowityKoszt = value;
+                int dlugoscWynajmu = (int)(DataZakonczenia - DataRozpoczecia).TotalDays;
+                if (dlugoscWynajmu < 7)
+                    calkowityKoszt = value * dlugoscWynajmu;
+                else if (dlugoscWynajmu > 7 && dlugoscWynajmu < 30)
+                    calkowityKoszt = (int)(value * dlugoscWynajmu * 0.9);
+                else
+                    calkowityKoszt = (int)(value * dlugoscWynajmu * 0.8);
                 onPropertyChanged(nameof(CalkowityKoszt));
             }
         }
@@ -287,7 +295,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 Samochody.Add(s);
                             MessageBox.Show("Lista dostępnych samochodów została zaktualizowana!");
                         },
-                        arg => SprawdzFormularz());
+                        arg => DataRozpoczecia != DataZakonczenia);
                 return szukajAut;
             }
         }
@@ -311,7 +319,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 }
                             }
                         },
-                        arg => SprawdzFormularz());
+                        arg => WybranySamochod != null);
                 return szukajDat;
             }
         }
@@ -334,7 +342,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 WidocznoscTabeli = "Visible";
                             }
                         },
-                        arg => SprawdzFormularz());
+                        null);
                 return przelaczWidok;
             }
         }
@@ -348,12 +356,11 @@ namespace WypozyczalaniaProjekt.ViewModel
                     resetujTabele = new RelayCommand(
                         arg =>
                         {
-                            Samochody.Clear();
                             model.PobierzWszystkieSamochody();
-                            foreach (var s in model.Samochody.ToList())
-                                Samochody.Add(s);
+                            DataRozpoczecia = DateTime.Today;
+                            DataZakonczenia = DateTime.Today;
                         },
-                        arg => SprawdzFormularz());
+                        null);
                 return resetujTabele;
             }
         }
@@ -368,8 +375,11 @@ namespace WypozyczalaniaProjekt.ViewModel
                         arg =>
                         {
                             Daty.Clear();
+                            CzyscFormularz();
+                            WidocznoscTabeli = "Visible";
+                            WybranySamochod = null;
                         },
-                        arg => SprawdzFormularz());
+                        null);
                 return czyscListe;
             }
         }
@@ -384,7 +394,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                         arg =>
                         {
                             // TODO: OBLICZANIE CALKOWITEJ KWOTY
-                            var wynajem = new Wynajem(DataRozpoczecia, DataZakonczenia, 100, WybranySamochod.IdAuto, WybranyKlient.IdKlient, 1, "Zakonczona");
+                            var wynajem = new Wynajem(DataRozpoczecia, DataZakonczenia, (decimal)CalkowityKoszt, WybranySamochod.IdAuto, WybranyKlient.IdKlient, (sbyte)model.IdZalogowanegoPracownika, WybranyStatus);
                             if (model.DodajWynajemDoBazy(wynajem))
                             {
                                 CzyscFormularz();
@@ -407,7 +417,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     edytujWynajem = new RelayCommand(
                         arg =>
                         {
-                        if (model.EdytujWynajemWBazie(new Wynajem(DataRozpoczecia, DataZakonczenia, 100, WybranySamochod.IdAuto, WybranyKlient.IdKlient, 1, "Zakonczona"), (sbyte)WybranyWynajemSamochodKlient.IdWynajem))
+                        if (model.EdytujWynajemWBazie(new Wynajem(DataRozpoczecia, DataZakonczenia, (decimal)CalkowityKoszt, WybranySamochod.IdAuto, WybranyKlient.IdKlient, (sbyte)model.IdZalogowanegoPracownika, WybranyStatus), (sbyte)WybranyWynajemSamochodKlient.IdWynajem))
                             {
                                 CzyscFormularz();
                                 WybranyWynajemSamochodKlient = null;
@@ -500,10 +510,13 @@ namespace WypozyczalaniaProjekt.ViewModel
                     zaladujFormularzAuto = new RelayCommand(
                         o =>
                         {
-                            Marka = WybranySamochod.Marka;
-                            ModelAuta = WybranySamochod.ModelAuta;
-                            Cena = WybranySamochod.Cena;
-                            CalkowityKoszt = 100;           // TODO: OBLICZANIE CAŁKOWITEGO KOSZTU
+                            if (WybranySamochod != null)
+                            {
+                                Marka = WybranySamochod.Marka;
+                                ModelAuta = WybranySamochod.ModelAuta;
+                                Cena = WybranySamochod.Cena;
+                                CalkowityKoszt = int.Parse(WybranySamochod.Cena);           // TODO: OBLICZANIE CAŁKOWITEGO KOSZTU
+                            }
                         },
                         null);
                 return zaladujFormularzAuto;
@@ -519,8 +532,11 @@ namespace WypozyczalaniaProjekt.ViewModel
                     zaladujFormularzKlient = new RelayCommand(
                         o =>
                         {
-                            Nazwisko = WybranyKlient.Nazwisko;
-                            Imie = WybranyKlient.Imie;
+                            if (WybranyKlient != null)
+                            {
+                                Nazwisko = WybranyKlient.Nazwisko;
+                                Imie = WybranyKlient.Imie;
+                            }
                         },
                         null);
                 return zaladujFormularzKlient;
@@ -547,7 +563,7 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         #region Wyłączanie przycisków
 
-        private bool addEnabled, editEnabled, deleteEnabled;
+        private bool addEnabled, editEnabled, deleteEnabled, szukajAutEnabled, szukajDatEnabled;
         public bool AddEnabled
         {
             get => addEnabled;
@@ -578,6 +594,26 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
+        public bool SzukajAutEnabled
+        {
+            get => szukajAutEnabled;
+            set
+            {
+                szukajAutEnabled = value;
+                onPropertyChanged(nameof(SzukajAutEnabled));
+            }
+        }
+
+        public bool SzukajDatEnabled
+        {
+            get => szukajDatEnabled;
+            set
+            {
+                szukajDatEnabled = value;
+                onPropertyChanged(nameof(SzukajDatEnabled));
+            }
+        }
+
         #endregion
 
         private void CzyscFormularz()
@@ -590,16 +626,17 @@ namespace WypozyczalaniaProjekt.ViewModel
             Imie = "";
             CalkowityKoszt = null;
             Cena = "";
+            WybranyStatus = null;
+            WybranySamochod = null;
+            WybranyKlient = null;
         }
 
-        private bool SprawdzFormularz() // TODO: ZROBIENIE WALIDACJI DLA EDYCJI WYNAJMU
+        private bool SprawdzFormularz()
         {
             bool wynik = true;
-            //if (Adres == null || NrTelefonu == null || Nazwa == null)
-            //    wynik = false;
-            //if (Adres == "" || NrTelefonu == "" || Nazwa == "")
-            //    wynik = false;
-
+            if (WybranySamochod == null || WybranyKlient == null || WybranyStatus == null)
+                wynik = false;
+            
             AddEnabled = wynik;
             EditEnabled = wynik;
             return wynik;

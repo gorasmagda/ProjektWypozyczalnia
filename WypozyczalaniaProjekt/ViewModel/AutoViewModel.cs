@@ -251,12 +251,12 @@
                     dodajAuto = new RelayCommand(
                         arg =>
                         {
-                            var samochod = new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)WybranyOddzial.IdOddzialu, WybranaKategoria.Nazwa);
-                            if (model.DodajSamochodDoBazy(samochod))
-                            {
-                                CzyscFormularz();
-                                MessageBox.Show("Samochod został dodany!");
-                            }
+                            //var samochod = new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)WybranyOddzial.IdOddzialu, WybranaKategoria.Nazwa);
+                            //if (model.DodajSamochodDoBazy(samochod))
+                            //{
+                            //    CzyscFormularz();
+                            //    MessageBox.Show("Samochod został dodany!");
+                            //}
                         },
                         arg => SprawdzFormularz()); // TODO: AutoVM - walidacja danych
                 return dodajAuto;
@@ -273,8 +273,8 @@
                     edytujAuto = new RelayCommand(
                         arg =>
                         {
-                            model.EdytujSamochodWBazie(new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)WybranyOddzial.IdOddzialu, WybranaKategoria.Nazwa), (sbyte)WybraneAuto.IdAuto);
-                            IdWybranegoAuta = -1;
+                            //model.EdytujSamochodWBazie(new Samochod(Marka, ModelAuta, (int)Rocznik, Kolor, (int)IloscMiejsc, Skrzynia, NrRejestracyjny, Lokalizacja, Cena, Kaucja, (int)Przebieg, Dostepnosc, (sbyte)WybranyOddzial.IdOddzialu, WybranaKategoria.Nazwa), (sbyte)WybraneAuto.IdAuto);
+                            //IdWybranegoAuta = -1;
                         },
                         arg => IdWybranegoAuta > -1);  // TODO: AutoVM - Edycja Auta - walidacja
                 return edytujAuto;
