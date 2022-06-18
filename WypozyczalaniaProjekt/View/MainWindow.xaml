@@ -896,9 +896,6 @@
                     </view:ButtonsUC>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="zwrot" Header="Zwrot"  Visibility="{Binding LogowanieVM.WidocznoscZakladekPracownika}">
-
-            </TabItem>
         </TabControl>
     </Grid>
 </Window>
