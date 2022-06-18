@@ -116,7 +116,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DAL\DBConnection.cs" />
     <Compile Include="DAL\DBConnectionAdmin.cs" />
     <Compile Include="DAL\DBConnectionUser.cs" />
     <Compile Include="DAL\Encje\KartaKredytowa.cs" />

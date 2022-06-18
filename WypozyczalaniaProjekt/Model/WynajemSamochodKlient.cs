@@ -19,8 +19,9 @@ namespace WypozyczalaniaProjekt.Model
         public string ModelAuta { get; set; }
         public string Nazwisko { get; set; }
         public string Imie { get; set; }
+        public string StatusTransakcji { get; set; }
 
-        public WynajemSamochodKlient(sbyte? idWynajem, DateTime dataWypozyczenia, DateTime dataZwrotu, decimal calkowityKoszt, sbyte? idAuto, sbyte? idKlient, sbyte? idPracownik, string marka, string modelAuta, string nazwisko, string imie)
+        public WynajemSamochodKlient(sbyte? idWynajem, DateTime dataWypozyczenia, DateTime dataZwrotu, decimal calkowityKoszt, sbyte? idAuto, sbyte? idKlient, sbyte? idPracownik, string marka, string modelAuta, string nazwisko, string imie, string status)
         {
             IdWynajem = idWynajem;
             DataWypozyczenia = dataWypozyczenia;
@@ -33,6 +34,7 @@ namespace WypozyczalaniaProjekt.Model
             ModelAuta = modelAuta;
             Nazwisko = nazwisko;
             Imie = imie;
+            StatusTransakcji = status;
         }
 
     }

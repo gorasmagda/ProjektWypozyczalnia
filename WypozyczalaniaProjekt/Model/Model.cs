@@ -17,6 +17,24 @@
         public ObservableCollection<KartaKredytowa> Karty { get; set; } = new ObservableCollection<KartaKredytowa>();
         public ObservableCollection<Wynajem> Wynajmy { get; set; } = new ObservableCollection<Wynajem>();
 
+        public int IdZalogowanegoPracownika { get; set; }
+
+        private string nazwiskoZalogowanegoPracownika;
+        public string NazwiskoZalogowanegoPracownika
+        {
+            get => nazwiskoZalogowanegoPracownika;
+            set
+            {
+                nazwiskoZalogowanegoPracownika = value;
+                foreach (var p in Pracownicy)
+                {
+                    if (p.Nazwisko == nazwiskoZalogowanegoPracownika)
+                    {
+                        IdZalogowanegoPracownika = (int)p.IdPracownik;
+                    }
+                }
+            }
+        }
 
         private string uzytkownik;
         public string Uzytkownik

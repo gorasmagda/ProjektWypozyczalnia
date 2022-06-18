@@ -14,7 +14,7 @@
     <Window.Resources>
         <vm:MainViewModel x:Key="mainVM"/>
 
-        <!--<Style TargetType="{x:Type TabItem}">
+        <Style TargetType="{x:Type TabItem}">
             <Setter Property="BorderThickness" Value="10"/>
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="Padding" Value="0"/>
@@ -36,7 +36,7 @@
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>-->
+        </Style>
 
         <Style TargetType="{x:Type DataGrid}">
             <Setter Property="Background" Value="#6d6394"/>
@@ -318,8 +318,6 @@
                                 <TextBox Grid.Column="0" Margin="2,100,31,-98.8"
                                          Text="{Binding AutoVM.Kaucja}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Text="Kategoria" Foreground="LightGray"/>
-                                <!--<TextBox Grid.Column="0" Margin="2,140,31,-138.8"
-                                         Text="{Binding AutoVM.Kategoria}" Grid.ColumnSpan="2"/>-->
                                 <ComboBox Margin="2,140,31,-138.8"
                                           ItemsSource="{Binding AutoVM.Kategorie}"
                                           SelectedItem="{Binding AutoVM.WybranaKategoria, Mode=TwoWay}"/>
@@ -655,7 +653,7 @@
                                   HorizontalScrollBarVisibility="Disabled"
                                   Margin="0,0,0,185">
                         <StackPanel>
-                            <Grid>
+                            <Grid Height="200">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
@@ -675,33 +673,37 @@
                                             DisplayDateStart="{Binding WynajemVM.ZakonczenieStart}"/>
 
                                 <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Marka Auta" Foreground="LightGray"/>
-                                <TextBox Grid.Column="0" Margin="2,62,31,-60.8"
+                                <TextBox Grid.Column="0" Margin="5,62,35.4,116"
                                          Text="{Binding WynajemVM.Marka}"
                                          IsReadOnly="True"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Grid.Column="1" Text="Model Auta" Foreground="LightGray"/>
-                                <TextBox Grid.Column="1" Margin="2,62,31,-60.8"
+                                <TextBox Grid.Column="1" Margin="5.6,62,34.8,116"
                                          Text="{Binding WynajemVM.ModelAuta}"
-                                         IsReadOnly="True"/>
+                                         IsReadOnly="True" RenderTransformOrigin="0.52,-3.175"/>
 
                                 <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Nazwisko" Foreground="LightGray"/>
-                                <TextBox Grid.Column="0" Margin="2,100,31,-98.8"
+                                <TextBox Grid.Column="0" Margin="5,100,35.4,78"
                                          Text="{Binding WynajemVM.Nazwisko}"
                                          IsReadOnly="True"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Grid.Column="1" Text="Imię" Foreground="LightGray"/>
-                                <TextBox Grid.Column="1" Margin="2,100,31,-98.8"
+                                <TextBox Grid.Column="1" Margin="3.6,100,36.8,78"
                                          Text="{Binding WynajemVM.Imie}"
                                          IsReadOnly="True"/>
 
                                 <TextBlock HorizontalAlignment="Left" Margin="2,122,0,-116" TextWrapping="Wrap" Text="Całkowity Koszt" Foreground="LightGray"/>
-                                <TextBox Grid.Column="0" Margin="6,138,34.4,-137"
+                                <TextBox Grid.Column="0" Margin="5,138,35.4,40"
                                          Text="{Binding WynajemVM.CalkowityKoszt}"
                                          IsReadOnly="True"/>
-
                                 <TextBlock HorizontalAlignment="Left" Margin="1.6,122,0,-116" TextWrapping="Wrap" Text="Cena" Foreground="LightGray" Grid.Column="1"/>
-                                <TextBox Grid.Column="1" Margin="6.6,138,33,-136"
+                                <TextBox Grid.Column="1" Margin="6.6,138,33,40"
                                          Text="{Binding WynajemVM.Cena}"
                                          IsReadOnly="True"/>
 
+                                <TextBlock HorizontalAlignment="Left" Margin="2,160,0,-154" TextWrapping="Wrap" Text="Status" Foreground="LightGray"/>
+                                <ComboBox Margin="5,176,35.4,2"
+                                          ItemsSource="{Binding WynajemVM.Statusy}"
+                                          SelectedItem="{Binding WynajemVM.WybranyStatus, Mode=TwoWay}"/>
+                                
                             </Grid>
                         </StackPanel>
                     </ScrollViewer>
@@ -838,6 +840,7 @@
                             <DataGridTextColumn Header="Koszt" Binding="{Binding CalkowityKoszt}"/>
                             <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}"/>
                             <DataGridTextColumn Header="Imie" Binding="{Binding Imie}"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding StatusTransakcji}"/>
                         </DataGrid.Columns>
 
                         <i:Interaction.Triggers>

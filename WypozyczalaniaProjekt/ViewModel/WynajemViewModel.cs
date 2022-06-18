@@ -39,6 +39,13 @@ namespace WypozyczalaniaProjekt.ViewModel
             Samochody = new ObservableCollection<Samochod>();
             Klienci = new ObservableCollection<Klient>();
             Daty = new ObservableCollection<DwieDaty>();
+            Statusy = new List<string>();
+            Statusy.Add("rezerwacja");
+            Statusy.Add("w trakcie");
+            Statusy.Add("zakonczona");
+            Statusy.Add("nie zapłacono");
+
+
             Wynajmy = model.Wynajmy;
             Samochody = model.Samochody;
             Klienci = model.Klienci;
@@ -60,6 +67,7 @@ namespace WypozyczalaniaProjekt.ViewModel
         public ObservableCollection<Samochod> Samochody { get; set; }
         public ObservableCollection<Klient> Klienci { get; set; }
         public ObservableCollection<DwieDaty> Daty { get; set; }
+        public List<string> Statusy { get; set; }
 
         private WynajemSamochodKlient wybranyWynajemSamochodKlient;
         public WynajemSamochodKlient WybranyWynajemSamochodKlient
@@ -99,6 +107,17 @@ namespace WypozyczalaniaProjekt.ViewModel
             {
                 wybranyKlient = value;
                 onPropertyChanged(nameof(WybranyKlient));
+            }
+        }
+
+        private string wybranyStatus;
+        public string WybranyStatus
+        {
+            get => wybranyStatus;
+            set
+            {
+                wybranyStatus = value;
+                onPropertyChanged(nameof(WybranyStatus));
             }
         }
 
@@ -449,6 +468,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                                 Nazwisko = WybranyWynajemSamochodKlient.Nazwisko;
                                 Imie = WybranyWynajemSamochodKlient.Imie;
                                 CalkowityKoszt = (int)WybranyWynajemSamochodKlient.CalkowityKoszt;
+                                WybranyStatus = WybranyWynajemSamochodKlient.StatusTransakcji;
 
                                 foreach (var s in Samochody)
                                 {
@@ -611,7 +631,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     }
                 }
 
-                var x = new WynajemSamochodKlient(w.IdWynajem, w.DataWypozyczenia, w.DataZwrotu, w.CalkowityKoszt, w.IdAuto, w.IdKlient, w.IdPracownik, marka, modelA, nazwisko, imie);
+                var x = new WynajemSamochodKlient(w.IdWynajem, w.DataWypozyczenia, w.DataZwrotu, w.CalkowityKoszt, w.IdAuto, w.IdKlient, w.IdPracownik, marka, modelA, nazwisko, imie, w.StatusTransakcji);
                 WynajmySamochodyKlienci.Add(x);
             }
         }
