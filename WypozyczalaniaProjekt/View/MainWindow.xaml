@@ -246,7 +246,8 @@
                     <DataGrid Grid.Column="2"
                               ItemsSource="{Binding OddzialVM.Oddzialy}"
                               SelectedItem="{Binding OddzialVM.WybranyOddzial}"
-                              SelectedIndex="{Binding OddzialVM.IdWybranegoOddzialu, Mode=TwoWay}" >
+                              SelectedIndex="{Binding OddzialVM.IdWybranegoOddzialu, Mode=TwoWay}"
+                              SelectionMode="Single">
 
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
@@ -287,7 +288,7 @@
             </TabItem>
 
             <!--*********************************AUTA************************************-->
-            <TabItem x:Name="auto" Header="Auto"
+            <TabItem x:Name="auto" Header="Samochody"
                      Visibility="{Binding LogowanieVM.WidocznoscZakladekPracownika}"
                      IsSelected="{Binding LogowanieVM.SamochodyPokazane}">
                 <Grid>
@@ -336,8 +337,9 @@
                                 <TextBox Grid.Column="1" Margin="2,23,31,-21.8"
                                          Text="{Binding AutoVM.Marka}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Grid.Column="1" Text="Dostępność" Foreground="LightGray"/>
-                                <TextBox Grid.Column="1" Margin="2,62,31,-60.8"
-                                         Text="{Binding AutoVM.Dostepnosc}"/>
+                                <ComboBox Grid.Column="1" Margin="2,62,31,-60.8"
+                                          ItemsSource="{Binding AutoVM.Dostepnosci}"
+                                          SelectedItem="{Binding AutoVM.Dostepnosc}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Grid.Column="1" Text="Cena" Foreground="LightGray"/>
                                 <TextBox Grid.Column="1" Margin="2,100,31,-98.8"
                                          Text="{Binding AutoVM.Cena}"/>
@@ -345,8 +347,9 @@
                                 <TextBox Grid.Column="1" Margin="2,140,31,-138.8"
                                          Text="{Binding AutoVM.NrRejestracyjny}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-156.8" TextWrapping="Wrap" Grid.Column="1" Text="Skrzynia Biegów" Foreground="LightGray"/>
-                                <TextBox Grid.Column="1" Margin="2,179,31,-177.8"
-                                         Text="{Binding AutoVM.Skrzynia}"/>
+                                <ComboBox Grid.Column="1" Margin="2,179,31,-177.8"
+                                          ItemsSource="{Binding AutoVM.Skrzynie}"
+                                          SelectedItem="{Binding AutoVM.Skrzynia}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,202,0,-195.8" TextWrapping="Wrap" Grid.Column="1" Text="Kolor" Foreground="LightGray"/>
                                 <TextBox Grid.Column="1" Margin="2,218,31,-216.8"
                                          Text="{Binding AutoVM.Kolor}"/>
@@ -363,14 +366,14 @@
                               ItemsSource="{Binding AutoVM.Samochody}"
                               SelectedItem="{Binding AutoVM.WybraneAuto}"
                               SelectedIndex="{Binding AutoVM.IdWybranegoAuta, Mode=TwoWay}"
-                              >
+                              SelectionMode="Single">
 
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Marka" Binding="{Binding Marka}"/>
-                            <DataGridTextColumn Header="Model" Binding="{Binding ModelAuta}"/>
+                            <DataGridTextColumn Header="Model" Binding="{Binding ModelAuta}" Width="100"/>
                             <DataGridTextColumn Header="Kolor" Binding="{Binding Kolor}"/>
                             <DataGridTextColumn Header="Rocznik" Binding="{Binding Rocznik}"/>
-                            <DataGridTextColumn Header="Skrz." Binding="{Binding Skrzynia}"/>
+                            <DataGridTextColumn Header="Skrz." Binding="{Binding Skrzynia}" Width="30"/>
                             <DataGridTextColumn Header="Rejestracja" Binding="{Binding NrRejestracyjny}"/>
                             <DataGridTextColumn Header="Lokalizacja" Binding="{Binding Lokalizacja}"/>
                             <DataGridTextColumn Header="Cena" Binding="{Binding Cena}"/>
@@ -436,9 +439,10 @@
                                 <TextBox Grid.Column="0" Margin="2,23,31,-21.6"
                                          Text="{Binding PracownicyVM.Imie}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Płeć" Foreground="LightGray"/>
-                                <TextBox Grid.Column="0" Margin="2,62,31,-60.8"
-                                         Text="{Binding PracownicyVM.Plec}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Data Urodzenia" Foreground="LightGray"/>
+                                <ComboBox Grid.Column="0" Margin="2,62,31,-60.8"
+                                          ItemsSource="{Binding PracownicyVM.Plcie}"
+                                          SelectedItem="{Binding PracownicyVM.Plec}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Data Urodzenia (rrrr-mm-dd)" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="2,100,31,-98.8"
                                          Text="{Binding PracownicyVM.DataUrodzenia}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Text="Numer Telefonu" Foreground="LightGray"/>
@@ -478,14 +482,15 @@
                     <DataGrid Grid.Column="2"
                               ItemsSource="{Binding PracownicyVM.Pracownicy}"
                               SelectedItem="{Binding PracownicyVM.WybranyPracownik}"
-                              SelectedIndex="{Binding PracownicyVM.IdWybranegoPracownika, Mode=TwoWay}">
+                              SelectedIndex="{Binding PracownicyVM.IdWybranegoPracownika, Mode=TwoWay}"
+                              SelectionMode="Single">
 
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}"/>
                             <DataGridTextColumn Header="Imię" Binding="{Binding Imie}"/>
                             <DataGridTextColumn Header="Telefon" Binding="{Binding NrTelefonu}"/>
                             <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
-                            <DataGridTextColumn Header="Data Urodzenia" Binding="{Binding DataUrodzenia, StringFormat=\{0:dd-MM-yy\}}"/>
+                            <DataGridTextColumn Header="Data Urodzenia" Binding="{Binding DataUrodzenia, StringFormat=\{0:yyyy-MM-dd\}}"/>
                             <DataGridTextColumn Header="Plec" Binding="{Binding Plec}"/>
                             <DataGridTextColumn Header="Adres" Binding="{Binding Adres}"/>
                             <DataGridTextColumn Header="Pensja" Binding="{Binding Pensja}"/>
@@ -547,12 +552,13 @@
                                 <TextBox Grid.Column="0" Margin="6,25,36,47"
                                          Text="{Binding KlienciVM.Imie}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,46,0,-39.8" TextWrapping="Wrap" Text="Płeć" Foreground="LightGray"/>
-                                <TextBox Grid.Column="0" Margin="6,62,36,10"
-                                         Text="{Binding KlienciVM.Plec}"/>
+                                <ComboBox Grid.Column="0" Margin="6,62,36,10"
+                                          ItemsSource="{Binding KlienciVM.Plcie}"
+                                          SelectedItem="{Binding KlienciVM.Plec}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,84,0,-77.8" TextWrapping="Wrap" Text="Numer Telefonu" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="6,102,36,-30"
                                          Text="{Binding KlienciVM.NrTelefonu}"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Text="Data Urodzenia" Foreground="LightGray"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,124,0,-117.8" TextWrapping="Wrap" Text="Data Urodzenia (rrrr-mm-dd)" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="6,141,36,-69"
                                          Text="{Binding KlienciVM.DataUrodzenia}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,163,0,-157" TextWrapping="Wrap" Text="Numer Prawa Jazdy" Foreground="LightGray"/>
@@ -560,8 +566,9 @@
                                          Text="{Binding KlienciVM.NrPrawaJazdy}"/>
 
                                 <TextBlock HorizontalAlignment="Left" Margin="2,225,0,-219" TextWrapping="Wrap" Text="Rodzaj" Foreground="LightGray"/>
-                                <TextBox Grid.Column="0" Margin="6,240,36,-175"
-                                         Text="{Binding KlienciVM.Rodzaj}"/>
+                                <ComboBox Grid.Column="0" Margin="6,240,36,-175"
+                                          ItemsSource="{Binding KlienciVM.Rodzaje}"
+                                          SelectedItem="{Binding KlienciVM.Rodzaj}"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="2,265,0,-219" TextWrapping="Wrap" Text="Data ważności" Foreground="LightGray"/>
                                 <TextBox Grid.Column="0" Margin="6,279,36,-218"
                                          Text="{Binding KlienciVM.DataWaznosci}"/>
@@ -597,14 +604,15 @@
                     <DataGrid Grid.Column="2"
                               ItemsSource="{Binding KlienciVM.Klienci}"
                               SelectedItem="{Binding KlienciVM.WybranyKlient}"
-                              SelectedIndex="{Binding KlienciVM.IdWybranegoKlienta, Mode=TwoWay}">
+                              SelectedIndex="{Binding KlienciVM.IdWybranegoKlienta, Mode=TwoWay}"
+                              SelectionMode="Single">
 
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}"/>
                             <DataGridTextColumn Header="Imię" Binding="{Binding Imie}"/>
                             <DataGridTextColumn Header="Telefon" Binding="{Binding NrTelefonu}"/>
                             <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
-                            <DataGridTextColumn Header="Data Urodzenia" Binding="{Binding DataUrodzenia, StringFormat=\{0:dd-MM-yy\}}"/>
+                            <DataGridTextColumn Header="Data Urodzenia" Binding="{Binding DataUrodzenia, StringFormat=\{0:yyyy-MM-dd\}}"/>
                             <DataGridTextColumn Header="Plec" Binding="{Binding Plec}"/>
                             <DataGridTextColumn Header="Adres" Binding="{Binding Adres}"/>
                             <DataGridTextColumn Header="Prawo Jazdy" Binding="{Binding NrPrawaJazdy}"/>
@@ -727,7 +735,8 @@
                                       BorderBrush="Black"
                                       VerticalScrollBarVisibility="Visible"
                                       ItemsSource="{Binding WynajemVM.Samochody}"
-                                      SelectedItem="{Binding WynajemVM.WybranySamochod}" Margin="0,0,0,22">
+                                      SelectedItem="{Binding WynajemVM.WybranySamochod}"
+                                      SelectionMode="Single">
 
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Marka" Binding="{Binding Marka}"/>
@@ -771,7 +780,8 @@
 
                             <DataGrid
                                       ItemsSource="{Binding WynajemVM.Klienci}"
-                                      SelectedItem="{Binding WynajemVM.WybranyKlient}" Grid.ColumnSpan="2" Margin="222,0,0,22">
+                                      SelectedItem="{Binding WynajemVM.WybranyKlient}"
+                                      SelectionMode="Single">
 
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}"/>
@@ -832,13 +842,14 @@
                               BorderThickness="0,3,0,0"
                               ItemsSource="{Binding WynajemVM.WynajmySamochodyKlienci}"
                               SelectedItem="{Binding WynajemVM.WybranyWynajemSamochodKlient}"
-                              SelectedIndex="{Binding WynajemVM.IdWybranegoWynajmu, Mode=TwoWay}" >
+                              SelectedIndex="{Binding WynajemVM.IdWybranegoWynajmu, Mode=TwoWay}"
+                              SelectionMode="Single">
 
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Marka." Binding="{Binding Marka}"/>
                             <DataGridTextColumn Header="Model" Binding="{Binding ModelAuta}"/>
-                            <DataGridTextColumn Header="Data roz." Binding="{Binding DataWypozyczenia, StringFormat=\{0:dd-MM-yy\}}"/>
-                            <DataGridTextColumn Header="Data zwr." Binding="{Binding DataZwrotu, StringFormat=\{0:dd-MM-yy\}}"/>
+                            <DataGridTextColumn Header="Data roz." Binding="{Binding DataWypozyczenia, StringFormat=\{0:yyyy-MM-dd\}}"/>
+                            <DataGridTextColumn Header="Data zwr." Binding="{Binding DataZwrotu, StringFormat=\{0:yyyy-MM-dd\}}"/>
                             <DataGridTextColumn Header="Koszt" Binding="{Binding CalkowityKoszt}"/>
                             <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}"/>
                             <DataGridTextColumn Header="Imie" Binding="{Binding Imie}"/>

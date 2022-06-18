@@ -3,6 +3,7 @@
 namespace WypozyczalaniaProjekt.ViewModel
 {
     using BaseClassess;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Input;
@@ -28,6 +29,16 @@ namespace WypozyczalaniaProjekt.ViewModel
         public KlienciViewModel(Model model)
         {
             Klienci = new ObservableCollection<Klient>();
+            Plcie = new List<string>();
+            Rodzaje = new List<string>();
+            Plcie.Add("kobieta");
+            Plcie.Add("mężczyzna");
+            Rodzaje.Add("kredytowa");
+            Rodzaje.Add("debetowa");
+            Rodzaje.Add("obciążeniowa");
+            Rodzaje.Add("przedpłacona");
+            Rodzaje.Add("wirtualna");
+
             this.model = model;
             Klienci = model.Klienci;
             idWybranegoKlienta = -1;
@@ -38,6 +49,8 @@ namespace WypozyczalaniaProjekt.ViewModel
         #region Właściwości
 
         public ObservableCollection<Klient> Klienci { get; set; }
+        public List<string> Plcie { get; set; }
+        public List<string> Rodzaje { get; set; }
 
         private Klient wybranyKlient;
         public Klient WybranyKlient

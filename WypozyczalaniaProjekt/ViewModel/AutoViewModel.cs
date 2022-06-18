@@ -30,6 +30,13 @@
             Samochody = new ObservableCollection<Samochod>();
             Oddzialy = new ObservableCollection<Oddzial>();
             Kategorie = new ObservableCollection<Kategoria>();
+            Dostepnosci = new List<string>();
+            Skrzynie = new List<string>();
+            Dostepnosci.Add("tak");
+            Dostepnosci.Add("nie");
+            Skrzynie.Add("manualna");
+            Skrzynie.Add("automatyczna");
+
             this.model = model;
             Samochody = model.Samochody;
             Oddzialy = model.Oddzialy;
@@ -44,6 +51,8 @@
         public ObservableCollection<Samochod> Samochody { get; set; }
         public ObservableCollection<Oddzial> Oddzialy { get; set; }
         public ObservableCollection<Kategoria> Kategorie { get; set; }
+        public List<string> Dostepnosci { get; set; }
+        public List<string> Skrzynie { get; set; }
 
         private Samochod wybraneAuto;
         public Samochod WybraneAuto

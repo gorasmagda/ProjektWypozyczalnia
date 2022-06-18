@@ -3,6 +3,7 @@
 namespace WypozyczalaniaProjekt.ViewModel
 {
     using BaseClassess;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Input;
@@ -28,6 +29,10 @@ namespace WypozyczalaniaProjekt.ViewModel
         {
             Pracownicy = new ObservableCollection<Pracownik>();
             Oddzialy = new ObservableCollection<Oddzial>();
+            Plcie = new List<string>();
+            Plcie.Add("kobieta");
+            Plcie.Add("mężczyzna");
+
             this.model = model;
             Pracownicy = model.Pracownicy;
             Oddzialy = model.Oddzialy;
@@ -40,6 +45,7 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         public ObservableCollection<Pracownik> Pracownicy { get; set; }
         public ObservableCollection<Oddzial> Oddzialy { get; set; }
+        public List<string> Plcie { get; set; }
 
         private Pracownik wybranyPracownik;
         public Pracownik WybranyPracownik
