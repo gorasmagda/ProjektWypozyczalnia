@@ -66,6 +66,26 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             return $"(0, '{DataWypozyczenia:yyyy-MM-dd}', '{DataZwrotu:yyyy-MM-dd}','{CalkowityKoszt}','{IdAuto}','{IdKlient}','{IdPracownik}','{StatusTransakcji}')";
         }
 
+        public override bool Equals(object obj)
+        {
+            var wynajem = obj as Wynajem;
+            if (wynajem is null) return false;
+            if (DataWypozyczenia != wynajem.DataWypozyczenia) return false;
+            if (!DataZwrotu.Equals(wynajem.DataZwrotu)) return false;
+            if (!CalkowityKoszt.Equals(wynajem.CalkowityKoszt)) return false;
+            if (!IdAuto.Equals(wynajem.IdAuto)) return false;
+            if (!IdKlient.Equals(wynajem.IdKlient)) return false;
+            if (!IdPracownik.Equals(wynajem.IdPracownik)) return false;
+            if (!StatusTransakcji.ToLower().Equals(wynajem.StatusTransakcji.ToLower())) return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         #endregion
     }
 }

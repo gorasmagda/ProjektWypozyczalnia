@@ -83,12 +83,21 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             return $"(0,'{Imie}','{Nazwisko}','{Plec}','{Email}',{NrTelefonu},'{Adres}','{Pesel}','{NrPrawaJazdy}','{DataUrodzenia:yyyy-MM-dd}','{IdKarty}')";
         }
 
-        // TODO: Klient - DOKOŃCZYĆ
         public override bool Equals(object obj)
         {
             var klient = obj as Klient;
             if (klient is null) return false;
+            if (Imie.ToLower() != klient.Imie.ToLower()) return false;
             if (Nazwisko.ToLower() != klient.Nazwisko.ToLower()) return false;
+            if (!Plec.ToLower().Equals(klient.Plec.ToLower())) return false;
+            if (!Email.ToLower().Equals(klient.Email.ToLower())) return false;
+            if (!NrTelefonu.ToLower().Equals(klient.NrTelefonu.ToLower())) return false;
+            if (!Adres.ToLower().Equals(klient.Adres.ToLower())) return false;
+            if (!Pesel.ToLower().Equals(klient.Pesel.ToLower())) return false;
+            if (!NrPrawaJazdy.ToLower().Equals(klient.NrPrawaJazdy.ToLower())) return false;
+            if (!DataUrodzenia.Equals(klient.DataUrodzenia)) return false;
+            if (!IdKarty.Equals(klient.IdKarty)) return false;
+
             return true;
         }
 

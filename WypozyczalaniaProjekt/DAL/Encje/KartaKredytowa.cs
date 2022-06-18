@@ -64,6 +64,25 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             return $"(0,'{Numer}','{DataWaznosci:yyyy-MM-dd}','{NumerCVV}','{Imie}','{Nazwisko}','{Rodzaj}')";
         }
 
+        public override bool Equals(object obj)
+        {
+            var karta = obj as KartaKredytowa;
+            if (karta is null) return false;
+            if (Numer.ToLower() != karta.Numer.ToLower()) return false;
+            if (!DataWaznosci.Equals(karta.DataWaznosci)) return false;
+            if (!NumerCVV.ToLower().Equals(karta.NumerCVV.ToLower())) return false;
+            if (!Imie.ToLower().Equals(karta.Imie.ToLower())) return false;
+            if (!Nazwisko.ToLower().Equals(karta.Nazwisko.ToLower())) return false;
+            if (!Rodzaj.ToLower().Equals(karta.Rodzaj.ToLower())) return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         #endregion
 
     }
