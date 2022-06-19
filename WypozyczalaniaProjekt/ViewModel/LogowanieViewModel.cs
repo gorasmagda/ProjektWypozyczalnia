@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WypozyczalaniaProjekt.ViewModel
 {
@@ -10,7 +6,6 @@ namespace WypozyczalaniaProjekt.ViewModel
     using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Input;
-    using WypozyczalaniaProjekt.DAL;
     using WypozyczalaniaProjekt.DAL.Encje;
     using WypozyczalaniaProjekt.Model;
 
@@ -34,8 +29,8 @@ namespace WypozyczalaniaProjekt.ViewModel
             WidocznoscZakladekPracownika = "Collapsed";
             WidocznoscWyloguj = "Collapsed";
 
-            //Login = "M.Wysocki@wp.pl";
-            //Haslo = "89080128211";
+            Login = "M.Wysocki@wp.pl";
+            Haslo = "89080128211";
         }
 
         #endregion
@@ -118,7 +113,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                 onPropertyChanged(nameof(SamochodyPokazane));
             }
         }
-        
+
         private bool logowaniePokazane;
         public bool LogowaniePokazane
         {

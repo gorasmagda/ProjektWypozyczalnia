@@ -82,7 +82,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             }
         }
 
-        
+
         public string Imie
         {
             get => imie;

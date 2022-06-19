@@ -47,7 +47,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             IdOddzial = sbyte.Parse(reader["id_oddzialu"].ToString());
             Kategoria = reader["kategoria"].ToString();
             Silnik = reader["silnik"].ToString();
-            Moc = int.Parse(reader["moc"].ToString()) ;
+            Moc = int.Parse(reader["moc"].ToString());
         }
 
         public Samochod(string marka, string model, int rocznik, string kolor, int iloscMiejsc, string skrzynia, string nrRejestracyjny, string aktualnaLokalizacja, string cena, string kaucja, int przebieg, string dostepnosc, sbyte? idOddzialu, string nazwa, string silnik, int moc)
@@ -126,7 +126,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             if (!Kategoria.ToLower().Equals(samochod.Kategoria.ToLower())) return false;
             if (!Silnik.ToLower().Equals(samochod.Silnik.ToLower())) return false;
             if (!Moc.Equals(samochod.Moc)) return false;
-            
+
             return true;
         }
 

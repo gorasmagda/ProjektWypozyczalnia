@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WypozyczalaniaProjekt.ViewModel.BaseClassess;
-
-namespace WypozyczalaniaProjekt.ViewModel
+﻿namespace WypozyczalaniaProjekt.ViewModel
 {
     using BaseClassess;
     using System.Collections.ObjectModel;
@@ -13,7 +6,7 @@ namespace WypozyczalaniaProjekt.ViewModel
     using System.Windows.Input;
     using WypozyczalaniaProjekt.DAL.Encje;
     using WypozyczalaniaProjekt.Model;
-    
+
     class OddzialViewModel : ViewModelBase
     {
         #region Składowe prywatne
@@ -106,12 +99,12 @@ namespace WypozyczalaniaProjekt.ViewModel
         {
             get
             {
-                if(dodajOddzial == null)
+                if (dodajOddzial == null)
                     dodajOddzial = new RelayCommand(
                         arg =>
                         {
                             var oddzial = new Oddzial(Adres, NrTelefonu, Nazwa);
-                            if(model.DodajOddzialDoBazy(oddzial))
+                            if (model.DodajOddzialDoBazy(oddzial))
                             {
                                 CzyscFormularz();
                                 WybranyOddzial = null;

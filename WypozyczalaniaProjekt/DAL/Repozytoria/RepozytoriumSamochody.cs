@@ -62,7 +62,7 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
                     $"ilosc_miejsc='{s.IloscMiejsc}', skrzynia='{s.Skrzynia}', nr_rejestracyjny='{s.NrRejestracyjny}', aktualna_lokalizacja='{s.Lokalizacja}', " +
                     $"cena='{s.Cena}', kaucja='{s.Kaucja}', przebieg='{s.Przebieg}', dostepnosc='{s.Dostepnosc}', id_oddzialu='{s.IdOddzial}', " +
                     $"kategoria='{s.Kategoria}', silnik='{s.Silnik}', moc='{s.Moc}' WHERE id_auto='{idAuta}'";
-                
+
                 MySqlCommand command = new MySqlCommand(EDYTUJ_SAMOCHOD, connection);
                 connection.Open();
                 var edit = command.ExecuteNonQuery();

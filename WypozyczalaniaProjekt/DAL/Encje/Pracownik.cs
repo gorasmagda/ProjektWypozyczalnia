@@ -103,7 +103,7 @@ namespace WypozyczalaniaProjekt.DAL.Encje
             if (!NrPrawaJazdy.ToLower().Equals(pracownik.NrPrawaJazdy.ToLower())) return false;
             if (!IdOddzial.Equals(pracownik.IdOddzial)) return false;
             if (!Pensja.Equals(pracownik.Pensja)) return false;
-            
+
             return true;
         }
 

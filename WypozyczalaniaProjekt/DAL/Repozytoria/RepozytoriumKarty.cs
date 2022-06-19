@@ -1,9 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WypozyczalaniaProjekt.DAL.Encje;
 
 namespace WypozyczalaniaProjekt.DAL.Repozytoria
@@ -52,7 +48,7 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             return stan;
         }
 
-        public static bool EdytujKarteWBazie(IDBConnection database, KartaKredytowa kk, sbyte idKarta,Klient k)
+        public static bool EdytujKarteWBazie(IDBConnection database, KartaKredytowa kk, sbyte idKarta, Klient k)
         {
             bool stan = false;
             using (var connection = database.GetConnection())

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace WypozyczalaniaProjekt.DAL.Repozytoria
 {
@@ -14,7 +10,7 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
 
         private const string WSZYSTKIE_ODDZIALY = "SELECT * FROM oddzialy order by id_oddzialu asc";
         private const string DODAJ_ODDZIAL = "INSERT INTO oddzialy (adres, nr_telefonu, nazwa) VALUES";
-        
+
         #endregion
 
         #region metody CRUD
@@ -76,7 +72,7 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
                 MySqlCommand command = new MySqlCommand(USUN_ODDZIAL, connection);
                 connection.Open();
                 var delete = command.ExecuteNonQuery();
-                if(delete == 1) stan = true;
+                if (delete == 1) stan = true;
                 connection.Close();
             }
             return stan;

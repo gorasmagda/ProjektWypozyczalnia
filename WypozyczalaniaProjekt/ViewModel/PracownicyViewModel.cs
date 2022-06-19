@@ -65,8 +65,8 @@ namespace WypozyczalaniaProjekt.ViewModel
                 onPropertyChanged(nameof(WybranyPracownik));
             }
         }
-        
-        
+
+
         public int IdWybranegoPracownika
         {
             get => idWybranegoPracownika;
@@ -213,7 +213,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     dodajPracownika = new RelayCommand(
                         arg =>
                         {
-                            var pracownik = new Pracownik(Imie, Nazwisko, Plec, Email,NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)WybranyOddzial.IdOddzialu, (decimal)Pensja);
+                            var pracownik = new Pracownik(Imie, Nazwisko, Plec, Email, NrTelefonu, Adres, Pesel, NrPrawaJazdy, DateTime.Parse(DataUrodzenia), (sbyte)WybranyOddzial.IdOddzialu, (decimal)Pensja);
                             if (model.DodajPracownikaDoBazy(pracownik))
                             {
                                 CzyscFormularz();
@@ -316,7 +316,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                                         WybranyOddzial = oddzial;
                                     }
                                 }
-                                
+
                             }
                             else
                             {

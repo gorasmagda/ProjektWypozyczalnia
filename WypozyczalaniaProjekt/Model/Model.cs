@@ -109,7 +109,7 @@
         {
             if (RepozytoriumSamochody.EdytujSamochodWBazie(database, samochod, idAuta))
             {
-                for (int i=0; i<Samochody.Count; i++)
+                for (int i = 0; i < Samochody.Count; i++)
                 {
                     if (Samochody[i].IdAuto == idAuta)
                     {
@@ -158,7 +158,7 @@
 
         #region Pracownik
         private bool CzyPracownikJestJuzWBazie(Pracownik pracownik) => Pracownicy.Contains(pracownik);
-       
+
         public bool DodajPracownikaDoBazy(Pracownik pracownik)
         {
             if (!CzyPracownikJestJuzWBazie(pracownik))
@@ -260,7 +260,7 @@
 
         #region Oddział
         private bool CzyOddzialJestJuzWBazie(Oddzial oddzial) => Oddzialy.Contains(oddzial);
-        
+
         public bool DodajOddzialDoBazy(Oddzial oddzial)
         {
             if (!CzyOddzialJestJuzWBazie(oddzial))

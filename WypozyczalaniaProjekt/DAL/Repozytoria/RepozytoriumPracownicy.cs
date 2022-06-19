@@ -30,7 +30,7 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             }
             return pracownicy;
         }
-        
+
         public static bool DodajPracownikaDoBazy(IDBConnection database, Pracownik pracownik)
         {
             bool stan = false;

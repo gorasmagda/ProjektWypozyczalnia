@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WypozyczalaniaProjekt.ViewModel
 {
     using BaseClassess;
     using System.Collections.ObjectModel;
     using System.Windows;
-    using System.Windows.Controls;
     using System.Windows.Input;
     using WypozyczalaniaProjekt.DAL.Encje;
     using WypozyczalaniaProjekt.Model;
@@ -25,6 +21,7 @@ namespace WypozyczalaniaProjekt.ViewModel
         private string marka, modelAuta, nazwisko, imie, cena;
         private DateTime dataRozpoczecia, dataZakonczenia, rozpoczecieStart, zakonczenieStart;
         private string widocznoscTabeli, widocznoscKalendarza;
+        private Samochod tempWybranySamochod;
 
         #endregion
 
@@ -93,6 +90,10 @@ namespace WypozyczalaniaProjekt.ViewModel
             set
             {
                 wybranySamochod = value;
+                if (wybranySamochod != null)
+                {
+                    tempWybranySamochod = value;
+                }
                 onPropertyChanged(nameof(WybranySamochod));
             }
         }
@@ -140,11 +141,8 @@ namespace WypozyczalaniaProjekt.ViewModel
                 ZakonczenieStart = value;
                 SprawdzFormularz();
                 onPropertyChanged(nameof(DataRozpoczecia));
-                if (WybranySamochod != null)
-                {
-                    Cena = WybranySamochod.Cena;
-                    CalkowityKoszt = int.Parse(WybranySamochod.Cena);
-                }
+                if (tempWybranySamochod != null)
+                    CalkowityKoszt = int.Parse(tempWybranySamochod.Cena);
             }
         }
 
@@ -156,11 +154,8 @@ namespace WypozyczalaniaProjekt.ViewModel
                 dataZakonczenia = value;
                 SprawdzFormularz();
                 onPropertyChanged(nameof(DataZakonczenia));
-                if (WybranySamochod != null)
-                {
-                    Cena = WybranySamochod.Cena;
-                    CalkowityKoszt = int.Parse(WybranySamochod.Cena);
-                }
+                if (tempWybranySamochod != null)
+                    CalkowityKoszt = int.Parse(tempWybranySamochod.Cena);
             }
         }
 
@@ -425,7 +420,7 @@ namespace WypozyczalaniaProjekt.ViewModel
                     edytujWynajem = new RelayCommand(
                         arg =>
                         {
-                        if (model.EdytujWynajemWBazie(new Wynajem(DataRozpoczecia, DataZakonczenia, (decimal)CalkowityKoszt, WybranySamochod.IdAuto, WybranyKlient.IdKlient, (sbyte)model.IdZalogowanegoPracownika, WybranyStatus), (sbyte)WybranyWynajemSamochodKlient.IdWynajem))
+                            if (model.EdytujWynajemWBazie(new Wynajem(DataRozpoczecia, DataZakonczenia, (decimal)CalkowityKoszt, WybranySamochod.IdAuto, WybranyKlient.IdKlient, (sbyte)model.IdZalogowanegoPracownika, WybranyStatus), (sbyte)WybranyWynajemSamochodKlient.IdWynajem))
                             {
                                 CzyscFormularz();
                                 WybranyWynajemSamochodKlient = null;
@@ -644,7 +639,7 @@ namespace WypozyczalaniaProjekt.ViewModel
             bool wynik = true;
             if (WybranySamochod == null || WybranyKlient == null || WybranyStatus == null)
                 wynik = false;
-            
+
             AddEnabled = wynik;
             EditEnabled = wynik;
             return wynik;
