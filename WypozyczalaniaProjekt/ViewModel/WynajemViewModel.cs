@@ -140,6 +140,11 @@ namespace WypozyczalaniaProjekt.ViewModel
                 ZakonczenieStart = value;
                 SprawdzFormularz();
                 onPropertyChanged(nameof(DataRozpoczecia));
+                if (WybranySamochod != null)
+                {
+                    Cena = WybranySamochod.Cena;
+                    CalkowityKoszt = int.Parse(WybranySamochod.Cena);
+                }
             }
         }
 
@@ -151,6 +156,11 @@ namespace WypozyczalaniaProjekt.ViewModel
                 dataZakonczenia = value;
                 SprawdzFormularz();
                 onPropertyChanged(nameof(DataZakonczenia));
+                if (WybranySamochod != null)
+                {
+                    Cena = WybranySamochod.Cena;
+                    CalkowityKoszt = int.Parse(WybranySamochod.Cena);
+                }
             }
         }
 
