@@ -288,8 +288,8 @@ namespace WypozyczalaniaProjekt.ViewModel
 
         #region Polecenia
 
-        private ICommand szukajAut = null;
-        public ICommand SzukajAut
+        private ICommand szukajAut = null; //TODO: Coś źle działa w wyszukiwaniu bo gdy wybierze sie np 20-30 to porshe znika więc ok ale audi też powinno zniknąć
+        public ICommand SzukajAut //TODO: nie da się wyszukać wolnych aut na jeden dzień, w sensie np 20-20 więc nie jestem pewna czy tak to powinno być, ale może tak bo jak mamy wypożyczenie od doby to ok
         {
             get
             {
