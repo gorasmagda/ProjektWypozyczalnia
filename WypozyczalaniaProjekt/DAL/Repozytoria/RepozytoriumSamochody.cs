@@ -5,6 +5,7 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
     using Encje;
     using MySql.Data.MySqlClient;
     using System;
+    using System.Windows;
 
     class RepozytoriumSamochody
     {
@@ -27,11 +28,20 @@ namespace WypozyczalaniaProjekt.DAL.Repozytoria
             using (var connection = database.GetConnection())
             {
                 MySqlCommand command = new MySqlCommand(WSZYSTKIE_SAMOCHODY, connection);
-                connection.Open();
-                var reader = command.ExecuteReader();
-                while (reader.Read())
-                    samochody.Add(new Samochod(reader));
-                connection.Close();
+                try
+                {
+                    connection.Open();
+                    var reader = command.ExecuteReader();
+                    while (reader.Read())
+                        samochody.Add(new Samochod(reader));
+                    connection.Close();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Połączenie z bazą nie powiodło się!\nSprawdż swoje połączenie z internetem.");
+                    System.Environment.Exit(0);
+                }
+                
             }
 
             return samochody;
