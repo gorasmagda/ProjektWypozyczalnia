@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using WypozyczalaniaProjekt.DAL.Encje;
+using MySql.Data.MySqlClient;
+using System;
+using System.Windows;
 
 namespace WypozyczalaniaProjekt.DAL.Repozytoria
 {
-    using Encje;
-    using MySql.Data.MySqlClient;
-    using System;
-    using System.Windows;
+    
 
     class RepozytoriumSamochody
     {
